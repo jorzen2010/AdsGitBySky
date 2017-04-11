@@ -1,0 +1,336 @@
+﻿@model AdsEntity.Setting
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>赵征专用-Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Setting</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SiteName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SiteName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DomainName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DomainName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Logo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Logo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Copyright)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Copyright)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Statistics)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Statistics)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Protocol)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Protocol)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Keywords)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Keywords)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FileUploadUrl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FileUploadUrl)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EditorUploadUrl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EditorUploadUrl)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImgUploadUrl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImgUploadUrl)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AvatarUploadUrl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AvatarUploadUrl)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BaseUrl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BaseUrl)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WXAppID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WXAppID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WXAppSecret)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WXAppSecret)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WBAppID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WBAppID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WBAppSecret)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WBAppSecret)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QQAppID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QQAppID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QQAppSecret)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QQAppSecret)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MsgUserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MsgUserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MsgPassword)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MsgPassword)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MsgAPI)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MsgAPI)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LockedMinutes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LockedMinutes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FailedPassword)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FailedPassword)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CodeSeconds)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodeSeconds)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CodeMinutes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodeMinutes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailHost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailHost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailPort)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailPort)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailFrom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailFrom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailUser)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailUser)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailPassword)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailPassword)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActiveMinutes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActiveMinutes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailCodeTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailCodeTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailCodeContent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailCodeContent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailLinkTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailLinkTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailLinkContent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailLinkContent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResetLinkTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResetLinkTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResetLinkContent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResetLinkContent)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -23,7 +23,9 @@ namespace AdsDal
             // base.OnModelCreating(modelBuilder);
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
-        public DbSet<AdsSysUser> AdsSysUsers { get; set; }
+        public DbSet<SysUser> SysUsers { get; set; }
+        public DbSet<Setting> Settings { get; set; }
+        public DbSet<Category> Categorys { get; set; }
 
     }
 }

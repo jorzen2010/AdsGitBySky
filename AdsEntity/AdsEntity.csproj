@@ -40,9 +40,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdsSysRole.cs" />
-    <Compile Include="AdsSysUser.cs" />
+    <Compile Include="AdsBaby.cs" />
+    <Compile Include="AdsCard.cs" />
+    <Compile Include="AdsOrganization.cs" />
+    <Compile Include="AdsParents.cs" />
+    <Compile Include="AdsPsyTest.cs" />
+    <Compile Include="AdsSelfTest.cs" />
+    <Compile Include="SysUser.cs" />
+    <Compile Include="AdsTeacher.cs" />
+    <Compile Include="AdsVideo.cs" />
+    <Compile Include="Category.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Setting.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\PagedList.css" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

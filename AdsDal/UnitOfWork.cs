@@ -12,20 +12,35 @@ namespace AdsDal
     {
         private SkyWebContext context = new SkyWebContext();
 
-         private GenericRepository<AdsSysUser> adsSysUsersRepository;
+        private GenericRepository<SysUser> SysUsersRepository;
 
-         public GenericRepository<AdsSysUser> AdsSysUsersRepository
+         public GenericRepository<SysUser> sysUsersRepository
         {
             get
             {
 
-                if (this.adsSysUsersRepository == null)
+                if (this.SysUsersRepository == null)
                 {
-                    this.adsSysUsersRepository = new GenericRepository<AdsSysUser>(context);
+                    this.SysUsersRepository = new GenericRepository<SysUser>(context);
                 }
-                return adsSysUsersRepository;
+                return SysUsersRepository;
             }
         }
+
+         private GenericRepository<Setting> SettingsRepository;
+
+         public GenericRepository<Setting> settingsRepository
+         {
+             get
+             {
+
+                 if (this.SettingsRepository == null)
+                 {
+                     this.SettingsRepository = new GenericRepository<Setting>(context);
+                 }
+                 return SettingsRepository;
+             }
+         }
 
      
         

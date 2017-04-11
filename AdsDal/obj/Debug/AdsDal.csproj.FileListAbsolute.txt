@@ -24,3 +24,7 @@ E:\2017\AdsGitBySky\AdsDal\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources
 E:\2017\AdsGitBySky\AdsDal\obj\Debug\AdsDal.csprojResolveAssemblyReference.cache
 E:\2017\AdsGitBySky\AdsDal\obj\Debug\AdsDal.dll
 E:\2017\AdsGitBySky\AdsDal\obj\Debug\AdsDal.pdb
+E:\2017\AdsGitBySky\AdsDal\bin\Debug\PagedList.dll
+E:\2017\AdsGitBySky\AdsDal\bin\Debug\PagedList.Mvc.dll
+E:\2017\AdsGitBySky\AdsDal\bin\Debug\PagedList.xml
+E:\2017\AdsGitBySky\AdsDal\bin\Debug\PagedList.Mvc.xml

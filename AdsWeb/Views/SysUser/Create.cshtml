@@ -1,10 +1,10 @@
-﻿@model AdsEntity.AdsSysUser
+﻿@model AdsEntity.SysUser
 
 @{
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h2>赵征专用-Create</h2>
 
 
 @using (Html.BeginForm()) 
@@ -12,23 +12,23 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>AdsSysUser</h4>
+        <h4>SysUser</h4>
         <hr />
         @Html.ValidationSummary(true)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.AdsSysUserName, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.SysUserName, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.AdsSysUserName)
-                @Html.ValidationMessageFor(model => model.AdsSysUserName)
+                @Html.EditorFor(model => model.SysUserName)
+                @Html.ValidationMessageFor(model => model.SysUserName)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.AdsSysPassword, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.SysPassword, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.AdsSysPassword)
-                @Html.ValidationMessageFor(model => model.AdsSysPassword)
+                @Html.EditorFor(model => model.SysPassword)
+                @Html.ValidationMessageFor(model => model.SysPassword)
             </div>
         </div>
 

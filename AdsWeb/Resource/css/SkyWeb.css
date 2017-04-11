@@ -1,0 +1,16 @@
+﻿body {
+}
+
+.sky-loginbtn {
+    font-size:25px;
+}
+.sky-img-avatar {
+    border: 3px solid #d2d6de;
+    height: 160px;
+    text-align: center;
+    width: 160px;
+    box-shadow: 0 0 5px rgba(0,0,0,.15);
+    cursor: pointer;
+}
+
+

@@ -40,6 +40,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -160,6 +166,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SettingController.cs" />
     <Compile Include="Controllers\SysUserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -180,6 +187,7 @@
     <Content Include="bootstrap\js\npm.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="dist\css\AdminLTE.css" />
     <Content Include="dist\css\AdminLTE.min.css" />
     <Content Include="dist\css\skins\skin-black-light.css" />
@@ -281,8 +289,17 @@
     <Content Include="pages\UI\sliders.html" />
     <Content Include="pages\UI\timeline.html" />
     <Content Include="pages\widgets.html" />
+    <Content Include="plugins\bootbox.min.js" />
     <Content Include="plugins\bootstrap-slider\bootstrap-slider.js" />
     <Content Include="plugins\bootstrap-slider\slider.css" />
+    <Content Include="plugins\bootstrap-switch\css\bootstrap-switch.css" />
+    <Content Include="plugins\bootstrap-switch\css\bootstrap-switch.min.css" />
+    <Content Include="plugins\bootstrap-switch\js\bootstrap-switch.js" />
+    <Content Include="plugins\bootstrap-switch\js\bootstrap-switch.min.js" />
+    <Content Include="plugins\bootstrap-validator\css\bootstrapValidator.css" />
+    <Content Include="plugins\bootstrap-validator\css\bootstrapValidator.min.css" />
+    <Content Include="plugins\bootstrap-validator\js\bootstrapValidator.js" />
+    <Content Include="plugins\bootstrap-validator\js\bootstrapValidator.min.js" />
     <Content Include="plugins\bootstrap-wysihtml5\bootstrap3-wysihtml5.all.js" />
     <Content Include="plugins\bootstrap-wysihtml5\bootstrap3-wysihtml5.all.min.js" />
     <Content Include="plugins\bootstrap-wysihtml5\bootstrap3-wysihtml5.css" />
@@ -1082,6 +1099,16 @@
     <Content Include="plugins\timepicker\bootstrap-timepicker.js" />
     <Content Include="plugins\timepicker\bootstrap-timepicker.min.css" />
     <Content Include="plugins\timepicker\bootstrap-timepicker.min.js" />
+    <Content Include="Resource\css\SkyWeb.css" />
+    <Content Include="Resource\img\avatar.jpg" />
+    <Content Include="Resource\img\loading.gif" />
+    <Content Include="Resource\img\picture.jpg" />
+    <Content Include="Resource\js\Article.js" />
+    <Content Include="Resource\js\Category.js" />
+    <Content Include="Resource\js\Department.js" />
+    <Content Include="Resource\js\Dictionary.js" />
+    <Content Include="Resource\js\SkyWeb.js" />
+    <Content Include="Resource\Upload\zhaozheng\6362670290888207461328.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="bootstrap\css\bootstrap-theme.css.map" />
@@ -1171,13 +1198,18 @@
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_MenuPartial.cshtml" />
+    <Content Include="Views\Shared\_TopPartial.cshtml" />
     <Content Include="Views\SysUser\Create.cshtml" />
     <Content Include="Views\SysUser\Delete.cshtml" />
     <Content Include="Views\SysUser\Details.cshtml" />
     <Content Include="Views\SysUser\Edit.cshtml" />
     <Content Include="Views\SysUser\Index.cshtml" />
-    <Content Include="Views\Shared\_MenuPartial.cshtml" />
-    <Content Include="Views\Shared\_TopPartial.cshtml" />
+    <Content Include="Views\Setting\Create.cshtml" />
+    <Content Include="Views\Setting\Delete.cshtml" />
+    <Content Include="Views\Setting\Details.cshtml" />
+    <Content Include="Views\Setting\Edit.cshtml" />
+    <Content Include="Views\Setting\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

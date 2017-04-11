@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Microsoft.International.Converters.PinYinConverter</id>
+    <version>1.0.0</version>
+    <title>Microsoft.International.Converters.PinYinConverter</title>
+    <authors>Inovout</authors>
+    <owners>Inovout</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Microsoft.International.Converters.PinYinConverter</description>
+    <summary />
+  </metadata>
+</package>

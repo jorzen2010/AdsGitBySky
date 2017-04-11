@@ -1,0 +1,383 @@
+﻿@model AdsEntity.Setting
+@{
+    ViewBag.Title = "Video";
+}
+@section Topcss {
+    <link href="~/plugins/bootstrap-validator/css/bootstrapValidator.css" rel="stylesheet" type="text/css" />
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        系统设置
+        <small>Preview</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Forms</a></li>
+        <li class="active">General Elements</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+
+        <!-- right column -->
+        <div class="col-md-12">
+            <!-- Horizontal Form -->
+            <div class="box">
+
+                <!-- /.box-header -->
+                <!-- form start -->
+                <form class="form-horizontal" method="post" action="/Setting/Index">
+                    <div class="box-body">
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(model => model.Id, new { @class = "form-control" })
+                        <div class="nav-tabs-custom">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#tab_1" data-toggle="tab">基本设置</a></li>
+                                <li><a href="#tab_2" data-toggle="tab">搜索优化</a></li>
+                                <li><a href="#tab_3" data-toggle="tab">上传设置</a></li>
+                                <li><a href="#tab_4" data-toggle="tab">邮箱设置</a></li>
+                                <li><a href="#tab_5" data-toggle="tab">短信设置</a></li>
+                                <li><a href="#tab_6" data-toggle="tab">第三方登录设置</a></li>
+                                <li><a href="#tab_7" data-toggle="tab">安全设置</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tab_1">
+                                    <fieldset>
+
+                                        <div class="form-group">
+                                            <label for="inputEmail3" class="col-sm-2 control-label">网站名称</label>
+                                            <div class="col-sm-8  input-group">
+                                                @Html.TextBoxFor(model => model.SiteName, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="inputEmail3" class="col-sm-2 control-label">网站域名</label>
+                                            <div class="col-sm-8  input-group">
+                                                @Html.TextBoxFor(model => model.DomainName, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="inputEmail3" class="col-sm-2 control-label">网站logo</label>
+                                            <div class="col-sm-8  input-group">
+                                                @Html.TextBoxFor(model => model.Logo, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="inputEmail3" class="col-sm-2 control-label">网站版权</label>
+                                            <div class="col-sm-8  input-group">
+                                                @Html.TextAreaFor(model => model.Copyright, new { @class = "form-control", @rows = 3 })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="inputEmail3" class="col-sm-2 control-label">网站协议</label>
+                                            <div class="col-sm-8  input-group">
+                                                @Html.TextAreaFor(model => model.Protocol, new { @class = "form-control", @rows = 10 })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="inputEmail3" class="col-sm-2 control-label">统计代码</label>
+                                            <div class="col-sm-8  input-group">
+                                                @Html.TextAreaFor(model => model.Statistics, new { @class = "form-control", @rows = 10 })
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <!-- /.tab-pane -->
+                                <div class="tab-pane" id="tab_2">
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-2 control-label">网站名称</label>
+                                        <div class="col-sm-8  input-group">
+                                            @Html.TextBoxFor(model => model.Title, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-2 control-label">关键词</label>
+                                        <div class="col-sm-8  input-group">
+                                            @Html.TextBoxFor(model => model.Keywords, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-2 control-label">描述</label>
+                                        <div class="col-sm-8  input-group">
+                                            @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @rows = 5 })
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.tab-pane -->
+                                <div class="tab-pane" id="tab_3">
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-2 control-label">头像上传路径</label>
+                                        <div class="col-sm-8  input-group">
+                                            @Html.TextBoxFor(model => model.FileUploadUrl, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-2 control-label">图片上传路径</label>
+                                        <div class="col-sm-8  input-group">
+                                            @Html.TextBoxFor(model => model.ImgUploadUrl, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-2 control-label">编辑器上传路径</label>
+                                        <div class="col-sm-8  input-group">
+                                            @Html.TextBoxFor(model => model.AvatarUploadUrl, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-2 control-label">根路径</label>
+                                        <div class="col-sm-8  input-group">
+                                            @Html.TextBoxFor(model => model.BaseUrl, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.tab-pane -->
+                                <div class="tab-pane" id="tab_4">
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-2 control-label">邮箱服务器</label>
+                                        <div class="col-sm-8  input-group">
+                                            @Html.TextBoxFor(model => model.EmailHost, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-2 control-label">邮箱端口</label>
+                                        <div class="col-sm-8  input-group">
+                                            @Html.TextBoxFor(model => model.EmailPort, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-2 control-label">邮箱地址</label>
+                                        <div class="col-sm-8  input-group">
+                                            @Html.TextBoxFor(model => model.EmailFrom, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-2 control-label">邮箱用户名</label>
+                                        <div class="col-sm-8  input-group">
+                                            @Html.TextBoxFor(model => model.EmailUser, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-2 control-label">邮箱密码</label>
+                                        <div class="col-sm-8  input-group">
+                                            @Html.TextBoxFor(model => model.EmailPassword, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-2 control-label">激活邮件标题</label>
+                                        <div class="col-sm-8  input-group">
+                                            @Html.TextBoxFor(model => model.EmailCodeTitle, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-2 control-label">激活邮件内容</label>
+                                        <div class="col-sm-8  input-group">
+                                            @Html.TextAreaFor(model => model.EmailCodeContent, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-2 control-label">验证邮件标题</label>
+                                        <div class="col-sm-8  input-group">
+                                            @Html.TextBoxFor(model => model.EmailLinkTitle, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-2 control-label">验证邮件内容</label>
+                                        <div class="col-sm-8  input-group">
+                                            @Html.TextAreaFor(model => model.EmailLinkContent, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-2 control-label">激活超时时间（分钟）</label>
+                                        <div class="col-sm-8  input-group">
+                                            @Html.TextBoxFor(model => model.ActiveMinutes, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-2 control-label">重置密码邮件标题</label>
+                                        <div class="col-sm-8  input-group">
+                                            @Html.TextBoxFor(model => model.ResetLinkTitle, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-2 control-label">重置密码邮件内容</label>
+                                        <div class="col-sm-8  input-group">
+                                            @Html.TextAreaFor(model => model.ResetLinkContent, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="tab-pane" id="tab_5">
+
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-2 control-label">用户名</label>
+                                        <div class="col-sm-8  input-group">
+                                            @Html.TextBoxFor(model => model.MsgUserName, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-2 control-label">密码</label>
+                                        <div class="col-sm-8  input-group">
+                                            @Html.TextBoxFor(model => model.MsgPassword, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-2 control-label">短信接口</label>
+                                        <div class="col-sm-8  input-group">
+                                            @Html.TextAreaFor(model => model.MsgAPI, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="tab-pane" id="tab_6">
+
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-2 control-label">微信APPID</label>
+                                        <div class="col-sm-8  input-group">
+                                            @Html.TextBoxFor(model => model.WXAppID, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-2 control-label">秘钥</label>
+                                        <div class="col-sm-8  input-group">
+                                            @Html.TextBoxFor(model => model.WXAppSecret, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-2 control-label">微博APPID</label>
+                                        <div class="col-sm-8  input-group">
+                                            @Html.TextBoxFor(model => model.WBAppID, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-2 control-label">秘钥</label>
+                                        <div class="col-sm-8  input-group">
+                                            @Html.TextBoxFor(model => model.WBAppSecret, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-2 control-label">QQAPPID</label>
+                                        <div class="col-sm-8  input-group">
+                                            @Html.TextBoxFor(model => model.QQAppID, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-2 control-label">秘钥</label>
+                                        <div class="col-sm-8  input-group">
+                                            @Html.TextBoxFor(model => model.QQAppSecret, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="tab-pane" id="tab_7">
+
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-2 control-label">账户锁定时间（分钟）</label>
+                                        <div class="col-sm-8  input-group">
+                                            @Html.TextBoxFor(model => model.LockedMinutes, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-2 control-label">密码错误次数（次）</label>
+                                        <div class="col-sm-8  input-group">
+                                            @Html.TextBoxFor(model => model.FailedPassword, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-2 control-label">验证码等待秒数（秒）</label>
+                                        <div class="col-sm-8  input-group">
+                                            @Html.TextBoxFor(model => model.CodeSeconds, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-2 control-label">验证码有效时间（分钟）</label>
+                                        <div class="col-sm-8  input-group">
+                                            @Html.TextBoxFor(model => model.CodeMinutes, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                            <!-- /.tab-content -->
+                        </div>
+
+
+
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <button type="button" class="btn btn-default">取消</button>
+                        <button type="submit" class="btn btn-info pull-right">确定</button>
+                    </div>
+                    <!-- /.box-footer -->
+                </form>
+            </div>
+            <!-- /.box -->
+        </div>
+        <!--/.col (right) -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->
+@section FootScripts {
+
+    <script type="text/javascript" src="~/plugins/bootstrap-validator/js/bootstrapValidator.js"></script>
+    <script type="text/javascript" src="/plugins/bootbox.min.js"></script>
+    <script type="text/javascript" src="/Resource/js/SkyWeb.js"></script>
+
+    <script type="text/javascript">
+        var msg = getUrlParam('msg');
+        if (msg) {
+            if (msg == "success") {
+                alertconfirm('系统设置修改成功！');
+            }
+            else {
+                alertconfirm('系统设置修改失败！');
+            }
+        }
+
+    </script>
+
+
+}

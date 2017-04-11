@@ -8,19 +8,39 @@ using System.Web;
 using System.Web.Mvc;
 using AdsEntity;
 using AdsDal;
+using AdsServices;
+using Common;
+using PagedList;
+using PagedList.Mvc;
 
 namespace AdsWeb.Controllers
 {
+
     public class SysUserController : Controller
     {
         private UnitOfWork unitOfWork = new UnitOfWork();
 
-        // GET: /SysUser/
-        public ActionResult Index()
+        // GET: /SysUser/Default1
+        public ActionResult Index(int? page)
         {
-            
-            return View(unitOfWork.AdsSysUsersRepository.Get());
+            Pager pager = new Pager();
+            pager.table = "SysUser";
+            pager.strwhere = "1=1";
+            pager.PageSize = 2;
+            pager.PageNo = page ?? 1;
+            pager.FieldKey = "SysUserId";
+            pager.FiledOrder = "SysUserId desc";
+
+
+            IList<SysUser> sysUsers = SysServices.GetListForPageList(pager);
+            var sysUsersAsIPageList = new StaticPagedList<SysUser>(sysUsers, pager.PageNo, pager.PageSize, pager.Amount);
+            return View(sysUsersAsIPageList);
         }
+
+        //public ActionResult index(int? page)
+        //{
+        //    return View(unitOfWork.sysUsersRepository.Get());
+        //}
 
         // GET: /SysUser/Details/5
         public ActionResult Details(int? id)
@@ -29,12 +49,12 @@ namespace AdsWeb.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AdsSysUser adssysuser = unitOfWork.AdsSysUsersRepository.GetByID(id);
-            if (adssysuser == null)
+            SysUser sysuser = unitOfWork.sysUsersRepository.GetByID(id);
+            if (sysuser == null)
             {
                 return HttpNotFound();
             }
-            return View(adssysuser);
+            return View(sysuser);
         }
 
         // GET: /SysUser/Create
@@ -48,16 +68,16 @@ namespace AdsWeb.Controllers
         // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="AdsSysUserId,AdsSysUserName,AdsSysPassword")] AdsSysUser adssysuser)
+        public ActionResult Create([Bind(Include = "AdsSysUserId,AdsSysUserName,AdsSysPassword")] SysUser sysuser)
         {
             if (ModelState.IsValid)
             {
-                unitOfWork.AdsSysUsersRepository.Insert(adssysuser);
+                unitOfWork.sysUsersRepository.Insert(sysuser);
                 unitOfWork.Save();
                 return RedirectToAction("Index");
             }
 
-            return View(adssysuser);
+            return View(sysuser);
         }
 
         // GET: /SysUser/Edit/5
@@ -67,12 +87,12 @@ namespace AdsWeb.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AdsSysUser adssysuser = unitOfWork.AdsSysUsersRepository.GetByID(id);
-            if (adssysuser == null)
+            SysUser sysuser = unitOfWork.sysUsersRepository.GetByID(id);
+            if (sysuser == null)
             {
                 return HttpNotFound();
             }
-            return View(adssysuser);
+            return View(sysuser);
         }
 
         // POST: /SysUser/Edit/5
@@ -80,15 +100,15 @@ namespace AdsWeb.Controllers
         // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="AdsSysUserId,AdsSysUserName,AdsSysPassword")] AdsSysUser adssysuser)
+        public ActionResult Edit([Bind(Include = "SysUserId,SysUserName,SysPassword")] SysUser sysuser)
         {
             if (ModelState.IsValid)
             {
-                unitOfWork.AdsSysUsersRepository.Update(adssysuser);
+                unitOfWork.sysUsersRepository.Update(sysuser);
                 unitOfWork.Save();
                 return RedirectToAction("Index");
             }
-            return View(adssysuser);
+            return View(sysuser);
         }
 
         // GET: /SysUser/Delete/5
@@ -98,12 +118,12 @@ namespace AdsWeb.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AdsSysUser adssysuser = unitOfWork.AdsSysUsersRepository.GetByID(id);
-            if (adssysuser == null)
+            SysUser sysuser = unitOfWork.sysUsersRepository.GetByID(id);
+            if (sysuser == null)
             {
                 return HttpNotFound();
             }
-            return View(adssysuser);
+            return View(sysuser);
         }
 
         // POST: /SysUser/Delete/5
@@ -111,12 +131,14 @@ namespace AdsWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            AdsSysUser adssysuser = unitOfWork.AdsSysUsersRepository.GetByID(id);
-            unitOfWork.AdsSysUsersRepository.Delete(adssysuser);
+            SysUser sysuser = unitOfWork.sysUsersRepository.GetByID(id);
+            unitOfWork.sysUsersRepository.Delete(sysuser);
             unitOfWork.Save();
             return RedirectToAction("Index");
         }
 
 
     }
+
+
 }
