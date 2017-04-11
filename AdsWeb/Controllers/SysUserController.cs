@@ -18,8 +18,8 @@ namespace AdsWeb.Controllers
         // GET: /SysUser/
         public ActionResult Index()
         {
-            var sysUsers = unitOfWork.AdsSysUsersRepository.Get();
-            return View(sysUsers);
+            
+            return View(unitOfWork.AdsSysUsersRepository.Get());
         }
 
         // GET: /SysUser/Details/5
