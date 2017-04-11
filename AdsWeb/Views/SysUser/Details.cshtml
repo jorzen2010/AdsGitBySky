@@ -1,0 +1,34 @@
+﻿@model AdsEntity.AdsSysUser
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AdsSysUser</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AdsSysUserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdsSysUserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdsSysPassword)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdsSysPassword)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AdsSysUserId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

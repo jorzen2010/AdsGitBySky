@@ -1,0 +1,13 @@
+E:\2017\AdsProject\AdsDal\bin\Debug\AdsDal.dll
+E:\2017\AdsProject\AdsDal\bin\Debug\AdsDal.pdb
+E:\2017\AdsProject\AdsDal\bin\Debug\AdsEntity.dll
+E:\2017\AdsProject\AdsDal\bin\Debug\EntityFramework.dll
+E:\2017\AdsProject\AdsDal\bin\Debug\EntityFramework.SqlServer.dll
+E:\2017\AdsProject\AdsDal\bin\Debug\AdsEntity.pdb
+E:\2017\AdsProject\AdsDal\bin\Debug\EntityFramework.xml
+E:\2017\AdsProject\AdsDal\bin\Debug\EntityFramework.SqlServer.xml
+E:\2017\AdsProject\AdsDal\bin\Debug\zh-Hans\EntityFramework.resources.dll
+E:\2017\AdsProject\AdsDal\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
+E:\2017\AdsProject\AdsDal\obj\Debug\AdsDal.csprojResolveAssemblyReference.cache
+E:\2017\AdsProject\AdsDal\obj\Debug\AdsDal.dll
+E:\2017\AdsProject\AdsDal\obj\Debug\AdsDal.pdb

@@ -1,0 +1,4 @@
+E:\2017\AdsProject\AdsServices\bin\Debug\AdsServices.dll
+E:\2017\AdsProject\AdsServices\bin\Debug\AdsServices.pdb
+E:\2017\AdsProject\AdsServices\obj\Debug\AdsServices.dll
+E:\2017\AdsProject\AdsServices\obj\Debug\AdsServices.pdb

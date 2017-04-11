@@ -1,0 +1,5 @@
+E:\2017\AdsProject\AdsEntity\bin\Debug\AdsEntity.dll
+E:\2017\AdsProject\AdsEntity\bin\Debug\AdsEntity.pdb
+E:\2017\AdsProject\AdsEntity\obj\Debug\AdsEntity.csprojResolveAssemblyReference.cache
+E:\2017\AdsProject\AdsEntity\obj\Debug\AdsEntity.dll
+E:\2017\AdsProject\AdsEntity\obj\Debug\AdsEntity.pdb
