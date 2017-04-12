@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 using AdsEntity;
+using Common;
 
 namespace AdsDal
 {
@@ -92,9 +93,9 @@ namespace AdsDal
             #region 用户初始化
             var sysUsers = new List<SysUser>
             {
-                new SysUser{SysUserName="Tom",SysPassword="1",SysEmail="Tom@163.com",SysStatus=true,SysIfDel=false},
-                new SysUser{SysUserName="Jerry",SysPassword="2",SysEmail="Tom@163.com",SysStatus=true,SysIfDel=false},
-                new SysUser{SysUserName="Jeem",SysPassword="3",SysEmail="Tom@163.com",SysStatus=true,SysIfDel=false}
+                new SysUser{SysUserName="Tom",SysPassword=CommonTools.ToMd5("111111"),SysEmail="Tom@163.com",SysStatus=true},
+                new SysUser{SysUserName="Jerry",SysPassword=CommonTools.ToMd5("111111"),SysEmail="Tom@163.com",SysStatus=true},
+                new SysUser{SysUserName="Jeem",SysPassword=CommonTools.ToMd5("1111111"),SysEmail="Tom@163.com",SysStatus=true}
             };
             sysUsers.ForEach(s => context.SysUsers.Add(s));
             context.SaveChanges();

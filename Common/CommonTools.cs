@@ -85,12 +85,12 @@ namespace Common
         }
         #endregion
 
-        public static string getRandomNumber()
+        public static string getRandomNumber(int begin,int end)
         {
 
 
             Random ran = new Random();
-            int RandKey = ran.Next(1000, 9999);
+            int RandKey = ran.Next(begin, end);
 
             return RandKey.ToString();
 

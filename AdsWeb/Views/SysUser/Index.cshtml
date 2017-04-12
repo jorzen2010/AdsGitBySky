@@ -2,7 +2,7 @@
 @using PagedList;
 @using PagedList.Mvc;
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "系统用户管理";
 }
 
 @section Topcss {
@@ -14,15 +14,15 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        列表页
+        @ViewBag.Title
         <small>
-            @Html.ActionLink("Create New", "Create")
+            @ViewBag.SmallTitle
         </small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Tables</a></li>
-        <li class="active">Data tables</li>
+        <li><a href="/"><i class="fa fa-dashboard"></i> 首页</a></li>
+        <li><a href="#">@ViewBag.Title</a></li>
+        <li class="active">@ViewBag.SmallTitle</li>
     </ol>
 </section>
 <!-- Main content -->
@@ -36,16 +36,7 @@
                             <button class="btn btn-success" data-toggle="modal" data-target="#addSysUser"><i class="fa fa-plus"></i> 新增用户</button>
                         </div>
                     </div>
-                    <div class="pull-right">
-                        <form method="get" action="/SysUser/Search">
-                            <div class="input-group input-group-sm col-md-2" style="width:200px;">
-                                <input type="text" name="kewords" class="form-control pull-right" placeholder="输入用户名查找">
-                                <div class="input-group-btn">
-                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                    
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -61,10 +52,10 @@
                                 <th class="col-sm-2">
                                     邮箱
                                 </th>
-                                <th class="col-sm-2">
+                                <th class="col-sm-3">
                                     状态
                                 </th>
-                                <th class="col-sm-5">操作</th>
+                                <th class="col-sm-4">操作</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -78,7 +69,7 @@
                                         @Html.DisplayFor(modelItem => item.SysUserName)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.SysPassword)
+                                        @Html.DisplayFor(modelItem => item.SysEmail)
                                     </td>
                                     <td>
                                         @if (item.SysStatus)
@@ -93,7 +84,7 @@
                                     <td>
                                         @Html.AntiForgeryToken()
                                         <button class="btn btn-danger btn-xs" type="button" onclick="delconfirm('@item.SysUserId','/SysUser/DeleteConfirmed/','/SysUser/Index')"><span class="glyphicon glyphicon-trash"></span> 删除</button>
-                                        <a class="btn btn-info btn-xs" href="@Url.Action("SendEmail", "Email", new { id = item.SysUserId })"><span class="glyphicon glyphicon-lock"></span> 重置密码</a>
+                                        <button class="btn btn-info btn-xs" type="button" onclick="resetPassword('@item.SysUserId')"><span class="glyphicon glyphicon-lock"></span> 重置密码</button>
 
                                     </td>
                                    
@@ -150,13 +141,13 @@
                         <div class="form-group">
                             <label for="username" class="col-sm-2 control-label">用户名</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="UserName" placeholder="用户名">
+                                <input type="text" class="form-control" name="SysUserName" placeholder="用户名">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">密码</label>
                             <div class="col-sm-10">
-                                <input type="password" class="form-control" name="Password" placeholder="密码">
+                                <input type="password" class="form-control" name="SysPassword" placeholder="密码">
                             </div>
                         </div>
                         <div class="form-group">
@@ -168,14 +159,14 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">邮箱地址</label>
                             <div class="col-sm-10">
-                                <input type="email" class="form-control" name="Email" placeholder="邮箱地址">
+                                <input type="email" class="form-control" name="SysEmail" placeholder="邮箱地址">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">是否使用</label>
                             <div class="col-sm-10" style="padding-top:7px;">
-                                <input type="radio" class="form-control" name="Status" value="true" checked="checked">&nbsp;&nbsp;启用&nbsp;&nbsp;
-                                <input type="radio" class="form-control" name="Status" value="false">&nbsp;&nbsp;禁用&nbsp;&nbsp;
+                                <input type="radio" class="form-control" name="SysStatus" value="true" checked="checked">&nbsp;&nbsp;启用&nbsp;&nbsp;
+                                <input type="radio" class="form-control" name="SysStatus" value="false">&nbsp;&nbsp;禁用&nbsp;&nbsp;
                             </div>
                         </div>
 
@@ -201,16 +192,38 @@
     <script type="text/javascript" src="/Resource/js/SkyWeb.js"></script>
     <script type="text/javascript">
 
+        function resetPassword(id)
+        {
+            var token = $('[name=__RequestVerificationToken]').val();
+            $.ajax({
+                type: 'POST',
+                url: "/sysUser/ResetPassword",
+                data: {
+                    id: id,
+                    __RequestVerificationToken: token,
+                },
+                dataType: "json",
+                success: function (data) {
+                    if (data.MessageStatus)
+                    { alertconfirm(data.MessageInfo); }
+                    else
+                    { alertconfirm("重置密码失败！");}
+                    
+                }
+            });
+
+        }
+
         $(document).ready(function () {
 
             //单选按钮样式加载
 
-            $('[name="Status"]').iCheck({
+            $('[name="SysStatus"]').iCheck({
                 labelHover: false,
                 cursor: true,
                 checkboxClass: 'icheckbox_square-green',
                 radioClass: 'iradio_square-green',
-                increaseArea: '20%'
+                increaseArea: '20%',
             });
             //开关按钮样式加载
             $('[name="status"]').bootstrapSwitch({
@@ -246,7 +259,7 @@
                     validating: 'glyphicon glyphicon-refresh'
                 },
                 fields: {
-                    UserName: {
+                    SysUserName: {
                         validators: {
                             notEmpty: {
                                 message: '用户名不能为空'
@@ -258,7 +271,7 @@
                             },
                         }
                     },
-                    Password: {
+                    SysPassword: {
                         validators: {
                             notEmpty: {
                                 message: '密码不能为空'
@@ -268,7 +281,7 @@
                                 message: '两次输入密码不一致'
                             },
                             different: {
-                                field: 'UserName',
+                                field: 'SysUserName',
                                 message: '密码与用户名长的怎么一样呢'
                             }
                         }
@@ -279,19 +292,19 @@
                                 message: '重复密码也不能为空'
                             },
                             identical: {
-                                field: 'Password',
+                                field: 'SysPassword',
                                 message: '两次输入密码不一致'
                             }
                         }
                     },
-                    email: {
+                    SysEmail: {
                         validators: {
                             notEmpty: {
                                 message: '邮箱不能为空'
                             }
                         }
                     },
-                    Status: {
+                    SysStatus: {
                         validators: {
                             notEmpty: {
                                 message: '请选择是否禁用'

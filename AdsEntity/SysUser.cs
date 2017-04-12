@@ -19,7 +19,5 @@ namespace AdsEntity
         public string SysEmail { get; set; }
         [Display(Name = "是否启用")]
         public bool SysStatus { get; set; }
-        [Display(Name = "是否删除")]
-        public bool SysIfDel { get; set; }
     }
 }

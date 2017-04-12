@@ -36,12 +36,6 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="PagedList">
-      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
-    </Reference>
-    <Reference Include="PagedList.Mvc">
-      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
@@ -62,6 +56,10 @@
     <ProjectReference Include="..\AdsEntity\AdsEntity.csproj">
       <Project>{155aac5e-5910-4e55-9bac-465a8a5e41f7}</Project>
       <Name>AdsEntity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{97bb8354-ad37-40d1-ad0d-7eee6026d2aa}</Project>
+      <Name>Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

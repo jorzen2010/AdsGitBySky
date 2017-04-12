@@ -42,6 +42,21 @@ namespace AdsDal
              }
          }
 
+         private GenericRepository<Category> CategorysRepository;
+
+         public GenericRepository<Category> categorysRepository
+         {
+             get
+             {
+
+                 if (this.CategorysRepository == null)
+                 {
+                     this.CategorysRepository = new GenericRepository<Category>(context);
+                 }
+                 return CategorysRepository;
+             }
+         }
+
      
         
 

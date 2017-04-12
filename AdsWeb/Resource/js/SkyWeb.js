@@ -1,4 +1,6 @@
-﻿//获取地址栏参数//只能是英文参数
+﻿
+
+//获取地址栏参数//只能是英文参数
 function GetQueryString(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
     var r = window.location.search.substr(1).match(reg);

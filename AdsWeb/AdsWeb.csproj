@@ -165,6 +165,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\bvnode.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SettingController.cs" />
     <Compile Include="Controllers\SysUserController.cs" />
@@ -296,6 +298,7 @@
     <Content Include="plugins\bootstrap-switch\css\bootstrap-switch.min.css" />
     <Content Include="plugins\bootstrap-switch\js\bootstrap-switch.js" />
     <Content Include="plugins\bootstrap-switch\js\bootstrap-switch.min.js" />
+    <Content Include="plugins\bootstrap-treeview.js" />
     <Content Include="plugins\bootstrap-validator\css\bootstrapValidator.css" />
     <Content Include="plugins\bootstrap-validator\css\bootstrapValidator.min.css" />
     <Content Include="plugins\bootstrap-validator\js\bootstrapValidator.js" />
@@ -1200,16 +1203,13 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_MenuPartial.cshtml" />
     <Content Include="Views\Shared\_TopPartial.cshtml" />
-    <Content Include="Views\SysUser\Create.cshtml" />
-    <Content Include="Views\SysUser\Delete.cshtml" />
-    <Content Include="Views\SysUser\Details.cshtml" />
-    <Content Include="Views\SysUser\Edit.cshtml" />
     <Content Include="Views\SysUser\Index.cshtml" />
     <Content Include="Views\Setting\Create.cshtml" />
     <Content Include="Views\Setting\Delete.cshtml" />
     <Content Include="Views\Setting\Details.cshtml" />
     <Content Include="Views\Setting\Edit.cshtml" />
     <Content Include="Views\Setting\Index.cshtml" />
+    <Content Include="Views\Category\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -65,6 +65,7 @@
     <Compile Include="FileServices.cs" />
     <Compile Include="FileTools.cs" />
     <Compile Include="JsonHepler.cs" />
+    <Compile Include="Message.cs" />
     <Compile Include="Pager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
