@@ -14,6 +14,6 @@ namespace AdsEntity
         public int BabyId { get; set; }
         public int ParentId { get; set; }
         public int VideoId { get; set; }
-        public int Test { get; set; }
+        public int TestId { get; set; }
     }
 }

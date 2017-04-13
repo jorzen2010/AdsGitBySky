@@ -27,5 +27,7 @@ namespace AdsDal
         public DbSet<Setting> Settings { get; set; }
         public DbSet<Category> Categorys { get; set; }
 
+        public System.Data.Entity.DbSet<AdsEntity.AdsVideo> AdsVideos { get; set; }
+
     }
 }

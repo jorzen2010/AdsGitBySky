@@ -14,8 +14,8 @@ namespace AdsServices
         public static IList<SysUser> GetListForPageList(Pager pager)
         {
             pager = CommonDal.GetPager(pager);
-            IList<SysUser> sysUsers = DataConvertHelper<SysUser>.ConvertToModel(pager.EntityDataTable);
-            return sysUsers;
+            IList<SysUser> userList = DataConvertHelper<SysUser>.ConvertToModel(pager.EntityDataTable);
+            return userList;
         }
     }
 }

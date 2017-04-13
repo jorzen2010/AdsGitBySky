@@ -18,6 +18,10 @@ namespace AdsDal
             this.dbSet = context.Set<TEntity>();
         }
 
+        //使用说明
+        //var categorys = unitOfWork.categorysRepository.Get(filter: u => u.CategoryParentID == ParentID);
+        //var categorys = unitOfWork.categorysRepository.Get(orderBy: q =>q.OrderBy(u=>u.CategoryId));
+
         public virtual IEnumerable<TEntity> Get(
             Expression<Func<TEntity, bool>> filter = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,

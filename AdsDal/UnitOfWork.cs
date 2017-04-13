@@ -57,6 +57,21 @@ namespace AdsDal
              }
          }
 
+         private GenericRepository<AdsVideo> AdsVideosRepository;
+
+         public GenericRepository<AdsVideo> adsVideosRepository
+         {
+             get
+             {
+
+                 if (this.AdsVideosRepository == null)
+                 {
+                     this.AdsVideosRepository = new GenericRepository<AdsVideo>(context);
+                 }
+                 return AdsVideosRepository;
+             }
+         }
+
      
         
 

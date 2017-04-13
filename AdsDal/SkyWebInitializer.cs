@@ -118,6 +118,14 @@ namespace AdsDal
             categorys.ForEach(s => context.Categorys.Add(s));
             context.SaveChanges();
 
+            var adsVideos = new List<AdsVideo>
+            {
+                new AdsVideo{ VideoCategory=1,VideoName="视频名称",VideoNumber="asfadsfafsd",VideoUrl="asdffas"}
+
+            };
+            adsVideos.ForEach(s => context.AdsVideos.Add(s));
+            context.SaveChanges();
+
             #endregion
 
 

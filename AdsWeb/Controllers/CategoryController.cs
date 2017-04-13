@@ -95,7 +95,6 @@ namespace AdsWeb.Controllers
         }
 
 
-
         // GET: /Category/Create
         //public ActionResult Create()
         //{
