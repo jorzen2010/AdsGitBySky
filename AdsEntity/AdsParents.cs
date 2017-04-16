@@ -12,10 +12,14 @@ namespace AdsEntity
     {
         [Key]
         public int ParentId { get; set; }
-        public string ParentName { get; set; }
-        public string ParentSex { get; set; }
-        public DateTime ParentBirthday { get; set; }
-        public int ParentCategory { get; set; }
+        public int CustomerId { get; set; }
+
+        [Display(Name = "学历")]
+        public string ParentXueli { get; set; }
+        [Display(Name = "婚姻状态")]
+        public string ParentHunyin { get; set; }
+        [Display(Name = "职业")]
+        public string ParentJob { get; set; }
 
     }
 }

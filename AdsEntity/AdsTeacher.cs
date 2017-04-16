@@ -11,11 +11,15 @@ namespace AdsEntity
     {
         [Key]
         public int TeacherId { get; set; }
-        public string TeacherName { get; set; }
-        public string TeacherSex { get; set; }
-        public string TeacherBirthday { get; set; }
+        public int CustomerId { get; set; }
+
+         [Display(Name = "教师简介")]
         public string TeacherInfo { get; set; }
+         [Display(Name = "教师学历")]
         public string TeacherXueli { get; set; }
-        public int TeacherOrg { get; set; }
+
+
+
+
     }
 }

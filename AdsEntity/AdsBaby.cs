@@ -11,32 +11,13 @@ namespace AdsEntity
     {
         [Key]
         public int BbId { get; set; }
-        [Display(Name = "姓名")]
-        public string BbName { get; set; }
-        [Display(Name = "性别")]
-        public string BbSex { get; set; }
-        [Display(Name = "生日")]
-        public DateTime BbBirthday { get; set; }
-
-        [Display(Name = "用户名")]
-        public string BbUserName { get; set; }
-        [Display(Name = "密码")]
-        public string BbPassword { get; set; }
+        public int CustomerId { get; set; }
 
 
-        //未来可延伸部分母亲的生产年龄，看护方式，等等
 
+        //未来可延伸部分母亲的生产年龄，看护方式，等等，通过问卷获取此信息
 
-        [Display(Name = "省份")]
-        public string BbShengfen { get; set; }
-        [Display(Name = "城市")]
-        public string BbCity { get; set; }
-        [Display(Name = "地区")]
-        public string BbDiqu { get; set; }
-        [Display(Name = "详细住址")]
-        public string BbAddress { get; set; }
-
-        [Display(Name = "生产类型")]
+        [Display(Name = "生育类型")]
         public string BbShenchan { get; set; }
         [Display(Name = "居住环境")]
         public string BbHuanjing { get; set; }

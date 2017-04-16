@@ -61,7 +61,7 @@ namespace AdsServices
                     SelectListItem Item = new SelectListItem { Text = a + subItem.CategoryName, Value = subItem.ID.ToString() };
                     items.Add(Item);
                     a += "……";
-                    LoopToAppendChildrenSelectListItem(items, Item);
+                    LoopToAppendChildrenSelectListItem(items, Item,pid);
 
                 }
 

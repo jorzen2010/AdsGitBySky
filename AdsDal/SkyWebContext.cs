@@ -29,5 +29,7 @@ namespace AdsDal
 
         public System.Data.Entity.DbSet<AdsEntity.AdsVideo> AdsVideos { get; set; }
 
+        public System.Data.Entity.DbSet<AdsEntity.AdsCustomer> AdsCustomers { get; set; }
+
     }
 }

@@ -51,10 +51,30 @@ namespace Common
             MemoryStream ms = new MemoryStream(arr);
             Bitmap bmp = new Bitmap(ms);
 
-            bmp.Save(System.Web.HttpContext.Current.Server.MapPath(filePath), System.Drawing.Imaging.ImageFormat.Png);
+         //   bmp.Save(System.Web.HttpContext.Current.Server.MapPath(filePath), System.Drawing.Imaging.ImageFormat.Png);
+            bmp.Save(System.Web.HttpContext.Current.Server.MapPath(filePath), System.Drawing.Imaging.ImageFormat.Jpeg);
             ms.Close();
             return bmp;
    
+        }
+
+
+        public static Bitmap Base64ToImage(string inputStr, string filePath)
+        {
+            //这段代码的意思是去除base64前面的前缀//data:image/jpg;base64,   
+            string byteStr = inputStr.ToString();//data:image/jpg;base64,         
+            int delLength = byteStr.IndexOf(',') + 1;
+            string img64 = byteStr.Substring(delLength, byteStr.Length - delLength);
+
+            byte[] arr = Convert.FromBase64String(img64);
+            MemoryStream ms = new MemoryStream(arr);
+            Bitmap bmp = new Bitmap(ms);
+
+            //   bmp.Save(System.Web.HttpContext.Current.Server.MapPath(filePath), System.Drawing.Imaging.ImageFormat.Png);
+            bmp.Save(System.Web.HttpContext.Current.Server.MapPath(filePath), System.Drawing.Imaging.ImageFormat.Jpeg);
+            ms.Close();
+            return bmp;
+
         }
 
 

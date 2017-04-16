@@ -72,6 +72,21 @@ namespace AdsDal
              }
          }
 
+         private GenericRepository<AdsCustomer> AdsCustomersRepository;
+
+         public GenericRepository<AdsCustomer> adsCustomersRepository
+         {
+             get
+             {
+
+                 if (this.AdsCustomersRepository == null)
+                 {
+                     this.AdsCustomersRepository = new GenericRepository<AdsCustomer>(context);
+                 }
+                 return AdsCustomersRepository;
+             }
+         }
+
      
         
 

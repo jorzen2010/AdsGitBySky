@@ -165,8 +165,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AjaxController.cs" />
     <Compile Include="Controllers\bvnode.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SettingController.cs" />
     <Compile Include="Controllers\SysUserController.cs" />
@@ -614,6 +617,17 @@
     <Content Include="plugins\colorpicker\img\hue-horizontal.png" />
     <Content Include="plugins\colorpicker\img\hue.png" />
     <Content Include="plugins\colorpicker\img\saturation.png" />
+    <Content Include="plugins\copper\css\avatar.css" />
+    <Content Include="plugins\copper\css\cropper.css" />
+    <Content Include="plugins\copper\images\avatar.jpg" />
+    <Content Include="plugins\copper\images\data.jpg" />
+    <Content Include="plugins\copper\images\layers.jpg" />
+    <Content Include="plugins\copper\images\loading.gif" />
+    <Content Include="plugins\copper\images\picture-2.jpg" />
+    <Content Include="plugins\copper\images\picture-3.jpg" />
+    <Content Include="plugins\copper\images\picture.jpg" />
+    <Content Include="plugins\copper\js\avatar.js" />
+    <Content Include="plugins\copper\js\cropper.js" />
     <Content Include="plugins\datatables\dataTables.bootstrap.css" />
     <Content Include="plugins\datatables\dataTables.bootstrap.js" />
     <Content Include="plugins\datatables\dataTables.bootstrap.min.js" />
@@ -1218,9 +1232,19 @@
     <Content Include="Views\Video\Index.cshtml" />
     <Content Include="Views\Video\Index - 复制.cshtml" />
     <Content Include="Views\Video\Edit - 复制.cshtml" />
+    <Content Include="Views\Customer\Create.cshtml" />
+    <Content Include="Views\Customer\Delete.cshtml" />
+    <Content Include="Views\Customer\Details.cshtml" />
+    <Content Include="Views\Customer\Edit.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\Customer\Create - 复制.cshtml" />
+    <Content Include="Views\Customer\Index - 复制.cshtml" />
+    <Content Include="Views\Customer\Edit - 复制.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Ajax\" />
+    <Folder Include="Views\File\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
