@@ -870,6 +870,10 @@
     <Content Include="plugins\daterangepicker\daterangepicker.js" />
     <Content Include="plugins\daterangepicker\moment.js" />
     <Content Include="plugins\daterangepicker\moment.min.js" />
+    <Content Include="plugins\DistPicker\distpicker.data.js" />
+    <Content Include="plugins\DistPicker\distpicker.data.min.js" />
+    <Content Include="plugins\DistPicker\distpicker.js" />
+    <Content Include="plugins\DistPicker\distpicker.min.js" />
     <Content Include="plugins\fastclick\fastclick.js" />
     <Content Include="plugins\fastclick\fastclick.min.js" />
     <Content Include="plugins\flot\excanvas.js" />
@@ -1239,7 +1243,7 @@
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Customer\Create - 复制.cshtml" />
     <Content Include="Views\Customer\Index - 复制.cshtml" />
-    <Content Include="Views\Customer\Edit - 复制.cshtml" />
+    <Content Include="Views\Customer\IdentityEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

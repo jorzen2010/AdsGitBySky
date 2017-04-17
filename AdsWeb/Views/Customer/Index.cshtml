@@ -72,14 +72,21 @@
                                         @Html.DisplayFor(modelItem => item.CustomerEmail)
                                     </td>
                                     <td>
-                                       正常
+                                        @if (item.CustomerStatus)
+                                        {
+                                            <input type="checkbox" name="status" checked="checked" value="@item.CustomerId" />
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" name="status" value="@item.CustomerId" />
+                                        }
                                     </td>
                                     <td>
                                         @Html.AntiForgeryToken()
                                         <a class="btn btn-success btn-xs" href="@Url.Action("Edit", "Customer", new { id = item.CustomerId })"><span class="glyphicon glyphicon-edit"></span> 编辑</a>
                                         <button class="btn btn-danger btn-xs" type="button" onclick="delconfirm('@item.CustomerId','/Customer/DeleteConfirmed/','/Customer/Index')"><span class="glyphicon glyphicon-trash"></span> 删除</button>
                                         <button class="btn btn-info btn-xs" type="button" onclick="resetPassword('@item.CustomerId')"><span class="glyphicon glyphicon-lock"></span> 重置密码</button>
-                                        <button class="btn btn-warning btn-xs" type="button" onclick="resetPassword('@item.CustomerId')"><span class="glyphicon glyphicon-star"></span> 身份认证</button>
+                                        <a class="btn btn-warning btn-xs" href="@Url.Action("IdentityEdit", "Customer", new { id = item.CustomerId })"><span class="glyphicon glyphicon-star"></span> 身份认证</a>
                                         <button class="btn btn-warning btn-xs" type="button" onclick="resetPassword('@item.CustomerId')"><span class="glyphicon glyphicon-star"></span> 社交认证</button>
 
                                     </td>
@@ -246,7 +253,7 @@
                     var token = $('[name=__RequestVerificationToken]').val();
                     $.ajax({
                         type: 'POST',
-                        url: "/sysUser/UpdateStatus",
+                        url: "/Customer/UpdateStatus",
                         data: {
                             id: $(this).val(),
                             status: state,

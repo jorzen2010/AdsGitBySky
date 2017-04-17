@@ -60,6 +60,28 @@ namespace AdsWeb.Controllers
             return Json(msg, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult UpdateStatus(int? id, bool status)
+        {
+            Message msg = new Message();
+            if (id == null)
+            {
+                msg.MessageStatus = "false";
+                msg.MessageInfo = "找不到ID";
+            }
+            AdsCustomer customer = unitOfWork.adsCustomersRepository.GetByID(id);
+            customer.CustomerStatus = status;
+            if (ModelState.IsValid)
+            {
+                unitOfWork.adsCustomersRepository.Update(customer);
+                unitOfWork.Save();
+                msg.MessageStatus = "true";
+                msg.MessageInfo = "已经更改为" + customer.CustomerStatus.ToString();
+            }
+            return Json(msg, JsonRequestBehavior.AllowGet);
+        }
+
         // GET: /Customer/Details/5
         public ActionResult Details(int? id)
         {
@@ -113,20 +135,49 @@ namespace AdsWeb.Controllers
             return View(adscustomer);
         }
 
+        public ActionResult IdentityEdit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            AdsCustomer adscustomer = db.AdsCustomers.Find(id);
+            if (adscustomer == null)
+            {
+                return HttpNotFound();
+            }
+            return View(adscustomer);
+        }
+
         // POST: /Customer/Edit/5
         // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 
         // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(AdsCustomer adscustomer)
+        public ActionResult Edit(FormCollection fc)
         {
+            int id = int.Parse(fc["CustomerId"]);
+            AdsCustomer customer = unitOfWork.adsCustomersRepository.GetByID(id);
+
+            customer.CustomerRealName = fc["CustomerRealName"];
+            customer.CustomerBirthdayType = fc["CustomerBirthdayType"];
+            customer.CustomerBirthday = DateTime.Parse(fc["CustomerBirthday"]);
+            customer.CustomerSex = fc["CustomerSex"];
+            customer.CustomerProvince = fc["CustomerProvince"];
+            customer.CustomerCity = fc["CustomerCity"];
+            customer.CustomerDistrict = fc["CustomerDistrict"];
+            customer.CustomerAddress = fc["CustomerAddress"];
+
             if (ModelState.IsValid)
             {
-                db.Entry(adscustomer).State = EntityState.Modified;
-                db.SaveChanges();
+
+                unitOfWork.adsCustomersRepository.Update(customer);
+                unitOfWork.Save();
+
                 return RedirectToAction("Index");
             }
-            return View(adscustomer);
+            return View(customer);
+         
         }
 
         // GET: /Customer/Delete/5

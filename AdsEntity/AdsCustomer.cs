@@ -32,12 +32,14 @@ namespace AdsEntity
         public string CustomerSex { get; set; }
         [Display(Name = "生日")]
         public DateTime CustomerBirthday { get; set; }
+        [Display(Name = "生日类型")]
+        public string CustomerBirthdayType { get; set; }
         [Display(Name = "省份")]
-        public string CustomerShengfen { get; set; }
+        public string CustomerProvince { get; set; }
         [Display(Name = "城市")]
         public string CustomerCity { get; set; }
         [Display(Name = "地区")]
-        public string CustomerDiqu { get; set; }
+        public string CustomerDistrict { get; set; }
         [Display(Name = "详细住址")]
         public string CustomerAddress { get; set; }
         [Display(Name = "注册时间")]
