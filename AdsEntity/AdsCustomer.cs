@@ -19,8 +19,10 @@ namespace AdsEntity
         public string CustomerPassword { get; set; }
         [Display(Name = "客户类型")]
         public int CustomerRole { get; set; }
-        [Display(Name = "客户状态")]
+        [Display(Name = "认证状态")]
         public bool CustomerStatus { get; set; }
+        [Display(Name = "认证状态")]
+        public IdentiyStatus CustomerIdentity { get; set; }
 
 
 
@@ -57,6 +59,8 @@ namespace AdsEntity
 
         [Display(Name = "身份证号")]
         public string CustomerIDCard { get; set; }
+        [Display(Name = "手持身份证")]
+        public string CustomerHoldCard { get; set; }
         [Display(Name = "身份证号正面")]
         public string CustomerIDCardzm { get; set; }
         [Display(Name = "身份证号反面")]
@@ -69,6 +73,14 @@ namespace AdsEntity
         public string CustomerQQ { get; set; }
         [Display(Name = "微信号码")]
         public string CustomerWechat { get; set; }
+
+        public enum IdentiyStatus
+        { 
+            未认证=0,
+            已认证=1,
+            正在审核=2,
+            审核失败=4
+        }
 
 
     }

@@ -72,14 +72,7 @@
                                         @Html.DisplayFor(modelItem => item.SysEmail)
                                     </td>
                                     <td>
-                                        @if (item.SysStatus)
-                                        {
-                                            <input type="checkbox" name="status" checked="checked" value="@item.SysUserId" />
-                                        }
-                                        else
-                                        {
-                                            <input type="checkbox" name="status" value="@item.SysUserId" />
-                                        }
+                                        <input type="checkbox" name="status" value="@item.SysUserId" checked="@(item.SysStatus?"checked":"")" />
                                     </td>
                                     <td>
                                         @Html.AntiForgeryToken()

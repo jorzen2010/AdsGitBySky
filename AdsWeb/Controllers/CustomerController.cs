@@ -17,7 +17,7 @@ namespace AdsWeb.Controllers
 {
     public class CustomerController : Controller
     {
-        private SkyWebContext db = new SkyWebContext();
+       
         private UnitOfWork unitOfWork = new UnitOfWork();
 
         // GET: /SysUser/Default1
@@ -82,43 +82,22 @@ namespace AdsWeb.Controllers
             return Json(msg, JsonRequestBehavior.AllowGet);
         }
 
-        // GET: /Customer/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            AdsCustomer adscustomer = db.AdsCustomers.Find(id);
-            if (adscustomer == null)
-            {
-                return HttpNotFound();
-            }
-            return View(adscustomer);
-        }
 
-        // GET: /Customer/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: /Customer/Create
-        // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 
-        // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(AdsCustomer adscustomer)
+        public ActionResult Create(AdsCustomer customer)
         {
             if (ModelState.IsValid)
             {
-                db.AdsCustomers.Add(adscustomer);
-                db.SaveChanges();
+                unitOfWork.adsCustomersRepository.Insert(customer);
+                unitOfWork.Save();
                 return RedirectToAction("Index");
             }
 
-            return View(adscustomer);
+            return RedirectToAction("Index");
         }
+
+
 
         // GET: /Customer/Edit/5
         public ActionResult Edit(int? id)
@@ -127,13 +106,14 @@ namespace AdsWeb.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AdsCustomer adscustomer = db.AdsCustomers.Find(id);
-            if (adscustomer == null)
+            AdsCustomer customer = unitOfWork.adsCustomersRepository.GetByID(id);
+            if (customer == null)
             {
                 return HttpNotFound();
             }
-            return View(adscustomer);
+            return View(customer);
         }
+
 
         public ActionResult IdentityEdit(int? id)
         {
@@ -141,12 +121,12 @@ namespace AdsWeb.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AdsCustomer adscustomer = db.AdsCustomers.Find(id);
-            if (adscustomer == null)
+            AdsCustomer customer = unitOfWork.adsCustomersRepository.GetByID(id);
+            if (customer == null)
             {
                 return HttpNotFound();
             }
-            return View(adscustomer);
+            return View(customer);
         }
 
         // POST: /Customer/Edit/5
@@ -159,7 +139,8 @@ namespace AdsWeb.Controllers
             int id = int.Parse(fc["CustomerId"]);
             AdsCustomer customer = unitOfWork.adsCustomersRepository.GetByID(id);
 
-            customer.CustomerRealName = fc["CustomerRealName"];
+            customer.CustomerNickName = fc["CustomerNickName"];
+            customer.CustomerAvatar = fc["CustomerAvatar"];
             customer.CustomerBirthdayType = fc["CustomerBirthdayType"];
             customer.CustomerBirthday = DateTime.Parse(fc["CustomerBirthday"]);
             customer.CustomerSex = fc["CustomerSex"];
@@ -180,20 +161,32 @@ namespace AdsWeb.Controllers
          
         }
 
-        // GET: /Customer/Delete/5
-        public ActionResult Delete(int? id)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult IdentityEdit(FormCollection fc)
         {
-            if (id == null)
+            int id = int.Parse(fc["CustomerId"]);
+            AdsCustomer customer = unitOfWork.adsCustomersRepository.GetByID(id);
+
+            customer.CustomerRealName = fc["CustomerRealName"];
+            customer.CustomerIDCard = fc["CustomerIDCard"];
+            customer.CustomerIDCardzm = fc["CustomerIDCardzm"];
+            customer.CustomerIDCardsm = fc["CustomerIDCardsm"];
+            customer.CustomerHoldCard = fc["CustomerHoldCard"];
+            customer.CustomerIdentity = AdsCustomer.IdentiyStatus.正在审核;
+
+            if (ModelState.IsValid)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+                unitOfWork.adsCustomersRepository.Update(customer);
+                unitOfWork.Save();
+
+                return RedirectToAction("Index");
             }
-            AdsCustomer adscustomer = db.AdsCustomers.Find(id);
-            if (adscustomer == null)
-            {
-                return HttpNotFound();
-            }
-            return View(adscustomer);
+            return View(customer);
+
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -218,13 +211,6 @@ namespace AdsWeb.Controllers
             return Json(msg, JsonRequestBehavior.AllowGet);
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+      
     }
 }

@@ -15,8 +15,9 @@ $(function () {
   var $dataScaleY = $('#dataScaleY');
   var options = {
 
-      //剪裁比例可根据需要自行更改
-        aspectRatio: 1 / 1,//可以设置为NaN，是自有尺寸，或1：1，4：3，16：9等
+         //剪裁比例可根据需要自行更改
+      //  aspectRatio: 1 / 1,//可以设置为NaN，是自有尺寸，或1：1，4：3，16：9等
+        aspectRatio: $('#imageaspectRatio').val(),
         preview: '.img-preview',
         crop: function (e) {
           $dataX.val(Math.round(e.x));
@@ -148,39 +149,21 @@ $(function () {
           break;
 
         case 'getCroppedCanvas':
-          if (result) {
+            if (result) {
 
-
+               
               // 需要在这个地方将图片转换成base64格式，result.toDataURL('image/jpeg')上传，然后把文件名赋值到一个隐藏域中即可。同时更新数据库。
-              //这里需要一个ajax上传有了64位格式的字符串怎么上传都可以了。
-              var token = $('[name=__RequestVerificationToken]').val();
-
-              $.ajax({
-                  type: 'POST',
-                  url: "/File/UploadImgBase64",
-                  data: {
-                      id: $('#CustomerId').val(),
-                      img: result.toDataURL('image/jpeg'),
-                      __RequestVerificationToken: token,
-                      rootpath:"/Resource/Upload",
-                          folder:"zhaozheng",
-                  },
-                  dataType: "json",
-                  success: function (data) {
-                    //  不用这个了，重新刷新即可。$('#avatar-modal').modal().hide();
-                      alert('Success：头像上传成功 ');
-                      window.location.reload();
-                  },
-                  error: function () {
-                      alert("error：有错误发生了")
-                  }
-              });
+                //这里需要一个ajax上传有了64位格式的字符串怎么上传都可以了。
+          
+                //  var ac = data.skyac;//不能用这个，这个只能取得第一次的值
+                var ac = $('#getCroppedCanvasbtn').attr('data-skyac');
+                 SkyfileCopper(ac, result);
+             
 
             if (!$download.hasClass('disabled')) {
               $download.attr('href', result.toDataURL('image/jpeg'));
             }
           }
-
           break;
 
         case 'destroy':
