@@ -10,6 +10,7 @@
     <link href="~/plugins/bootstrap-validator/css/bootstrapValidator.css" rel="stylesheet" type="text/css" />
     <link href="~/plugins/bootstrap-switch/css/bootstrap-switch.css" rel="stylesheet" type="text/css" />
     <link href="~/plugins/iCheck/square/green.css" rel="stylesheet" type="text/css" />
+    <link href="~/plugins/iCheck/square/green.css" rel="stylesheet" type="text/css" />
 }
 <!-- Content Header (Page header) -->
 <section class="content-header">
@@ -24,21 +25,41 @@
 <!-- Main content -->
 <section class="content">
     <div class="row">
+        <div class="col-md-12 cuscategorybtn">
+
+            <div class="btn-group">
+                <a class="btn btn-default cusiden" name="iden_0" href="@Url.Action("Index", "Customer", new { iden = 0, rid = Request.QueryString["rid"] })">全部客户：</a>
+
+                @foreach (AdsEntity.AdsCustomer.IdentiyStatus item in Enum.GetValues(typeof(AdsEntity.AdsCustomer.IdentiyStatus)))
+                {
+                    string strName = Enum.GetName(typeof(AdsEntity.AdsCustomer.IdentiyStatus), item);//获取名称
+                    int strVaule = (int)item;//获取值
+                    <a class="btn btn-default cusiden" name="iden_@strVaule" href="@Url.Action("Index", "Customer", new { iden = strVaule, rid = Request.QueryString["rid"] })">@strName</a>
+                }
+
+            </div>
+
+        </div>
+
+        <div class="col-md-12 cuscategorybtn">
+
+            <div class="btn-group">
+                <a class="btn btn-default cusrole" name="role_0" href="@Url.Action("Index", "Customer", new { rid = 0, iden = Request.QueryString["iden"] })">全部类型：</a>
+                @foreach (var item in (IEnumerable<AdsEntity.Category>)ViewData["CusRolebtn"])
+                {
+                    <a class="btn btn-default cusrole" name="role_@item.ID" href="@Url.Action("Index", "Customer", new { rid = item.ID, iden = Request.QueryString["iden"] })">@item.CategoryName</a>
+
+                }
+            </div>
+
+        </div>
+    </div>
+    <br />
+    <div class="row">
         <div class="col-xs-12">
             <div class="box box-primary">
                 <div class="box-header">
                     <div class="pull-left">
-                        <div class="btn-group">
-                         
-                            <a class="btn btn-default cusiden" name="iden-1" href="@Url.Action("Index", "Customer")">全部客户：</a>
-                            <a class="btn btn-default cusiden" name="iden0" href="@Url.Action("Index", "Customer", new { iden=0})">未认证客户</a>
-                            <a class="btn btn-default cusiden" name="iden1" href="@Url.Action("Index","Customer", new { iden=1})">已认证客户</a>
-                            <a class="btn btn-default cusiden" name="iden2" href="@Url.Action("Index","Customer", new { iden=2})">待审核客户</a>
-                            <a class="btn btn-default cusiden" name="iden4" href="@Url.Action("Index","Customer", new { iden=4})">审核失败客户</a>
-                        </div>
-                    </div>
-
-                    <div class="pull-right">
                         <button class="btn btn-success pull-right" data-toggle="modal" data-target="#addCustomer"><i class="fa fa-plus"></i> 新增客户</button>
                     </div>
                 </div>
@@ -50,7 +71,7 @@
                                 <th class="col-sm-1">
                                     序号
                                 </th>
-                                <th class="col-sm-2">
+                                <th class="col-sm-1">
                                     用户名
                                 </th>
                                 <th class="col-sm-2">
@@ -62,7 +83,7 @@
                                 <th class="col-sm-1">
                                     认证状态
                                 </th>
-                                <th class="col-sm-4">操作</th>
+                                <th class="col-sm-5">操作</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -79,39 +100,34 @@
                                         @Html.DisplayFor(modelItem => item.CustomerEmail)
                                     </td>
                                     <td>
-                                        <input type="checkbox" name="status" value="@item.CustomerId" checked="@(item.CustomerStatus?"checked":"")" />
+                                        <input type="checkbox"  name="status" value="@item.CustomerId" checked="@(item.CustomerStatus?"checked":"")" />
                                     </td>
                                     <td>
+
                                         @Html.DisplayFor(modelItem => item.CustomerIdentity)
                                     </td>
                                     <td>
 
                                         @Html.AntiForgeryToken()
                                         @{
-                                if (Request["iden"] == null || int.Parse(Request["iden"]) == 0 || int.Parse(Request["iden"]) == 4)
-                                {
-                                    <a class="btn btn-success btn-xs" href="@Url.Action("Edit", "Customer", new { id = item.CustomerId })"><span class="glyphicon glyphicon-edit"></span> 编辑</a>
+                                            <a class="btn btn-success btn-xs" href="@Url.Action("Edit", "Customer", new { id = item.CustomerId })"><span class="glyphicon glyphicon-edit"></span> 编辑</a>
                                             <button class="btn btn-danger btn-xs" type="button" onclick="delconfirm('@item.CustomerId','/Customer/DeleteConfirmed/','/Customer/Index')"><span class="glyphicon glyphicon-trash"></span> 删除</button>
                                             <button class="btn btn-info btn-xs" type="button" onclick="resetPassword('@item.CustomerId')"><span class="glyphicon glyphicon-lock"></span> 重置密码</button>
-                                            <a class="btn btn-warning btn-xs" href="@Url.Action("IdentityEdit", "Customer", new { id = item.CustomerId })"><span class="glyphicon glyphicon-star"></span> 身份认证</a>
+
+                                if (int.Parse(Request["iden"]) == 3)
+                                {
+                                    <button class="btn btn-success btn-xs" type="button" onclick="SetIdentity('@item.CustomerId',1)"><span class="glyphicon glyphicon-lock"></span> 认证通过</button>
+                                            <button class="btn btn-danger btn-xs" type="button" onclick="SetIdentity('@item.CustomerId',0)"><span class="glyphicon glyphicon-lock"></span> 认证不通过</button>
 
                                 }
                                 else
                                 {
-                                    if (int.Parse(Request["iden"]) == 2)
-                                    {
-                                        <button class="btn btn-success btn-xs" type="button" onclick="SetIdentity('@item.CustomerId',1)"><span class="glyphicon glyphicon-lock"></span> 认证通过</button>
-                                            <button class="btn btn-danger btn-xs" type="button" onclick="SetIdentity('@item.CustomerId',0)"><span class="glyphicon glyphicon-lock"></span> 认证不通过</button>
-
+                                    if (int.Parse(Request["iden"]) != 2)
+                                    {   <a class="btn btn-warning btn-xs" href="@Url.Action("IdentityEdit", "Customer", new { id = item.CustomerId })"><span class="glyphicon glyphicon-star"></span> 身份认证</a>
                                     }
-                                    if (int.Parse(Request["iden"]) == 1)
-                                    {
-                                        <a class="btn btn-success btn-xs" href="@Url.Action("Edit", "Customer", new { id = item.CustomerId })"><span class="glyphicon glyphicon-edit"></span> 编辑</a>
-                                            <button class="btn btn-danger btn-xs" type="button" onclick="delconfirm('@item.CustomerId','/Customer/DeleteConfirmed/','/Customer/Index')"><span class="glyphicon glyphicon-trash"></span> 删除</button>
-                                            <button class="btn btn-info btn-xs" type="button" onclick="resetPassword('@item.CustomerId')"><span class="glyphicon glyphicon-lock"></span> 重置密码</button>
 
-                                    }
                                 }
+
 
 
                                         }
@@ -128,7 +144,7 @@
                 <!-- /.box-body -->
                 <div class="box-footer clearfix">
                     <ul class="pull-right">
-                        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page = page }),
+                        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page = page, iden = Request.QueryString["iden"], rid = Request.QueryString["rid"] }),
     new PagedListRenderOptions
     {
         LinkToPreviousPageFormat = "上一页",
@@ -171,7 +187,6 @@
                     <input type="hidden" name="CustomerRegTime" value="@System.DateTime.Now" />
                     <input type="hidden" name="CustomerLastLoginTime" value="@System.DateTime.Now" />
                     <input type="hidden" name="CustomerStatus" value="true" />
-                    <input type="hidden" name="CustomerIdentity" value="0" />
                     <div class="box-body">
                         <div class="form-group">
                             <label for="CustomerRole" class="col-sm-2 control-label">客户类型</label>
@@ -225,193 +240,5 @@
     <script type="text/javascript" src="/plugins/bootstrap-validator/js/bootstrapValidator.js"></script>
     <script type="text/javascript" src="/plugins/bootbox.min.js"></script>
     <script type="text/javascript" src="/Resource/js/SkyWeb.js"></script>
-    <script type="text/javascript">
-
-        function SetIdentity(id, identity) {
-            var token = $('[name=__RequestVerificationToken]').val();
-            $.ajax({
-                type: 'POST',
-                url: "/Customer/SetIdentity",
-                data: {
-                    id: id,
-                    __RequestVerificationToken: token,
-                    identity: identity
-
-                },
-                dataType: "json",
-                success: function (data) {
-                    if (data.MessageStatus) {
-                        alert(data.MessageInfo);
-                        window.location.reload();
-                    }
-                    else { alertconfirm("审核出现问题，不通过！"); }
-
-                }
-            });
-
-        }
-
-        function resetPassword(id) {
-            var token = $('[name=__RequestVerificationToken]').val();
-            $.ajax({
-                type: 'POST',
-                url: "/Customer/ResetPassword",
-                data: {
-                    id: id,
-                    __RequestVerificationToken: token,
-                },
-                dataType: "json",
-                success: function (data) {
-                    if (data.MessageStatus)
-                    { alertconfirm(data.MessageInfo); }
-                    else
-                    { alertconfirm("重置密码失败！"); }
-
-                }
-            });
-
-        }
-
-        $(document).ready(function () {
-
-            $('select').addClass("form-control");
-
-            var iden = getUrlParam("iden");
-            if (iden == null) {
-                iden = -1;
-            }
-            //   alert(iden);
-            $('.cusiden').removeClass("btn-primary");
-            $('[name=iden' + iden + ']').removeClass('btn-default');
-            $('[name=iden' + iden + ']').addClass('btn-primary');
-
-
-
-            //开关按钮样式加载
-            $('[name="status"]').bootstrapSwitch({
-                onText: "启用",
-                offText: "禁用",
-                onColor: "success",
-                offColor: "danger",
-                size: "small",
-                onSwitchChange: function (event, state) {
-                    var token = $('[name=__RequestVerificationToken]').val();
-                    $.ajax({
-                        type: 'POST',
-                        url: "/Customer/UpdateStatus",
-                        data: {
-                            id: $(this).val(),
-                            status: state,
-                            __RequestVerificationToken: token,
-                        },
-                        dataType: "json",
-                        success: function (data) {
-                        }
-                    });
-                }
-            });
-
-            //表单验证
-            $('#CustomerForm').bootstrapValidator({
-                //        live: 'disabled',
-                message: 'This value is not valid',
-                feedbackIcons: {
-                    valid: 'glyphicon glyphicon-ok',
-                    invalid: 'glyphicon glyphicon-remove',
-                    validating: 'glyphicon glyphicon-refresh'
-                },
-                fields: {
-                    CustomerRole: {
-                        validators: {
-                            notEmpty: {
-                                message: '用户类型不能为空'
-                            }
-                        }
-                    },
-                    CustomerUserName: {
-                        validators: {
-                            notEmpty: {
-                                message: '用户名不能为空'
-                            },
-                            stringLength: {
-                                min: 6,
-                                max: 20,
-                                message: '用户名长度必须在6到30之间'
-                            },
-                            regexp: {
-                                regexp: /^[a-zA-Z0-9]+$/,
-                                message: '用户名只能包含大写、小写和数字'
-                            },
-                            threshold: 5,//有6字符以上才发送ajax请求，（input中输入一个字符，插件会向服务器发送一次，设置限制，6字符以上才开始）
-                            remote: {//ajax验证。server result:{"valid",true or false} 向服务发送当前input name值，获得一个json数据。例表示正确：{"valid",true}
-                                url: '/Ajax/CheckUserName',//验证地址
-                                message: '用户名重复，不能注册',//提示消息
-                                delay: 2000,//每输入一个字符，就发ajax请求，服务器压力还是太大，设置2秒发送一次ajax（默认输入一个字符，提交一次，服务器压力太大）
-                                type: 'POST',//请求方式
-                                data: function (validator) {
-                                    return {
-                                        CustomerUserName: $('[name="CustomerUserName"]').val()
-                                    };
-                                }
-
-                            },
-                        }
-                    },
-                    CustomerPassword: {
-                        validators: {
-                            notEmpty: {
-                                message: '密码不能为空'
-                            },
-                            stringLength: {
-                                min: 6,
-                                max: 20,
-                                message: '用户名长度必须在6到30之间'
-                            },
-                            different: {
-                                field: 'CustomerUserName',
-                                message: '密码与用户名长的怎么一样呢'
-                            }
-                        }
-                    },
-                    ConfirmPassword: {
-                        validators: {
-                            notEmpty: {
-                                message: '重复密码也不能为空'
-                            },
-                            identical: {
-                                field: 'CustomerPassword',
-                                message: '两次输入密码不一致'
-                            }
-                        }
-                    },
-                    CustomerEmail: {
-                        validators: {
-                            notEmpty: {
-                                message: '邮箱不能为空'
-                            },
-                            emailAddress: {
-                                message: '请输入正确的邮件地址如：123@qq.com'
-                            },
-                            threshold: 5,
-                            remote: {
-                                url: '/Ajax/CheckEmail',
-                                message: '此邮箱已经被注册，请换一个',
-                                delay: 2000,
-                                type: 'POST',
-                                data: function (validator) {
-                                    return {
-                                        CustomerEmail: $('[name="CustomerEmail"]').val()
-                                    };
-                                }
-
-                            },
-                        }
-                    }
-                }
-            });
-
-
-        });
-
-    </script>
+    <script type="text/javascript" src="/Resource/js/Customer.js"></script>
 }

@@ -15,27 +15,29 @@ using PagedList.Mvc;
 
 namespace AdsWeb.Controllers
 {
-    public class CustomerController : Controller
+    public class CustomerController : BaseController
     {
        
         private UnitOfWork unitOfWork = new UnitOfWork();
 
         // GET: /SysUser/Default1
-        public ActionResult Index(int? page, int? iden)
+        public ActionResult Index(int? page, int? iden,int?rid)
         {
             Pager pager = new Pager();
             pager.table = "AdsCustomer";
-            int identity = iden ?? -1;
-            if (identity == -1)
+            pager.strwhere = "1=1";
+            int identity = iden ?? 0;
+            if (identity != 0)
             {
-                pager.strwhere = "1=1";
+                pager.strwhere = pager.strwhere + " and  CustomerIdentity=" + iden;
             }
-            else
+            int roleid = rid ?? 0;
+            if (roleid != 0)
             {
-                pager.strwhere = "CustomerIdentity=" + iden;
+                pager.strwhere = pager.strwhere + " and  CustomerRole=" + roleid;
             }
             
-            pager.PageSize = 2;
+            pager.PageSize = SkyPageSize;
             pager.PageNo = page ?? 1;
             pager.FieldKey = "CustomerId";
             pager.FiledOrder = "CustomerId desc";
@@ -45,7 +47,8 @@ namespace AdsWeb.Controllers
             var customersAsIPageList = new StaticPagedList<AdsCustomer>(customers, pager.PageNo, pager.PageSize, pager.Amount);
             ViewBag.SmallTitle = "客户总数共计："+pager.Amount+"人";
             CategoryServices categoryServices = new CategoryServices();
-            ViewData["CustomerRole"] = categoryServices.GetCategorySelectList(2);
+            ViewData["CustomerRole"] = categoryServices.GetCategorySelectList(SkyCustomerRootId);
+            ViewData["CusRolebtn"] = categoryServices.GetCategoryListByParentID(SkyCustomerRootId);
             return View(customersAsIPageList);
         }
 
@@ -139,6 +142,7 @@ namespace AdsWeb.Controllers
         {
             if (ModelState.IsValid)
             {
+                customer.CustomerIdentity=AdsCustomer.IdentiyStatus.未认证;    
                 unitOfWork.adsCustomersRepository.Insert(customer);
                 unitOfWork.Save();
                 return RedirectToAction("Index");

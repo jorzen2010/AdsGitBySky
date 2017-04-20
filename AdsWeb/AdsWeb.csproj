@@ -166,6 +166,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AjaxController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\bvnode.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
@@ -1119,8 +1120,6 @@
     <Content Include="plugins\select2\select2.js" />
     <Content Include="plugins\select2\select2.min.css" />
     <Content Include="plugins\select2\select2.min.js" />
-    <Content Include="plugins\Skym\css\sky.css" />
-    <Content Include="plugins\Skym\js\sky.js" />
     <Content Include="plugins\slimScroll\jquery.slimscroll.js" />
     <Content Include="plugins\slimScroll\jquery.slimscroll.min.js" />
     <Content Include="plugins\sparkline\jquery.sparkline.js" />
@@ -1135,8 +1134,7 @@
     <Content Include="Resource\img\picture.jpg" />
     <Content Include="Resource\js\Article.js" />
     <Content Include="Resource\js\Category.js" />
-    <Content Include="Resource\js\Department.js" />
-    <Content Include="Resource\js\Dictionary.js" />
+    <Content Include="Resource\js\Customer.js" />
     <Content Include="Resource\js\SkyfileCopper.js" />
     <Content Include="Resource\js\SkyWeb.js" />
     <Content Include="Resource\Upload\zhaozheng\6362670290888207461328.jpg" />
@@ -1288,6 +1286,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Ajax\" />
+    <Folder Include="Views\Base\" />
     <Folder Include="Views\File\" />
   </ItemGroup>
   <ItemGroup>

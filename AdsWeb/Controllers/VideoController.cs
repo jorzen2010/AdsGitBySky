@@ -40,7 +40,7 @@ namespace AdsWeb.Controllers
         public ActionResult Create()
         {
             CategoryServices categoryServices= new CategoryServices();
-            ViewData["Categorylist"] = categoryServices.GetCategorySelectList(3);
+            ViewData["Categorylist"] = categoryServices.GetCategorySelectList(9);
             return View();
         }
 
@@ -65,7 +65,7 @@ namespace AdsWeb.Controllers
         public ActionResult Edit(int? id)
         {
             CategoryServices categoryServices = new CategoryServices();
-            ViewData["Categorylist"] = categoryServices.GetCategorySelectList(2);
+            ViewData["Categorylist"] = categoryServices.GetCategorySelectList(9);
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

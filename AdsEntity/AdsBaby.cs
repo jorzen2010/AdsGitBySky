@@ -12,6 +12,7 @@ namespace AdsEntity
         [Key]
         public int BbId { get; set; }
         public int CustomerId { get; set; }
+        public string BbTags { get; set; }
 
 
 

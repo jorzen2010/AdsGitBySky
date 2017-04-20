@@ -76,9 +76,9 @@ namespace AdsEntity
 
         public enum IdentiyStatus
         { 
-            未认证=0,
-            已认证=1,
-            正在审核=2,
+            未认证=1,
+            已认证=2,
+            正在审核=3,
             审核失败=4
         }
 
