@@ -61,7 +61,6 @@
     <Compile Include="DataConvertHelper.cs" />
     <Compile Include="DateTools.cs" />
     <Compile Include="DiguiMenu.cs" />
-    <Compile Include="EnumServices.cs" />
     <Compile Include="EmailServices.cs" />
     <Compile Include="FileServices.cs" />
     <Compile Include="FileTools.cs" />

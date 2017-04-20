@@ -21,11 +21,20 @@ namespace AdsWeb.Controllers
         private UnitOfWork unitOfWork = new UnitOfWork();
 
         // GET: /SysUser/Default1
-        public ActionResult Index(int? page)
+        public ActionResult Index(int? page, int? iden)
         {
             Pager pager = new Pager();
             pager.table = "AdsCustomer";
-            pager.strwhere = "1=1";
+            int identity = iden ?? -1;
+            if (identity == -1)
+            {
+                pager.strwhere = "1=1";
+            }
+            else
+            {
+                pager.strwhere = "CustomerIdentity=" + iden;
+            }
+            
             pager.PageSize = 2;
             pager.PageNo = page ?? 1;
             pager.FieldKey = "CustomerId";
@@ -34,8 +43,13 @@ namespace AdsWeb.Controllers
 
             IList<AdsCustomer> customers = CustomerServices.GetListForPageList(pager);
             var customersAsIPageList = new StaticPagedList<AdsCustomer>(customers, pager.PageNo, pager.PageSize, pager.Amount);
+            ViewBag.SmallTitle = "客户总数共计："+pager.Amount+"人";
+            CategoryServices categoryServices = new CategoryServices();
+            ViewData["CustomerRole"] = categoryServices.GetCategorySelectList(2);
             return View(customersAsIPageList);
         }
+
+      
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -59,6 +73,42 @@ namespace AdsWeb.Controllers
             }
             return Json(msg, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult SetIdentity(int id,int identity)
+        {
+            Message msg = new Message();
+
+            AdsCustomer customer = unitOfWork.adsCustomersRepository.GetByID(id);
+
+            if (identity == 0)
+            {
+                customer.CustomerIdentity = AdsCustomer.IdentiyStatus.审核失败;
+            }
+            else
+            {
+                customer.CustomerIdentity = AdsCustomer.IdentiyStatus.已认证;       
+            }
+
+            if (ModelState.IsValid)
+            {
+
+                unitOfWork.adsCustomersRepository.Update(customer);
+                unitOfWork.Save();
+                msg.MessageStatus = "true";
+                msg.MessageInfo = identity == 1 ? "身份认证通过！" : "身份认证资料不符合要求，认证不通过";
+            }
+            else
+            {
+                msg.MessageStatus = "false";
+                msg.MessageInfo = "身份审核过程出现问题，认证操作失败！";
+            }
+
+
+            return Json(msg, JsonRequestBehavior.AllowGet);
+        }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]

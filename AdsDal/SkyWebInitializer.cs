@@ -104,12 +104,13 @@ namespace AdsDal
             {
                 new Category{CategoryName="顶级分类",CategoryInfo="顶级分类",CategoryParentID=0,CategoryStatus=true,CategorySort=0},
 
-                new Category{CategoryName="性别",CategoryInfo="性别",CategoryParentID=1,CategoryStatus=true,CategorySort=0},
+                new Category{CategoryName="客户类型",CategoryInfo="客户类型",CategoryParentID=1,CategoryStatus=true,CategorySort=0},
                 new Category{CategoryName="生产方式",CategoryInfo="生产方式",CategoryParentID=1,CategoryStatus=true,CategorySort=0},
 
 
-                new Category{CategoryName="男",CategoryInfo="男",CategoryParentID=2,CategoryStatus=true,CategorySort=0},
-                new Category{CategoryName="女",CategoryInfo="女",CategoryParentID=2,CategoryStatus=true,CategorySort=0},
+                new Category{CategoryName="星星宝贝",CategoryInfo="星星宝贝",CategoryParentID=2,CategoryStatus=true,CategorySort=0},
+                new Category{CategoryName="星星家长",CategoryInfo="星星家长",CategoryParentID=2,CategoryStatus=true,CategorySort=0},
+                new Category{CategoryName="星星教师",CategoryInfo="星星教师",CategoryParentID=2,CategoryStatus=true,CategorySort=0},
 
                 new Category{CategoryName="顺产",CategoryInfo="顺产",CategoryParentID=3,CategoryStatus=true,CategorySort=0},
                 new Category{CategoryName="剖宫产",CategoryInfo="剖宫产",CategoryParentID=3,CategoryStatus=true,CategorySort=0},
