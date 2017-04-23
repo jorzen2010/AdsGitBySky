@@ -16,6 +16,7 @@ namespace AdsWeb.Controllers
         public  string SkyConnection = ConfigurationManager.AppSettings["SkyWebConnection"];
         public  int    SkyPageSize = int.Parse(ConfigurationManager.AppSettings["SkyPageSize"]);
         public int SkyCustomerRootId = int.Parse(ConfigurationManager.AppSettings["SkyCustomerRootId"]);
+        public int SkyVideoRootId = int.Parse(ConfigurationManager.AppSettings["SkyVideoRootId"]);
 
         //从数据库中获取相应配置
         public  Setting SkySet;

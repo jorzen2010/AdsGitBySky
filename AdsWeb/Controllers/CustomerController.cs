@@ -52,6 +52,58 @@ namespace AdsWeb.Controllers
             return View(customersAsIPageList);
         }
 
+        public ActionResult Search(int? page, string role, string uname, string rname, string tel, string idcard, string sf, string city, string diqu)
+        {
+
+            Pager pager = new Pager();
+            pager.table = "AdsCustomer";
+            pager.strwhere ="1=1";
+            if (!string.IsNullOrEmpty(role))
+            {
+                pager.strwhere = pager.strwhere + "and CustomerRole=" + int.Parse(role) + " ";
+            }
+            if (!string.IsNullOrEmpty(uname))
+            {
+                pager.strwhere = pager.strwhere + " and CustomerUserName like'%" + uname + "%' ";
+            }
+            if (!string.IsNullOrEmpty(rname))
+            {
+                pager.strwhere = pager.strwhere + " and CustomerRealName like'%" + rname + "%' ";
+            }
+            if (!string.IsNullOrEmpty(tel))
+            {
+                pager.strwhere = pager.strwhere + " and CustomerTelephone= '"+tel+"' ";
+            }
+            if (!string.IsNullOrEmpty(idcard))
+            {
+                pager.strwhere = pager.strwhere + " and CustomerIDCard= '" + idcard + "' ";
+            }
+            if (!string.IsNullOrEmpty(sf))
+            {
+                pager.strwhere = pager.strwhere + " and CustomerProvince= '" + sf + "' ";
+            }
+            if (!string.IsNullOrEmpty(city))
+            {
+                pager.strwhere = pager.strwhere + " and CustomerCity= '" + city + "' ";
+            }
+            if (!string.IsNullOrEmpty(diqu))
+            {
+                pager.strwhere = pager.strwhere + " and CustomerDistrict= '" + diqu + "' ";
+            }
+
+
+            pager.PageSize = 2;
+            pager.PageNo = page ?? 1;
+            pager.FieldKey = "CustomerId";
+            pager.FiledOrder = "CustomerId asc";
+            pager = CommonDal.GetPager(pager);
+            IList<AdsCustomer> customers = DataConvertHelper<AdsCustomer>.ConvertToModel(pager.EntityDataTable);
+            var customersAsIPageList = new StaticPagedList<AdsCustomer>(customers, pager.PageNo, pager.PageSize, pager.Amount);
+            CategoryServices categoryServices = new CategoryServices();
+            ViewData["CustomerRole"] = categoryServices.GetCategorySelectList(SkyCustomerRootId);
+            return View(customersAsIPageList);
+        }
+
       
 
         [HttpPost]

@@ -4,6 +4,8 @@
 }
 @section Topcss {
     <link href="~/plugins/bootstrap-validator/css/bootstrapValidator.css" rel="stylesheet" type="text/css" />
+<link href="~/plugins/copper/css/cropper.css" rel="stylesheet">
+<link href="~/plugins/copper/css/avatar.css" rel="stylesheet">
 }
 
 <!-- Content Header (Page header) -->
@@ -28,35 +30,103 @@
                @using (Html.BeginForm("Create", "Video", FormMethod.Post, new { @class = "form-horizontal", @name = "VideoForm", @id = "VideoForm" }))
                 {     <div class="box-body">
                           @Html.AntiForgeryToken()
+                <input type="hidden" value="@System.DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss")" name="VideoTime"/>
                         <div class="col-md-12">
                             <div class="form-group">
                                     @Html.LabelFor(model => model.VideoCategory, new { @class = "control-label col-sm-2" })
-                                <div class="col-sm-8  input-group">
+                                <div class="col-sm-8">
                                     @Html.DropDownListFor(model => model.VideoCategory, ViewData["CategoryList"] as IEnumerable<SelectListItem>, new { @class = "form-control" })
                                 </div>
                             </div>
-
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.VideoNumber, new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-8">
+                                    @Html.TextBoxFor(model => model.VideoNumber, new { @class = "form-control" ,@readonly="readonly"})
+                                </div>
+                            </div>
                             <div class="form-group">
                                 @Html.LabelFor(model => model.VideoName, new { @class = "control-label col-sm-2" })
-                                <div class="col-sm-8  input-group">
+                                <div class="col-sm-8">
                                     @Html.TextBoxFor(model => model.VideoName, new { @class = "form-control" })
                                 </div>
                             </div>
+                         
 
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.VideoNumber, new { @class = "control-label col-sm-2" })
-                                <div class="col-sm-8  input-group">
-                                    @Html.TextBoxFor(model => model.VideoNumber, new { @class = "form-control" })
+                            <div class="form-group ">
+                                @Html.LabelFor(model => model.VideoPhoto, new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-3">
+                                  <img src="/Resource/img/nophoto.png" style="width:100%" id="videoPhoto"/>
+                                </div>
+                                <div class="col-sm-5">
+                                    <input type="hidden" name="VideoPhoto" />
+                                    <button class="btn btn-default" id="videoImgBtn" type="button">
+                                       选择文件
+                                    </button>
+                                
+                                    <p>建议尺寸750*560px或4：3，JPG、PNG格式， 图片小于5M。 </p>
                                 </div>
                             </div>
+
+                           
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.VideoUrl, new { @class = "control-label col-sm-2" })
-                                <div class="col-sm-8  input-group">
+                                <div class="col-sm-8">
                                     @Html.TextAreaFor(model => model.VideoUrl, new { @class = "form-control" })
                                 </div>
                             </div>
-                        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.VideoFor, new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-8">
+                                    @Html.TextAreaFor(model => model.VideoFor, new { @class = "form-control" })
+                                </div>
+                            </div>
+                       
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.VideoInfo, new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-8">
+                                    <textarea id="Content" name="VideoInfo" style="height:500px;"></textarea>
+    </div>
+                            </div>
+                            <h4>价格设置</h4>
+                            <hr/>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.VideoPrice, new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-8">
+                                    @Html.TextBoxFor(model => model.VideoPrice, new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.VideoVIPPrice, new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-8">
+                                    @Html.TextBoxFor(model => model.VideoVIPPrice, new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.VideoZKPrice, new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-8">
+                                    @Html.TextBoxFor(model => model.VideoZKPrice, new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.VideoFree, new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-8">
+                                    @Html.TextBoxFor(model => model.VideoFree, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.VideoTry, new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-8">
+                                    @Html.TextBoxFor(model => model.VideoTry, new { @class = "form-control" })
+                                </div>
+                            </div>
+                         
+                        
+                         </div>
 
                     </div>
                     <!-- /.box-body -->
@@ -73,7 +143,199 @@
     </div>
     <!-- /.row -->
 </section>
-<!-- /.content -->
+<!-- /.content --><!-- Cropping modal -->
+<div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="img-container" style="width:855px;height:350px;">
+                            <img id="image" src="@(string.IsNullOrEmpty(Model.VideoPhoto) ? "/Resource/img/nophoto.png" : Model.VideoPhoto)" alt="Picture">
+                            <input id="imageaspectRatio" />
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+
+
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-sm-12">
+
+                        <div class="docs-buttons text-center">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary" data-method="zoom" data-option="0.1" title="Zoom In">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;zoom&quot;, 0.1)">
+                                        <span class="fa fa-search-plus"></span> 放大
+                                    </span>
+                                </button>
+                                <button type="button" class="btn btn-primary" data-method="zoom" data-option="-0.1" title="Zoom Out">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;zoom&quot;, -0.1)">
+                                        <span class="fa fa-search-minus"></span> 缩小
+                                    </span>
+                                </button>
+                            </div>
+
+
+
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary" data-method="rotate" data-option="-45" title="Rotate Left">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;rotate&quot;, -45)">
+                                        <span class="fa fa-rotate-left"></span> 左旋转
+                                    </span>
+                                </button>
+                                <button type="button" class="btn btn-primary" data-method="rotate" data-option="45" title="Rotate Right">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;rotate&quot;, 45)">
+                                        <span class="fa fa-rotate-right"></span> 右旋转
+                                    </span>
+                                </button>
+                            </div>
+
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary" data-method="scaleX" data-option="-1" title="Flip Horizontal">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;scaleX&quot;, -1)">
+                                        <span class="fa fa-arrows-h"></span> 水平翻转
+                                    </span>
+                                </button>
+                                <button type="button" class="btn btn-primary" data-method="scaleY" data-option="-1" title="Flip Vertical">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;scaleY&quot;, -1)">
+                                        <span class="fa fa-arrows-v"></span> 垂直翻转
+                                    </span>
+                                </button>
+                                <button type="button" class="btn btn-primary" data-method="reset" title="Reset">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;reset&quot;)">
+                                        <span class="fa fa-refresh"></span> 重置
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="btn-group btn-group-crop">
+                                <label class="btn btn-success btn-upload" for="inputImage" title="Upload image file">
+                                    <input type="file" class="sr-only" id="inputImage" name="file" accept=".jpg,.jpeg,.png,.gif,.bmp,.tiff">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="点击上传图片">
+                                        <span class="fa fa-upload"></span> 更换图片
+                                    </span>
+                                </label>
+                                <button type="button" id="getCroppedCanvasbtn" class="btn btn-warning" data-method="getCroppedCanvas" data-option="{ &quot;width&quot;: 180, &quot;height&quot;: 180 }">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;getCroppedCanvas&quot;)">
+                                        裁剪并上传
+                                    </span>
+                                </button>
+
+                            </div>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                <span data-toggle="tooltip">
+                                    取消关闭
+                                </span>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <!-- /.docs-buttons -->
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div><!-- /.modal -->
+<!-- Loading state -->
+<div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
 @section FootScripts {
     <script type="text/javascript" src="~/plugins/bootstrap-validator/js/bootstrapValidator.js"></script>
+<script type="text/javascript" charset="gbk" src="~/plugins/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="gbk" src="~/plugins/ueditor/ueditor.all.min.js"> </script>
+<script type="text/javascript" charset="gbk" src="~/plugins/ueditor/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript" src="~/plugins/copper/js/cropper.js"></script>
+<script type="text/javascript" src="~/plugins/copper/js/avatar.js"></script>
+<script type="text/javascript" src="~/Resource/js/SkyfileCopper.js"></script>
+
+
+<script type="text/javascript">
+
+    var ue = UE.getEditor('Content');
+
+    $('#imageaspectRatio').val('1.33333');
+    $('#videoImgBtn').click(function () {
+        $('#avatar-modal').modal('show');
+        //这句的意思是将container的宽高值去掉，保证自适应效果。有个小bug是第一次使用的时候如果浏览器过小可能造成显示不完全。
+        $(".img-container").removeAttr("style");
+
+        $('#getCroppedCanvasbtn').attr('data-skyac', "videoimg");
+    });
+
+    //表单验证
+    $('#VideoForm').bootstrapValidator({
+        //        live: 'disabled',
+        message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+
+            VideoCategory: {
+                validators: {
+                    notEmpty: {
+                        message: '类别不能为空'
+                    }
+
+                }
+            },
+            VideoNumber: {
+                validators: {
+                    notEmpty: {
+                        message: '编码不能为空'
+                    }
+
+                }
+            },
+            VideoName: {
+                validators: {
+                    notEmpty: {
+                        message: '名称不能为空'
+                    }
+
+                }
+            },
+            VideoFor: {
+                validators: {
+                    notEmpty: {
+                        message: '适用范围不能为空'
+                    }
+
+                }
+            },
+            VideoInfo: {
+                validators: {
+                    notEmpty: {
+                        message: '简介不能为空'
+                    }
+
+                }
+            },
+            VideoUrl: {
+                validators: {
+                    notEmpty: {
+                        message: '地址不能为空'
+                    }
+
+                }
+            },
+
+        }
+    });
+
+</script>
+
 }

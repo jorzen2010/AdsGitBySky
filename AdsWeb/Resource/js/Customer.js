@@ -48,6 +48,10 @@ $(document).ready(function () {
 
     $('select').addClass("form-control");
 
+    $("#searchdistpicker").distpicker({
+        autoSelect: false
+    });
+
     var iden = getUrlParam("iden");
     if (iden == null) {
         iden = 0;

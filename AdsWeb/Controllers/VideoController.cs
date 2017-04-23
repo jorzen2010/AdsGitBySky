@@ -14,7 +14,7 @@ using PagedList;
 using PagedList.Mvc;
 namespace AdsWeb.Controllers
 {
-    public class VideoController : Controller
+    public class VideoController : BaseController
     {
         private UnitOfWork unitOfWork = new UnitOfWork();
 
@@ -39,9 +39,16 @@ namespace AdsWeb.Controllers
 
         public ActionResult Create()
         {
+            AdsVideo video = new AdsVideo();
+            video.VideoNumber =CommonTools.ToUnixTime(System.DateTime.Now).ToString()+ CommonTools.getRandomNumber(100000, 999999).ToString();
+            video.VideoPrice = 0;
+            video.VideoZKPrice = 0;
+            video.VideoVIPPrice = 0;
+            video.VideoTry = false;
+            video.VideoFree = false;
             CategoryServices categoryServices= new CategoryServices();
-            ViewData["Categorylist"] = categoryServices.GetCategorySelectList(9);
-            return View();
+            ViewData["Categorylist"] = categoryServices.GetCategorySelectList(SkyVideoRootId);
+            return View(video);
         }
 
         // POST: /Video/Create
@@ -49,7 +56,8 @@ namespace AdsWeb.Controllers
         // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="VideoId,VideoName,VideoUrl,VideoNumber,VideoCategory")] AdsVideo adsvideo)
+        [ValidateInput(false)]
+        public ActionResult Create(AdsVideo adsvideo)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +73,7 @@ namespace AdsWeb.Controllers
         public ActionResult Edit(int? id)
         {
             CategoryServices categoryServices = new CategoryServices();
-            ViewData["Categorylist"] = categoryServices.GetCategorySelectList(9);
+            ViewData["Categorylist"] = categoryServices.GetCategorySelectList(SkyVideoRootId);
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -83,7 +91,8 @@ namespace AdsWeb.Controllers
         // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="VideoId,VideoName,VideoUrl,VideoNumber,VideoCategory")] AdsVideo adsvideo)
+        [ValidateInput(false)]
+        public ActionResult Edit(AdsVideo adsvideo)
         {
             if (ModelState.IsValid)
             {

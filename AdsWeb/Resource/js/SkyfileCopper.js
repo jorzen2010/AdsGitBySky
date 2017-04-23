@@ -114,6 +114,31 @@ function SkyfileCopper(ac,result) {
                 }
             });
             break;
+        case "videoimg":
+            var token = $('[name=__RequestVerificationToken]').val();
+            $.ajax({
+                type: 'POST',
+                url: "/File/UploadImgBase64",
+                data: {
+                    img: result.toDataURL('image/jpeg'),
+                    __RequestVerificationToken: token,
+                    rootpath: "/Resource/Video",
+                    folder: "photo",
+                },
+                dataType: "json",
+                success: function (data) {
+                    alert('Success：视频封面上传成功');
+                    $('#videoPhoto').attr('src', data.MessageUrl);
+                    $('#getCroppedCanvasbtn').attr('data-skyac', "");
+                    $('[name="VideoPhoto"]').val(data.MessageUrl);
+                    $('#avatar-modal').modal('hide');
+
+                },
+                error: function () {
+                    alert("error：有错误发生了")
+                }
+            });
+            break;
 
     }
 

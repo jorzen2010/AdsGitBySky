@@ -49,70 +49,70 @@
                 </div>
                 @if (Model.Count == 0)
                 {<div class="box-body">
-                <div class="well text-center"><p>目前还没有视频呢，现在加一个吧</p>
-                    <a class="btn btn-primary btn-lg" href="@Url.Action("Create")"> 立刻视频</a>
+                    <div class="well text-center">
+                        <p>目前还没有视频呢，现在加一个吧</p>
+                        <a class="btn btn-primary btn-lg" href="@Url.Action("Create")"> 立刻视频</a>
+                    </div>
+
                 </div>
-                   
-                   </div>
                 }
                 else
-                { 
+                {
                 <!-- /.box-header -->
-                <div class="box-body">
-                    <table class="table table-bordered table-hover text-center">
-                        <thead>
-                            <tr>
-                                <th>
-                                   视频名称
-                                </th>
-                                <th>
-                                  地址
-                                </th>
-                                <th>
-                                  编号
-                                </th>
-                                <th>
-                                   分类
-                                </th>
-                                <th>操作</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
+                    <div class="box-body">
+                        <table class="table table-bordered table-hover text-center">
+                            <thead>
                                 <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.VideoName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VideoUrl)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VideoNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VideoCategory)
-        </td>
+                                    <th>
+                                        编号
+                                    </th>
+                                    <th>
+                                        视频名称
+                                    </th>
+                                    <th>
+                                        地址
+                                    </th>
 
-
-
-                                    <td>
-                                        @Html.AntiForgeryToken()
-                                        <a class="btn btn-warning btn-xs" href="@Url.Action("Edit", "Video", new { id = @item.VideoId })"><span class="glyphicon glyphicon-edit"></span> 编辑</a>
-                                        <button class="btn btn-danger btn-xs" type="button" onclick="delconfirm('@item.VideoId','/Video/DeleteConfirmed/','/Video/Index')"><span class="glyphicon glyphicon-trash"></span> 删除</button>
-
-                                    </td>
+                                    <th>
+                                        分类
+                                    </th>
+                                    <th>操作</th>
                                 </tr>
-                            }
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.VideoNumber)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.VideoName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.VideoUrl)
+                                        </td>
 
-                        </tbody>
-                    </table>
-                </div>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.VideoCategory)
+                                        </td>
+                                        <td>
+                                            @Html.AntiForgeryToken()
+                                            <a class="btn btn-warning btn-xs" href="@Url.Action("Edit", "Video", new { id = @item.VideoId })"><span class="glyphicon glyphicon-edit"></span> 编辑</a>
+                                            <button class="btn btn-danger btn-xs" type="button" onclick="delconfirm('@item.VideoId','/Video/DeleteConfirmed/','/Video/Index')"><span class="glyphicon glyphicon-trash"></span> 删除</button>
+
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
                 <!-- /.box-body -->
-               
-                <div class="box-footer clearfix">
-                    <ul class="pull-right">
-                        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page = page }),
+
+                    <div class="box-footer clearfix">
+                        <ul class="pull-right">
+                            @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page = page }),
     new PagedListRenderOptions
     {
         LinkToPreviousPageFormat = "上一页",
@@ -126,11 +126,11 @@
         LinkToLastPageFormat = "最后一页",
         PageCountAndCurrentLocationFormat = "第 {0}页 共 {1}页"
     })
-                    </ul>
-                </div>
+                        </ul>
+                    </div>
                 }
-             </div>
-                
+            </div>
+
             <!-- /.box -->
         </div>
         <!-- /.col -->
