@@ -2,7 +2,7 @@
 @using PagedList;
 @using PagedList.Mvc;
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "视频列表";
 }
 
 @section Topcss {
@@ -15,15 +15,7 @@
 <section class="content-header">
     <h1>
         @ViewBag.Title
-        <small>
-            @Html.ActionLink("Create New", "Create")
-        </small>
     </h1>
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Tables</a></li>
-        <li class="active">Data tables</li>
-    </ol>
 </section>
 <!-- Main content -->
 <section class="content">
@@ -51,7 +43,7 @@
                 {<div class="box-body">
                     <div class="well text-center">
                         <p>目前还没有视频呢，现在加一个吧</p>
-                        <a class="btn btn-primary btn-lg" href="@Url.Action("Create")"> 立刻视频</a>
+                        <a class="btn btn-primary" href="@Url.Action("Create")"> 立刻新增视频</a>
                     </div>
 
                 </div>
@@ -64,7 +56,7 @@
                             <thead>
                                 <tr>
                                     <th>
-                                        编号
+                                        卡片编号
                                     </th>
                                     <th>
                                         视频名称

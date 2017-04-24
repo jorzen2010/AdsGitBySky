@@ -265,6 +265,7 @@
     <script type="text/javascript" src="~/plugins/copper/js/cropper.js"></script>
     <script type="text/javascript" src="~/plugins/copper/js/avatar.js"></script>
     <script type="text/javascript" src="~/Resource/js/SkyfileCopper.js"></script>
+<script type="text/javascript" src="~/Resource/js/SkyInit.js"></script>
 
 
     <script type="text/javascript">
@@ -337,6 +338,39 @@
                     validators: {
                         notEmpty: {
                             message: '地址不能为空'
+                        }
+
+                    }
+                },
+                VideoPrice: {
+                    validators: {
+                        notEmpty: {
+                            message: '价格不能为空'
+                        },
+                        numeric: {
+                            message: '价格必须是数字'
+                        }
+
+                    }
+                },
+                VideoVIPPrice: {
+                    validators: {
+                        notEmpty: {
+                            message: '会员价格不能为空'
+                        },
+                        numeric: {
+                            message: '价格必须是数字'
+                        }
+
+                    }
+                },
+                VideoZKPrice: {
+                    validators: {
+                        notEmpty: {
+                            message: '折扣不能为空'
+                        },
+                        numeric: {
+                            message: '价格必须是数字'
                         }
 
                     }

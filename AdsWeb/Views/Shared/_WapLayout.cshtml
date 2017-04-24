@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>@ViewBag.Title</title>
+
+    <!-- Bootstrap 3.3.6 -->
+    <link rel="stylesheet" href="~/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="~/dist/css/AdminLTE.css">
+    <link rel="stylesheet" href="~/WapResource/css/skym.css">
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+            <ul class="container nav navbar-nav">
+
+                <li class="col-xs-1-5 text-center sky-nav-li">
+                    <span class="glyphicon glyphicon-list-alt text-info sky-nav-lispan"></span>
+                    <span><a href="">测评报告</a></span>
+                </li>
+                <li class="col-xs-1-5 text-center sky-nav-li">
+                    <span class="glyphicon glyphicon-calendar text-orange sky-nav-lispan"></span>
+                    <span class="text-orange">训练日历</span>
+                </li>
+                <li class="col-xs-1-5 text-center sky-nav-li">
+                    <span class="glyphicon glyphicon-king text-info sky-nav-lispan"></span>
+                    <span><a href="">我的勋章</a></span>
+                </li>
+                <li class="col-xs-1-5 text-center sky-nav-li">
+                    <span class="glyphicon glyphicon-heart text-info sky-nav-lispan"></span>
+                    <span><a href="">心理服务</a></span>
+                </li>
+                <li class="col-xs-1-5 text-center sky-nav-li">
+                    <span class="glyphicon glyphicon-cog text-info sky-nav-lispan"></span>
+                    <span><a href="">消息设置</a></span>
+                </li>
+
+            </ul>
+        
+    </nav>
+
+    @RenderBody()
+</body>
+</html>

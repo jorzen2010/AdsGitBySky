@@ -175,6 +175,7 @@
     <Compile Include="Controllers\SettingController.cs" />
     <Compile Include="Controllers\SysUserController.cs" />
     <Compile Include="Controllers\VideoController.cs" />
+    <Compile Include="Controllers\WapController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -929,6 +930,10 @@
     <Content Include="plugins\fullcalendar\fullcalendar.min.css" />
     <Content Include="plugins\fullcalendar\fullcalendar.min.js" />
     <Content Include="plugins\fullcalendar\fullcalendar.print.css" />
+    <Content Include="plugins\scale\ADSABC.data.js" />
+    <Content Include="plugins\scale\ADSABC.js" />
+    <Content Include="plugins\scale\css\scale.css" />
+    <Content Include="plugins\scale\css\test.css" />
     <Content Include="plugins\ueditor\dialogs\anchor\anchor.html" />
     <Content Include="plugins\ueditor\dialogs\attachment\attachment.css" />
     <Content Include="plugins\ueditor\dialogs\attachment\attachment.html" />
@@ -1408,9 +1413,11 @@
     <Content Include="plugins\timepicker\bootstrap-timepicker.min.js" />
     <Content Include="Resource\css\SkyWeb.css" />
     <Content Include="Resource\img\avatar.jpg" />
+    <Content Include="Resource\img\fm.png" />
     <Content Include="Resource\img\loading.gif" />
     <Content Include="Resource\img\picture.jpg" />
     <Content Include="Resource\img\nophoto.png" />
+    <Content Include="Resource\img\zm.png" />
     <Content Include="Resource\js\Article.js" />
     <Content Include="Resource\js\Category.js" />
     <Content Include="Resource\js\Customer.js" />
@@ -1526,6 +1533,19 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\Shared\index.html" />
     <Content Include="Views\Shared\index2.html" />
+    <Content Include="Views\Wap\demo.html" />
+    <Content Include="Views\Wap\form.html" />
+    <Content Include="Views\Wap\index-all.html" />
+    <Content Include="Views\Wap\index.html" />
+    <Content Include="Views\Wap\item.html" />
+    <Content Include="Views\Wap\list.html" />
+    <Content Include="Views\Wap\login.html" />
+    <Content Include="Views\Wap\reg.html" />
+    <Content Include="WapResource\css\skym.css" />
+    <Content Include="WapResource\img\iconfont-mingpian.png" />
+    <Content Include="WapResource\img\test.png" />
+    <Content Include="WapResource\img\user1-128x128.jpg" />
+    <Content Include="WapResource\js\skym.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1572,6 +1592,8 @@
     <Content Include="Views\Customer\IdentityEdit.cshtml" />
     <Content Include="Views\Customer\Search.cshtml" />
     <Content Include="Views\Customer\Edit - 复制.cshtml" />
+    <Content Include="Views\Shared\_WapLayout.cshtml" />
+    <Content Include="Views\Wap\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

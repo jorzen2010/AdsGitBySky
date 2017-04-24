@@ -42,7 +42,6 @@
   <ItemGroup>
     <Compile Include="AdsCustomer.cs" />
     <Compile Include="AdsBaby.cs" />
-    <Compile Include="AdsCard.cs" />
     <Compile Include="AdsOrganization.cs" />
     <Compile Include="AdsParents.cs" />
     <Compile Include="AdsPsyTest.cs" />

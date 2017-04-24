@@ -65,7 +65,8 @@ namespace AdsWeb.Controllers
                 unitOfWork.Save();
                 return RedirectToAction("Index");
             }
-
+            CategoryServices categoryServices = new CategoryServices();
+            ViewData["Categorylist"] = categoryServices.GetCategorySelectList(SkyVideoRootId);
             return View(adsvideo);
         }
 

@@ -1,0 +1,81 @@
+body{
+	background-color: #eeeeee;
+	font-family: "微软雅黑";
+	font-size: 12px;
+	color: #666666;
+}
+.sky-skin-gree{
+	color: green;
+}
+.sky-skin-blue{
+	color: blue;
+}
+
+/*# 以下部分是底部导航*/
+.sky-nav-li {
+	padding:0px;
+    height: 50px;
+    list-style:none;
+}
+.sky-nav-lispan {
+	display:block;
+    margin:5px 0px;
+    padding:0px;
+    font-size: 20px;
+}
+
+
+
+.skyapprow {
+	margin-top:0px;
+	margin-bottom:0px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+/*# 以下部分是Item*/
+.sky-item-row-first{
+	background-color: #ffffff;  
+	padding:5px 0px 5px 5px; 
+	border-bottom: solid #eeeeee 1px;
+	margin-top:25px;
+}
+.sky-item-row{
+	background-color: #ffffff;  
+	padding:5px 0px 5px 5px; 
+	border-bottom: solid #eeeeee 1px;
+}
+.sky-item-icon{
+	display:block;
+	margin:5px 0px;
+	padding:0px;
+	font-size: 25px;
+}
+
+.sky-item-right-icon{
+margin:5px 0px;
+padding:0px;
+font-size: 15px;
+}
+.sky-item-text{
+	line-height: 35px;
+	font-size: 15px; 
+	font-weight: 800;
+}
+.sky-item-right-text{
+text-align: right; 
+line-height: 35px;
+}
+
+
+.sky-layout-bottom {
+
+font-size:14px;
+padding:5px 0px 5px 20px;
+ line-height: 30px;
+ margin-bottom:50px;
+}
+
+
+
+

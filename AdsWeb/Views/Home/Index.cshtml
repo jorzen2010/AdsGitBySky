@@ -1,6 +1,9 @@
 ﻿@{
     ViewBag.Title = "桌面";
 }
+@section Topcss {
+    <link href="~/plugins/scale/css/test.css" rel="stylesheet" type="text/css" />
+}
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
@@ -68,6 +71,71 @@
         </div>
         <!-- /.col -->
     </div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+      <div id="adsabc"></div>
+    <p class="tbtns">
+        <a id="id_pre_link" style="display: none" href="javascript:void(0)" class="test_btn btn btn-success" onclick="return do_prev()">上一题</a>
+        &nbsp;&nbsp;
+        <input id="id_show_result" style="display: none" type="submit" class="btns btn btn-primary" value="提 交" />
+    </p>
+</div>
+    </div>
     <!-- /.row -->
 </section>
 <!-- /.content -->
+
+@section FootScripts {
+    <script type="text/javascript" src="~/plugins/scale/ADSABC.js"></script>
+    <script>
+        
+        var index = 0;
+        var questions;
+        $(function () {
+            questions = $('.test_contents');
+            setTestSels('.sels_list .items', do_next);
+            $(questions[index]).show();
+
+        });
+        function setTestSels(ele, clickfun) {
+            var items = $(ele);
+            items.hover(function () {
+                $(this).addClass('hover');
+            }, function () {
+                $(this).removeClass('hover');
+            }).click(function () {
+                items.removeClass('act');
+                var radio = $(this).find(':radio');
+                if (radio.length > 0) {
+                    $(this).addClass('act');
+                    radio.attr('checked', 'checked');
+                    if (clickfun) {
+                        clickfun(this);
+                    }
+                }
+            });
+        }
+        function do_prev() {
+            $('#id_show_result').hide();
+            $(questions[index--]).hide();
+            $(questions[index]).show();
+            $('#id_cur_index').html(index + 1);
+            if (index == 0) {
+                $('#id_pre_link').hide();
+            }
+
+        }
+        function do_next() {
+            $('#id_pre_link').show();
+            if (index < 5 - 1) {
+                $(questions[index++]).hide();
+                $(questions[index]).show();
+                $('#id_cur_index').html(index + 1);
+            } else {
+                $('#id_show_result').show();
+            }
+        }
+    </script>
+}
