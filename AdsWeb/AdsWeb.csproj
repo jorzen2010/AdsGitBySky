@@ -1415,6 +1415,7 @@
     <Content Include="Resource\js\Category.js" />
     <Content Include="Resource\js\Customer.js" />
     <Content Include="Resource\js\SkyfileCopper.js" />
+    <Content Include="Resource\js\SkyInit.js" />
     <Content Include="Resource\js\SkyWeb.js" />
     <Content Include="Resource\Upload\zhaozheng\6362670290888207461328.jpg" />
     <Content Include="Scripts\bootstrap.js" />

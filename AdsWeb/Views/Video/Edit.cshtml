@@ -6,6 +6,8 @@
     <link href="~/plugins/bootstrap-validator/css/bootstrapValidator.css" rel="stylesheet" type="text/css" />
     <link href="~/plugins/copper/css/cropper.css" rel="stylesheet">
     <link href="~/plugins/copper/css/avatar.css" rel="stylesheet">
+<link href="~/plugins/iCheck/square/green.css" rel="stylesheet" type="text/css" />
+    <link href="~/Resource/css/SkyWeb.css" rel="stylesheet" type="text/css"/>
 }
 
 <!-- Content Header (Page header) -->
@@ -56,7 +58,7 @@
                         <div class="form-group ">
                             @Html.LabelFor(model => model.VideoPhoto, new { @class = "control-label col-sm-2" })
                             <div class="col-sm-3">
-                                <img src="/Resource/img/nophoto.png" style="width:100%" id="videoPhoto" />
+                                <img src="@(string.IsNullOrEmpty(Model.VideoPhoto) ? "/Resource/img/nophoto.png" : Model.VideoPhoto)" style="width:100%" id="videoPhoto" />
                             </div>
                             <div class="col-sm-5">
                                 <input type="hidden" name="VideoPhoto" />
@@ -115,14 +117,17 @@
 
                         <div class="form-group">
                             @Html.LabelFor(model => model.VideoFree, new { @class = "control-label col-sm-2" })
-                            <div class="col-sm-8">
-                                @Html.TextBoxFor(model => model.VideoFree, new { @class = "form-control" })
+                            <div class="col-sm-8 sky-radio">
+                                <input type="radio" class="form-control" name="VideoFree" value="true">&nbsp;&nbsp;免费&nbsp;&nbsp;
+                                <input type="radio" class="form-control" name="VideoFree" value="false" checked="checked">&nbsp;&nbsp;收费&nbsp;&nbsp;
                             </div>
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(model => model.VideoTry, new { @class = "control-label col-sm-2" })
-                            <div class="col-sm-8">
-                                @Html.TextBoxFor(model => model.VideoTry, new { @class = "form-control" })
+                            <div class="col-sm-8 sky-radio">
+                                <input type="radio" class="form-control" name="VideoTry" value="true">&nbsp;&nbsp;允许试看&nbsp;&nbsp;
+                                <input type="radio" class="form-control" name="VideoTry" value="false" checked="checked">&nbsp;&nbsp;不允许试看&nbsp;&nbsp;
+
                             </div>
                         </div>
 
@@ -252,6 +257,7 @@
 <!-- Loading state -->
 <div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
 @section FootScripts {
+<script type="text/javascript" src="/plugins/iCheck/icheck.js"></script>
     <script type="text/javascript" src="~/plugins/bootstrap-validator/js/bootstrapValidator.js"></script>
     <script type="text/javascript" charset="gbk" src="~/plugins/ueditor/ueditor.config.js"></script>
     <script type="text/javascript" charset="gbk" src="~/plugins/ueditor/ueditor.all.min.js"> </script>
@@ -262,6 +268,8 @@
 
 
     <script type="text/javascript">
+
+
 
         var ue = UE.getEditor('Content');
 
