@@ -1,10 +1,21 @@
-﻿.test_contents .sels_list{padding:15px 0 20px;width:640px;cursor:pointer}
- .test_contents .sels_list .hover{color:#369;background:#EEE;border-radius:6px;}
- .test_contents .sels_list .items .i_top,
-.test_contents .sels_list .items .i_bot{overflow:hidden;width:640px;height:5px}
- .test_contents .sels_list .items .i_mid{position:relative;padding:3px 9px 2px 44px}
- .test_contents .sels_list .items .sels{position:absolute;top:4px;left:15px}
-.test_contents .sels_list .hover .i_mid,.infos-wrap .test_contents .sels_list .act .i_mid{color:#369}
-
-.scale_content {
+﻿.scale_content {
+    width:100%;
+    padding:10px;
+    cursor:pointer;
+}
+.scale_content_item_list {
+    width:100%
+}
+.scale_content_item {
+    padding-top:10px;
+    height:35px;
+    width:100%;
+    
+}
+.scale_content_item .hover {
+    width:100%;
+    color:#369;
+    background:#ffd800;
+    border-radius:6px;
+    
 }

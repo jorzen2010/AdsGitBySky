@@ -29,7 +29,7 @@
      for (var i = 0; i < SkyAdsABCData.length;i++)
      {
         
-          var aa = '<div class="test_contents" style="display: none"> <p class="descs fb h3">' + SkyAdsABCData[i].Number +'、'+ SkyAdsABCData[i].Title + '</p>';
+         var aa = '<div class="test_contents" style="display: none"> <p class="descs fb h3">' + SkyAdsABCData[i].Number +'、'+ SkyAdsABCData[i].Title + '</p>';
          var aab = '<div class="sels_list">';
          var bb = '<div class="items"> <p class="i_top"></p><p class="i_mid"> <span class="sels"> <input type="radio" value="' + SkyAdsABCData[i].score + '" name="' + SkyAdsABCData[i].Dimension + '" /></span>是</p><p class="i_bot"></p> </div>';
          var cc = '<div class="items"> <p class="i_top"></p><p class="i_mid"> <span class="sels"> <input type="radio" value="' + SkyAdsABCData[i].score + '" name="' + SkyAdsABCData[i].Dimension + '" /></span>否</p><p class="i_bot"></p> </div>';
