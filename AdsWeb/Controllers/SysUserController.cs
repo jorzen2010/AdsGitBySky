@@ -16,7 +16,7 @@ using PagedList.Mvc;
 namespace AdsWeb.Controllers
 {
 
-    public class SysUserController : Controller
+    public class SysUserController : BaseController
     {
         private UnitOfWork unitOfWork = new UnitOfWork();
 
@@ -71,6 +71,10 @@ namespace AdsWeb.Controllers
             string password = CommonTools.GenerateRandomNumber(8);
             string confirmpassword = CommonTools.ToMd5(password);
             sysuser.SysPassword = confirmpassword;
+
+           
+            
+
             if (ModelState.IsValid)
             {
 

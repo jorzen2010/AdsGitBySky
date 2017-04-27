@@ -9,6 +9,8 @@
 
     <!-- Bootstrap 3.3.6 -->
     <link rel="stylesheet" href="~/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="~/plugins/font-awesome-4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="~/plugins/ionicons-2.0.1/css/ionicons.css">
     <link rel="stylesheet" href="~/dist/css/AdminLTE.css">
     <link rel="stylesheet" href="~/WapResource/css/skym.css">
 
@@ -25,24 +27,35 @@
             <ul class="container nav navbar-nav">
 
                 <li class="col-xs-1-5 text-center sky-nav-li">
-                    <span class="glyphicon glyphicon-list-alt text-info sky-nav-lispan"></span>
-                    <span><a href="">测评报告</a></span>
+                    <a class="btn btn-appnav text-blue">
+                        <i class="glyphicon glyphicon-list-alt"></i>
+                        月度测评
+                    </a>
                 </li>
                 <li class="col-xs-1-5 text-center sky-nav-li">
-                    <span class="glyphicon glyphicon-calendar text-orange sky-nav-lispan"></span>
-                    <span class="text-orange">训练日历</span>
+                    <a class="btn btn-appnav text-blue">
+                        <i class="glyphicon glyphicon-heart"></i>
+                        心理服务
+                    </a>
+                </li><li class="col-xs-1-5 text-center sky-nav-li">
+                         <a class="btn btn-appnav   text-orange">
+                             <i class="glyphicon glyphicon-calendar"></i>
+                             今日训练
+                         </a>
                 </li>
                 <li class="col-xs-1-5 text-center sky-nav-li">
-                    <span class="glyphicon glyphicon-king text-info sky-nav-lispan"></span>
-                    <span><a href="">我的勋章</a></span>
+
+                    <a class="btn btn-appnav  text-blue">
+                        <i class="glyphicon glyphicon-king"></i>
+                        训练报告
+                    </a>
                 </li>
+             
                 <li class="col-xs-1-5 text-center sky-nav-li">
-                    <span class="glyphicon glyphicon-heart text-info sky-nav-lispan"></span>
-                    <span><a href="">心理服务</a></span>
-                </li>
-                <li class="col-xs-1-5 text-center sky-nav-li">
-                    <span class="glyphicon glyphicon-cog text-info sky-nav-lispan"></span>
-                    <span><a href="">消息设置</a></span>
+                    <a class="btn btn-appnav  text-blue">
+                        <i class="glyphicon glyphicon-cog"></i>
+                        我的
+                    </a>
                 </li>
 
             </ul>
@@ -50,5 +63,12 @@
     </nav>
 
     @RenderBody()
+
+    <div class="row">
+        <div class="text-center sky-layout-bottom">
+            <span class="glyphicon glyphicon-pencil"></span> 意见反馈
+        </div>
+    </div>
+
 </body>
 </html>

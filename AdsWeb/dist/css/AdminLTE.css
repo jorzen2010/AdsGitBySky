@@ -2310,6 +2310,42 @@ a:focus {
   -webkit-box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.2);
   box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.2);
 }
+/*我新增的部分开始*/
+.btn-appnav {
+  border-radius: 3px;
+  position: relative;
+  padding: 15px 5px;
+  margin: 0 0 10px 10px;
+  min-width: 80px;
+  height: 60px;
+  text-align: center;
+  color: #666;
+  background-color: #f4f4f4;
+  font-size: 12px;
+}
+.btn-appnav > .fa,
+.btn-appnav > .glyphicon,
+.btn-appnav > .ion {
+  font-size: 20px;
+  display: block;
+}
+.btn-appnav:hover {
+  background: #f4f4f4;
+  color: #444;
+}
+
+.btn-appnav > .badge {
+  position: absolute;
+  top: -3px;
+  right: -10px;
+  font-size: 10px;
+  font-weight: 400;
+}
+
+
+
+/*我新增的部分结束*/
+
 .btn-app {
   border-radius: 3px;
   position: relative;
@@ -2347,6 +2383,7 @@ a:focus {
   font-size: 10px;
   font-weight: 400;
 }
+
 /*
  * Component: Callout
  * ------------------

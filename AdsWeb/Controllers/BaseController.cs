@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Configuration;
 using AdsEntity;
 using AdsDal;
+using Common;
 
 namespace AdsWeb.Controllers
 {
@@ -20,6 +21,9 @@ namespace AdsWeb.Controllers
 
         //从数据库中获取相应配置
         public  Setting SkySet;
+    
+        
+        
 
         public void GetSeting()
         {
