@@ -27,32 +27,33 @@
             <ul class="container nav navbar-nav">
 
                 <li class="col-xs-1-5 text-center sky-nav-li">
-                    <a class="btn btn-appnav text-blue">
+                    <a class="btn btn-appnav text-blue menubtn" onclick="return adsmenu(this, '/wap/list')">
                         <i class="glyphicon glyphicon-list-alt"></i>
                         月度测评
                     </a>
                 </li>
                 <li class="col-xs-1-5 text-center sky-nav-li">
-                    <a class="btn btn-appnav text-blue">
+                    <a class="btn btn-appnav text-blue menubtn" onclick="return adsmenu(this, '/wap/list')">
                         <i class="glyphicon glyphicon-heart"></i>
                         心理服务
                     </a>
                 </li><li class="col-xs-1-5 text-center sky-nav-li">
-                         <a class="btn btn-appnav   text-orange">
+                         <a class="btn btn-appnav   text-orange menubtn" onclick="return adsmenu(this, '/wap/')">
                              <i class="glyphicon glyphicon-calendar"></i>
                              今日训练
                          </a>
                 </li>
                 <li class="col-xs-1-5 text-center sky-nav-li">
 
-                    <a class="btn btn-appnav  text-blue">
-                        <i class="glyphicon glyphicon-king"></i>
+                    <a class="btn btn-appnav  text-blue menubtn" onclick="return adsmenu(this, '/wap/list')">
+                        <i class=" glyphicon glyphicon-king">
+                        </i>
                         训练报告
                     </a>
                 </li>
              
                 <li class="col-xs-1-5 text-center sky-nav-li">
-                    <a class="btn btn-appnav  text-blue">
+                    <a class="btn btn-appnav  text-blue menubtn" onclick="return adsmenu(this,'/wap/list')">
                         <i class="glyphicon glyphicon-cog"></i>
                         我的
                     </a>
@@ -61,14 +62,28 @@
             </ul>
         
     </nav>
-
-    @RenderBody()
+    <div id="wapcontent">
+        @RenderBody()
+    </div>
+   
 
     <div class="row">
         <div class="text-center sky-layout-bottom">
             <span class="glyphicon glyphicon-pencil"></span> 意见反馈
         </div>
     </div>
+    <script src="~/plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script type="text/javascript">
+        function adsmenu(ele,url) {
+            $('.menubtn').removeClass('text-orange');
+            $('.menubtn').removeClass('text-blue');
+            $('.menubtn').addClass('text-blue');
+            $(ele).removeClass('text-blue');
+            $(ele).addClass('text-orange');
+            $('#wapcontent').load(url);
 
+        }
+    </script>
+   
 </body>
 </html>
