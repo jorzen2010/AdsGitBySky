@@ -29,9 +29,9 @@
                     <div class="box-header text-center">
 
                         <div class="container">
-                            <img src="@(string.IsNullOrEmpty(Model.CustomerAvatar) ? "/plugins/copper/images/avatar.jpg" : Model.CustomerAvatar)" alt="Avatar" id="skyAvatar" class="img-circle sky-img-avatar" data-toggle="tooltip" data-placement="bottom" title="点击头像上传更换">
+                            <img src="@(string.IsNullOrEmpty(Model.CustomerAvatar) ? "/plugins/copper/images/avatar.jpg" : Model.CustomerAvatar)" alt="Avatar" id="skyAvatar" class="img-circle sky-img-avatar avatar-modal" data-toggle="tooltip" data-placement="bottom" title="点击头像上传更换">
                             <h5>
-                                <button class="btn btn-sm btn-default" type="button" data-toggle="modal" data-target="#avatar-modal">
+                                <button class="btn btn-sm btn-default avatar-modal" type="button">
                                     <i class="fa fa-camera"> 上传/更改头像</i>
                                 </button>
                             </h5>
@@ -275,7 +275,7 @@
     <script type="text/javascript">
 
         $('#imageaspectRatio').val('1');
-        $('.sky-img-avatar').click(function () {
+        $('.avatar-modal').click(function () {
             $('#avatar-modal').modal('show');
             //这句的意思是将container的宽高值去掉，保证自适应效果。有个小bug是第一次使用的时候如果浏览器过小可能造成显示不完全。
             $(".img-container").removeAttr("style");

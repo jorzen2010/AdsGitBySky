@@ -160,6 +160,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="api\test.ashx.cs">
+      <DependentUpon>test.ashx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -191,6 +194,9 @@
     <Compile Include="plugins\ueditor\net\App_Code\UploadHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="test.ashx.cs">
+      <DependentUpon>test.ashx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="bootstrap\css\bootstrap-theme.css" />
@@ -1494,6 +1500,7 @@
     <Content Include="plugins\ueditor\third-party\video-js\font\vjs.ttf" />
     <Content Include="plugins\ueditor\third-party\video-js\font\vjs.woff" />
     <Content Include="plugins\下拉刷新\jquery插件库.url" />
+    <Content Include="api\test.ashx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -1526,7 +1533,9 @@
     <Content Include="WapResource\img\yuyan.png" />
     <Content Include="WapResource\img\zili.png" />
     <Content Include="WapResource\js\skym.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -1575,6 +1584,7 @@
     <Content Include="Views\Shared\_WapLayout.cshtml" />
     <Content Include="Views\Wap\Index.cshtml" />
     <Content Include="Views\Wap\List.cshtml" />
+    <Content Include="test.ashx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
