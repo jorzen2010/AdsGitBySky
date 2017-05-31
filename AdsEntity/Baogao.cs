@@ -14,6 +14,5 @@ namespace AdsEntity
         public string  BaogaoScore { get; set; }
         public string BaogaoDementionScore { get; set; }
         public DateTime BaogaoTime { get; set; }
-        public int ScaleId { get; set; }
     }
 }

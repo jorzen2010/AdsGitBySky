@@ -70,17 +70,23 @@ namespace AdsWeb.Controllers
 
         [HttpPost]
 
-        public JsonResult SaveScaleResult(int id)
+        public JsonResult SaveScaleResult(int id, string score, string Dementionscore)
         {
             Message msg = new Message();
 
             Baogao baogao = new Baogao();
+            baogao.BaogaoScore = score;
+            baogao.BaogaoDementionScore = Dementionscore;
+            baogao.CustomerId = 1;
+            baogao.ScaleId = 1;
+            baogao.BaogaoTime = System.DateTime.Now;
 
             try
             {
                 unitOfWork.baogaoRepository.Insert(baogao);
+                unitOfWork.Save();
                 msg.MessageStatus = "true";
-                msg.MessageInfo = "保存成功";
+                msg.MessageInfo = "保存成功" + score + Dementionscore;
             }
             catch
             {

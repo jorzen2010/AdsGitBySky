@@ -524,33 +524,77 @@ function do_result() {
     aa = aa.substring(0, aa.length - 1);
     alert("总得分" + aa);
 
-    //感觉能力得分
-    var b = "";
+    var b = 0;
     for (var i = 1; i < SkyAdsABCData.length + 1; i++) {
         if ($('[name="' + i + '"]:checked').attr("data-Dimension") == 'A') {
-            var b = b + $('[name="' + i + '"]:checked').val() + ",";
+            var b = b + parseInt($('[name="' + i + '"]:checked').val());
         }
 
 
     }
-    b = b.substring(0, b.length - 1);
-    alert("感觉能力得分" + b);
+    b = "感觉能力:" + b+",";
+
+    var c = 0;
+    for (var i = 1; i < SkyAdsABCData.length + 1; i++) {
+        if ($('[name="' + i + '"]:checked').attr("data-Dimension") == 'B') {
+            var c = c + parseInt($('[name="' + i + '"]:checked').val());
+        }
+
+
+    }
+    c = "交往能力:" + c + ",";
+
+    var d = 0;
+    for (var i = 1; i < SkyAdsABCData.length + 1; i++) {
+        if ($('[name="' + i + '"]:checked').attr("data-Dimension") == 'C') {
+            var d = d + parseInt($('[name="' + i + '"]:checked').val());
+        }
+
+
+    }
+    d = "运动能力:" + d + ",";
+
+    var e = 0;
+    for (var i = 1; i < SkyAdsABCData.length + 1; i++) {
+        if ($('[name="' + i + '"]:checked').attr("data-Dimension") == 'D') {
+            var e = e + parseInt($('[name="' + i + '"]:checked').val());
+        }
+
+
+    }
+   
+    e = "运动能力:" + e+ ",";
+
+
+    var f = 0;
+    for (var i = 1; i < SkyAdsABCData.length + 1; i++) {
+        if ($('[name="' + i + '"]:checked').attr("data-Dimension") == 'E') {
+            var f = f + parseInt($('[name="' + i + '"]:checked').val());
+        }
+
+
+    }
+
+    f = "自理能力:" + f + ",";
+    var g = b + c + d + e + f;
+
+    g = "总分:" + g ;
 
 
     $.ajax({
         type: 'POST',
         url: "/Wechat/SaveScaleResult",
         data: {
-            id: id,
-            score: score,
-            Dementionscore: Dementionscore,
+            id: 0,
+            score: aa,
+            Dementionscore: g,
         },
         dataType: "json",
         success: function (data) {
             if (data.MessageStatus)
-            { alertconfirm(data.MessageInfo); }
+            { alert(data.MessageInfo); }
             else
-            { alertconfirm("重置密码失败！"); }
+            { alert("测试过程出现意外，请重新测试！"); }
 
         }
     });
