@@ -5,8 +5,6 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdsWeb", "AdsWeb\AdsWeb.csproj", "{F3663CA7-2A28-4E6E-BD4C-14F3E0BC2A73}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdsApp", "AdsApp\AdsApp.csproj", "{206BCA50-6F48-4E79-9FD7-1B48DE088500}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdsEntity", "AdsEntity\AdsEntity.csproj", "{155AAC5E-5910-4E55-9BAC-465A8A5E41F7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdsDal", "AdsDal\AdsDal.csproj", "{DE3CA9A0-5345-410B-8449-3FC58CC93991}"
@@ -14,8 +12,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdsServices", "AdsServices\AdsServices.csproj", "{9FEF484F-F918-4858-87D5-59899BFEA235}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{97BB8354-AD37-40D1-AD0D-7EEE6026D2AA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdsWap", "AdsWap\AdsWap.csproj", "{C6396C25-039C-4C5B-9601-5E2DF59F877B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,10 +23,6 @@ Global
 		{F3663CA7-2A28-4E6E-BD4C-14F3E0BC2A73}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3663CA7-2A28-4E6E-BD4C-14F3E0BC2A73}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3663CA7-2A28-4E6E-BD4C-14F3E0BC2A73}.Release|Any CPU.Build.0 = Release|Any CPU
-		{206BCA50-6F48-4E79-9FD7-1B48DE088500}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{206BCA50-6F48-4E79-9FD7-1B48DE088500}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{206BCA50-6F48-4E79-9FD7-1B48DE088500}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{206BCA50-6F48-4E79-9FD7-1B48DE088500}.Release|Any CPU.Build.0 = Release|Any CPU
 		{155AAC5E-5910-4E55-9BAC-465A8A5E41F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{155AAC5E-5910-4E55-9BAC-465A8A5E41F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{155AAC5E-5910-4E55-9BAC-465A8A5E41F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -47,10 +39,6 @@ Global
 		{97BB8354-AD37-40D1-AD0D-7EEE6026D2AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97BB8354-AD37-40D1-AD0D-7EEE6026D2AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97BB8354-AD37-40D1-AD0D-7EEE6026D2AA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C6396C25-039C-4C5B-9601-5E2DF59F877B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C6396C25-039C-4C5B-9601-5E2DF59F877B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C6396C25-039C-4C5B-9601-5E2DF59F877B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C6396C25-039C-4C5B-9601-5E2DF59F877B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

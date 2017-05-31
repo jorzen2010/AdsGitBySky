@@ -1,0 +1,108 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>星星宝贝</title>
+
+    <!-- Bootstrap 3.3.6 -->
+    <link rel="stylesheet" href="~/css/bootstrap.css">
+    <link href="~/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/AdminLTE.css">
+    <link rel="stylesheet" href="~/css/labelauty.css">
+    <link rel="stylesheet" href="~/css/skym.css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <ul class="container nav navbar-nav">
+
+            <li class="col-xs-1-5 text-center sky-nav-li">
+                <a class="btn btn-appnav text-blue" onclick="return adsmenu(this,'partceping.html')">
+                    <i class="glyphicon glyphicon-list-alt"></i>
+                    月度测评
+                </a>
+            </li>
+            <li class="col-xs-1-5 text-center sky-nav-li">
+                <a class="btn btn-appnav text-blue" onclick="return adsmenu(this,'partheartlist.html')">
+                    <i class="glyphicon glyphicon-heart"></i>
+                    心理服务
+                </a>
+            </li>
+            <li class="col-xs-1-5 text-center sky-nav-li">
+                <a class="btn btn-appnav   text-orange" onclick="return adsmenu(this,'partcalendar.html')">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                    今日训练
+                </a>
+            </li>
+            <li class="col-xs-1-5 text-center sky-nav-li">
+
+                <a class="btn btn-appnav  text-blue" onclick="return adsmenu(this,'partlist.html')">
+                    <i class="glyphicon glyphicon-king"></i>
+                    训练报告
+                </a>
+            </li>
+
+            <li class="col-xs-1-5 text-center sky-nav-li">
+                <a class="btn btn-appnav  text-blue" onclick="return adsmenu(this,'partprofile.html')">
+                    <i class="glyphicon glyphicon-cog"></i>
+                    我的
+                </a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+
+    <div id="wapcontent"></div>
+
+    <div class="row">
+        <div class="text-center sky-layout-bottom">
+
+
+            版权所有 会写代码的心理咨询师 <br />Copyright 2017 All Right Reserved
+        </div>
+    </div>
+    <script src="~/js/jquery-2.2.3.min.js"></script>
+
+
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            var url = "wechat/partcalendar.html";
+            $('#wapcontent').load(url);
+
+        });
+        function adsmenu(ele, url) {
+            $('.sky-nav-li a').removeClass('text-orange');
+            $('.sky-nav-li a').removeClass('text-blue');
+            $('.sky-nav-li a').addClass('text-blue');
+            $(ele).removeClass('text-blue');
+            $(ele).addClass('text-orange');
+            $('#wapcontent').load(url);
+
+        }
+
+        function adshref(url) {
+            $('#wapcontent').load(url);
+
+        }
+    </script>
+</body>
+</html>

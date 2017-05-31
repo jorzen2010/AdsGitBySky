@@ -1,0 +1,154 @@
+body{
+	background-color: #eeeeee;
+	font-family: "微软雅黑";
+	font-size: 12px;
+	color: #666666;
+}
+.sky-skin-gree{
+	color: green;
+}
+.sky-skin-blue{
+	color: blue;
+}
+.sky-space {
+    background-color: #eeeeee;
+    height:15px;
+}
+.sky-layout-bottom {
+font-size:10px;
+padding:10px 0px 25px 0px;
+margin-bottom:50px;
+}
+
+/*# 以下部分是底部导航*/
+.sky-nav-li {
+	padding:0px;
+    height: 50px;
+    list-style:none;
+}
+.sky-nav-li span {
+	display:block;
+    padding-top:3px;
+}
+
+.btn-appnav {
+  border-radius: 3px;
+  position: relative;
+  padding: 15px 5px;
+  margin: 0 0 10px 10px;
+  min-width: 80px;
+  height: 60px;
+  text-align: center;
+  color: #666;
+  font-size: 12px;
+}
+.btn-appnav > .fa,
+.btn-appnav > .glyphicon,
+.btn-appnav > .ion {
+  font-size: 20px;
+  display: block;
+}
+.btn-appnav:hover {
+  background: #f4f4f4;
+  color: #444;
+}
+
+.btn-appnav > .badge {
+  position: absolute;
+  top: -3px;
+  right: -10px;
+  font-size: 10px;
+  font-weight: 400;
+}
+
+
+
+/*# 底部导航结束*/
+
+
+
+/*# 以下部分是首页列表row*/
+
+.skyindexbtn {
+    padding:10px 0px 0px 20px; 
+    background-color:#ffffff; 
+    border-top: solid #efefef 1px; 
+    height:70px;
+}
+
+.skylistbtn {
+    padding:10px 0px 0px 20px; 
+    background-color:#ffffff; 
+    border-top: solid #efefef 1px; 
+    height:80px;
+}
+
+.skyindexrowtitle {
+    padding: 5px 0px 5px 20px;
+font-size:16px;
+font-weight:600;
+line-height:30px;
+}
+.skyindexrowrighttitle {
+     padding: 5px 10px 5px 0px;
+     line-height:30px;
+     color:#808080;
+
+}
+
+.skyindexrow {
+    padding: 5px 0px 5px 0px;
+    background-color: #ffffff; 
+    border-bottom: solid #efefef 1px;
+}
+.skyindexrow button {
+    margin-top:13px;
+    margin-right:5px;
+
+}
+.skyindexrow img {
+    padding: 0px 10px 0px 20px; 
+    height:60px;
+    width:100px;
+}
+
+.sky-index-itemcontent p{   
+    margin:0px;
+    padding:0px;
+    display: block;
+    line-height:20px;
+}
+.sky-index-itemcontent-title{
+    display: block;
+    font-size:16px;
+    font-weight:600;
+}
+
+/*# 列表的图文混合按钮类结束*/
+
+
+.box .nav-stacked > li {
+  font-size:14px;
+
+}
+.box .nav-stacked  li .badge{
+margin-top:3px;
+
+}
+.box .nav-stacked  li .badgeicon{
+margin-top:1px;
+font-size:20px;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+

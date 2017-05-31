@@ -46,6 +46,7 @@
     <Compile Include="AdsParents.cs" />
     <Compile Include="AdsPsyTest.cs" />
     <Compile Include="AdsSelfTest.cs" />
+    <Compile Include="Baogao.cs" />
     <Compile Include="SysUser.cs" />
     <Compile Include="AdsTeacher.cs" />
     <Compile Include="AdsVideo.cs" />

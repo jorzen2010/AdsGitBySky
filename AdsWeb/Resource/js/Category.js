@@ -1,6 +1,6 @@
 ﻿
 //初始化页面
-function init() {
+function categoryInit() {
     //加载树形菜单
     var a = getUrlParam('option');
 
@@ -122,6 +122,46 @@ function fillForm(selectedNode) {
 
 
 }
+
+
+//设置Form值
+function fillFormReadOnly(selectedNode) {
+    $.ajax({
+        type: "get",
+        url: "/Category/GetOneCategory",
+        data: {
+            id: selectedNode.id
+        },
+        dataType: "json",
+        success: function (result) {
+            // $('#thisCategoryName').val(result.CategoryName).prop("disabled", true);
+            //  $('#thisID').val(result.ID).prop("disabled", true);
+            $('#CategoryParentName').val(result.CategoryParentName).prop("readonly", true);
+            $('#CategoryParentID').val(result.CategoryParentID).removeAttr("readonly");
+            $('#CategoryName').val(result.CategoryName).removeAttr("readonly");
+            $('#CategorySort').val(result.CategorySort).removeAttr("readonly");
+            $('#CategoryInfo').val(result.CategoryInfo).removeAttr("readonly");
+            $('input[type="radio"][name="CategoryStatus"]').removeAttr("disabled");
+
+            $('input[type="radio"][name="CategoryStatus"][value=' + result.CategoryStatus.toString() + ']').prop("checked", "checked");
+
+            $('#CategoryFrom').prop("action", "/Category/Edit");
+            $("#CategoryFrom .box-footer").show();
+            icheckcss("CategoryStatus");
+            //所有文本框只读
+            $("input[name],textarea[name]").attr("readonly", "readonly");
+            //所有单选框和复选框只读
+            $('input[type=radio],input[type=checkbox]').prop("disabled", true);
+            //隐藏取消、保存按钮
+            $("#CategoryFrom .box-footer").hide();
+        },
+        error: function () {
+            alert("选择的不对！")
+        }
+    });
+
+
+}
 //curd查按钮操作
 function categoryaction(btn, ac) {
 
@@ -173,6 +213,7 @@ function categoryaction(btn, ac) {
         return false;
     }
     if (ac == 'delete') {
+
         //弹出确认对话框即可
         if (!selectedNode) {
             alertconfirm('你尚未没有选择节点！');
@@ -190,9 +231,9 @@ function categoryaction(btn, ac) {
                 }
                 else {
 
-                    fillForm(selectedNode);
-                    formReadonly();
+                    fillFormReadOnly(selectedNode);
                     delconfirm(selectedNode.id, "/Category/Delete/", '/Category/Index');
+                 
                 }
             }
 
@@ -293,4 +334,6 @@ function dictionary(nodeid) {
 
 }
 
+
+categoryInit();
 
