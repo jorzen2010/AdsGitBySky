@@ -1,0 +1,41 @@
+﻿
+.sky-loginbtn {
+    font-size:25px;
+}
+.sky-img-avatar {
+    border: 3px solid #d2d6de;
+    height: 160px;
+    text-align: center;
+    width: 160px;
+    box-shadow: 0 0 5px rgba(0,0,0,.15);
+    cursor: pointer;
+}
+/*!重定义字体大小 */
+.sky-font15 {
+    font-size:15px;
+}
+.sky-font20 {
+    font-size:20px;
+}
+.sky-font25 {
+    font-size:25px;
+}
+.sky-font30 {
+    font-size:30px;
+}
+
+/*!重定义字体大小 */
+.sky-radio{
+   padding-top:7px;
+}
+.sky-checkbox{
+   padding-top:7px;
+}
+
+
+
+/*! 客户列表页的标签按钮组的 */
+.cuscategorybtn {
+    margin-top:5px;
+}
+

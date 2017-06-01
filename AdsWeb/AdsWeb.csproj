@@ -180,6 +180,7 @@
     <Compile Include="Controllers\VideoController.cs" />
     <Compile Include="Controllers\WapController.cs" />
     <Compile Include="Controllers\WechatController.cs" />
+    <Compile Include="Controllers\WxController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1405,7 +1406,6 @@
     <Content Include="Resource\js\SkyfileCopper.js" />
     <Content Include="Resource\js\SkyInit.js" />
     <Content Include="Resource\js\SkyWeb.js" />
-    <Content Include="Resource\Upload\zhaozheng\6362670290888207461328.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="bootstrap\css\bootstrap-theme.css.map" />
@@ -1526,6 +1526,9 @@
     <Content Include="wechat\js\psy-adsabc - 副本.js" />
     <Content Include="wechat\js\psy-adsabc.js" />
     <Content Include="wechat\js\skym.js" />
+    <Content Include="wechat\weui\weui.css" />
+    <Content Include="wechat\weui\weui.min.css" />
+    <None Include="Properties\PublishProfiles\vip.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -1658,11 +1661,16 @@
     <Content Include="Views\Wechat\Baogao.cshtml" />
     <Content Include="Views\Wechat\Scale.cshtml" />
     <Content Include="Views\Wechat\Reg.cshtml" />
-    <Content Include="Views\Wechat\Login.cshtml" />
+    <Content Include="Views\Wechat\StarBaby.cshtml" />
     <Content Include="Views\Wechat\BaogaoDetail.cshtml" />
+    <Content Include="Views\Wechat\MemberCenter - 复制.cshtml" />
+    <Content Include="Views\Wx\Index.cshtml" />
+    <Content Include="Views\Wechat\Login.cshtml" />
+    <Content Include="Views\Wechat\Setting.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Resource\Upload\zhaozheng\" />
     <Folder Include="Views\Ajax\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\File\" />

@@ -1,0 +1,317 @@
+﻿@model StaticPagedList<AdsEntity.SysUser>
+@using PagedList;
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "系统用户管理";
+}
+
+@section Topcss {
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+    <link href="~/plugins/bootstrap-validator/css/bootstrapValidator.css" rel="stylesheet" type="text/css" />
+    <link href="~/plugins/bootstrap-switch/css/bootstrap-switch.css" rel="stylesheet" type="text/css" />
+    <link href="~/plugins/iCheck/square/green.css" rel="stylesheet" type="text/css" />
+}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        @ViewBag.Title
+        <small>
+            @ViewBag.SmallTitle
+        </small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> 首页</a></li>
+        <li><a href="#">@ViewBag.Title</a></li>
+        <li class="active">@ViewBag.SmallTitle</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-primary">
+                <div class="box-header">
+                    <div class="pull-left">
+                        <div class="btn-group">
+                            <button class="btn btn-success" data-toggle="modal" data-target="#addSysUser"><i class="fa fa-plus"></i> 新增用户</button>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th class="col-sm-1">
+                                    序号
+                                </th>
+                                <th class="col-sm-2">
+                                    用户名
+                                </th>
+                                <th class="col-sm-2">
+                                    邮箱
+                                </th>
+                                <th class="col-sm-3">
+                                    状态
+                                </th>
+                                <th class="col-sm-4">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.SysUserId)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.SysUserName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.SysEmail)
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="status" value="@item.SysUserId" checked="@(item.SysStatus?"checked":"")" />
+                                    </td>
+                                    <td>
+                                        @Html.AntiForgeryToken()
+                                        <button class="btn btn-danger btn-xs" type="button" onclick="delconfirm('@item.SysUserId','/SysUser/DeleteConfirmed/','/SysUser/Index')"><span class="glyphicon glyphicon-trash"></span> 删除</button>
+                                        <button class="btn btn-info btn-xs" type="button" onclick="resetPassword('@item.SysUserId')"><span class="glyphicon glyphicon-lock"></span> 重置密码</button>
+
+                                    </td>
+                                   
+                                </tr>
+                                
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer clearfix">
+                    <ul class="pull-right">
+                        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page = page }),
+    new PagedListRenderOptions
+    {
+        LinkToPreviousPageFormat = "上一页",
+        LinkToNextPageFormat = "下一页",
+        DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+        DisplayLinkToLastPage = PagedListDisplayMode.Always,
+        DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+        DisplayLinkToNextPage = PagedListDisplayMode.Always,
+        MaximumPageNumbersToDisplay = 5,
+        LinkToFirstPageFormat = "首页",
+        LinkToLastPageFormat = "最后一页",
+        PageCountAndCurrentLocationFormat = "第 {0}页 共 {1}页"
+    })
+                    </ul>
+                </div>
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->
+<!-- 新增用户的模态框开始 -->
+<div class="modal fade" id="addSysUser" tabindex="-1" role="dialog" aria-labelledby="addSysUserLabel" aria-hidden="true" style="margin-top:100px;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="addModalLabel">
+                    新增用户
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="addSysUserForm" method="post" action="@Url.Action("Create")">
+                    @Html.AntiForgeryToken()
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="username" class="col-sm-2 control-label">用户名</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="SysUserName" placeholder="用户名">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">密码</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control" name="SysPassword" placeholder="密码">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">重复密码</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control" name="ConfirmPassword" placeholder="请再次输入密码">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">邮箱地址</label>
+                            <div class="col-sm-10">
+                                <input type="email" class="form-control" name="SysEmail" placeholder="邮箱地址">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">是否使用</label>
+                            <div class="col-sm-10" style="padding-top:7px;">
+                                <input type="radio" class="form-control" name="SysStatus" value="true" checked="checked">&nbsp;&nbsp;启用&nbsp;&nbsp;
+                                <input type="radio" class="form-control" name="SysStatus" value="false">&nbsp;&nbsp;禁用&nbsp;&nbsp;
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-primary pull-right">确定新增</button>
+                    </div>
+                    <!-- /.box-footer -->
+                </form>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<!-- 新增用户的模态框结束 -->
+@section FootScripts {
+    <script type="text/javascript" src="/plugins/iCheck/icheck.js"></script>
+    <script type="text/javascript" src="/plugins/bootstrap-switch/js/bootstrap-switch.js"></script>
+    <script type="text/javascript" src="/plugins/bootstrap-validator/js/bootstrapValidator.js"></script>
+    <script type="text/javascript" src="/plugins/bootbox.min.js"></script>
+    <script type="text/javascript" src="/Resource/js/SkyWeb.js"></script>
+    <script type="text/javascript">
+
+        function resetPassword(id)
+        {
+            var token = $('[name=__RequestVerificationToken]').val();
+            $.ajax({
+                type: 'POST',
+                url: "/sysUser/ResetPassword",
+                data: {
+                    id: id,
+                    __RequestVerificationToken: token,
+                },
+                dataType: "json",
+                success: function (data) {
+                    if (data.MessageStatus)
+                    { alertconfirm(data.MessageInfo); }
+                    else
+                    { alertconfirm("重置密码失败！");}
+                    
+                }
+            });
+
+        }
+
+        $(document).ready(function () {
+
+            //单选按钮样式加载
+
+            $('[name="SysStatus"]').iCheck({
+                labelHover: false,
+                cursor: true,
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+                increaseArea: '20%',
+            });
+            //开关按钮样式加载
+            $('[name="status"]').bootstrapSwitch({
+                onText: "启用",
+                offText: "禁用",
+                onColor: "success",
+                offColor: "danger",
+                size: "small",
+                onSwitchChange: function (event, state) {
+                    var token = $('[name=__RequestVerificationToken]').val();
+                    $.ajax({
+                        type: 'POST',
+                        url: "/sysUser/UpdateStatus",
+                        data: {
+                            id: $(this).val(),
+                            status: state,
+                            __RequestVerificationToken: token,
+                        },
+                        dataType: "json",
+                        success: function (data) {
+                        }
+                    });
+                }
+            });
+
+            //表单验证
+            $('#addSysUserForm').bootstrapValidator({
+                //        live: 'disabled',
+                message: 'This value is not valid',
+                feedbackIcons: {
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid: 'glyphicon glyphicon-remove',
+                    validating: 'glyphicon glyphicon-refresh'
+                },
+                fields: {
+                    SysUserName: {
+                        validators: {
+                            notEmpty: {
+                                message: '用户名不能为空'
+                            },
+                            stringLength: {
+                                min: 6,
+                                max: 20,
+                                message: '用户名长度必须在6到30之间'
+                            },
+                        }
+                    },
+                    SysPassword: {
+                        validators: {
+                            notEmpty: {
+                                message: '密码不能为空'
+                            },
+                            identical: {
+                                field: 'ConfirmPassword',
+                                message: '两次输入密码不一致'
+                            },
+                            different: {
+                                field: 'SysUserName',
+                                message: '密码与用户名长的怎么一样呢'
+                            }
+                        }
+                    },
+                    ConfirmPassword: {
+                        validators: {
+                            notEmpty: {
+                                message: '重复密码也不能为空'
+                            },
+                            identical: {
+                                field: 'SysPassword',
+                                message: '两次输入密码不一致'
+                            }
+                        }
+                    },
+                    SysEmail: {
+                        validators: {
+                            notEmpty: {
+                                message: '邮箱不能为空'
+                            },
+                            emailAddress: {
+                                message: '请输入正确的邮件地址如：123@qq.com'
+                            }
+                        }
+                    },
+                    SysStatus: {
+                        validators: {
+                            notEmpty: {
+                                message: '请选择是否禁用'
+                            }
+                        }
+                    }
+                }
+            });
+
+
+        });
+
+    </script>
+}

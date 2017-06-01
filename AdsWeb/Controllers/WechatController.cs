@@ -60,6 +60,16 @@ namespace AdsWeb.Controllers
             return View();
         }
 
+        public ActionResult Logout()
+        {
+            return RedirectToAction("Login");
+        }
+
+        public ActionResult StarBaby()
+        {
+            return View();
+        }
+
         //报告详情页
         public ActionResult BaogaoDetail(int id)
         {

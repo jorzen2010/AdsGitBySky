@@ -1,0 +1,17 @@
+D:\MyPro\2017\AdsGitBySky\AdsDal\bin\Release\AdsDal.dll
+D:\MyPro\2017\AdsGitBySky\AdsDal\bin\Release\AdsDal.pdb
+D:\MyPro\2017\AdsGitBySky\AdsDal\bin\Release\AdsEntity.dll
+D:\MyPro\2017\AdsGitBySky\AdsDal\bin\Release\Common.dll
+D:\MyPro\2017\AdsGitBySky\AdsDal\bin\Release\EntityFramework.dll
+D:\MyPro\2017\AdsGitBySky\AdsDal\bin\Release\EntityFramework.SqlServer.dll
+D:\MyPro\2017\AdsGitBySky\AdsDal\bin\Release\Microsoft.ApplicationBlocks.Data.dll
+D:\MyPro\2017\AdsGitBySky\AdsDal\bin\Release\ChnCharInfo.dll
+D:\MyPro\2017\AdsGitBySky\AdsDal\bin\Release\AdsEntity.pdb
+D:\MyPro\2017\AdsGitBySky\AdsDal\bin\Release\Common.pdb
+D:\MyPro\2017\AdsGitBySky\AdsDal\bin\Release\EntityFramework.xml
+D:\MyPro\2017\AdsGitBySky\AdsDal\bin\Release\EntityFramework.SqlServer.xml
+D:\MyPro\2017\AdsGitBySky\AdsDal\bin\Release\zh-Hans\EntityFramework.resources.dll
+D:\MyPro\2017\AdsGitBySky\AdsDal\bin\Release\zh-Hans\EntityFramework.SqlServer.resources.dll
+D:\MyPro\2017\AdsGitBySky\AdsDal\obj\Release\AdsDal.csprojResolveAssemblyReference.cache
+D:\MyPro\2017\AdsGitBySky\AdsDal\obj\Release\AdsDal.dll
+D:\MyPro\2017\AdsGitBySky\AdsDal\obj\Release\AdsDal.pdb

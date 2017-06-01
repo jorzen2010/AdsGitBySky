@@ -1,0 +1,140 @@
+﻿@model StaticPagedList<AdsEntity.AdsVideo>
+@using PagedList;
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "视频列表";
+}
+
+@section Topcss {
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+    <link href="~/plugins/bootstrap-validator/css/bootstrapValidator.css" rel="stylesheet" type="text/css" />
+    <link href="~/plugins/bootstrap-switch/css/bootstrap-switch.css" rel="stylesheet" type="text/css" />
+    <link href="~/plugins/iCheck/square/green.css" rel="stylesheet" type="text/css" />
+}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        @ViewBag.Title
+    </h1>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-primary">
+                <div class="box-header">
+                    <div class="pull-left">
+                        <div class="btn-group">
+                            <a class="btn btn-success" href="@Url.Action("Create")"><i class="fa fa-plus"></i> 新增视频</a>
+                        </div>
+                    </div>
+                    <div class="pull-right">
+                        <form method="get" action="/Article/Search">
+                            <div class="input-group input-group-sm col-md-2" style="width:200px;">
+                                <input type="text" name="keywords" class="form-control pull-right" placeholder="输入文章标题查找">
+                                <div class="input-group-btn">
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                @if (Model.Count == 0)
+                {<div class="box-body">
+                    <div class="well text-center">
+                        <p>目前还没有视频呢，现在加一个吧</p>
+                        <a class="btn btn-primary" href="@Url.Action("Create")"> 立刻新增视频</a>
+                    </div>
+
+                </div>
+                }
+                else
+                {
+                <!-- /.box-header -->
+                    <div class="box-body">
+                        <table class="table table-bordered table-hover text-center">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        卡片编号
+                                    </th>
+                                    <th>
+                                        视频名称
+                                    </th>
+                                    <th>
+                                        地址
+                                    </th>
+
+                                    <th>
+                                        分类
+                                    </th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.VideoNumber)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.VideoName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.VideoUrl)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.VideoCategory)
+                                        </td>
+                                        <td>
+                                            @Html.AntiForgeryToken()
+                                            <a class="btn btn-warning btn-xs" href="@Url.Action("Edit", "Video", new { id = @item.VideoId })"><span class="glyphicon glyphicon-edit"></span> 编辑</a>
+                                            <button class="btn btn-danger btn-xs" type="button" onclick="delconfirm('@item.VideoId','/Video/DeleteConfirmed/','/Video/Index')"><span class="glyphicon glyphicon-trash"></span> 删除</button>
+                                            <a class="btn btn-warning btn-xs" href="@Url.Action("Edit", "Video", new { id = @item.VideoId })"><span class="glyphicon glyphicon-edit"></span> 查看完成情况45%</a>
+                                            <a class="btn btn-warning btn-xs" href="@Url.Action("Edit", "Video", new { id = @item.VideoId })"><span class="glyphicon glyphicon-edit"></span> 有效系数0.7</a>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                <!-- /.box-body -->
+
+                    <div class="box-footer clearfix">
+                        <ul class="pull-right">
+                            @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page = page }),
+    new PagedListRenderOptions
+    {
+        LinkToPreviousPageFormat = "上一页",
+        LinkToNextPageFormat = "下一页",
+        DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+        DisplayLinkToLastPage = PagedListDisplayMode.Always,
+        DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+        DisplayLinkToNextPage = PagedListDisplayMode.Always,
+        MaximumPageNumbersToDisplay = 5,
+        LinkToFirstPageFormat = "首页",
+        LinkToLastPageFormat = "最后一页",
+        PageCountAndCurrentLocationFormat = "第 {0}页 共 {1}页"
+    })
+                        </ul>
+                    </div>
+                }
+            </div>
+
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->
+@section FootScripts {
+    <script type="text/javascript" src="~/plugins/iCheck/icheck.js"></script>
+    <script type="text/javascript" src="~/plugins/bootstrap-switch/js/bootstrap-switch.js"></script>
+    <script type="text/javascript" src="~/plugins/bootstrap-validator/js/bootstrapValidator.js"></script>
+    <script type="text/javascript" src="~/plugins/bootbox.min.js"></script>
+    <script type="text/javascript" src="~/Resource/js/SkyWeb.js"></script>
+}

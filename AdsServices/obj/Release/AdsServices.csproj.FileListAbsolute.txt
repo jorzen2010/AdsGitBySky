@@ -1,0 +1,16 @@
+D:\MyPro\2017\AdsGitBySky\AdsServices\bin\Release\AdsServices.dll
+D:\MyPro\2017\AdsGitBySky\AdsServices\bin\Release\AdsServices.pdb
+D:\MyPro\2017\AdsGitBySky\AdsServices\bin\Release\AdsDal.dll
+D:\MyPro\2017\AdsGitBySky\AdsServices\bin\Release\AdsEntity.dll
+D:\MyPro\2017\AdsGitBySky\AdsServices\bin\Release\Common.dll
+D:\MyPro\2017\AdsGitBySky\AdsServices\bin\Release\EntityFramework.dll
+D:\MyPro\2017\AdsGitBySky\AdsServices\bin\Release\Microsoft.ApplicationBlocks.Data.dll
+D:\MyPro\2017\AdsGitBySky\AdsServices\bin\Release\ChnCharInfo.dll
+D:\MyPro\2017\AdsGitBySky\AdsServices\bin\Release\AdsDal.pdb
+D:\MyPro\2017\AdsGitBySky\AdsServices\bin\Release\AdsEntity.pdb
+D:\MyPro\2017\AdsGitBySky\AdsServices\bin\Release\Common.pdb
+D:\MyPro\2017\AdsGitBySky\AdsServices\bin\Release\EntityFramework.xml
+D:\MyPro\2017\AdsGitBySky\AdsServices\bin\Release\zh-Hans\EntityFramework.resources.dll
+D:\MyPro\2017\AdsGitBySky\AdsServices\obj\Release\AdsServices.csprojResolveAssemblyReference.cache
+D:\MyPro\2017\AdsGitBySky\AdsServices\obj\Release\AdsServices.dll
+D:\MyPro\2017\AdsGitBySky\AdsServices\obj\Release\AdsServices.pdb

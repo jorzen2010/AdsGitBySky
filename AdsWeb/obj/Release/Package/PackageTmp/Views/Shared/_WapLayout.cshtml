@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>@ViewBag.Title</title>
+
+    <!-- Bootstrap 3.3.6 -->
+    <link rel="stylesheet" href="~/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="~/plugins/font-awesome-4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="~/plugins/ionicons-2.0.1/css/ionicons.css">
+    <link rel="stylesheet" href="~/dist/css/AdminLTE.css">
+    <link rel="stylesheet" href="~/WapResource/css/skym.css">
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+            <ul class="container nav navbar-nav">
+
+                <li class="col-xs-1-5 text-center sky-nav-li">
+                    <a class="btn btn-appnav text-blue menubtn" onclick="return adsmenu(this, '/wap/list')">
+                        <i class="glyphicon glyphicon-list-alt"></i>
+                        月度测评
+                    </a>
+                </li>
+                <li class="col-xs-1-5 text-center sky-nav-li">
+                    <a class="btn btn-appnav text-blue menubtn" onclick="return adsmenu(this, '/wap/list')">
+                        <i class="glyphicon glyphicon-heart"></i>
+                        心理服务
+                    </a>
+                </li><li class="col-xs-1-5 text-center sky-nav-li">
+                         <a class="btn btn-appnav   text-orange menubtn" onclick="return adsmenu(this, '/wap/')">
+                             <i class="glyphicon glyphicon-calendar"></i>
+                             今日训练
+                         </a>
+                </li>
+                <li class="col-xs-1-5 text-center sky-nav-li">
+
+                    <a class="btn btn-appnav  text-blue menubtn" onclick="return adsmenu(this, '/wap/list')">
+                        <i class=" glyphicon glyphicon-king">
+                        </i>
+                        训练报告
+                    </a>
+                </li>
+             
+                <li class="col-xs-1-5 text-center sky-nav-li">
+                    <a class="btn btn-appnav  text-blue menubtn" onclick="return adsmenu(this,'/wap/list')">
+                        <i class="glyphicon glyphicon-cog"></i>
+                        我的
+                    </a>
+                </li>
+
+            </ul>
+        
+    </nav>
+    <div id="wapcontent">
+        @RenderBody()
+    </div>
+   
+
+    <div class="row">
+        <div class="text-center sky-layout-bottom">
+            <span class="glyphicon glyphicon-pencil"></span> 意见反馈
+        </div>
+    </div>
+    <script src="~/plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script type="text/javascript">
+        function adsmenu(ele,url) {
+            $('.menubtn').removeClass('text-orange');
+            $('.menubtn').removeClass('text-blue');
+            $('.menubtn').addClass('text-blue');
+            $(ele).removeClass('text-blue');
+            $(ele).addClass('text-orange');
+            $('#wapcontent').load(url);
+
+        }
+    </script>
+   
+</body>
+</html>

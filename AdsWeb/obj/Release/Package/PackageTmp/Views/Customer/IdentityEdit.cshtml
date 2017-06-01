@@ -1,0 +1,302 @@
+﻿@model AdsEntity.AdsCustomer
+@{
+    ViewBag.Title = "身份认证";
+}
+@section Topcss {
+    <link href="~/plugins/bootstrap-validator/css/bootstrapValidator.css" rel="stylesheet" type="text/css" />
+    <link href="~/plugins/iCheck/square/green.css" rel="stylesheet" type="text/css" />
+    <link href="~/plugins/datetimepicker/css/bootstrap-datetimepicker.css" rel="stylesheet" type="text/css" />
+    <link href="~/Resource/css/SkyWeb.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/plugins/copper/css/cropper.css">
+    <link href="~/plugins/copper/css/avatar.css" rel="stylesheet">
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        @ViewBag.Title
+        <small>@ViewBag.Title</small>
+    </h1>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <!-- right column -->
+        <div class="col-md-12">
+            <!-- Horizontal Form -->
+            <div class="box box-info">
+                <form class="form-horizontal" action="/Customer/IdentityEdit/@Model.CustomerId" method="post" id="customerIdentityEditform">
+
+                    <!-- /.box-header -->
+                    <!-- form start -->
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(model => model.CustomerId)
+                    <div class="box-body">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="realName" class="col-sm-3 control-label">用户名</label>
+                                    <div class="col-sm-8 input-group">
+                                        @Html.TextBoxFor(model => model.CustomerUserName, new { @class = "form-control", @readonly = "readonly" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="realName" class="col-sm-3 control-label">真实姓名</label>
+                                    <div class="col-sm-8 input-group">
+
+                                        @Html.TextBoxFor(model => model.CustomerRealName, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="realName" class="col-sm-3 control-label">身份证号码</label>
+                                    <div class="col-sm-8 input-group">
+
+                                        @Html.TextBoxFor(model => model.CustomerIDCard, new { @class = "form-control" })
+                                        @Html.HiddenFor(model => model.CustomerHoldCard)
+                                        @Html.HiddenFor(model => model.CustomerIDCardzm)
+                                        @Html.HiddenFor(model => model.CustomerIDCardsm)
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 text-center">
+
+                                <img src="~/plugins/copper/images/zm.png" width="320" height="180" id="IdCardHoldImg" /><br /><br />
+                                <button type="button" class="btn btn-info" id="IdCardSCBtn">上传手持身份证</button>
+
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <div class="form-group">
+                                    <img src="~/plugins/copper/images/fm.png" width="320" height="180" id="IdCardZMImg" /><br /><br />
+                                    <button type="button" class="btn btn-info" id="IdCardZMBtn">身份证正面</button>
+                                </div>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <div class="form-group">
+                                    <img src="~/plugins/copper/images/avatar.jpg" width="320" height="180" id="IdCardFMImg" /><br /><br />
+                                    <button type="button" class="btn btn-info" id="IdCardFMBtn">身份证反面</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <a class="btn btn-default" href="@Url.Action("Index","Customer")"><i class="fa fa-fw fa-mail-reply"></i>取消</a>
+                        <button type="submit" class="btn btn-success pull-right">确定保存</button>
+                    </div>
+                    <!-- /.box-footer -->
+                </form>
+
+                <!-- /.box -->
+            </div>
+        </div>
+        <!--/.col (right) -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->
+<!-- Cropping modal -->
+<div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="img-container" style="width:855px;height:350px;">
+                            <img id="image" src="~/plugins/copper/images/avatar.jpg" alt="Picture">
+                            <input id="imageaspectRatio"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="docs-buttons text-center">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary" data-method="zoom" data-option="0.1" title="Zoom In">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;zoom&quot;, 0.1)">
+                                        <span class="fa fa-search-plus"></span> 放大
+                                    </span>
+                                </button>
+                                <button type="button" class="btn btn-primary" data-method="zoom" data-option="-0.1" title="Zoom Out">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;zoom&quot;, -0.1)">
+                                        <span class="fa fa-search-minus"></span> 缩小
+                                    </span>
+                                </button>
+                            </div>
+
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary" data-method="rotate" data-option="-45" title="Rotate Left">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;rotate&quot;, -45)">
+                                        <span class="fa fa-rotate-left"></span> 左旋转
+                                    </span>
+                                </button>
+                                <button type="button" class="btn btn-primary" data-method="rotate" data-option="45" title="Rotate Right">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;rotate&quot;, 45)">
+                                        <span class="fa fa-rotate-right"></span> 右旋转
+                                    </span>
+                                </button>
+                            </div>
+
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary" data-method="scaleX" data-option="-1" title="Flip Horizontal">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;scaleX&quot;, -1)">
+                                        <span class="fa fa-arrows-h"></span> 水平翻转
+                                    </span>
+                                </button>
+                                <button type="button" class="btn btn-primary" data-method="scaleY" data-option="-1" title="Flip Vertical">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;scaleY&quot;, -1)">
+                                        <span class="fa fa-arrows-v"></span> 垂直翻转
+                                    </span>
+                                </button>
+                                <button type="button" class="btn btn-primary" data-method="reset" title="Reset">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;reset&quot;)">
+                                        <span class="fa fa-refresh"></span> 重置
+                                    </span>
+                                </button>
+                            </div>
+
+                            <div class="btn-group btn-group-crop">
+                                <label class="btn btn-success btn-upload" for="inputImage" title="Upload image file">
+                                    <input type="file" class="sr-only" id="inputImage" name="file" accept=".jpg,.jpeg,.png,.gif,.bmp,.tiff">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="点击上传图片">
+                                        <span class="fa fa-upload"></span> 更换图片
+                                    </span>
+                                </label>
+                                <button type="button" id="getCroppedCanvasbtn" class="btn btn-warning" data-method="getCroppedCanvas" data-option="{ &quot;width&quot;: 180, &quot;height&quot;: 180 }">
+                                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;getCroppedCanvas&quot;)">
+                                        裁剪并上传
+                                    </span>
+                                </button>
+
+                            </div>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                <span data-toggle="tooltip">
+                                    取消关闭
+                                </span>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <!-- /.docs-buttons -->
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div><!-- /.modal -->
+<!-- Loading state -->
+<div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
+
+@section FootScripts {
+    <script type="text/javascript" src="~/plugins/iCheck/icheck.js"></script>
+    <script type="text/javascript" src="~/plugins/bootstrap-switch/js/bootstrap-switch.js"></script>
+    <script type="text/javascript" src="~/plugins/bootstrap-validator/js/bootstrapValidator.js"></script>
+    <script type="text/javascript" src="~/plugins/datetimepicker/js/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript" src="~/plugins/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script type="text/javascript" src="~/plugins/Distpicker/distpicker.data.js"></script>
+    <script type="text/javascript" src="~/plugins/Distpicker/distpicker.js"></script>
+    <script type="text/javascript" src="~/plugins/copper/js/cropper.js"></script>
+    <script charset="gb2312" type="text/javascript" src="~/plugins/copper/js/avatar.js"></script>
+    <script type="text/javascript" src="~/Resource/js/SkyfileCopper.js"></script>
+<script type="text/javascript" src="~/plugins/bootbox.min.js"></script>
+<script type="text/javascript" src="~/Resource/js/SkyWeb.js"></script>
+
+    <script type="text/javascript">
+
+        //初始化copper的剪裁比例，用小数表示，比如
+        $('#imageaspectRatio').val('1.778');
+
+        //弹出copper，并初始化action，
+        $('#IdCardSCBtn').click(function () {
+
+            $('#avatar-modal').modal('show');
+            //这句的意思是将container的宽高值去掉，保证自适应效果。有个小bug是第一次使用的时候如果浏览器过小可能造成显示不完全。
+            $(".img-container").removeAttr("style");
+
+            $('#getCroppedCanvasbtn').attr('data-skyac', "IdCardSC");
+           
+
+        });
+
+        $('#IdCardZMBtn').click(function () {
+
+            $('#avatar-modal').modal('show');
+            //这句的意思是将container的宽高值去掉，保证自适应效果。有个小bug是第一次使用的时候如果浏览器过小可能造成显示不完全。
+            $(".img-container").removeAttr("style");
+
+            $('#getCroppedCanvasbtn').attr('data-skyac', "skyIdCardZM");
+
+
+        });
+
+        $('#IdCardFMBtn').click(function () {
+
+            $('#avatar-modal').modal('show');
+            //这句的意思是将container的宽高值去掉，保证自适应效果。有个小bug是第一次使用的时候如果浏览器过小可能造成显示不完全。
+            $(".img-container").removeAttr("style");
+
+            $('#getCroppedCanvasbtn').attr('data-skyac', "skyIdCardFM");
+
+
+        });
+        //表单验证
+        $('#customerIdentityEditform').bootstrapValidator({
+            //        live: 'disabled',
+            message: 'This value is not valid',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+
+                CustomerRealName: {
+                    validators: {
+                        notEmpty: {
+                            message: '姓名不能为空'
+                        },
+                        stringLength: {
+                            min: 2,
+                            max: 4,
+                            message: '姓名必须在2到4个汉字'
+                        },
+
+                    }
+                },
+                CustomerIDCard: {
+                    validators: {
+                        notEmpty: {
+                            message: '身份证号不能为空'
+                        },
+                        threshold: 16,//有6字符以上才发送ajax请求，（input中输入一个字符，插件会向服务器发送一次，设置限制，6字符以上才开始）
+                        remote: {//ajax验证。server result:{"valid",true or false} 向服务发送当前input name值，获得一个json数据。例表示正确：{"valid",true}  
+                            url: '/Ajax/VerifyIdCard',//验证地址
+                            message: '身份证号码不正确',//提示消息
+                            delay: 2000,//每输入一个字符，就发ajax请求，服务器压力还是太大，设置2秒发送一次ajax（默认输入一个字符，提交一次，服务器压力太大）
+                            type: 'POST',//请求方式
+                            data: function (validator) {
+                                return {
+                                    idcard: $('[name="CustomerIDCard"]').val()
+                                };
+                            }
+
+                        },
+
+                    }
+                },
+
+            }
+        });
+
+    </script>
+
+}

@@ -1,0 +1,351 @@
+﻿@model AdsEntity.AdsCustomer
+@{
+    ViewBag.Title = "客户信息更新";
+}
+@section Topcss {
+    <link href="~/plugins/bootstrap-validator/css/bootstrapValidator.css" rel="stylesheet" type="text/css" />
+    <link href="~/plugins/iCheck/square/green.css" rel="stylesheet" type="text/css" />
+    <link href="~/plugins/datetimepicker/css/bootstrap-datetimepicker.css" rel="stylesheet" type="text/css" />
+    <link href="~/Resource/css/SkyWeb.css" rel="stylesheet" type="text/css" />
+    <link href="~/plugins/copper/css/cropper.css" rel="stylesheet">
+    <link href="~/plugins/copper/css/avatar.css" rel="stylesheet">
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        @ViewBag.Title
+        <small>@ViewBag.smallTitle</small>
+    </h1>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <!-- right column -->
+        <div class="col-md-12">
+            <!-- Horizontal Form -->
+            <div class="box box-info">
+                <form class="form-horizontal" action="/Customer/Edit/@Model.CustomerId" method="post" id="customerEditform">
+                    <div class="box-header text-center">
+
+                        <div class="container">
+                            <img src="@(string.IsNullOrEmpty(Model.CustomerAvatar) ? "/plugins/copper/images/avatar.jpg" : Model.CustomerAvatar)" alt="Avatar" id="skyAvatar" class="img-circle sky-img-avatar avatar-modal" data-toggle="tooltip" data-placement="bottom" title="点击头像上传更换">
+                            <h5>
+                                <button class="btn btn-sm btn-default avatar-modal" type="button">
+                                    <i class="fa fa-camera"> 上传/更改头像</i>
+                                </button>
+                            </h5>
+                        </div>
+
+                    </div>
+                    <!-- /.box-header -->
+                    <!-- form start -->
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(model => model.CustomerId)
+                    <input type="hidden" name="CustomerRegTime" value="@Model.CustomerRegTime" />
+                    <input type="hidden" name="CustomerLastLoginTime" value="@Model.CustomerLastLoginTime" />
+                    <input type="hidden" name="CustomerAvatar" id="CustomerAvatar" value="@Model.CustomerAvatar" />
+
+                    <div class="box-body">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="realName" class="col-sm-3 control-label">用户名</label>
+                                    <div class="col-sm-8 input-group">
+                                        @Html.TextBoxFor(model => model.CustomerUserName, new { @class = "form-control", @readonly = "readonly" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="realName" class="col-sm-3 control-label">昵称</label>
+                                    <div class="col-sm-8 input-group">
+
+                                        @Html.TextBoxFor(model => model.CustomerNickName, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="realName" class="col-sm-3 control-label">生日类别</label>
+                                    <div class="col-sm-8 input-group">
+
+                                        <input type="radio" name="CustomerBirthdayType" value="公历" @(Model.CustomerBirthdayType == "公历" ? "checked" : "")><b>&nbsp;&nbsp;公历&nbsp;</b>
+                                        <input type="radio" name="CustomerBirthdayType" value="农历" @(Model.CustomerBirthdayType == "农历" ? "checked" : "")><b>&nbsp;&nbsp;农历&nbsp;</b>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="realName" class="col-sm-3 control-label">城市</label>
+                                    <div class="form-inline col-sm-8">
+
+                                        <div id="distpicker">
+                                            <div class="form-group">
+
+                                                <select name="CustomerProvince" class="form-control" id="province2" data-province="@Model.CustomerProvince"></select>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <select name="CustomerCity" class="form-control" id="city2" data-city="@Model.CustomerCity"></select>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <select name="CustomerDistrict" class="form-control" id="district2" data-district="@Model.CustomerDistrict"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="realName" class="col-sm-3 control-label">邮箱</label>
+                                    <div class="col-sm-8 input-group">
+                                        @Html.TextBoxFor(model => model.CustomerEmail, new { @class = "form-control", @readonly = "readonly" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="realName" class="col-sm-3 control-label">性别</label>
+                                    <div class="col-sm-8 input-group">
+                                        <input type="radio" name="CustomerSex" value="男" @(Model.CustomerSex == "男" ? "checked" : "")><b>&nbsp;&nbsp;男&nbsp;<i class="fa fa-fw fa-male"></i></b>
+                                        <input type="radio" name="CustomerSex" value="女" @(Model.CustomerSex == "女" ? "checked" : "")><b>&nbsp;&nbsp;女&nbsp;<i class="fa fa-fw fa-female"></i></b>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="realName" class="col-sm-3 control-label">生日</label>
+                                    <div class="col-sm-8 input-group">
+                                        <input class="form-control" placeholder="生日" name="CustomerBirthday" type="text" id="datetimepicker" value="@Convert.ToDateTime(Model.CustomerBirthday).ToString("yyyy-MM-dd")" data-dat data-date-format="yyyy-mm-dd">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="realName" class="col-sm-3 control-label">详细地址</label>
+                                    <div class="col-sm-8 input-group">
+                                        @Html.TextBoxFor(model => model.CustomerAddress, new { @class = "form-control", @placeholder = "不用输入省市区" })
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <a class="btn btn-default" href="@Url.Action("Index","Customer")"><i class="fa fa-fw fa-mail-reply"></i>取消</a>
+                        <button type="submit" class="btn btn-info pull-right">确定</button>
+                    </div>
+                    <!-- /.box-footer -->
+                </form>
+
+                <!-- /.box -->
+            </div>
+        </div>
+        <!--/.col (right) -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->
+<!-- Cropping modal -->
+<div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="img-container" style="width:855px;height:350px;">
+                                <img id="image" src="@(string.IsNullOrEmpty(Model.CustomerAvatar) ? "/plugins/copper/images/avatar.jpg" : Model.CustomerAvatar)" alt="Picture">
+                                <input id="imageaspectRatio" />
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-sm-12">
+
+                            <div class="docs-buttons text-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary" data-method="zoom" data-option="0.1" title="Zoom In">
+                                        <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;zoom&quot;, 0.1)">
+                                            <span class="fa fa-search-plus"></span> 放大
+                                        </span>
+                                    </button>
+                                    <button type="button" class="btn btn-primary" data-method="zoom" data-option="-0.1" title="Zoom Out">
+                                        <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;zoom&quot;, -0.1)">
+                                            <span class="fa fa-search-minus"></span> 缩小
+                                        </span>
+                                    </button>
+                                </div>
+
+
+
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary" data-method="rotate" data-option="-45" title="Rotate Left">
+                                        <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;rotate&quot;, -45)">
+                                            <span class="fa fa-rotate-left"></span> 左旋转
+                                        </span>
+                                    </button>
+                                    <button type="button" class="btn btn-primary" data-method="rotate" data-option="45" title="Rotate Right">
+                                        <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;rotate&quot;, 45)">
+                                            <span class="fa fa-rotate-right"></span> 右旋转
+                                        </span>
+                                    </button>
+                                </div>
+
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary" data-method="scaleX" data-option="-1" title="Flip Horizontal">
+                                        <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;scaleX&quot;, -1)">
+                                            <span class="fa fa-arrows-h"></span> 水平翻转
+                                        </span>
+                                    </button>
+                                    <button type="button" class="btn btn-primary" data-method="scaleY" data-option="-1" title="Flip Vertical">
+                                        <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;scaleY&quot;, -1)">
+                                            <span class="fa fa-arrows-v"></span> 垂直翻转
+                                        </span>
+                                    </button>
+                                    <button type="button" class="btn btn-primary" data-method="reset" title="Reset">
+                                        <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;reset&quot;)">
+                                            <span class="fa fa-refresh"></span> 重置
+                                        </span>
+                                    </button>
+                                </div>
+                                <div class="btn-group btn-group-crop">
+                                    <label class="btn btn-success btn-upload" for="inputImage" title="Upload image file">
+                                        <input type="file" class="sr-only" id="inputImage" name="file" accept=".jpg,.jpeg,.png,.gif,.bmp,.tiff">
+                                        <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="点击上传图片">
+                                            <span class="fa fa-upload"></span> 更换图片
+                                        </span>
+                                    </label>
+                                    <button type="button" id="getCroppedCanvasbtn" class="btn btn-warning" data-method="getCroppedCanvas" data-option="{ &quot;width&quot;: 180, &quot;height&quot;: 180 }">
+                                        <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;getCroppedCanvas&quot;)">
+                                            裁剪并上传
+                                        </span>
+                                    </button>
+
+                                </div>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                    <span data-toggle="tooltip">
+                                        取消关闭
+                                    </span>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <!-- /.docs-buttons -->
+
+
+                    </div>
+                </div>
+            
+        </div>
+    </div>
+</div><!-- /.modal -->
+<!-- Loading state -->
+<div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
+
+@section FootScripts {
+    <script type="text/javascript" src="~/plugins/iCheck/icheck.js"></script>
+    <script type="text/javascript" src="~/plugins/bootstrap-switch/js/bootstrap-switch.js"></script>
+    <script type="text/javascript" src="~/plugins/bootstrap-validator/js/bootstrapValidator.js"></script>
+    <script type="text/javascript" src="~/plugins/datetimepicker/js/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript" src="~/plugins/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script type="text/javascript" src="~/plugins/Distpicker/distpicker.data.js"></script>
+    <script type="text/javascript" src="~/plugins/Distpicker/distpicker.js"></script>
+    <script type="text/javascript" src="~/plugins/copper/js/cropper.js"></script>
+    <script type="text/javascript" src="~/plugins/copper/js/avatar.js"></script>
+    <script type="text/javascript" src="~/Resource/js/SkyfileCopper.js"></script>
+    <script type="text/javascript">
+
+        $('#imageaspectRatio').val('1');
+        $('.avatar-modal').click(function () {
+            $('#avatar-modal').modal('show');
+            //这句的意思是将container的宽高值去掉，保证自适应效果。有个小bug是第一次使用的时候如果浏览器过小可能造成显示不完全。
+            $(".img-container").removeAttr("style");
+
+            $('#getCroppedCanvasbtn').attr('data-skyac', "skyavatar");
+        });
+
+
+    
+    </script>
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#distpicker").distpicker({
+                autoSelect: false
+            });
+            $('[type="radio"],[type="checkbox"]').iCheck({
+                labelHover: false,
+                cursor: true,
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+                increaseArea: '20%'
+            });
+
+            $('#datetimepicker').datetimepicker({
+                language: 'zh-CN',
+                weekStart: 1,
+                todayBtn: 1,
+                autoclose: 1,
+                todayHighlight: 1,
+                startView: 2,
+                minView: 2,
+                forceParse: 0
+            }).on('hide', function (e) {
+                $('#customerEditform').data('bootstrapValidator')
+                    .updateStatus('CustomerBirthday', 'NOT_VALIDATED', null)
+                    .validateField('CustomerBirthday');
+            });
+            //on后面的部分是为了使用时间选择器的时候要验证
+            //表单验证
+            $('#customerEditform').bootstrapValidator({
+                //        live: 'disabled',
+                message: 'This value is not valid',
+                feedbackIcons: {
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid: 'glyphicon glyphicon-remove',
+                    validating: 'glyphicon glyphicon-refresh'
+                },
+                fields: {
+                   
+                    CustomerBirthday: {
+                        validators: {
+                            notEmpty: {
+                                message: '生日不能为空'
+                            },
+                            date: {
+                                format: 'YYYY-MM-DD',
+                                message: '日期格式不正确'
+                            }
+
+                        }
+                    },
+                 
+                }
+            });
+
+        });
+    </script>
+
+}

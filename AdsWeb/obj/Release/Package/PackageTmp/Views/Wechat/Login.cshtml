@@ -1,0 +1,66 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>星星宝贝</title>
+
+    <!-- Bootstrap 3.3.6 -->
+    <link rel="stylesheet" href="~/Wechat/css/bootstrap.css">
+
+    <link rel="stylesheet" href="~/Wechat/css/AdminLTE.css">
+
+
+    <link rel="stylesheet" href="~/Wechat/css/skym.css">
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+    <div class="text-center">
+        <img src="img/user1-128x128.jpg" class="img-circle" style="margin:20px 0px;height: 80px;width: 80px;" />
+    </div>
+
+    <form role="form">
+        <!-- text input -->
+       
+        <div class="form-group">
+
+            <input type="text" class="form-control input-lg" placeholder="用户名/邮箱">
+        </div>
+        <div class="form-group">
+
+            <input type="text" class="form-control input-lg" placeholder="密码">
+        </div>
+
+
+        <div class="skyapprow">
+            <div class="form-group">
+                <button class="btn btn-block btn-info btn-lg">立刻登录</button>
+            </div>
+            <hr/>
+      
+                <a class="btn btn-block btn-success btn-lg" href="/wechat/Index">微信登录</a>
+          
+        </div>
+    </form>
+
+    <script type="text/javascript" src="~/Wechat/js/skym.js"></script>
+    <script type="text/javascript">
+        alert("请输入用户名和密码");
+    </script>
+
+
+</body>
+</html>

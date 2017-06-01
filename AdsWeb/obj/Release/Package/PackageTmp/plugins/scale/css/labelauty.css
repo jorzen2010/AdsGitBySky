@@ -1,0 +1,129 @@
+﻿
+.rdolist, .chklist {
+    display: none;
+}
+
+.scaletitle {
+    text-align:center;
+     margin:0 auto;
+     color:#888888;
+}
+.scalebtn {
+    text-align:center;
+     margin:0 auto;
+     color:#888888;
+}
+.scaleinfo {
+    margin-left:10px;
+    font-size:14px;
+    color:#888888;
+}
+@media (max-width: 768px) {
+    .scaleinfo {
+    margin-left:10px;
+    font-size:14px;
+    color:#888888;
+    display:none;
+}
+}
+
+.scalemininfo {
+    margin-left:10px;
+    font-size:14px;
+    color:#888888;
+}
+@media (min-width: 768px) {
+    .scalemininfo {
+    margin-left:10px;
+    font-size:14px;
+    color:#888888;
+    display:none;
+}
+}
+
+
+.scaleitem {
+    color:#888888;
+}
+
+
+.skybtn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.skybtn-success {
+  color: #fff;
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+}
+.skybtn-success:hover {
+  color: #fff;
+  background-color: #449d44;
+  border-color: #398439;
+}
+
+.skybtn-primary {
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #2e6da4;
+}
+.skybtn-primary:hover {
+  color: #fff;
+  background-color: #286090;
+  border-color: #204d74;
+}
+
+
+
+.rdobox, .chkbox {
+    text-align:center;
+    margin:5px auto;
+    padding: 10px;
+    width:95%; 
+    display: block;
+    height: 16px;
+    line-height: 16px;
+    background: #eee;
+    border-radius: 3px;
+    color: #666;
+    font-family: 'Microsoft YaHei';
+}
+
+
+.unchecked {
+    background: #ECF0F1;
+    color: #666;
+    transition-property: background;
+    transition-delay: 0s;
+    transition-duration: .1s;
+    transition-timing-function: linear;
+}
+
+.unchecked:hover {
+        background: #3498DB;
+        color:#fff;
+    }
+
+.checked {
+    background: #3498DB;
+    color: #fff;
+}
+

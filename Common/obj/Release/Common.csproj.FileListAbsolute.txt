@@ -1,0 +1,11 @@
+D:\MyPro\2017\AdsGitBySky\Common\bin\Release\Common.dll
+D:\MyPro\2017\AdsGitBySky\Common\bin\Release\Common.pdb
+D:\MyPro\2017\AdsGitBySky\Common\bin\Release\ChnCharInfo.dll
+D:\MyPro\2017\AdsGitBySky\Common\bin\Release\Microsoft.ApplicationBlocks.Data.dll
+D:\MyPro\2017\AdsGitBySky\Common\bin\Release\PagedList.dll
+D:\MyPro\2017\AdsGitBySky\Common\bin\Release\PagedList.Mvc.dll
+D:\MyPro\2017\AdsGitBySky\Common\bin\Release\PagedList.xml
+D:\MyPro\2017\AdsGitBySky\Common\bin\Release\PagedList.Mvc.xml
+D:\MyPro\2017\AdsGitBySky\Common\obj\Release\Common.csprojResolveAssemblyReference.cache
+D:\MyPro\2017\AdsGitBySky\Common\obj\Release\Common.dll
+D:\MyPro\2017\AdsGitBySky\Common\obj\Release\Common.pdb
