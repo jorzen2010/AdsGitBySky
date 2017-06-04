@@ -1,0 +1,10 @@
+﻿@model AdsEntity.WechatEntity.WebchatJsUserinfo
+<h3>获取用户信息</h3>
+
+openid:@Model.openid  <br/>
+unionid:@Model.unionid <br/> 
+sex:@Model.sex <br /> 
+地点：@Model.country @Model.province @Model.city <br /> 
+昵称：@Model.nickname <br /> 
+头像：<img src="@Model.headimgurl" height="100" width="100" /> <br /> 
+特权： @Model.privilege

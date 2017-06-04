@@ -143,7 +143,7 @@ namespace AdsWeb.Controllers
             }
             else
             {
-                customer.CustomerIdentity = AdsCustomer.IdentiyStatus.已认证;       
+                customer.CustomerIdentity = AdsCustomer.IdentiyStatus.已申请计划;       
             }
 
             if (ModelState.IsValid)
@@ -194,7 +194,7 @@ namespace AdsWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                customer.CustomerIdentity=AdsCustomer.IdentiyStatus.未认证;    
+                customer.CustomerIdentity=AdsCustomer.IdentiyStatus.未申请计划;    
                 unitOfWork.adsCustomersRepository.Insert(customer);
                 unitOfWork.Save();
                 return RedirectToAction("Index");
@@ -274,11 +274,11 @@ namespace AdsWeb.Controllers
             int id = int.Parse(fc["CustomerId"]);
             AdsCustomer customer = unitOfWork.adsCustomersRepository.GetByID(id);
 
-            customer.CustomerRealName = fc["CustomerRealName"];
-            customer.CustomerIDCard = fc["CustomerIDCard"];
-            customer.CustomerIDCardzm = fc["CustomerIDCardzm"];
-            customer.CustomerIDCardsm = fc["CustomerIDCardsm"];
-            customer.CustomerHoldCard = fc["CustomerHoldCard"];
+            //customer.CustomerRealName = fc["CustomerRealName"];
+            //customer.CustomerIDCard = fc["CustomerIDCard"];
+            //customer.CustomerIDCardzm = fc["CustomerIDCardzm"];
+            //customer.CustomerIDCardsm = fc["CustomerIDCardsm"];
+            //customer.CustomerHoldCard = fc["CustomerHoldCard"];
             customer.CustomerIdentity = AdsCustomer.IdentiyStatus.正在审核;
 
             if (ModelState.IsValid)

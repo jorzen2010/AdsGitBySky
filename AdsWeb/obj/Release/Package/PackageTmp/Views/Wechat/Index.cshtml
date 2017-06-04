@@ -1,4 +1,5 @@
-﻿@{
+﻿@model AdsEntity.WechatEntity.WebchatJsUserinfo
+@{
     Layout = null;
 }
 
@@ -68,7 +69,126 @@
     </nav>
 
 
-    <div id="wapcontent"></div>
+    <div id="wapcontent">
+
+
+        <div class="row">
+            <!-- Widget: user widget style 1 -->
+            <div class="box box-widget widget-user">
+                <!-- Add the bg color to the header using any of the bg-* classes -->
+                <div class="widget-user-header bg-aqua-active">
+                    <h4 class="widget-user-desc pull-right"><span class="glyphicon glyphicon-camera"></span> 扫一扫</h4>
+                </div>
+                <div class="widget-user-image">
+                    <img class="img-circle" src="@Model.headimgurl" alt="User Avatar">
+                </div>
+                <div class="box-footer">
+                    <div class="row">
+                        <div class="col-xs-12 center">
+                            <div class="description-block">
+                                <h5 class="description-header">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Model.nickname</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-4 border-right">
+                            <div class="description-block">
+                                <h5 class="description-header">3,200天</h5>
+                                <span class="description-text">训练天数</span>
+                            </div>
+                            <!-- /.description-block -->
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-xs-4 border-right">
+                            <div class="description-block">
+                                <h5 class="description-header">8小时45分钟</h5>
+                                <span class="description-text">家长学习时间</span>
+                            </div>
+                            <!-- /.description-block -->
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-xs-4">
+                            <div class="description-block">
+                                <h5 class="description-header">35次</h5>
+                                <span class="description-text">评估次数</span>
+                            </div>
+                            <!-- /.description-block -->
+                        </div>
+                        <!-- /.col -->
+
+
+                    </div>
+                    <!-- /.row -->
+
+
+                    <ul class="row skyindexbtn">
+
+                        <li class="col-xs-1-5 text-center sky-nav-li">
+                            <span><a class="btn btn-info btn-circle btn-sm" href="#"><i class="glyphicon glyphicon-fire"></i></a></span>
+                            <span>感觉能力</span>
+                        </li>
+                        <li class="col-xs-1-5 text-center sky-nav-li">
+                            <span><a class="btn btn-danger btn-circle btn-sm" href="#"><i class="glyphicon glyphicon-eye-open"></i></a></span>
+                            <span>交往能力</span>
+                        </li>
+                        <li class="col-xs-1-5 text-center sky-nav-li">
+                            <span><a class="btn btn-warning btn-circle btn-sm" href="#"><i class="glyphicon glyphicon-thumbs-up"></i></a></span>
+                            <span>运动能力</span>
+                        </li>
+                        <li class="col-xs-1-5 text-center sky-nav-li">
+                            <span><a class="btn btn-success btn-circle btn-sm" href="#"><i class="glyphicon glyphicon-phone-alt"></i></a></span>
+                            <span>语言能力</span>
+                        </li>
+                        <li class="col-xs-1-5 text-center sky-nav-li">
+                            <span><a class="btn btn-primary btn-circle btn-sm" href="#"><i class="glyphicon glyphicon-cutlery"></i></a></span>
+                            <span>自理能力</span>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+            <!-- /.widget-user -->
+
+        </div>
+
+
+
+        <div class="row skyindexrow">
+            <div class="pull-left text-orange skyindexrowtitle"><i class="glyphicon glyphicon-calendar"></i> 今日任务</div>
+            <div class="pull-right skyindexrowrighttitle">234人正在训练</div>
+        </div>
+
+
+
+        <div class="row skyindexrow">
+
+            <img src="img/user1-128x128.jpg" alt="User Avatar" class="pull-left">
+
+            <div class="pull-left sky-index-itemcontent">
+                <span class="sky-index-itemcontent-title">
+                    踢皮球
+                </span>
+                <p>
+                    训练可提升宝贝运动能力
+                </p>
+                <p>
+                    有超过8989名星宝正在训练
+                </p>
+            </div>
+
+            <button class="pull-right btn btn-warning btn-sm">开始训练</button>
+
+
+
+
+        </div>
+
+
+
+    </div>
 
 
 
@@ -83,7 +203,7 @@
         $(document).ready(function () {
 
             var url = "/Wechat/Calendar";
-            $('#wapcontent').load(url);
+           // $('#wapcontent').load(url);
 
         });
         function adsmenu(ele, url) {

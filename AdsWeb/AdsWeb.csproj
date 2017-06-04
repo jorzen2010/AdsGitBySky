@@ -199,6 +199,13 @@
     <Compile Include="test.ashx.cs">
       <DependentUpon>test.ashx</DependentUpon>
     </Compile>
+    <Compile Include="WechatServices\AccessTokenService.cs" />
+    <Compile Include="WechatServices\WechatApi.cs" />
+    <Compile Include="WechatServices\WechatJsServices.cs" />
+    <Compile Include="WechatServices\WechatService.cs" />
+    <Compile Include="wxapi.ashx.cs">
+      <DependentUpon>wxapi.ashx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="bootstrap\css\bootstrap-theme.css" />
@@ -1664,9 +1671,12 @@
     <Content Include="Views\Wechat\StarBaby.cshtml" />
     <Content Include="Views\Wechat\BaogaoDetail.cshtml" />
     <Content Include="Views\Wechat\MemberCenter - 复制.cshtml" />
-    <Content Include="Views\Wx\Index.cshtml" />
     <Content Include="Views\Wechat\Login.cshtml" />
     <Content Include="Views\Wechat\Setting.cshtml" />
+    <Content Include="Views\Wechat\GetUserId.cshtml" />
+    <Content Include="wxapi.ashx" />
+    <Content Include="Views\Shared\_WechatMenuPartial.cshtml" />
+    <Content Include="Views\Shared\_WechatLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1674,6 +1684,7 @@
     <Folder Include="Views\Ajax\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\File\" />
+    <Folder Include="Views\Wx\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -2,67 +2,166 @@
     Layout = null;
 }
 
-<div class="row">
-    <img class="img-circle" src="img/user1-128x128.jpg" alt="User Avatar">
-</div>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>星星宝贝</title>
+
+    <!-- Bootstrap 3.3.6 -->
+    <link rel="stylesheet" href="~/wechat/css/bootstrap.css">
+    <link rel="stylesheet" href="~/wechat/font-awesome-4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="~/wechat/css/AdminLTE.css">
+    <link rel="stylesheet" href="~/wechat/css/labelauty.css">
+    <link rel="stylesheet" href="~/wechat/css/skym.css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <ul class="container nav navbar-nav">
+
+            <li class="col-xs-1-5 text-center sky-nav-li">
+                <a class="btn btn-appnav text-blue" onclick="return adsmenu(this,'/Wechat/Ceping')">
+                    <i class="glyphicon glyphicon-list-alt"></i>
+                    月度测评
+                </a>
+            </li>
+            <li class="col-xs-1-5 text-center sky-nav-li">
+                <a class="btn btn-appnav text-blue" onclick="return adsmenu(this, '/Wechat/HeartList')">
+                    <i class="glyphicon glyphicon-heart"></i>
+                    心理服务
+                </a>
+            </li>
+            <li class="col-xs-1-5 text-center sky-nav-li">
+                <a class="btn btn-appnav   text-orange" onclick="return adsmenu(this, '/Wechat/Calendar')">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                    今日训练
+                </a>
+            </li>
+            <li class="col-xs-1-5 text-center sky-nav-li">
+
+                <a class="btn btn-appnav  text-blue" onclick="return adsmenu(this, '/Wechat/Baogao')">
+                    <i class="glyphicon glyphicon-king"></i>
+                    训练报告
+                </a>
+            </li>
+
+            <li class="col-xs-1-5 text-center sky-nav-li">
+                <a class="btn btn-appnav  text-blue" onclick="return adsmenu(this, '/Wechat/MemberCenter')">
+                    <i class="glyphicon glyphicon-cog"></i>
+                    我的
+                </a>
+            </li>
+
+        </ul>
+
+    </nav>
 
 
+    <div id="wapcontent">
 
 
-<div class="row skyindexrow">
-    <div class="pull-left text-orange skyindexrowtitle"><i class="glyphicon glyphicon-heart"></i> 心理服务</div>
-    <div class="pull-right skyindexrowrighttitle">787人正在学习</div>
-</div>
+        <div class="row">
+            <img class="img-circle" src="img/user1-128x128.jpg" alt="User Avatar">
+        </div>
 
+        <div class="row skyindexrow">
+            <div class="pull-left text-orange skyindexrowtitle"><i class="glyphicon glyphicon-heart"></i> 心理服务</div>
+            <div class="pull-right skyindexrowrighttitle">787人正在学习</div>
+        </div>
 
+        <div class="row skyindexrow">
 
+            <img src="img/user1-128x128.jpg" alt="User Avatar" class="pull-left sky-index-itemimg">
 
+            <div class="pull-left sky-index-itemcontent">
+                <span class="sky-index-itemcontent-title">
+                    焦虑 | 如何治疗焦虑
+                </span>
+                <p>讲师：贺苏</p>
+                <p>已有78488人浏览</p>
+            </div>
 
-<div class="row skyindexrow">
+            <button class="pull-right btn btn-warning btn-sm">马上学习</button>
 
-    <img src="img/user1-128x128.jpg" alt="User Avatar" class="pull-left sky-index-itemimg">
+        </div>
 
-    <div class="pull-left sky-index-itemcontent">
-        <span class="sky-index-itemcontent-title">
-            焦虑 | 如何治疗焦虑
-        </span>
-        <p>讲师：贺苏</p>
-        <p>已有78488人浏览</p>
+        <div class="row skyindexrow">
+
+            <img src="img/user1-128x128.jpg" alt="User Avatar" class="pull-left sky-index-itemimg">
+
+            <div class="pull-left sky-index-itemcontent">
+                <span class="sky-index-itemcontent-title">
+                    焦虑 | 如何治疗焦虑
+                </span>
+                <p>讲师：贺苏</p>
+                <p>已有78488人浏览</p>
+            </div>
+
+            <button class="pull-right btn btn-warning btn-sm">马上学习</button>
+
+        </div>
+
+        <div class="row skyindexrow">
+
+            <img src="img/user1-128x128.jpg" alt="User Avatar" class="pull-left sky-index-itemimg">
+
+            <div class="pull-left sky-index-itemcontent">
+                <span class="sky-index-itemcontent-title">
+                    焦虑 | 如何治疗焦虑
+                </span>
+                <p>讲师：贺苏</p>
+                <p>已有78488人浏览</p>
+            </div>
+
+            <button class="pull-right btn btn-warning btn-sm">马上学习</button>
+
+        </div>
+
     </div>
 
-    <button class="pull-right btn btn-warning btn-sm">马上学习</button>
 
-</div>
 
-<div class="row skyindexrow">
 
-    <img src="img/user1-128x128.jpg" alt="User Avatar" class="pull-left sky-index-itemimg">
 
-    <div class="pull-left sky-index-itemcontent">
-        <span class="sky-index-itemcontent-title">
-            焦虑 | 如何治疗焦虑
-        </span>
-        <p>讲师：贺苏</p>
-        <p>已有78488人浏览</p>
-    </div>
+    <script src="~/wechat/js/jquery-2.2.3.min.js"></script>
 
-    <button class="pull-right btn btn-warning btn-sm">马上学习</button>
 
-</div>
 
-<div class="row skyindexrow">
+    <script type="text/javascript">
 
-    <img src="img/user1-128x128.jpg" alt="User Avatar" class="pull-left sky-index-itemimg">
+        $(document).ready(function () {
 
-    <div class="pull-left sky-index-itemcontent">
-        <span class="sky-index-itemcontent-title">
-            焦虑 | 如何治疗焦虑
-        </span>
-        <p>讲师：贺苏</p>
-        <p>已有78488人浏览</p>
-    </div>
+            var url = "/Wechat/Calendar";
+            // $('#wapcontent').load(url);
 
-    <button class="pull-right btn btn-warning btn-sm">马上学习</button>
+        });
+        function adsmenu(ele, url) {
+            $('.sky-nav-li a').removeClass('text-orange');
+            $('.sky-nav-li a').removeClass('text-blue');
+            $('.sky-nav-li a').addClass('text-blue');
+            $(ele).removeClass('text-blue');
+            $(ele).addClass('text-orange');
+            $('#wapcontent').load(url);
 
-</div>
+        }
+
+        function adshref(url) {
+            $('#wapcontent').load(url);
+
+        }
+    </script>
+</body>
+</html>
+
 

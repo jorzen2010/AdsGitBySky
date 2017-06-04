@@ -19,10 +19,15 @@ namespace AdsEntity
         public string CustomerPassword { get; set; }
         [Display(Name = "客户类型")]
         public int CustomerRole { get; set; }
-        [Display(Name = "认证状态")]
+        [Display(Name = "状态")]
         public bool CustomerStatus { get; set; }
-        [Display(Name = "认证状态")]
+        [Display(Name = "申请状态")]
         public IdentiyStatus CustomerIdentity { get; set; }
+
+        [Display(Name = "openid")]
+        public string CustomerOpenid { get; set; }
+        [Display(Name = "unionid")]
+        public string CustomerUnionid { get; set; }
 
 
 
@@ -52,32 +57,32 @@ namespace AdsEntity
 
 
 
-        //身份认证
+        ////身份认证
 
-        [Display(Name = "姓名")]
-        public string CustomerRealName { get; set; }
+        //[Display(Name = "姓名")]
+        //public string CustomerRealName { get; set; }
 
-        [Display(Name = "身份证号")]
-        public string CustomerIDCard { get; set; }
-        [Display(Name = "手持身份证")]
-        public string CustomerHoldCard { get; set; }
-        [Display(Name = "身份证号正面")]
-        public string CustomerIDCardzm { get; set; }
-        [Display(Name = "身份证号反面")]
-        public string CustomerIDCardsm { get; set; }
+        //[Display(Name = "身份证号")]
+        //public string CustomerIDCard { get; set; }
+        //[Display(Name = "手持身份证")]
+        //public string CustomerHoldCard { get; set; }
+        //[Display(Name = "身份证号正面")]
+        //public string CustomerIDCardzm { get; set; }
+        //[Display(Name = "身份证号反面")]
+        //public string CustomerIDCardsm { get; set; }
 
-        //第三方信息认证
-        [Display(Name = "手机号码")]
-        public string CustomerTelephone { get; set; }
-        [Display(Name = "QQ号码")]
-        public string CustomerQQ { get; set; }
-        [Display(Name = "微信号码")]
-        public string CustomerWechat { get; set; }
+        ////第三方信息认证
+        //[Display(Name = "手机号码")]
+        //public string CustomerTelephone { get; set; }
+        //[Display(Name = "QQ号码")]
+        //public string CustomerQQ { get; set; }
+        //[Display(Name = "微信号码")]
+        //public string CustomerWechat { get; set; }
 
         public enum IdentiyStatus
         { 
-            未认证=1,
-            已认证=2,
+            未申请计划=1,
+            已申请计划=2,
             正在审核=3,
             审核失败=4
         }

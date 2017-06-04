@@ -1,81 +1,149 @@
 ﻿@{
-    Layout = null;
+    Layout = "~/Views/Shared/_WechatLayout.cshtml";
 }
 
-<ul class="row skylistbtn">
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>星星宝贝</title>
 
-    <li class="col-xs-1-5 text-center sky-nav-li">
-        <span><a class="btn btn-primary btn-circle btn-sm" href="#"><i class="glyphicon glyphicon-th-list"></i></a></span>
-        <span>全部能力</span>
-    </li>
-    <li class="col-xs-1-5 text-center sky-nav-li">
-        <span><a class="btn btn-success btn-circle btn-sm" href="#"><i class="glyphicon glyphicon-star"></i></a></span>
-        <span>熟练完成</span>
-    </li>
-    <li class="col-xs-1-5 text-center sky-nav-li">
-        <span><a class="btn btn-warning btn-circle btn-sm" href="#"><i class="glyphicon glyphicon-adjust"></i></a></span>
-        <span>基本完成</span>
-    </li>
-    <li class="col-xs-1-5 text-center sky-nav-li">
-        <span><a class="btn btn-danger btn-circle btn-sm" href="#"><i class="glyphicon glyphicon-star-empty"></i></a></span>
-        <span>不能完成</span>
-    </li>
-    <li class="col-xs-1-5 text-center sky-nav-li">
-        <span><a class="btn btn-info btn-circle btn-sm" href="#"><i class="glyphicon glyphicon-stats"></i></a></span>
-        <span>数据统计</span>
-    </li>
+    <!-- Bootstrap 3.3.6 -->
+    <link rel="stylesheet" href="~/wechat/css/bootstrap.css">
+    <link rel="stylesheet" href="~/wechat/font-awesome-4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="~/wechat/css/AdminLTE.css">
+    <link rel="stylesheet" href="~/wechat/css/labelauty.css">
+    <link rel="stylesheet" href="~/wechat/css/skym.css">
 
-</ul>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
 
-<div style="background-color:#ffffff">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>类别名称</th>
-                <th>项目名称</th>
-                <th>训练时间</th>
-                <th>训练结果</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>运动能力</td>
-                <td>踢皮球</td>
-                <td>2015-09-09</td>
-                <td>熟练完成</td>
-            </tr>
-            <tr>
-                <td>感觉能力</td>
-                <td>踢皮球</td>
-                <td>2015-09-09</td>
-                <td>熟练完成</td>
-            </tr>
-            <tr>
-                <td>认知能力</td>
-                <td>踢皮球</td>
-                <td>2015-09-09</td>
-                <td>熟练完成</td>
-            <tr>
-                <td>情感能力</td>
-                <td>踢皮球</td>
-                <td>2015-09-09</td>
-                <td>熟练完成</td>
-            <tr>
-                <td>自理能力</td>
-                <td>踢皮球</td>
-                <td>2015-09-09</td>
-                <td>熟练完成</td>
-            <tr>
-                <td>运动能力</td>
-                <td>踢皮球</td>
-                <td>2015-09-09</td>
-                <td>熟练完成</td>
-            </tr>
-            </tr>
-            </tr>
-            </tr>
+    @Html.Partial("_WechatMenuPartial")
 
-        </tbody>
-    </table>
-</div>
+
+    <div id="wapcontent">
+
+
+        <ul class="row skylistbtn">
+
+            <li class="col-xs-1-5 text-center sky-nav-li">
+                <span><a class="btn btn-primary btn-circle btn-sm" href="#"><i class="glyphicon glyphicon-th-list"></i></a></span>
+                <span>全部能力</span>
+            </li>
+            <li class="col-xs-1-5 text-center sky-nav-li">
+                <span><a class="btn btn-success btn-circle btn-sm" href="#"><i class="glyphicon glyphicon-star"></i></a></span>
+                <span>熟练完成</span>
+            </li>
+            <li class="col-xs-1-5 text-center sky-nav-li">
+                <span><a class="btn btn-warning btn-circle btn-sm" href="#"><i class="glyphicon glyphicon-adjust"></i></a></span>
+                <span>基本完成</span>
+            </li>
+            <li class="col-xs-1-5 text-center sky-nav-li">
+                <span><a class="btn btn-danger btn-circle btn-sm" href="#"><i class="glyphicon glyphicon-star-empty"></i></a></span>
+                <span>不能完成</span>
+            </li>
+            <li class="col-xs-1-5 text-center sky-nav-li">
+                <span><a class="btn btn-info btn-circle btn-sm" href="#"><i class="glyphicon glyphicon-stats"></i></a></span>
+                <span>数据统计</span>
+            </li>
+
+        </ul>
+
+        <div style="background-color:#ffffff">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>类别名称</th>
+                        <th>项目名称</th>
+                        <th>训练时间</th>
+                        <th>训练结果</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>运动能力</td>
+                        <td>踢皮球</td>
+                        <td>2015-09-09</td>
+                        <td>熟练完成</td>
+                    </tr>
+                    <tr>
+                        <td>感觉能力</td>
+                        <td>踢皮球</td>
+                        <td>2015-09-09</td>
+                        <td>熟练完成</td>
+                    </tr>
+                    <tr>
+                        <td>认知能力</td>
+                        <td>踢皮球</td>
+                        <td>2015-09-09</td>
+                        <td>熟练完成</td>
+                    <tr>
+                        <td>情感能力</td>
+                        <td>踢皮球</td>
+                        <td>2015-09-09</td>
+                        <td>熟练完成</td>
+                    <tr>
+                        <td>自理能力</td>
+                        <td>踢皮球</td>
+                        <td>2015-09-09</td>
+                        <td>熟练完成</td>
+                    <tr>
+                        <td>运动能力</td>
+                        <td>踢皮球</td>
+                        <td>2015-09-09</td>
+                        <td>熟练完成</td>
+                    </tr>
+
+
+                </tbody>
+            </table>
+        </div>
+
+
+
+
+    </div>
+
+
+
+
+
+    <script src="~/wechat/js/jquery-2.2.3.min.js"></script>
+
+
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            var url = "/Wechat/Calendar";
+            // $('#wapcontent').load(url);
+
+        });
+        function adsmenu(ele, url) {
+            $('.sky-nav-li a').removeClass('text-orange');
+            $('.sky-nav-li a').removeClass('text-blue');
+            $('.sky-nav-li a').addClass('text-blue');
+            $(ele).removeClass('text-blue');
+            $(ele).addClass('text-orange');
+            $('#wapcontent').load(url);
+
+        }
+
+        function adshref(url) {
+            $('#wapcontent').load(url);
+
+        }
+    </script>
+</body>
+</html>
 

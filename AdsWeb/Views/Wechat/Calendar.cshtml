@@ -1,6 +1,9 @@
-﻿@{
+﻿@model AdsEntity.WechatEntity.WechatUserInfo
+@{
     Layout = null;
 }
+
+
 <div class="row">
     <!-- Widget: user widget style 1 -->
     <div class="box box-widget widget-user">
@@ -9,13 +12,13 @@
             <h4 class="widget-user-desc pull-right"><span class="glyphicon glyphicon-camera"></span> 扫一扫</h4>
         </div>
         <div class="widget-user-image">
-            <img class="img-circle" src="img/user1-128x128.jpg" alt="User Avatar">
+            <img class="img-circle" src="@Model.headimgurl" alt="User Avatar">
         </div>
         <div class="box-footer">
             <div class="row">
                 <div class="col-xs-12 center">
                     <div class="description-block">
-                        <h5 class="description-header">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;星星宝贝</h5>
+                        <h5 class="description-header">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Model.nickname</h5>
                     </div>
                 </div>
             </div>

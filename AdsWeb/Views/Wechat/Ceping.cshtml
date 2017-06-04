@@ -1,53 +1,123 @@
 ﻿@{
     Layout = null;
 }
-<ul class="row skylistbtn">
 
-    <li class="col-xs-1-5 text-center sky-nav-li">
-        <span><a class="btn btn-info btn-circle btn-sm" href="#"><i class="glyphicon glyphicon-th-list"></i></a></span>
-        <span>全部报告</span>
-    </li>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>星星宝贝</title>
 
-    <li class="col-xs-1-5 text-center sky-nav-li">
-        <span><a class="btn btn-info btn-circle btn-sm" href="#"><i class="glyphicon glyphicon-stats"></i></a></span>
-        <span>数据统计</span>
-    </li>
-    <li class="col-xs-1-5 text-center sky-nav-li">
-        <span><a class="btn btn-danger btn-circle btn-sm" href="####" onclick="return adshref('/Wechat/Scale')"><i class="glyphicon glyphicon-plus"></i></a></span>
-        <span>开始测试</span>
-    </li>
-    <li class="col-xs-1-5 text-center sky-nav-li">
-        <span><a class="btn btn-success btn-circle btn-sm" href="#"><i class="glyphicon glyphicon-heart"></i></a></span>
-        <span>心理服务</span>
-    </li>
-    <li class="col-xs-1-5 text-center sky-nav-li">
-        <span><a class="btn btn-success btn-circle btn-sm" href="#"><i class="glyphicon glyphicon-cutlery"></i></a></span>
-        <span>立刻训练</span>
-    </li>
-</ul>
+    <!-- Bootstrap 3.3.6 -->
+    <link rel="stylesheet" href="~/wechat/css/bootstrap.css">
+    <link rel="stylesheet" href="~/wechat/font-awesome-4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="~/wechat/css/AdminLTE.css">
+    <link rel="stylesheet" href="~/wechat/css/labelauty.css">
+    <link rel="stylesheet" href="~/wechat/css/skym.css">
 
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
 
-<div class="row skyindexrow">
-    <div class="pull-left text-orange skyindexrowtitle"><i class="glyphicon glyphicon-heart"></i> 测量报告</div>
-    <div class="pull-right skyindexrowrighttitle">已经测量过93849人次</div>
-</div>
+    @Html.Partial("_WechatMenuPartial")
 
 
-<div class="row skyindexrow">
+    <div id="wapcontent">
 
-    <img src="img/user1-128x128.jpg" alt="User Avatar" class="pull-left sky-index-itemimg">
 
-    <div class="pull-left sky-index-itemcontent">
-        <span class="sky-index-itemcontent-title">
-            《ABC行为量表》报告
-        </span>
-        <p>被测评人：星星宝贝</p>
-        <p>测评时间：2017年8月8日</p>
+
+        <ul class="row skylistbtn">
+
+            <li class="col-xs-1-5 text-center sky-nav-li">
+                <span><a class="btn btn-info btn-circle btn-sm" href="#"><i class="glyphicon glyphicon-th-list"></i></a></span>
+                <span>全部报告</span>
+            </li>
+
+            <li class="col-xs-1-5 text-center sky-nav-li">
+                <span><a class="btn btn-info btn-circle btn-sm" href="#"><i class="glyphicon glyphicon-stats"></i></a></span>
+                <span>数据统计</span>
+            </li>
+            <li class="col-xs-1-5 text-center sky-nav-li">
+                <span><a class="btn btn-danger btn-circle btn-sm" href="####" onclick="return adshref('/Wechat/Scale')"><i class="glyphicon glyphicon-plus"></i></a></span>
+                <span>开始测试</span>
+            </li>
+            <li class="col-xs-1-5 text-center sky-nav-li">
+                <span><a class="btn btn-success btn-circle btn-sm" href="#"><i class="glyphicon glyphicon-heart"></i></a></span>
+                <span>心理服务</span>
+            </li>
+            <li class="col-xs-1-5 text-center sky-nav-li">
+                <span><a class="btn btn-success btn-circle btn-sm" href="#"><i class="glyphicon glyphicon-cutlery"></i></a></span>
+                <span>立刻训练</span>
+            </li>
+        </ul>
+
+
+        <div class="row skyindexrow">
+            <div class="pull-left text-orange skyindexrowtitle"><i class="glyphicon glyphicon-heart"></i> 测量报告</div>
+            <div class="pull-right skyindexrowrighttitle">已经测量过93849人次</div>
+        </div>
+
+
+        <div class="row skyindexrow">
+
+            <img src="img/user1-128x128.jpg" alt="User Avatar" class="pull-left sky-index-itemimg">
+
+            <div class="pull-left sky-index-itemcontent">
+                <span class="sky-index-itemcontent-title">
+                    《ABC行为量表》报告
+                </span>
+                <p>被测评人：星星宝贝</p>
+                <p>测评时间：2017年8月8日</p>
+            </div>
+
+            <button class="pull-right btn btn-warning btn-sm">查看报告</button>
+
+        </div>
+
+
+
+
+
     </div>
 
-    <button class="pull-right btn btn-warning btn-sm">查看报告</button>
-
-</div>
 
 
 
+
+    <script src="~/wechat/js/jquery-2.2.3.min.js"></script>
+
+
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            var url = "/Wechat/Calendar";
+            // $('#wapcontent').load(url);
+
+        });
+        function adsmenu(ele, url) {
+            $('.sky-nav-li a').removeClass('text-orange');
+            $('.sky-nav-li a').removeClass('text-blue');
+            $('.sky-nav-li a').addClass('text-blue');
+            $(ele).removeClass('text-blue');
+            $(ele).addClass('text-orange');
+            $('#wapcontent').load(url);
+
+        }
+
+        function adshref(url) {
+            $('#wapcontent').load(url);
+
+        }
+    </script>
+</body>
+</html>

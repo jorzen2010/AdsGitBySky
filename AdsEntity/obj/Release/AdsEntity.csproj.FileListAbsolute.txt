@@ -3,3 +3,8 @@ D:\MyPro\2017\AdsGitBySky\AdsEntity\bin\Release\AdsEntity.pdb
 D:\MyPro\2017\AdsGitBySky\AdsEntity\obj\Release\AdsEntity.csprojResolveAssemblyReference.cache
 D:\MyPro\2017\AdsGitBySky\AdsEntity\obj\Release\AdsEntity.dll
 D:\MyPro\2017\AdsGitBySky\AdsEntity\obj\Release\AdsEntity.pdb
+E:\2017\AdsGitBySky\AdsEntity\bin\Release\AdsEntity.dll
+E:\2017\AdsGitBySky\AdsEntity\bin\Release\AdsEntity.pdb
+E:\2017\AdsGitBySky\AdsEntity\obj\Release\AdsEntity.csprojResolveAssemblyReference.cache
+E:\2017\AdsGitBySky\AdsEntity\obj\Release\AdsEntity.dll
+E:\2017\AdsGitBySky\AdsEntity\obj\Release\AdsEntity.pdb
