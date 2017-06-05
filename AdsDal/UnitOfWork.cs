@@ -87,6 +87,21 @@ namespace AdsDal
              }
          }
 
+         private GenericRepository<AdsBaby> AdsBabysRepository;
+
+         public GenericRepository<AdsBaby> adsBabysRepository
+         {
+             get
+             {
+
+                 if (this.AdsBabysRepository == null)
+                 {
+                     this.AdsBabysRepository = new GenericRepository<AdsBaby>(context);
+                 }
+                 return AdsBabysRepository;
+             }
+         }
+
          private GenericRepository<Baogao> BaogaoRepository;
 
          public GenericRepository<Baogao> baogaoRepository

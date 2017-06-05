@@ -20,6 +20,7 @@ namespace AdsEntity
          public string BabySex { get; set; }
         [Display(Name = "生日")]
         public DateTime? BabyBirthday { get; set; }
+        public DateTime? BabyRegTime { get; set; }
 
 
 

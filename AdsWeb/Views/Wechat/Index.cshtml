@@ -1,40 +1,18 @@
-﻿@model AdsEntity.WechatEntity.WebchatJsUserinfo
+﻿@model AdsEntity.AdsCustomer
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_WechatLayout.cshtml";
 }
 
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>星星宝贝</title>
+@if(string.IsNullOrEmpty(Model.CustomerOpenid))
 
-    <!-- Bootstrap 3.3.6 -->
-    <link rel="stylesheet" href="~/wechat/css/bootstrap.css">
-    <link rel="stylesheet" href="~/wechat/font-awesome-4.7.0/css/font-awesome.css">
-    <link rel="stylesheet" href="~/wechat/css/AdminLTE.css">
-    <link rel="stylesheet" href="~/wechat/css/labelauty.css">
-    <link rel="stylesheet" href="~/wechat/css/skym.css">
+{
+   <div>尚未加入计划</div> 
+}
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-</head>
-<body>
+else
 
-    @Html.Partial("_WechatMenuPartial")
-
-
-    <div id="wapcontent">
-
-
-        <div class="row">
+{  
+    <div class="row">
             <!-- Widget: user widget style 1 -->
             <div class="box box-widget widget-user">
                 <!-- Add the bg color to the header using any of the bg-* classes -->
@@ -42,13 +20,13 @@
                     <h4 class="widget-user-desc pull-right"><span class="glyphicon glyphicon-camera"></span> 扫一扫</h4>
                 </div>
                 <div class="widget-user-image">
-                    <img class="img-circle" src="@Model.headimgurl" alt="User Avatar">
+                    <img class="img-circle" src="@Model.CustomerAvatar" alt="User Avatar">
                 </div>
                 <div class="box-footer">
                     <div class="row">
                         <div class="col-xs-12 center">
                             <div class="description-block">
-                                <h5 class="description-header">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Model.nickname</h5>
+                                <h5 class="description-header">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Model.CustomerNickName</h5>
                             </div>
                         </div>
                     </div>
@@ -116,16 +94,12 @@
 
         </div>
 
-
-
-        <div class="row skyindexrow">
+    <div class="row skyindexrow">
             <div class="pull-left text-orange skyindexrowtitle"><i class="glyphicon glyphicon-calendar"></i> 今日任务</div>
             <div class="pull-right skyindexrowrighttitle">234人正在训练</div>
         </div>
 
-
-
-        <div class="row skyindexrow">
+    <div class="row skyindexrow">
 
             <img src="img/user1-128x128.jpg" alt="User Avatar" class="pull-left">
 
@@ -148,40 +122,4 @@
 
         </div>
 
-
-
-    </div>
-
-
-
-
-
-    <script src="~/wechat/js/jquery-2.2.3.min.js"></script>
-
-
-
-    <script type="text/javascript">
-
-        $(document).ready(function () {
-
-            var url = "/Wechat/Calendar";
-           // $('#wapcontent').load(url);
-
-        });
-        function adsmenu(ele, url) {
-            $('.sky-nav-li a').removeClass('text-orange');
-            $('.sky-nav-li a').removeClass('text-blue');
-            $('.sky-nav-li a').addClass('text-blue');
-            $(ele).removeClass('text-blue');
-            $(ele).addClass('text-orange');
-            $('#wapcontent').load(url);
-
-        }
-
-        function adshref(url) {
-            $('#wapcontent').load(url);
-
-        }
-    </script>
-</body>
-</html>
+}

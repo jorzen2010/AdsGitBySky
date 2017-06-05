@@ -1519,6 +1519,7 @@
     <Content Include="wechat\font-awesome-4.7.0\HELP-US-OUT.txt" />
     <Content Include="wechat\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="wechat\img\iconfont-mingpian.png" />
+    <Content Include="wechat\img\star.jpg" />
     <Content Include="wechat\img\test.png" />
     <Content Include="wechat\img\user1-128x128.jpg" />
     <Content Include="wechat\ionicons-2.0.1\css\ionicons.css" />
@@ -1677,6 +1678,7 @@
     <Content Include="wxapi.ashx" />
     <Content Include="Views\Shared\_WechatMenuPartial.cshtml" />
     <Content Include="Views\Shared\_WechatLayout.cshtml" />
+    <Content Include="Views\Wechat\Login - 复制.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

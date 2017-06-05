@@ -16,83 +16,78 @@ namespace AdsWeb.Controllers
         private UnitOfWork unitOfWork = new UnitOfWork();
         //
         //首页/
-        public ActionResult Index()
+        public ActionResult Calendar(int? bid)
         {
-            string CODE = Request["code"];
-            string STATE = Request["state"];
+            int babyid = bid ??1;
+            AdsBaby baby = new AdsBaby();
+            var babys = unitOfWork.adsBabysRepository.Get(filter: u => u.CustomerId == bid);
+            int count = babys.Count();
+            if (count > 0)
+            { 
+                baby = babys.First() as AdsBaby;
+            }
+            
 
-            string userAgent = Request.UserAgent;
-
-            WebchatJsUserinfo userinfo = WechatJsServices.GetUserInfo(userAgent, CODE);
-
-            var cus = unitOfWork.adsCustomersRepository.Get(filter: u => u.CustomerOpenid == userinfo.openid);
-            int aa = cus.Count();
-
-            if (aa==0)
+            if (Session["nickname"] == null)
             {
-                AdsCustomer customer = new AdsCustomer();
-                customer.CustomerOpenid = userinfo.openid;
-                customer.CustomerNickName = userinfo.nickname;
-                if (userinfo.sex == 0)
-                {
-                    customer.CustomerSex = "未知";
-                }
-                if (userinfo.sex == 1)
-                {
-                    customer.CustomerSex = "男";
-                }
-                if (userinfo.sex == 2)
-                {
-                    customer.CustomerSex = "女";
-                }
-                customer.CustomerUnionid = userinfo.unionid;
-                customer.CustomerRole = 4;
-                customer.CustomerStatus = false;
-                customer.CustomerIdentity = AdsCustomer.IdentiyStatus.未申请计划;
-                customer.CustomerLastLoginTime = System.DateTime.Now;
-                customer.CustomerRegTime = System.DateTime.Now;
-                customer.CustomerBirthday = System.DateTime.Now;
-                customer.CustomerAvatar = userinfo.headimgurl;
-                customer.CustomerUserName = userinfo.openid;
-                customer.CustomerProvince = userinfo.province;
-                customer.CustomerCity = userinfo.city;
-
-
-
-               // customer.CustomerStatus=
-                unitOfWork.adsCustomersRepository.Insert(customer);
-                unitOfWork.Save();
+                ViewBag.info = "你尚未登录无法查看";
+                return View(baby);
             }
             else
             {
-
-               
+                if (string.IsNullOrEmpty(baby.BabyName))
+                {
+                    ViewBag.info = "你尚未开通训练计划";
+                    return View(baby);
+                }
+                else
+                {
+                    return View(baby);
+                }
             
             }
 
-            return View(userinfo);
+                
+
            // return View();
         }
 
         public ActionResult Login()
         {
-            WechatConfig wechatconfig = AccessTokenService.GetWechatConfig();
-
-            string REDIRECT_URI = System.Web.HttpUtility.UrlEncode("http://wx.zzd123.com/Wechat/Index");
-
-            string SCOPE = "snsapi_userinfo";
-
-            string url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + wechatconfig.Appid + "&redirect_uri=" + REDIRECT_URI + "&response_type=code&scope=" + SCOPE + "&state=STATE#wechat_redirect";
-
-            return Redirect(url);
+         //   string nickname = Session["nickname"].ToString();
+            if (Session["nickname"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Calendar","Wechat");
+            }
+        
         }
-
 
        
-        public ActionResult Calendar()
+        public ActionResult WechatLogin()
         {
-            return View();  
+
+                string userAgent = Request.UserAgent;
+         
+                WechatConfig wechatconfig = AccessTokenService.GetWechatConfig();
+
+                string REDIRECT_URI = System.Web.HttpUtility.UrlEncode("http://wx.zzd123.com/Wechat/MemberCenter");
+
+                string SCOPE = "snsapi_userinfo";
+
+                string url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + wechatconfig.Appid + "&redirect_uri=" + REDIRECT_URI + "&response_type=code&scope=" + SCOPE + "&state=STATE#wechat_redirect";
+
+                return Redirect(url);
+           
+
+
         }
+
+       
+      
 
         public ActionResult Ceping()
         {
@@ -106,7 +101,71 @@ namespace AdsWeb.Controllers
 
         public ActionResult MemberCenter()
         {
-            return View();
+            if (Session["nickname"] == null)
+            {
+                string userAgent = Request.UserAgent;
+
+                string CODE = Request["code"];
+
+                string STATE = Request["state"];
+
+                WebchatJsUserinfo userinfo = WechatJsServices.GetUserInfo(userAgent, CODE);
+
+                var cus = unitOfWork.adsCustomersRepository.Get(filter: u => u.CustomerOpenid == userinfo.openid);
+                int aa = cus.Count();
+                AdsCustomer customer = new AdsCustomer();
+                if (aa == 0)
+                {
+
+                    customer.CustomerOpenid = userinfo.openid;
+                    customer.CustomerNickName = userinfo.nickname;
+                    if (userinfo.sex == 0)
+                    {
+                        customer.CustomerSex = "未知";
+                    }
+                    if (userinfo.sex == 1)
+                    {
+                        customer.CustomerSex = "男";
+                    }
+                    if (userinfo.sex == 2)
+                    {
+                        customer.CustomerSex = "女";
+                    }
+                    customer.CustomerUnionid = userinfo.unionid;
+                    customer.CustomerRole = 4;
+                    customer.CustomerStatus = false;
+                    customer.CustomerIdentity = AdsCustomer.IdentiyStatus.未申请计划;
+                    customer.CustomerLastLoginTime = System.DateTime.Now;
+                    customer.CustomerRegTime = System.DateTime.Now;
+                    customer.CustomerBirthday = System.DateTime.Now;
+                    customer.CustomerAvatar = userinfo.headimgurl;
+                    customer.CustomerUserName = userinfo.openid;
+                    customer.CustomerProvince = userinfo.province;
+                    customer.CustomerCity = userinfo.city;
+
+                    unitOfWork.adsCustomersRepository.Insert(customer);
+                    unitOfWork.Save();
+                }
+                else
+                {
+                    customer = cus.First() as AdsCustomer;
+                }
+
+                Session["nickname"] = customer.CustomerNickName;
+                Session["openid"] = customer.CustomerOpenid;
+                Session["cid"] = customer.CustomerId;
+
+                return View(customer);
+            }
+            else
+            {
+                string nickname = Session["nickname"].ToString();
+                string openid = Session["openid"].ToString();
+                int cid = int.Parse(Session["cid"].ToString());
+                AdsCustomer customer = unitOfWork.adsCustomersRepository.GetByID(cid);
+                return View(customer);
+            }
+
         }
 
         public ActionResult Baogao()
