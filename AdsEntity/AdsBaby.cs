@@ -20,8 +20,10 @@ namespace AdsEntity
          public string BabySex { get; set; }
         [Display(Name = "生日")]
         public DateTime? BabyBirthday { get; set; }
+        [Display(Name = "注册时间")]
         public DateTime? BabyRegTime { get; set; }
-
+        [Display(Name = "到期时间")]
+        public DateTime? BabyExpiredTime { get; set; }
 
 
         ////未来可延伸部分母亲的生产年龄，看护方式，等等，通过问卷获取此信息

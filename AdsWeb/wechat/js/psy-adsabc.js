@@ -532,7 +532,7 @@ function do_result() {
 
 
     }
-    b = "感觉能力:" + b+",";
+ 
 
     var c = 0;
     for (var i = 1; i < SkyAdsABCData.length + 1; i++) {
@@ -542,7 +542,7 @@ function do_result() {
 
 
     }
-    c = "交往能力:" + c + ",";
+   
 
     var d = 0;
     for (var i = 1; i < SkyAdsABCData.length + 1; i++) {
@@ -552,7 +552,7 @@ function do_result() {
 
 
     }
-    d = "运动能力:" + d + ",";
+  
 
     var e = 0;
     for (var i = 1; i < SkyAdsABCData.length + 1; i++) {
@@ -563,7 +563,7 @@ function do_result() {
 
     }
    
-    e = "运动能力:" + e+ ",";
+   
 
 
     var f = 0;
@@ -575,10 +575,21 @@ function do_result() {
 
     }
 
-    f = "自理能力:" + f + ",";
+  
     var g = b + c + d + e + f;
 
-    g = "总分:" + g ;
+    
+    b = "感觉能力:" + b + ",";
+    c = "交往能力:" + c + ",";
+    d = "运动能力:" + d + ",";
+    e = "运动能力:" + e + ",";
+    f = "自理能力:" + f + ",";
+    g = "总分:" + g;
+
+    h = b + c + d + e + f + g;
+
+
+
 
 
     $.ajax({
@@ -587,7 +598,7 @@ function do_result() {
         data: {
             id: 0,
             score: aa,
-            Dementionscore: g,
+            Dementionscore: h,
         },
         dataType: "json",
         success: function (data) {

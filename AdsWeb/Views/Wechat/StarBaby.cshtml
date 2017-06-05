@@ -31,28 +31,28 @@
 
 
 
-  @using (Html.BeginForm("Create", "Baby", FormMethod.Post, new { @class = "form-horizontal", @name = "BabyForm", @id = "BabyForm" }))
+  @using (Html.BeginForm("BabyCreate", "Wechat", FormMethod.Post, new { @class = "form-horizontal", @name = "BabyForm", @id = "BabyForm" }))
                 {       <!-- text input -->
         <div class="form-group">
-
-           
+            
+           @Html.AntiForgeryToken()
+           @Html.HiddenFor(model => model.CustomerId, new { @Value = @ViewData["customerid"] })
         </div>
         
         <div class="form-group">
-            @Html.TextBoxFor(model => model.BabyName, new { @class = "form-control  input-lg" })
+
 
             <input type="text" name="BabyName" id="BabyName" class="form-control input-lg" placeholder="星宝姓名">
            
         </div>
         <div class="form-group">
-            <select class="form-control input-lg">
-             
+            <select class="form-control input-lg" name="BabySex" id="BabySex">
                 <option value="男">男</option>
                 <option value="女">女</option>
             </select>
         </div>
         <div class="form-group">
-            @Html.TextBoxFor(model => model.BabyName, new { @class = "form-control  input-lg" })
+
 
 
             <input type="date" name="BabyBirthday" id="BabyBirthday" class="form-control input-lg" placeholder="出生日期">
@@ -62,11 +62,11 @@
         <div class="skyapprow">
 
             <div class="form-group">
-                <button class="btn btn-block btn-info btn-lg">立即申请（￥6800元/年）</button>
+                <button type="submit" class="btn btn-block btn-info btn-lg">立即申请（￥6800元/年）</button>
             </div>
             
             <div class="form-group">
-                <button class="btn btn-block btn-success btn-lg">申请绿色通道（￥1200元/5年）</button>
+                <button type="submit" class="btn btn-block btn-success btn-lg">申请绿色通道（￥1200元/5年）</button>
             </div>
 
             

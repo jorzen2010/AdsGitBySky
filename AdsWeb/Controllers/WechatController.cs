@@ -228,7 +228,30 @@ namespace AdsWeb.Controllers
 
         public ActionResult StarBaby()
         {
+            ViewData["customerid"] = 1;
             return View();
+        }
+
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult BabyCreate(AdsBaby baby)
+        {
+            if (ModelState.IsValid)
+            {
+                
+                baby.BabyAvatar = "~/wechat/img/star.jpg";
+                baby.BabyRegTime = System.DateTime.Now;
+                baby.BabyExpiredTime = System.DateTime.Now.AddYears(5);
+
+                unitOfWork.adsBabysRepository.Insert(baby);
+                unitOfWork.Save();
+
+                return RedirectToAction("Calendar");
+            }
+
+            return RedirectToAction("Calendar");
         }
 
         //报告详情页
