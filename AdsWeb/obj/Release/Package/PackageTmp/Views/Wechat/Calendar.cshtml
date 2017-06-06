@@ -1,11 +1,11 @@
-﻿@model AdsEntity.AdsCustomer
+﻿@model AdsEntity.AdsBaby
 @{
     Layout = "~/Views/Shared/_WechatLayout.cshtml";
 }
 
-@if (string.IsNullOrEmpty(Model.CustomerOpenid))
+@if (string.IsNullOrEmpty(Model.BabyName))
 {
-    <div>尚未加入计划</div>
+    @Html.Partial("_WechatNoBabyPartial")
 }
 
 else
@@ -18,13 +18,13 @@ else
                 <h4 class="widget-user-desc pull-right"><span class="glyphicon glyphicon-camera"></span> 扫一扫</h4>
             </div>
             <div class="widget-user-image">
-                <img class="img-circle" src="@Model.CustomerAvatar" alt="User Avatar">
+                <img class="img-circle" src="~/WechatResource/img/star.jpg" alt="User Avatar">
             </div>
             <div class="box-footer">
                 <div class="row">
                     <div class="col-xs-12 center">
                         <div class="description-block">
-                            <h5 class="description-header">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Model.CustomerNickName</h5>
+                            <h5 class="description-header">@Model.BabyName</h5>
                         </div>
                     </div>
                 </div>
@@ -40,16 +40,16 @@ else
                     <!-- /.col -->
                     <div class="col-xs-4 border-right">
                         <div class="description-block">
-                            <h5 class="description-header">8小时45分钟</h5>
-                            <span class="description-text">家长学习时间</span>
+                            <h5 class="description-header">35次</h5>
+                            <span class="description-text">测评次数</span>
                         </div>
                         <!-- /.description-block -->
                     </div>
                     <!-- /.col -->
                     <div class="col-xs-4">
                         <div class="description-block">
-                            <h5 class="description-header">35次</h5>
-                            <span class="description-text">评估次数</span>
+                            <h5 class="description-header">125次</h5>
+                            <span class="description-text">训练报告</span>
                         </div>
                         <!-- /.description-block -->
                     </div>
@@ -99,7 +99,7 @@ else
 
     <div class="row skyindexrow">
 
-        <img src="img/user1-128x128.jpg" alt="User Avatar" class="pull-left">
+        <img src="~/WechatResource/img/user1-128x128.jpg" alt="User Avatar" class="pull-left">
 
         <div class="pull-left sky-index-itemcontent">
             <span class="sky-index-itemcontent-title">

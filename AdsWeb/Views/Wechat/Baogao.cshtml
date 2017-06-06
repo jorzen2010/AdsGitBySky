@@ -1,7 +1,15 @@
-﻿@{
+﻿@model AdsEntity.AdsBaby
+@{
     Layout = "~/Views/Shared/_WechatLayout.cshtml";
 }
 
+@if (string.IsNullOrEmpty(Model.BabyName))
+{
+    @Html.Partial("_WechatNoBabyPartial")
+}
+
+else
+{
 
         <ul class="row skylistbtn">
 
@@ -27,6 +35,11 @@
             </li>
 
         </ul>
+    
+        <div class="row skyindexrow">
+            <div class="pull-left text-orange skyindexrowtitle"><i class="glyphicon glyphicon-heart"></i> @Model.BabyName 的训练报告</div>
+            <div class="pull-right skyindexrowrighttitle">共计455次</div>
+        </div>
 
         <div style="background-color:#ffffff">
             <table class="table">
@@ -79,3 +92,4 @@
         </div>
 
 
+}

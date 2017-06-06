@@ -1,4 +1,5 @@
-﻿@{
+﻿@model AdsEntity.AdsCustomer
+@{
     Layout = null;
 }
 <!DOCTYPE html>
@@ -11,14 +12,14 @@
     <title>星星宝贝</title>
 
     <!-- Bootstrap 3.3.6 -->
-    <link rel="stylesheet" href="~/Wechat/css/bootstrap.css">
+    <link rel="stylesheet" href="~/WechatResource/css/bootstrap.css">
 
-    <link rel="stylesheet" href="~/Wechat/css/AdminLTE.css">
-
-
-    <link rel="stylesheet" href="~/Wechat/css/skym.css">
+    <link rel="stylesheet" href="~/WechatResource/css/AdminLTE.css">
 
 
+    <link rel="stylesheet" href="~/WechatResource/css/skym.css">
+
+    <link href="~/plugins/bootstrap-validator/css/bootstrapValidator.css" rel="stylesheet" type="text/css" />
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -26,36 +27,32 @@
       <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body>
+<body style="margin:15px;">
 
 
 
-    <form role="form">
+   @using (Html.BeginForm("CustomerEdit", "Wechat", FormMethod.Post, new { @class = "form-horizontal", @name = "CustomerForm", @id = "CustomerForm" }))
+                {
         <!-- text input -->
         <div class="form-group">
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.CustomerId, new { @Value = @ViewData["customerid"] })
 
-           
-        </div>
-        
-        <div class="form-group">
-
-            <input type="text" class="form-control input-lg" placeholder="用户名">
-        </div>
-        <div class="form-group">
-
-            <input type="text" class="form-control input-lg" placeholder="邮箱">
-        </div>
-        <div class="form-group">
-            <select class="form-control input-lg">
-                <option value="">请选择性别</option>
-                <option value="男">男</option>
-                <option value="女">女</option>
-            </select>
         </div>
 
         <div class="form-group">
 
-            <input type="text" class="form-control input-lg" placeholder="生日">
+            <input type="text" name="CustomerUserName" id="CustomerUserName" class="form-control input-lg" placeholder="用户名">
+        </div>
+        <div class="form-group">
+
+            <input type="text" name="CustomerEmail" id="CustomerEmail" class="form-control input-lg" placeholder="邮箱">
+        </div>
+
+
+        <div class="form-group">
+
+            <input type="date" name="CustomerBirthday" id="CustomerBirthday" class="form-control input-lg" placeholder="生日">
         </div>
 
 
@@ -63,17 +60,61 @@
 
         <div class="skyapprow">
             <div class="form-group">
-                <button class="btn btn-block btn-info btn-lg">保存</button>
+                <button type="submit" class="btn btn-block btn-info btn-lg">保存</button>
+                <a href="@Url.Action("MemberCenter")" class="btn btn-block btn-default btn-lg">返回</a>
             </div>
-           
-          
-        </div>
-    </form>
 
-    <script type="text/javascript" src="~/Wechat/js/skym.js"></script>
+
+        </div>
+   }
+
+    <script src="~/plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script type="text/javascript" src="~/plugins/bootstrap-validator/js/bootstrapValidator.js"></script>
     <script type="text/javascript">
-        alert("请输入用户名和密码");
+
+        //表单验证
+        $('#CustomerForm').bootstrapValidator({
+            //        live: 'disabled',
+            message: 'This value is not valid',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+
+                CustomerUserName: {
+                    validators: {
+                        notEmpty: {
+                            message: '用户名不能为空'
+                        }
+
+                    }
+                },
+                CustomerEmail: {
+                    validators: {
+                        notEmpty: {
+                            message: '邮箱不能为空'
+                        }
+
+                    }
+                },
+                CustomerBirthday: {
+                    validators: {
+                        notEmpty: {
+                            message: '出生日期不能为空'
+                        }
+
+                    }
+                },
+
+            }
+        });
+
     </script>
+
+
+
 
 
 </body>

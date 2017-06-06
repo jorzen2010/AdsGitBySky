@@ -10,6 +10,5 @@ E:\2017\AdsGitBySky\AdsEntity\obj\Debug\AdsEntity.dll
 E:\2017\AdsGitBySky\AdsEntity\obj\Debug\AdsEntity.pdb
 D:\MyPro\2017\AdsGitBySky\AdsEntity\bin\Debug\AdsEntity.dll
 D:\MyPro\2017\AdsGitBySky\AdsEntity\bin\Debug\AdsEntity.pdb
-D:\MyPro\2017\AdsGitBySky\AdsEntity\obj\Debug\AdsEntity.csprojResolveAssemblyReference.cache
 D:\MyPro\2017\AdsGitBySky\AdsEntity\obj\Debug\AdsEntity.dll
 D:\MyPro\2017\AdsGitBySky\AdsEntity\obj\Debug\AdsEntity.pdb

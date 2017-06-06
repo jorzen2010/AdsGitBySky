@@ -258,3 +258,5 @@ D:\MyPro\2017\AdsGitBySky\AdsWeb\obj\Debug\AdsWeb.dll
 D:\MyPro\2017\AdsGitBySky\AdsWeb\obj\Debug\AdsWeb.pdb
 E:\2017\AdsGitBySky\AdsWeb\bin\Newtonsoft.Json.pdb
 D:\MyPro\2017\AdsGitBySky\AdsWeb\bin\Newtonsoft.Json.pdb
+D:\MyPro\2017\AdsGitBySky\AdsWeb\bin\AdsWeb.dll.CodeAnalysisLog.xml
+D:\MyPro\2017\AdsGitBySky\AdsWeb\bin\AdsWeb.dll.lastcodeanalysissucceeded

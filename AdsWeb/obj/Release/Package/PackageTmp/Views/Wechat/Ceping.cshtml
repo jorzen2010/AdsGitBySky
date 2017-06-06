@@ -1,30 +1,37 @@
-﻿@{
+﻿@model AdsEntity.AdsBaby
+@{
     Layout = "~/Views/Shared/_WechatLayout.cshtml";
 }
 
+@if (string.IsNullOrEmpty(Model.BabyName))
+{
+    @Html.Partial("_WechatNoBabyPartial")
+}
 
+else
+{
 
         <ul class="row skylistbtn">
 
             <li class="col-xs-1-5 text-center sky-nav-li">
-                <span><a class="btn btn-info btn-circle btn-sm" href="#"><i class="glyphicon glyphicon-th-list"></i></a></span>
-                <span>全部报告</span>
+                <span><a class="btn btn-primary btn-circle btn-sm" href="@Url.Action("Ceping","wechat")"><i class="glyphicon glyphicon-th-list"></i></a></span>
+                <span>测评报告</span>
             </li>
 
             <li class="col-xs-1-5 text-center sky-nav-li">
-                <span><a class="btn btn-info btn-circle btn-sm" href="#"><i class="glyphicon glyphicon-stats"></i></a></span>
-                <span>数据统计</span>
+                <span><a class="btn btn-info btn-circle btn-sm" href="@Url.Action("Baogao","wechat")"><i class="glyphicon glyphicon-stats"></i></a></span>
+                <span>训练报告</span>
             </li>
             <li class="col-xs-1-5 text-center sky-nav-li">
                 <span><a class="btn btn-danger btn-circle btn-sm" href="@Url.Action("Scale","wechat")"><i class="glyphicon glyphicon-plus"></i></a></span>
                 <span>开始测试</span>
             </li>
             <li class="col-xs-1-5 text-center sky-nav-li">
-                <span><a class="btn btn-success btn-circle btn-sm" href="#"><i class="glyphicon glyphicon-heart"></i></a></span>
+                <span><a class="btn btn-success btn-circle btn-sm" href="@Url.Action("HeartList","wechat")"><i class="glyphicon glyphicon-heart"></i></a></span>
                 <span>心理服务</span>
             </li>
             <li class="col-xs-1-5 text-center sky-nav-li">
-                <span><a class="btn btn-success btn-circle btn-sm" href="#"><i class="glyphicon glyphicon-cutlery"></i></a></span>
+                <span><a class="btn btn-warning btn-circle btn-sm" href="@Url.Action("Calendar","wechat")"><i class="glyphicon glyphicon-cutlery"></i></a></span>
                 <span>立刻训练</span>
             </li>
         </ul>
@@ -38,7 +45,7 @@
 
         <div class="row skyindexrow">
 
-            <img src="img/user1-128x128.jpg" alt="User Avatar" class="pull-left sky-index-itemimg">
+            <img src="~/WechatResource/img/user1-128x128.jpg" alt="User Avatar" class="pull-left sky-index-itemimg">
 
             <div class="pull-left sky-index-itemcontent">
                 <span class="sky-index-itemcontent-title">
@@ -55,3 +62,4 @@
 
 
 
+}

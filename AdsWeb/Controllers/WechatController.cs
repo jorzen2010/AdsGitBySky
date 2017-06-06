@@ -16,52 +16,105 @@ namespace AdsWeb.Controllers
         private UnitOfWork unitOfWork = new UnitOfWork();
         //
         //首页/
-        public ActionResult Calendar(int? bid)
+        public ActionResult Index()
         {
-            int babyid = bid ??1;
-            AdsBaby baby = new AdsBaby();
-            var babys = unitOfWork.adsBabysRepository.Get(filter: u => u.CustomerId == bid);
-            int count = babys.Count();
-            if (count > 0)
-            { 
-                baby = babys.First() as AdsBaby;
-            }
-            
+             string userAgent = Request.UserAgent;
 
-            if (Session["nickname"] == null)
+            string CODE = Request["code"];
+
+            string STATE = Request["state"];
+
+            WebchatJsUserinfo userinfo = WechatJsServices.GetUserInfo(userAgent, CODE);
+
+            var cus = unitOfWork.adsCustomersRepository.Get(filter: u => u.CustomerOpenid == userinfo.openid);
+            int aa = cus.Count();
+            AdsCustomer customer = new AdsCustomer();
+            if (aa == 0)
             {
-                ViewBag.info = "你尚未登录无法查看";
-                return View(baby);
+
+                customer.CustomerOpenid = userinfo.openid;
+                customer.CustomerNickName = userinfo.nickname;
+                if (userinfo.sex == 0)
+                {
+                    customer.CustomerSex = "未知";
+                }
+                if (userinfo.sex == 1)
+                {
+                    customer.CustomerSex = "男";
+                }
+                if (userinfo.sex == 2)
+                {
+                    customer.CustomerSex = "女";
+                }
+                customer.CustomerUnionid = userinfo.unionid;
+                customer.CustomerRole = 4;
+                customer.CustomerStatus = false;
+                customer.CustomerIdentity = AdsCustomer.IdentiyStatus.未申请计划;
+                customer.CustomerLastLoginTime = System.DateTime.Now;
+                customer.CustomerRegTime = System.DateTime.Now;
+
+                customer.CustomerAvatar = userinfo.headimgurl;
+                customer.CustomerUserName = userinfo.openid;
+                customer.CustomerProvince = userinfo.province;
+                customer.CustomerCity = userinfo.city;
+
+                unitOfWork.adsCustomersRepository.Insert(customer);
+                unitOfWork.Save();
             }
             else
             {
-                if (string.IsNullOrEmpty(baby.BabyName))
-                {
-                    ViewBag.info = "你尚未开通训练计划";
-                    return View(baby);
-                }
-                else
-                {
-                    return View(baby);
-                }
-            
+                customer = cus.First() as AdsCustomer;
             }
 
+            Session["CustomerNickName"] = customer.CustomerNickName;
+            Session["CustomerOpenid"] = customer.CustomerOpenid;
+            Session["CustomerId"] = customer.CustomerId;
+
+            return Redirect(STATE);
                 
 
            // return View();
         }
 
+        public ActionResult Calendar()
+        {
+            AdsBaby baby = new AdsBaby();
+            if (Session["CustomerId"] != null)
+            {
+                int id = int.Parse(Session["CustomerId"].ToString());
+                var babys = unitOfWork.adsBabysRepository.Get(filter: u => u.CustomerId == id);
+                int count = babys.Count();
+                if (count > 0)
+                {
+                    baby = babys.First() as AdsBaby;
+                    return View(baby);
+                }
+                else
+                {
+                    ViewBag.info = "您尚未开通训练计划";
+                    return View(baby);
+
+                }
+
+            }
+            else
+            {
+                ViewBag.info = "您尚未登录";
+                return View(baby);
+            
+            }
+        }
+
         public ActionResult Login()
         {
          //   string nickname = Session["nickname"].ToString();
-            if (Session["nickname"] == null)
+            if (Session["CustomerNickName"] == null)
             {
                 return View();
             }
             else
             {
-                return RedirectToAction("Calendar","Wechat");
+                return RedirectToAction("MemberCenter", "Wechat");
             }
         
         }
@@ -69,16 +122,18 @@ namespace AdsWeb.Controllers
        
         public ActionResult WechatLogin()
         {
+                string sourceUrl = Request.UrlReferrer.ToString();
 
                 string userAgent = Request.UserAgent;
          
                 WechatConfig wechatconfig = AccessTokenService.GetWechatConfig();
 
-                string REDIRECT_URI = System.Web.HttpUtility.UrlEncode("http://wx.zzd123.com/Wechat/MemberCenter");
+                string REDIRECT_URI = System.Web.HttpUtility.UrlEncode("http://wx.zzd123.com/Wechat/Index");
 
                 string SCOPE = "snsapi_userinfo";
+                string STATE = sourceUrl;
 
-                string url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + wechatconfig.Appid + "&redirect_uri=" + REDIRECT_URI + "&response_type=code&scope=" + SCOPE + "&state=STATE#wechat_redirect";
+                string url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + wechatconfig.Appid + "&redirect_uri=" + REDIRECT_URI + "&response_type=code&scope=" + SCOPE + "&state="+STATE+"#wechat_redirect";
 
                 return Redirect(url);
            
@@ -91,7 +146,31 @@ namespace AdsWeb.Controllers
 
         public ActionResult Ceping()
         {
-            return View();
+            AdsBaby baby = new AdsBaby();
+            if (Session["CustomerId"] != null)
+            {
+                int id = int.Parse(Session["CustomerId"].ToString());
+                var babys = unitOfWork.adsBabysRepository.Get(filter: u => u.CustomerId == id);
+                int count = babys.Count();
+                if (count > 0)
+                {
+                    baby = babys.First() as AdsBaby;
+                    return View(baby);
+                }
+                else
+                {
+                    ViewBag.info = "您尚未开通训练计划";
+                    return View(baby);
+
+                }
+
+            }
+            else
+            {
+                ViewBag.info = "您尚未登录";
+                return View(baby);
+
+            }
         }
 
         public ActionResult HeartList()
@@ -101,76 +180,65 @@ namespace AdsWeb.Controllers
 
         public ActionResult MemberCenter()
         {
-            if (Session["nickname"] == null)
+            if (Session["CustomerId"] != null)
             {
-                string userAgent = Request.UserAgent;
-
-                string CODE = Request["code"];
-
-                string STATE = Request["state"];
-
-                WebchatJsUserinfo userinfo = WechatJsServices.GetUserInfo(userAgent, CODE);
-
-                var cus = unitOfWork.adsCustomersRepository.Get(filter: u => u.CustomerOpenid == userinfo.openid);
-                int aa = cus.Count();
-                AdsCustomer customer = new AdsCustomer();
-                if (aa == 0)
+                int id = int.Parse(Session["CustomerId"].ToString());
+                AdsCustomer customer = unitOfWork.adsCustomersRepository.GetByID(id);
+                AdsBaby baby = new AdsBaby();
+                var babys = unitOfWork.adsBabysRepository.Get(filter: u => u.CustomerId == id);
+                int count = babys.Count();
+                if (count > 0)
                 {
-
-                    customer.CustomerOpenid = userinfo.openid;
-                    customer.CustomerNickName = userinfo.nickname;
-                    if (userinfo.sex == 0)
-                    {
-                        customer.CustomerSex = "未知";
-                    }
-                    if (userinfo.sex == 1)
-                    {
-                        customer.CustomerSex = "男";
-                    }
-                    if (userinfo.sex == 2)
-                    {
-                        customer.CustomerSex = "女";
-                    }
-                    customer.CustomerUnionid = userinfo.unionid;
-                    customer.CustomerRole = 4;
-                    customer.CustomerStatus = false;
-                    customer.CustomerIdentity = AdsCustomer.IdentiyStatus.未申请计划;
-                    customer.CustomerLastLoginTime = System.DateTime.Now;
-                    customer.CustomerRegTime = System.DateTime.Now;
-                    customer.CustomerBirthday = System.DateTime.Now;
-                    customer.CustomerAvatar = userinfo.headimgurl;
-                    customer.CustomerUserName = userinfo.openid;
-                    customer.CustomerProvince = userinfo.province;
-                    customer.CustomerCity = userinfo.city;
-
-                    unitOfWork.adsCustomersRepository.Insert(customer);
-                    unitOfWork.Save();
+                    baby = babys.First() as AdsBaby;
+                    ViewBag.baby = true;
                 }
                 else
                 {
-                    customer = cus.First() as AdsCustomer;
+                    ViewBag.baby = false;
+                
                 }
-
-                Session["nickname"] = customer.CustomerNickName;
-                Session["openid"] = customer.CustomerOpenid;
-                Session["cid"] = customer.CustomerId;
-
                 return View(customer);
+
             }
+
             else
             {
-                string nickname = Session["nickname"].ToString();
-                string openid = Session["openid"].ToString();
-                int cid = int.Parse(Session["cid"].ToString());
-                AdsCustomer customer = unitOfWork.adsCustomersRepository.GetByID(cid);
-                return View(customer);
+                return RedirectToAction("Login");
+            
             }
+           
+               
+            
 
         }
 
         public ActionResult Baogao()
         {
-            return View();
+            AdsBaby baby = new AdsBaby();
+            if (Session["CustomerId"] != null)
+            {
+                int id = int.Parse(Session["CustomerId"].ToString());
+                var babys = unitOfWork.adsBabysRepository.Get(filter: u => u.CustomerId == id);
+                int count = babys.Count();
+                if (count > 0)
+                {
+                    baby = babys.First() as AdsBaby;
+                    return View(baby);
+                }
+                else
+                {
+                    ViewBag.info = "您尚未开通训练计划";
+                    return View(baby);
+
+                }
+
+            }
+            else
+            {
+                ViewBag.info = "您尚未登录";
+                return View(baby);
+
+            }
         }
 
         public ActionResult Scale()
@@ -218,6 +286,9 @@ namespace AdsWeb.Controllers
 
         public ActionResult Logout()
         {
+            Session["CustomerNickName"] = null;
+            Session["CustomerOpenid"] = null;
+            Session["CustomerId"] = null;
             return RedirectToAction("Login");
         }
 
@@ -228,8 +299,16 @@ namespace AdsWeb.Controllers
 
         public ActionResult StarBaby()
         {
-            ViewData["customerid"] = 1;
-            return View();
+            if (Session["CustomerId"] != null)
+            {
+                ViewData["customerid"] = Session["CustomerId"].ToString();
+                return View();
+            }
+            else {
+                return RedirectToAction("Login");
+            
+            }
+           
         }
 
 
@@ -251,7 +330,7 @@ namespace AdsWeb.Controllers
                 return RedirectToAction("Calendar");
             }
 
-            return RedirectToAction("Calendar");
+            return View(baby);
         }
 
         //报告详情页

@@ -38,7 +38,7 @@ namespace AdsEntity
         [Display(Name = "性别")]
         public string CustomerSex { get; set; }
         [Display(Name = "生日")]
-        public DateTime CustomerBirthday { get; set; }
+        public DateTime? CustomerBirthday { get; set; }
         [Display(Name = "生日类型")]
         public string CustomerBirthdayType { get; set; }
         [Display(Name = "省份")]
