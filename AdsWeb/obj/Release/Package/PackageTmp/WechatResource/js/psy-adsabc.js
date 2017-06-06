@@ -522,7 +522,7 @@ function do_result() {
 
 
     aa = aa.substring(0, aa.length - 1);
-    alert("总得分" + aa);
+   // alert("总得分" + aa);
 
     var b = 0;
     for (var i = 1; i < SkyAdsABCData.length + 1; i++) {
@@ -596,14 +596,16 @@ function do_result() {
         type: 'POST',
         url: "/Wechat/SaveScaleResult",
         data: {
-            id: 0,
             score: aa,
             Dementionscore: h,
         },
         dataType: "json",
         success: function (data) {
             if (data.MessageStatus)
-            { alert(data.MessageInfo); }
+            {
+                window.location.href = "/wechat/BaogaoDetail/" + data.MessageInfo;
+               
+            }
             else
             { alert("测试过程出现意外，请重新测试！"); }
 

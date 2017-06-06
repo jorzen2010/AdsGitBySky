@@ -11,6 +11,7 @@ namespace AdsEntity
         public int BaogaoId { get; set; }
         public int ScaleId { get; set; }
         public int CustomerId { get; set; }
+        public int BabyId { get; set; }
         public string  BaogaoScore { get; set; }
         public string BaogaoDementionScore { get; set; }
         public DateTime BaogaoTime { get; set; }

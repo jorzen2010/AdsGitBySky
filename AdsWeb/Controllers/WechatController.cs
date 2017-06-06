@@ -336,21 +336,28 @@ namespace AdsWeb.Controllers
         //报告详情页
         public ActionResult BaogaoDetail(int id)
         {
-            return View();
+            Baogao baogao = unitOfWork.baogaoRepository.GetByID(id);
+
+            return View(baogao);
         }
 
 
 
         [HttpPost]
 
-        public JsonResult SaveScaleResult(int id, string score, string Dementionscore)
+        public JsonResult SaveScaleResult(string score, string Dementionscore)
         {
+            int customerId = int.Parse(Session["CustomerId"].ToString());
+            int babyid = unitOfWork.adsBabysRepository.Get(filter: u => u.CustomerId == customerId).First().BabyId;
+          
+            
             Message msg = new Message();
 
             Baogao baogao = new Baogao();
             baogao.BaogaoScore = score;
             baogao.BaogaoDementionScore = Dementionscore;
-            baogao.CustomerId = 1;
+            baogao.CustomerId = customerId;
+            baogao.BabyId = babyid;
             baogao.ScaleId = 1;
             baogao.BaogaoTime = System.DateTime.Now;
 
@@ -359,7 +366,7 @@ namespace AdsWeb.Controllers
                 unitOfWork.baogaoRepository.Insert(baogao);
                 unitOfWork.Save();
                 msg.MessageStatus = "true";
-                msg.MessageInfo = "保存成功" + score + Dementionscore;
+                msg.MessageInfo = baogao.BaogaoId.ToString();
             }
             catch
             {

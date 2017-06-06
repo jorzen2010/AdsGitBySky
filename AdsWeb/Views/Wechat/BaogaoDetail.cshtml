@@ -1,11 +1,12 @@
-﻿@{
+﻿@model AdsEntity.Baogao
+@{
     Layout = "~/Views/Shared/_WechatLayout.cshtml";
 }
 
   <h4>自闭症行为量表报告</h4>
-        <h5>姓名：</h5>
+        <h5>姓名：@Model.BaogaoScore</h5>
         <h5>测评日期：</h5>
-        <h5>感觉统合能力得分：</h5>
+        <h5>感觉统合能力得分：@Model.BaogaoDementionScore</h5>
         <h5>感觉统合能力得分：</h5>
         <h5>感觉统合能力得分：</h5>
         <h5>感觉统合能力得分：</h5>
