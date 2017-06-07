@@ -128,9 +128,10 @@ line-height:30px;
 
 
 .box .nav-stacked > li {
-    height:30px;
-    line-height:30px;
-  font-size:14px;
+
+  font-size:16px;
+  font-weight:400;
+  padding-left:10px;
 
 }
 .box .nav-stacked  li .badge{

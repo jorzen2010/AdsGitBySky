@@ -1,15 +1,15 @@
-﻿@model AdsEntity.AdsBaby
+﻿@model StaticPagedList<AdsEntity.Baogao>
+@using PagedList;
+@using PagedList.Mvc;
 @{
     Layout = "~/Views/Shared/_WechatLayout.cshtml";
 }
 
-@if (string.IsNullOrEmpty(Model.BabyName))
-{
-    @Html.Partial("_WechatNoBabyPartial")
+@section Topcss {
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
 }
 
-else
-{
 
         <ul class="row skylistbtn">
 
@@ -42,6 +42,8 @@ else
             <div class="pull-right skyindexrowrighttitle">已经测量过93849人次</div>
         </div>
 
+@foreach (var item in Model)
+                            {
 
         <div class="row skyindexrow">
 
@@ -49,17 +51,32 @@ else
 
             <div class="pull-left sky-index-itemcontent">
                 <span class="sky-index-itemcontent-title">
-                    《ABC行为量表》报告
+                    @Html.DisplayFor(modelItem => item.ScaleId) 报告
                 </span>
-                <p>被测评人：星星宝贝</p>
-                <p>测评时间：2017年8月8日</p>
+                <p>被测评人：@ViewBag.babyname</p>
+                <p>测评时间：@Html.DisplayFor(modelItem => item.BaogaoTime)</p>
             </div>
 
-            <button class="pull-right btn btn-warning btn-sm">查看报告</button>
+            <a class="pull-right btn btn-warning btn-sm" href="@Url.Action("BaogaoDetail", "Wechat", new { id = item.BaogaoId })">查看报告</a>
 
         </div>
-
-
-
-
 }
+
+<div class="box-footer clearfix">
+    <ul>
+        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Ceping", new { page = page }),
+    new PagedListRenderOptions
+    {
+        LinkToPreviousPageFormat = "上一页",
+        LinkToNextPageFormat = "下一页",
+        DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+        DisplayLinkToLastPage = PagedListDisplayMode.Always,
+        DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+        DisplayLinkToNextPage = PagedListDisplayMode.Always,
+        MaximumPageNumbersToDisplay = 5,
+        LinkToFirstPageFormat = "首页",
+        LinkToLastPageFormat = "最后一页",
+        PageCountAndCurrentLocationFormat = "第 {0}页 共 {1}页"
+    })
+    </ul>
+</div>

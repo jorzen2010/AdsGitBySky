@@ -180,7 +180,6 @@
     <Compile Include="Controllers\VideoController.cs" />
     <Compile Include="Controllers\WapController.cs" />
     <Compile Include="Controllers\WechatController.cs" />
-    <Compile Include="Controllers\WxController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -865,6 +864,7 @@
     <Content Include="plugins\DistPicker\distpicker.data.min.js" />
     <Content Include="plugins\DistPicker\distpicker.js" />
     <Content Include="plugins\DistPicker\distpicker.min.js" />
+    <Content Include="plugins\echarts.min.js" />
     <Content Include="plugins\fastclick\fastclick.js" />
     <Content Include="plugins\fastclick\fastclick.min.js" />
     <Content Include="plugins\flot\excanvas.js" />
@@ -1678,6 +1678,7 @@
     <Content Include="Views\Shared\_WechatLayout.cshtml" />
     <Content Include="Views\Wechat\Login - 复制.cshtml" />
     <Content Include="Views\Shared\_WechatNoBabyPartial.cshtml" />
+    <Content Include="Views\Wechat\NoBaby.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1685,7 +1686,6 @@
     <Folder Include="Views\Ajax\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\File\" />
-    <Folder Include="Views\Wx\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

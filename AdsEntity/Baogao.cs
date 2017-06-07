@@ -14,6 +14,14 @@ namespace AdsEntity
         public int BabyId { get; set; }
         public string  BaogaoScore { get; set; }
         public string BaogaoDementionScore { get; set; }
+        public string BaogaoTotalScore { get; set; }
         public DateTime BaogaoTime { get; set; }
+    }
+
+    public class BaogaoDemention
+    {
+        public string demName { get; set; }
+        public int demScore { get; set; }
+    
     }
 }

@@ -1,17 +1,22 @@
-﻿@model AdsEntity.Baogao
+﻿@using AdsEntity;
+@model AdsEntity.Baogao
 @{
     Layout = "~/Views/Shared/_WechatLayout.cshtml";
 }
 
   <h4>自闭症行为量表报告</h4>
-        <h5>姓名：@Model.BaogaoScore</h5>
-        <h5>测评日期：</h5>
-        <h5>感觉统合能力得分：@Model.BaogaoDementionScore</h5>
-        <h5>感觉统合能力得分：</h5>
-        <h5>感觉统合能力得分：</h5>
-        <h5>感觉统合能力得分：</h5>
-        <h5>感觉统合能力得分：</h5>
-        <h4>量表详情</h4>
+        <h5>姓名：@ViewBag.babyName</h5>
+        <h5>测评日期：@Model.BaogaoTime</h5>
+@foreach (BaogaoDemention dem in ViewData["dem"] as List<BaogaoDemention>)
+{
+  
+     <h5>@dem.demName：@dem.demScore</h5>
+}
+
+
+        <h4>量表详情 @ViewBag.categories</h4>
+<h4>量表详情 @ViewBag.chartsdata</h4>
+
         <hr />
 
 

@@ -1,12 +1,20 @@
-﻿@{
+﻿@model AdsEntity.AdsBaby
+@{
     Layout = "~/Views/Shared/_WechatLayout.cshtml";
 }
 
+@if (string.IsNullOrEmpty(Model.BabyName))
+{
+    @Html.Partial("_WechatNoBabyPartial")
+}
 
+else
+{
+   
 <div id="adsabc">
 
 </div>
-
+}
 @section FootScripts {
 <script src="~/WechatResource/js/labelauty.js"></script>
 <script src="~/WechatResource/js/psy-adsabc.js"></script>

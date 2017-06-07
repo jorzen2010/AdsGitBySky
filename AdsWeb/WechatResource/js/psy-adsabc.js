@@ -583,10 +583,10 @@ function do_result() {
     c = "交往能力:" + c + ",";
     d = "运动能力:" + d + ",";
     e = "运动能力:" + e + ",";
-    f = "自理能力:" + f + ",";
-    g = "总分:" + g;
+    f = "自理能力:" + f;
 
-    h = b + c + d + e + f + g;
+
+    h = b + c + d + e + f;
 
 
 
@@ -598,6 +598,7 @@ function do_result() {
         data: {
             score: aa,
             Dementionscore: h,
+            totalscore:g,
         },
         dataType: "json",
         success: function (data) {

@@ -8,7 +8,7 @@
         <!-- Widget: user widget style 1 -->
         <div class="box box-widget widget-user-2">
             <!-- Add the bg color to the header using any of the bg-* classes -->
-            <div class="widget-user-header bg-blue">
+            <div class="widget-user-header bg-aqua-active">
                 <div class="widget-user-image">
                     <img class="img-circle" src="@Model.CustomerAvatar" alt="User Avatar">
                 </div>
@@ -17,24 +17,33 @@
                 <h5 class="widget-user-desc">注册日期：2016-09-09</h5>
             </div>
             <div class="box-footer no-padding">
+               
+               
                 <ul class="nav nav-stacked">
                     @if (ViewBag.baby)
                     {
-                    <li><a href="@Url.Action("Calendar")"><span class="glyphicon glyphicon-lock text-red"></span> 查看训练计划 <i class="pull-right fa fa-angle-right badgeicon"></i></a></li>
-                 
+                        <li><a href="@Url.Action("Calendar")"><span class="glyphicon glyphicon-calendar text-red"></span> &nbsp;&nbsp;查看训练计划 <i class="pull-right fa fa-angle-right badgeicon"></i></a></li>
+
                     }
                     else
-                    { 
-                    <li><a href="@Url.Action("StarBaby")"><span class="glyphicon glyphicon-lock text-red"></span> 申请加入训练计划（先付款） <i class="pull-right fa fa-angle-right badgeicon"></i></a></li>
-                 
+                    {
+                        <li><a href="@Url.Action("StarBaby")"><span class="glyphicon glyphicon-calendar text-red"></span> &nbsp;&nbsp;申请加入训练计划（先付款） <i class="pull-right fa fa-angle-right badgeicon"></i></a></li>
+
                     }
-                    <li><a href="@Url.Action("Setting")"><span class="glyphicon glyphicon-user text-green"></span> 账号设置 <i class="pull-right fa fa-angle-right badgeicon"></i></a></li>
-                    <li><a href="@Url.Action("About")"><span class="glyphicon glyphicon-info-sign text-info"></span> 关于 <i class="pull-right fa fa-angle-right badgeicon"></i><span class="pull-right">V1.0.0</span></a></li>
+                    <li><a href="@Url.Action("About")"><span class="glyphicon glyphicon-tent text-info"></span> &nbsp;&nbsp;行为测评 <i class="pull-right fa fa-angle-right badgeicon"></i></a></li>
+                    <li><a href="@Url.Action("About")"><span class="glyphicon glyphicon-heart text-danger"></span> &nbsp;&nbsp;心理服务 <i class="pull-right fa fa-angle-right badgeicon"></i></a></li>
+                   <li><a href="@Url.Action("About")"><span class="glyphicon glyphicon-list-alt text-warning"></span> &nbsp;&nbsp;训练报告 <i class="pull-right fa fa-angle-right badgeicon"></i></a></li>
+           
                 </ul>
                 <div class="sky-space"></div>
                 <ul class="nav nav-stacked">
-                    <li><a href="@Url.Action("Logout")"><span class="glyphicon glyphicon-off text-red"></span> 退出登录 <i class="pull-right fa fa-angle-right badgeicon"></i></a></li>
+
+                    <li><a href="@Url.Action("Setting")"><span class="glyphicon glyphicon-user text-green"></span>  &nbsp;&nbsp;账号设置<i class="pull-right fa fa-angle-right badgeicon"></i></a></li>
+                    <li><a href="@Url.Action("About")"><span class="glyphicon glyphicon-info-sign text-info"></span> &nbsp;&nbsp;关于 <i class="pull-right fa fa-angle-right badgeicon"></i></a></li>
                 </ul>
+                <div class="sky-space"></div>
+                <div class="sky-space"></div>
+                <a class="btn btn-block btn-danger btn-lg" href="@Url.Action("Logout")">退出登录</a>
             </div>
         </div>
         <!-- /.widget-user -->

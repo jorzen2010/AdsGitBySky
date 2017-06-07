@@ -8,6 +8,9 @@ using AdsEntity;
 using AdsEntity.WechatEntity;
 using AdsWeb.WechatServices;
 using AdsDal;
+using Common;
+using PagedList;
+using PagedList.Mvc;
 
 namespace AdsWeb.Controllers
 {
@@ -91,16 +94,14 @@ namespace AdsWeb.Controllers
                 }
                 else
                 {
-                    ViewBag.info = "您尚未开通训练计划";
-                    return View(baby);
+                    return RedirectToAction("NoBaby");
 
                 }
 
             }
             else
             {
-                ViewBag.info = "您尚未登录";
-                return View(baby);
+                return RedirectToAction("Login");
             
             }
         }
@@ -141,34 +142,45 @@ namespace AdsWeb.Controllers
 
         }
 
-       
-      
 
-        public ActionResult Ceping()
+
+
+        public ActionResult Ceping(int? page)
         {
-            AdsBaby baby = new AdsBaby();
+
             if (Session["CustomerId"] != null)
             {
+
                 int id = int.Parse(Session["CustomerId"].ToString());
                 var babys = unitOfWork.adsBabysRepository.Get(filter: u => u.CustomerId == id);
                 int count = babys.Count();
                 if (count > 0)
                 {
-                    baby = babys.First() as AdsBaby;
-                    return View(baby);
+                    AdsBaby baby = babys.First() as AdsBaby;
+
+                    Pager pager = new Pager();
+                    pager.table = "Baogao";
+                    pager.strwhere = "BabyId=" + baby.BabyId;
+                    pager.PageSize = 20;
+                    pager.PageNo = page ?? 1;
+                    pager.FieldKey = "BaogaoId";
+                    pager.FiledOrder = "BaogaoId desc";
+
+                    pager = CommonDal.GetPager(pager);
+                    IList<Baogao> baogaos = DataConvertHelper<Baogao>.ConvertToModel(pager.EntityDataTable);
+                    var baogaosAsIPageList = new StaticPagedList<Baogao>(baogaos, pager.PageNo, pager.PageSize, pager.Amount);
+                    ViewBag.babyname = baby.BabyName;
+                    return View(baogaosAsIPageList);
                 }
                 else
                 {
-                    ViewBag.info = "您尚未开通训练计划";
-                    return View(baby);
-
+                    return RedirectToAction("NoBaby");
                 }
 
             }
             else
             {
-                ViewBag.info = "您尚未登录";
-                return View(baby);
+                return RedirectToAction("Login");
 
             }
         }
@@ -182,6 +194,8 @@ namespace AdsWeb.Controllers
         {
             if (Session["CustomerId"] != null)
             {
+
+
                 int id = int.Parse(Session["CustomerId"].ToString());
                 AdsCustomer customer = unitOfWork.adsCustomersRepository.GetByID(id);
                 AdsBaby baby = new AdsBaby();
@@ -212,7 +226,45 @@ namespace AdsWeb.Controllers
 
         }
 
-        public ActionResult Baogao()
+        public ActionResult Baogao(int? page)
+        {
+            
+            if (Session["CustomerId"] != null)
+            {
+
+                int id = int.Parse(Session["CustomerId"].ToString());
+                var babys = unitOfWork.adsBabysRepository.Get(filter: u => u.CustomerId == id);
+                int count = babys.Count();
+                if (count > 0)
+                {
+                    AdsBaby baby = babys.First() as AdsBaby;
+                    return View(baby);
+                }
+                else
+                {  
+                    return RedirectToAction("NoBaby");
+
+                }
+
+
+               
+               
+
+            }
+            else
+            {
+                return RedirectToAction("NoBaby");
+
+            }
+        }
+
+        public ActionResult NoBaby()
+        {
+            return View();
+        
+        }
+
+        public ActionResult Scale()
         {
             AdsBaby baby = new AdsBaby();
             if (Session["CustomerId"] != null)
@@ -239,11 +291,6 @@ namespace AdsWeb.Controllers
                 return View(baby);
 
             }
-        }
-
-        public ActionResult Scale()
-        {
-            return View();
         }
 
         public ActionResult Reg()
@@ -337,7 +384,32 @@ namespace AdsWeb.Controllers
         public ActionResult BaogaoDetail(int id)
         {
             Baogao baogao = unitOfWork.baogaoRepository.GetByID(id);
+            string  babyName = unitOfWork.adsBabysRepository.GetByID(baogao.BabyId).BabyName;
+            string str = baogao.BaogaoDementionScore;
 
+            string[] sArray = str.Split(',');
+            List<BaogaoDemention> demlist = new List<BaogaoDemention>();
+            string chartscategories = "[";
+            string chartsdata = "[";
+            
+            foreach (string s in sArray)
+            {
+              // string  dem=s.ToString();
+               BaogaoDemention dem = new BaogaoDemention();
+               dem.demName = s.Substring(0, s.IndexOf(":"));
+               dem.demScore = int.Parse(s.Substring(s.IndexOf(":") + 1));
+               demlist.Add(dem);
+               chartscategories = chartscategories + "\"" + dem.demName + "\""+",";
+               chartsdata = chartsdata + dem.demScore  + ",";
+              
+               
+            }
+            chartscategories = chartscategories.TrimEnd(',') + "]";
+            chartsdata = chartsdata.TrimEnd(',') + "]";
+            ViewData["dem"] = demlist;
+            ViewBag.categories = chartscategories;
+            ViewBag.chartsdata = chartsdata;
+            ViewBag.babyName = babyName;
             return View(baogao);
         }
 
@@ -345,7 +417,7 @@ namespace AdsWeb.Controllers
 
         [HttpPost]
 
-        public JsonResult SaveScaleResult(string score, string Dementionscore)
+        public JsonResult SaveScaleResult(string score, string Dementionscore, string totalscore)
         {
             int customerId = int.Parse(Session["CustomerId"].ToString());
             int babyid = unitOfWork.adsBabysRepository.Get(filter: u => u.CustomerId == customerId).First().BabyId;
@@ -356,6 +428,7 @@ namespace AdsWeb.Controllers
             Baogao baogao = new Baogao();
             baogao.BaogaoScore = score;
             baogao.BaogaoDementionScore = Dementionscore;
+            baogao.BaogaoTotalScore = totalscore;
             baogao.CustomerId = customerId;
             baogao.BabyId = babyid;
             baogao.ScaleId = 1;
