@@ -168,6 +168,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdsBabyController.cs" />
     <Compile Include="Controllers\AjaxController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\bvnode.cs" />
@@ -175,6 +176,7 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ScaleController.cs" />
     <Compile Include="Controllers\SettingController.cs" />
     <Compile Include="Controllers\SysUserController.cs" />
     <Compile Include="Controllers\VideoController.cs" />
@@ -1679,6 +1681,16 @@
     <Content Include="Views\Wechat\Login - 复制.cshtml" />
     <Content Include="Views\Shared\_WechatNoBabyPartial.cshtml" />
     <Content Include="Views\Wechat\NoBaby.cshtml" />
+    <Content Include="Views\Scale\Create.cshtml" />
+    <Content Include="Views\Scale\Delete.cshtml" />
+    <Content Include="Views\Scale\Details.cshtml" />
+    <Content Include="Views\Scale\Edit.cshtml" />
+    <Content Include="Views\Scale\Index.cshtml" />
+    <Content Include="Views\AdsBaby\Create.cshtml" />
+    <Content Include="Views\AdsBaby\Delete.cshtml" />
+    <Content Include="Views\AdsBaby\Details.cshtml" />
+    <Content Include="Views\AdsBaby\Edit.cshtml" />
+    <Content Include="Views\AdsBaby\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

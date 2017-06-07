@@ -100,6 +100,22 @@ namespace AdsDal
             sysUsers.ForEach(s => context.SysUsers.Add(s));
             context.SaveChanges();
 
+            #endregion 初始化配置
+
+            #region 量表初始化
+
+            var scales = new List<Scale>
+            {
+                new Scale{ScaleName="自闭症行为ABC量表",ScaleInfo="自闭症行为量表简介"},
+            };
+            scales.ForEach(s => context.Scales.Add(s));
+            context.SaveChanges();
+
+            #endregion 量表初始化
+
+            #region 分类初始化
+
+
             var categorys = new List<Category>
             {
                 new Category{CategoryName="顶级分类",CategoryInfo="顶级分类",CategoryParentID=0,CategoryStatus=true,CategorySort=0},

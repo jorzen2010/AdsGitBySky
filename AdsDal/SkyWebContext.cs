@@ -33,5 +33,7 @@ namespace AdsDal
 
         public System.Data.Entity.DbSet<AdsEntity.AdsCustomer> AdsCustomers { get; set; }
 
+        public System.Data.Entity.DbSet<AdsEntity.Scale> Scales { get; set; }
+
     }
 }

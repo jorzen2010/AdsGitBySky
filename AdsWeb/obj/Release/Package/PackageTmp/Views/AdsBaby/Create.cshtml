@@ -1,0 +1,89 @@
+﻿@model AdsEntity.AdsBaby
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>赵征专用-Create</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>AdsBaby</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CustomerId, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CustomerId)
+                @Html.ValidationMessageFor(model => model.CustomerId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BabyName, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BabyName)
+                @Html.ValidationMessageFor(model => model.BabyName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BabyAvatar, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BabyAvatar)
+                @Html.ValidationMessageFor(model => model.BabyAvatar)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BabySex, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BabySex)
+                @Html.ValidationMessageFor(model => model.BabySex)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BabyBirthday, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BabyBirthday)
+                @Html.ValidationMessageFor(model => model.BabyBirthday)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BabyRegTime, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BabyRegTime)
+                @Html.ValidationMessageFor(model => model.BabyRegTime)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BabyExpiredTime, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BabyExpiredTime)
+                @Html.ValidationMessageFor(model => model.BabyExpiredTime)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

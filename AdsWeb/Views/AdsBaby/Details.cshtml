@@ -1,0 +1,74 @@
+﻿@model AdsEntity.AdsBaby
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>赵征专用-Details</h2>
+
+<div>
+    <h4>AdsBaby</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BabyName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BabyName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BabyAvatar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BabyAvatar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BabySex)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BabySex)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BabyBirthday)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BabyBirthday)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BabyRegTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BabyRegTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BabyExpiredTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BabyExpiredTime)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BabyId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

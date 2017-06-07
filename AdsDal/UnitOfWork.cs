@@ -117,6 +117,21 @@ namespace AdsDal
              }
          }
 
+         private GenericRepository<Scale> ScaleRepository;
+
+         public GenericRepository<Scale> scaleRepository
+         {
+             get
+             {
+
+                 if (this.ScaleRepository == null)
+                 {
+                     this.ScaleRepository = new GenericRepository<Scale>(context);
+                 }
+                 return ScaleRepository;
+             }
+         }
+
      
         
 

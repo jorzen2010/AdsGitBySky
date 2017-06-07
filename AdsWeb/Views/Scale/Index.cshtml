@@ -1,0 +1,190 @@
+﻿@model StaticPagedList<AdsEntity.Scale>
+@using PagedList;
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "量表管理";
+}
+
+@section Topcss {
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+    <link href="~/plugins/bootstrap-validator/css/bootstrapValidator.css" rel="stylesheet" type="text/css" />
+    <link href="~/plugins/bootstrap-switch/css/bootstrap-switch.css" rel="stylesheet" type="text/css" />
+    <link href="~/plugins/iCheck/square/green.css" rel="stylesheet" type="text/css" />
+}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        @ViewBag.Title
+        <small>
+            @ViewBag.SmallTitle
+        </small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> 首页</a></li>
+        <li><a href="#">@ViewBag.Title</a></li>
+        <li class="active">@ViewBag.SmallTitle</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-primary">
+                <div class="box-header">
+                    <div class="pull-left">
+                        <div class="btn-group">
+                            <button class="btn btn-success" data-toggle="modal" data-target="#addScale"><i class="fa fa-plus"></i> 新增量表</button>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th class="col-sm-1">
+                                    序号
+                                </th>
+                                <th class="col-sm-2">
+                                    量表名称
+                                </th>
+                                <th class="col-sm-2">
+                                    量表简介
+                                </th>
+                   
+                                <th class="col-sm-4">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ScaleId)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ScaleName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ScaleInfo)
+                                    </td>
+                                  
+                                    <td>
+                                        @Html.AntiForgeryToken()
+                                        <button class="btn btn-danger btn-xs" type="button" onclick="delconfirm('@item.ScaleId','/Scale/DeleteConfirmed/','/Scale/Index')"><span class="glyphicon glyphicon-trash"></span> 删除</button>
+                           
+                                    </td>
+
+                                </tr>
+
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer clearfix">
+                    <ul class="pull-right">
+                        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page = page }),
+    new PagedListRenderOptions
+    {
+        LinkToPreviousPageFormat = "上一页",
+        LinkToNextPageFormat = "下一页",
+        DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+        DisplayLinkToLastPage = PagedListDisplayMode.Always,
+        DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+        DisplayLinkToNextPage = PagedListDisplayMode.Always,
+        MaximumPageNumbersToDisplay = 5,
+        LinkToFirstPageFormat = "首页",
+        LinkToLastPageFormat = "最后一页",
+        PageCountAndCurrentLocationFormat = "第 {0}页 共 {1}页"
+    })
+                    </ul>
+                </div>
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->
+<!-- 新增量表的模态框开始 -->
+<div class="modal fade" id="addScale" tabindex="-1" role="dialog" aria-labelledby="addScaleLabel" aria-hidden="true" style="margin-top:100px;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="addModalLabel">
+                    新增量表
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="addScaleForm" method="post" action="@Url.Action("Create")">
+                    @Html.AntiForgeryToken()
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="username" class="col-sm-2 control-label">量表名称</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="ScaleName" placeholder="量表名称">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">量表简介</label>
+                            <div class="col-sm-10">
+                                <textarea name="SacleInfo" id="SacleInfo" class="form-control" rows="3"></textarea>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-primary pull-right">确定新增</button>
+                    </div>
+                    <!-- /.box-footer -->
+                </form>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<!-- 新增用户的模态框结束 -->
+@section FootScripts {
+    <script type="text/javascript" src="/plugins/iCheck/icheck.js"></script>
+    <script type="text/javascript" src="/plugins/bootstrap-switch/js/bootstrap-switch.js"></script>
+    <script type="text/javascript" src="/plugins/bootstrap-validator/js/bootstrapValidator.js"></script>
+    <script type="text/javascript" src="/plugins/bootbox.min.js"></script>
+    <script type="text/javascript" src="/Resource/js/SkyWeb.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            //表单验证
+            $('#addScaleForm').bootstrapValidator({
+                //        live: 'disabled',
+                message: 'This value is not valid',
+                feedbackIcons: {
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid: 'glyphicon glyphicon-remove',
+                    validating: 'glyphicon glyphicon-refresh'
+                },
+                fields: {
+                    ScaleName: {
+                        validators: {
+                            notEmpty: {
+                                message: '量表名称不能为空'
+                            },
+                        }
+                    },
+                    
+                }
+            });
+
+
+        });
+
+    </script>
+}
