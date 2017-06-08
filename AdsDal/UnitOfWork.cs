@@ -101,6 +101,19 @@ namespace AdsDal
                  return AdsBabysRepository;
              }
          }
+         private GenericRepository<Pingjia> PingjiaRepository;
+         public GenericRepository<Pingjia> pingjiasRepository
+         {
+             get
+             {
+
+                 if (this.PingjiaRepository == null)
+                 {
+                     this.PingjiaRepository = new GenericRepository<Pingjia>(context);
+                 }
+                 return PingjiaRepository;
+             }
+         }
 
          private GenericRepository<Baogao> BaogaoRepository;
 

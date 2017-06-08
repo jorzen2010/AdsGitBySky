@@ -1,6 +1,7 @@
 ﻿@model StaticPagedList<AdsEntity.Baogao>
 @using PagedList;
 @using PagedList.Mvc;
+@using AdsServices;
 @{
     Layout = "~/Views/Shared/_WechatLayout.cshtml";
 }
@@ -51,9 +52,9 @@
 
             <div class="pull-left sky-index-itemcontent">
                 <span class="sky-index-itemcontent-title">
-                    @Html.DisplayFor(modelItem => item.ScaleId) 报告
+                    @ScaleServices.GetScaleNameById(item.ScaleId) 报告
                 </span>
-                <p>被测评人：@ViewBag.babyname</p>
+                <p>被测评人：@BabyServices.GetBabyNameById(item.BabyId)</p>
                 <p>测评时间：@Html.DisplayFor(modelItem => item.BaogaoTime)</p>
             </div>
 
@@ -62,21 +63,6 @@
         </div>
 }
 
-<div class="row skyindexrow">
-
-    <img src="~/WechatResource/img/user1-128x128.jpg" alt="User Avatar" class="pull-left sky-index-itemimg">
-
-    <div class="pull-left sky-index-itemcontent">
-        <span class="sky-index-itemcontent-title">
-            焦虑 | 如何治疗焦虑
-        </span>
-        <p>讲师：贺苏</p>
-        <p>已有78488人浏览</p>
-    </div>
-
-    <button class="pull-right btn btn-warning btn-sm">马上学习</button>
-
-</div>
 
 <div class="box-footer clearfix">
     <ul>
@@ -85,10 +71,10 @@
     {
         LinkToPreviousPageFormat = "上一页",
         LinkToNextPageFormat = "下一页",
-        DisplayLinkToFirstPage = PagedListDisplayMode.Always,
-        DisplayLinkToLastPage = PagedListDisplayMode.Always,
-        DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
-        DisplayLinkToNextPage = PagedListDisplayMode.Always,
+        DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded,
+        DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded,
+        DisplayLinkToPreviousPage = PagedListDisplayMode.IfNeeded,
+        DisplayLinkToNextPage = PagedListDisplayMode.IfNeeded,
         MaximumPageNumbersToDisplay = 5,
         LinkToFirstPageFormat = "首页",
         LinkToLastPageFormat = "最后一页",

@@ -1,0 +1,29 @@
+﻿@{
+    Layout = "~/Views/Shared/_WechatLayout.cshtml";
+}
+
+<div class="row">
+    <!-- Widget: user widget style 1 -->
+    <div class="box box-widget widget-user">
+        <!-- Add the bg color to the header using any of the bg-* classes -->
+        <div class="widget-user-header bg-aqua-active">
+
+        </div>
+        <div class="widget-user-image">
+            <img class="img-circle" src="~/wechatResource/img/star.jpg" alt="User Avatar">
+        </div>
+        <div class="box-footer">
+            <div class="row">
+                <div class="col-xs-12 center">
+                    <div class="description-block">
+                        <h5 class="description-header">星宝计划尚未开通</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.widget-user -->
+    <a class="btn btn-block btn-info btn-lg" href="@Url.Action("StarBaby")">立刻开通</a>
+    <a class="btn btn-block btn-success btn-lg" href="@Url.Action("StarBaby")">申请绿色通道开通</a>
+
+</div>

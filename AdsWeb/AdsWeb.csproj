@@ -1666,19 +1666,16 @@
     <Content Include="Views\Wechat\Ceping.cshtml" />
     <Content Include="Views\Wechat\HeartList.cshtml" />
     <Content Include="Views\Wechat\MemberCenter.cshtml" />
-    <Content Include="Views\Wechat\Baogao.cshtml" />
     <Content Include="Views\Wechat\Scale.cshtml" />
     <Content Include="Views\Wechat\Reg.cshtml" />
     <Content Include="Views\Wechat\StarBaby.cshtml" />
     <Content Include="Views\Wechat\BaogaoDetail.cshtml" />
-    <Content Include="Views\Wechat\MemberCenter - 复制.cshtml" />
     <Content Include="Views\Wechat\Login.cshtml" />
     <Content Include="Views\Wechat\Setting.cshtml" />
     <Content Include="Views\Wechat\GetUserId.cshtml" />
     <Content Include="wxapi.ashx" />
     <Content Include="Views\Shared\_WechatMenuPartial.cshtml" />
     <Content Include="Views\Shared\_WechatLayout.cshtml" />
-    <Content Include="Views\Wechat\Login - 复制.cshtml" />
     <Content Include="Views\Shared\_WechatNoBabyPartial.cshtml" />
     <Content Include="Views\Wechat\NoBaby.cshtml" />
     <Content Include="Views\Scale\Create.cshtml" />
@@ -1691,6 +1688,9 @@
     <Content Include="Views\AdsBaby\Details.cshtml" />
     <Content Include="Views\AdsBaby\Edit.cshtml" />
     <Content Include="Views\AdsBaby\Index.cshtml" />
+    <Content Include="Views\Wechat\VideoDetail.cshtml" />
+    <Content Include="Views\Wechat\Pingjia.cshtml" />
+    <Content Include="Views\Wechat\NoPay.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

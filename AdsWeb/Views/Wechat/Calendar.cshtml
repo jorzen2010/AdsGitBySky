@@ -3,14 +3,7 @@
     Layout = "~/Views/Shared/_WechatLayout.cshtml";
 }
 
-@if (string.IsNullOrEmpty(Model.BabyName))
-{
-    @Html.Partial("_WechatNoBabyPartial")
-}
-
-else
-{
-    <div class="row">
+  <div class="row">
         <!-- Widget: user widget style 1 -->
         <div class="box box-widget widget-user">
             <!-- Add the bg color to the header using any of the bg-* classes -->
@@ -120,4 +113,3 @@ else
 
     </div>
 
-}

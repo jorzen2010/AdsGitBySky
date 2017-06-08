@@ -17,8 +17,9 @@ namespace AdsWeb.Controllers
     public class WechatController : Controller
     {
         private UnitOfWork unitOfWork = new UnitOfWork();
-        //
-        //首页/
+      
+
+        #region 微信登录跳转页面
         public ActionResult Index()
         {
              string userAgent = Request.UserAgent;
@@ -78,7 +79,33 @@ namespace AdsWeb.Controllers
 
            // return View();
         }
+        #endregion 
 
+        #region 微信登录
+        public ActionResult WechatLogin()
+        {
+                string sourceUrl = Request.UrlReferrer.ToString();
+
+                string userAgent = Request.UserAgent;
+         
+                WechatConfig wechatconfig = AccessTokenService.GetWechatConfig();
+
+                string REDIRECT_URI = System.Web.HttpUtility.UrlEncode("http://wx.zzd123.com/Wechat/Index");
+
+                string SCOPE = "snsapi_userinfo";
+                string STATE = sourceUrl;
+
+                string url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + wechatconfig.Appid + "&redirect_uri=" + REDIRECT_URI + "&response_type=code&scope=" + SCOPE + "&state="+STATE+"#wechat_redirect";
+
+                return Redirect(url);
+           
+
+
+        }
+        #endregion
+        
+        
+        #region 训练计划
         public ActionResult Calendar()
         {
             AdsBaby baby = new AdsBaby();
@@ -105,7 +132,9 @@ namespace AdsWeb.Controllers
             
             }
         }
+        #endregion
 
+        #region 登录页面
         public ActionResult Login()
         {
          //   string nickname = Session["nickname"].ToString();
@@ -119,32 +148,11 @@ namespace AdsWeb.Controllers
             }
         
         }
+        #endregion
 
-       
-        public ActionResult WechatLogin()
-        {
-                string sourceUrl = Request.UrlReferrer.ToString();
+        
 
-                string userAgent = Request.UserAgent;
-         
-                WechatConfig wechatconfig = AccessTokenService.GetWechatConfig();
-
-                string REDIRECT_URI = System.Web.HttpUtility.UrlEncode("http://wx.zzd123.com/Wechat/Index");
-
-                string SCOPE = "snsapi_userinfo";
-                string STATE = sourceUrl;
-
-                string url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + wechatconfig.Appid + "&redirect_uri=" + REDIRECT_URI + "&response_type=code&scope=" + SCOPE + "&state="+STATE+"#wechat_redirect";
-
-                return Redirect(url);
-           
-
-
-        }
-
-
-
-
+        #region 量表测评
         public ActionResult Ceping(int? page)
         {
 
@@ -184,12 +192,16 @@ namespace AdsWeb.Controllers
 
             }
         }
+        #endregion
 
+        #region 心理服务
         public ActionResult HeartList()
         {
             return View();
         }
+        #endregion
 
+        #region 个人中心
         public ActionResult MemberCenter()
         {
             if (Session["CustomerId"] != null)
@@ -225,7 +237,9 @@ namespace AdsWeb.Controllers
             
 
         }
+        #endregion
 
+        #region 测评页面
         public ActionResult Baogao(int? page)
         {
             
@@ -257,13 +271,17 @@ namespace AdsWeb.Controllers
 
             }
         }
+        #endregion
 
+        #region 尚未申请计划
         public ActionResult NoBaby()
         {
             return View();
         
         }
+        #endregion
 
+        #region 心理测评
         public ActionResult Scale()
         {
             AdsBaby baby = new AdsBaby();
@@ -292,45 +310,45 @@ namespace AdsWeb.Controllers
 
             }
         }
+        #endregion
 
+        #region 注册页面
         public ActionResult Reg()
         {
             return View();
         }
 
+        //public ActionResult GetUserInfo()
+        //{
+        //    WechatConfig wechatconfig = AccessTokenService.GetWechatConfig();
+
+        //    string REDIRECT_URI = System.Web.HttpUtility.UrlEncode("http://wx.zzd123.com/Wechat/GetUserId");
+
+        //    string SCOPE = "snsapi_userinfo";
+
+        //    string url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + wechatconfig.Appid + "&redirect_uri=" + REDIRECT_URI + "&response_type=code&scope=" + SCOPE + "&state=STATE#wechat_redirect";
+
+        //    return Redirect(url);
+
+        //}
+        //public ActionResult GetUserId()
+        //{
+
+        //    string CODE = Request["code"];
+        //    string STATE = Request["state"];
+
+        //    string userAgent = Request.UserAgent;
+
+        //    WebchatJsUserinfo userinfo = WechatJsServices.GetUserInfo(userAgent, CODE);
+
+        //    return View(userinfo);
 
 
-        public ActionResult GetUserInfo()
-        {
-            WechatConfig wechatconfig = AccessTokenService.GetWechatConfig();
+        //}
 
-            string REDIRECT_URI = System.Web.HttpUtility.UrlEncode("http://wx.zzd123.com/Wechat/GetUserId");
+        #endregion
 
-            string SCOPE = "snsapi_userinfo";
-
-            string url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + wechatconfig.Appid + "&redirect_uri=" + REDIRECT_URI + "&response_type=code&scope=" + SCOPE + "&state=STATE#wechat_redirect";
-
-            return Redirect(url);
-
-        }
-        public ActionResult GetUserId()
-        {
-
-            string CODE = Request["code"];
-            string STATE = Request["state"];
-
-            string userAgent = Request.UserAgent;
-
-            WebchatJsUserinfo userinfo = WechatJsServices.GetUserInfo(userAgent, CODE);
-
-            return View(userinfo);
-
-
-        }
-
-
-
-
+        #region 退出
         public ActionResult Logout()
         {
             Session["CustomerNickName"] = null;
@@ -339,11 +357,16 @@ namespace AdsWeb.Controllers
             return RedirectToAction("Login");
         }
 
+        #endregion
+
+        #region 账号设置
         public ActionResult Setting()
         {
             return View();
         }
+        #endregion
 
+        #region 申请加入计划
         public ActionResult StarBaby()
         {
             if (Session["CustomerId"] != null)
@@ -357,9 +380,158 @@ namespace AdsWeb.Controllers
             }
            
         }
+        #endregion
+
+        #region 未付费
+        public ActionResult NoPay()
+        {
+            if (Session["CustomerId"] != null)
+            {
+               
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login");
+
+            }
+
+        }
+        #endregion
+
+        #region 付费Action
+        public ActionResult Pay(int bid)
+        {
+            if (Session["CustomerId"] != null)
+            {
+                AdsBaby baby = unitOfWork.adsBabysRepository.GetByID(bid);
+                baby.Babystatus = true;
+
+                return RedirectToAction("Calendar");
+               
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+
+        }
+        #endregion
 
 
 
+
+
+        #region 项目评价
+        public ActionResult Pingjia(int? page,int?sid) 
+        {
+
+            int status = sid ?? 0;
+            if (Session["CustomerId"] != null)
+            {
+                int id = int.Parse(Session["CustomerId"].ToString());
+                var babys = unitOfWork.adsBabysRepository.Get(filter: u => u.CustomerId == id);
+                int count = babys.Count();
+                if (count > 0)
+                {
+                    AdsBaby baby = babys.First() as AdsBaby;
+                    Pager pager = new Pager();
+                    pager.table = "Pingjia";
+                    pager.strwhere = "BabyId=" + baby.BabyId;
+                    if (status != 0)
+                    {
+                        pager.strwhere = pager.strwhere + " and Status=" + status;
+                    
+                    }
+                    pager.PageSize = 20;
+                    pager.PageNo = page ?? 1;
+                    pager.FieldKey = "PingjiaId";
+                    pager.FiledOrder = "PingjiaId desc";
+
+                    pager = CommonDal.GetPager(pager);
+                    IList<Pingjia> pingjias = DataConvertHelper<Pingjia>.ConvertToModel(pager.EntityDataTable);
+                    var pingjiasAsIPageList = new StaticPagedList<Pingjia>(pingjias, pager.PageNo, pager.PageSize, pager.Amount);
+                    ViewBag.babyId = baby.BabyId;
+                    return View(pingjiasAsIPageList);
+                }
+                else
+                {
+                    return RedirectToAction("NoBaby");
+
+                }
+
+            }
+            else
+            {
+                return RedirectToAction("Login");
+
+            }
+        
+        }
+
+        #endregion
+
+        #region 评价记录
+        public ActionResult PingjiaCreate(int babyId, int status, int videoId)
+        {
+            Pingjia pingjia = new Pingjia();
+            pingjia.BabyId = babyId;
+            pingjia.VideoId =videoId ;
+            if (status == 1)
+            {
+                pingjia.Status = PingjiaStatus.熟练完成;
+            }
+            if (status == 2)
+            {
+                pingjia.Status = PingjiaStatus.基本完成;
+            }
+            if (status == 3)
+            {
+                pingjia.Status = PingjiaStatus.不能完成;
+            }
+            pingjia.PingjiaTime = DateTime.Now;
+
+            unitOfWork.pingjiasRepository.Insert(pingjia);
+            unitOfWork.Save();
+
+            return View();
+        
+        }
+        #endregion
+
+        #region 项目详情
+        public ActionResult VideoDetail()
+        {
+            AdsBaby baby = new AdsBaby();
+            if (Session["CustomerId"] != null)
+            {
+                int id = int.Parse(Session["CustomerId"].ToString());
+                var babys = unitOfWork.adsBabysRepository.Get(filter: u => u.CustomerId == id);
+                int count = babys.Count();
+                if (count > 0)
+                {
+                    baby = babys.First() as AdsBaby;
+                    ViewBag.babyId = baby.BabyId;
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("NoBaby");
+
+                }
+
+            }
+            else
+            {
+                return RedirectToAction("Login");
+
+            }
+        
+        }
+
+        #endregion
+
+        #region 创建计划
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult BabyCreate(AdsBaby baby)
@@ -380,7 +552,9 @@ namespace AdsWeb.Controllers
             return View(baby);
         }
 
-        //报告详情页
+        #endregion
+
+        #region 量表报告详情页面
         public ActionResult BaogaoDetail(int id)
         {
             Baogao baogao = unitOfWork.baogaoRepository.GetByID(id);
@@ -414,7 +588,9 @@ namespace AdsWeb.Controllers
         }
 
 
+        #endregion
 
+        #region 保存测评结果
         [HttpPost]
 
         public JsonResult SaveScaleResult(string score, string Dementionscore, string totalscore)
@@ -450,6 +626,7 @@ namespace AdsWeb.Controllers
             
             return Json(msg, JsonRequestBehavior.AllowGet);
         }
+        #endregion
 
 
     }

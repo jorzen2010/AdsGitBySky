@@ -1,0 +1,89 @@
+﻿@model StaticPagedList<AdsEntity.Pingjia>
+@using PagedList;
+@using PagedList.Mvc;
+@using AdsServices;
+@{
+    Layout = "~/Views/Shared/_WechatLayout.cshtml";
+}
+
+@section Topcss {
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+}
+
+
+        <ul class="row skylistbtn">
+
+            <li class="col-xs-1-5 text-center sky-nav-li">
+                <span><a class="btn btn-primary btn-circle btn-sm" href="#"><i class="glyphicon glyphicon-th-list"></i></a></span>
+                <span>全部能力</span>
+            </li>
+            <li class="col-xs-1-5 text-center sky-nav-li">
+                <span><a class="btn btn-success btn-circle btn-sm" href="@Url.Action("Pingjia", "Wechat", new { sid=1})"><i class="glyphicon glyphicon-star"></i></a></span>
+                <span>熟练完成</span>
+            </li>
+            <li class="col-xs-1-5 text-center sky-nav-li">
+                <span><a class="btn btn-warning btn-circle btn-sm" href="@Url.Action("Pingjia", "Wechat", new { sid=2})"><i class="glyphicon glyphicon-adjust"></i></a></span>
+                <span>基本完成</span>
+            </li>
+            <li class="col-xs-1-5 text-center sky-nav-li">
+                <span><a class="btn btn-danger btn-circle btn-sm" href="@Url.Action("Pingjia", "Wechat", new { sid=3})"><i class="glyphicon glyphicon-star-empty"></i></a></span>
+                <span>不能完成</span>
+            </li>
+            <li class="col-xs-1-5 text-center sky-nav-li">
+                <span><a class="btn btn-info btn-circle btn-sm" href="#"><i class="glyphicon glyphicon-stats"></i></a></span>
+                <span>数据统计</span>
+            </li>
+
+        </ul>
+    
+        <div class="row skyindexrow">
+            <div class="pull-left text-orange skyindexrowtitle"><i class="glyphicon glyphicon-heart"></i> 的训练报告</div>
+            <div class="pull-right skyindexrowrighttitle">共计455次</div>
+        </div>
+
+        <div style="background-color:#ffffff">
+            <table class="table">
+                <thead>
+                    <tr>
+                    
+                        <th>项目名称</th>
+                        <th>训练时间</th>
+                        <th>训练结果</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+@foreach (var item in Model)
+{ 
+                    <tr>
+                      
+                        <td>@Html.DisplayFor(modelItem => item.VideoId)</td>
+                        <td>@Html.DisplayFor(modelItem => item.PingjiaTime)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                    </tr>
+}
+                  
+
+                </tbody>
+            </table>
+        </div>
+
+<div class="box-footer clearfix">
+    <ul>
+        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Pingjia", new { page = page }),
+    new PagedListRenderOptions
+    {
+        LinkToPreviousPageFormat = "上一页",
+        LinkToNextPageFormat = "下一页",
+        DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+        DisplayLinkToLastPage = PagedListDisplayMode.Always,
+        DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+        DisplayLinkToNextPage = PagedListDisplayMode.Always,
+        MaximumPageNumbersToDisplay = 5,
+        LinkToFirstPageFormat = "首页",
+        LinkToLastPageFormat = "最后一页",
+        PageCountAndCurrentLocationFormat = "第 {0}页 共 {1}页"
+    })
+    </ul>
+</div>

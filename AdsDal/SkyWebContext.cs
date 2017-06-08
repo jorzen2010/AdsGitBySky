@@ -28,6 +28,7 @@ namespace AdsDal
         public DbSet<Category> Categorys { get; set; }
         public DbSet<Baogao> Baogaos { get; set; }
         public DbSet<AdsBaby> AdsBabys { get; set; }
+        public DbSet<Pingjia> Pingjias { get; set; }
 
         public System.Data.Entity.DbSet<AdsEntity.AdsVideo> AdsVideos { get; set; }
 

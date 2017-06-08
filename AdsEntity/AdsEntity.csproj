@@ -47,6 +47,7 @@
     <Compile Include="AdsPsyTest.cs" />
     <Compile Include="AdsSelfTest.cs" />
     <Compile Include="Baogao.cs" />
+    <Compile Include="Pingjia.cs" />
     <Compile Include="Scale.cs" />
     <Compile Include="SysUser.cs" />
     <Compile Include="AdsTeacher.cs" />
