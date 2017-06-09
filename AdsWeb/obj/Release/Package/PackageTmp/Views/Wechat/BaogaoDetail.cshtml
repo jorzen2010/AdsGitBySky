@@ -4,20 +4,193 @@
     Layout = "~/Views/Shared/_WechatLayout.cshtml";
 }
 
-  <h4>自闭症行为量表报告</h4>
+
+<div class="row skyindexrow">
+    <div class=" text-orange skyindexrowtitle"><i class="glyphicon glyphicon-heart"></i> 自闭症行为量表的测评报告</div>
+</div>
+
+<div style="background-color:#ffffff">
+    <table class="table">
+        <thead>
+            <tr>
+
+                <th>星宝姓名</th>
+                <td>@ViewBag.babyName</td>
+                <th>星宝性别</th>
+                <td>@ViewBag.babySex</td>
+            </tr>
+        </thead>
+        <tbody>
+
+             <tr>
+                
+                 <th>星宝年龄</th>
+                 <td>@ViewBag.babyage 岁</td>
+                 <th>测评日期</th>
+                 <td>@Model.BaogaoTime</td> 
+                </tr>
+           
+
+        </tbody>
+
+    </table>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+
+                <th>统计项目</th>
+                <th>项目参考值</th>
+                <th>项目得分</th>
+            </tr>
+
+            @foreach (BaogaoDemention dem in ViewData["dem"] as List<BaogaoDemention>)
+            {
+
+               
+                
+                 <tr>
+
+                <td>@dem.demName</td>
+               
+                <td>无</td>
+                 <td>@dem.demScore</td>
+            </tr>
+                
+                
+            }
+          
+            <tr>
+                <td>总分</td>
+               
+                <td>筛查57分/诊断67分</td>
+                <td>@Model.BaogaoTotalScore</td>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+
+                <th colspan="4">量表详情</th>
+
+
+            </tr>
+            <tr>
+
+                <td colspan="4">
+                <div id="main" style="width: 100%;height:400px;"></div>
+                </td>
+
+
+            </tr>
+            <tr>
+
+                <th colspan="4">结果分析</th>
+
+
+            </tr>
+            <tr>
+
+                <td colspan="4">
+                   您的总得分是：56分，达到了筛查界限分数，请您到正规机构进行筛查。<br/>
+                   根据量表筛查界限分为57分，诊断分数为67分。<br />
+                    您也可以拨打0451-2565265进行咨询
+                   
+                </td>
+
+
+            </tr>
+            <tr>
+
+                <th colspan="4">行为建议</th>
+                
+
+            </tr>
+            <tr>
+
+                <td colspan="4">建议您继续保持训练。建议您立即加入自闭症家庭训练计划</td>
+
+
+            </tr>
+
+
+        </tbody>
+
+    </table>
+    
+
+
+</div>
+
+
+
+
+
+
+
+        @*<h4>自闭症行为量表报告</h4>
         <h5>姓名：@ViewBag.babyName</h5>
         <h5>测评日期：@Model.BaogaoTime</h5>
-@foreach (BaogaoDemention dem in ViewData["dem"] as List<BaogaoDemention>)
-{
-  
-     <h5>@dem.demName：@dem.demScore</h5>
-}
+        @foreach (BaogaoDemention dem in ViewData["dem"] as List<BaogaoDemention>)
+        {
+
+            <h5>@dem.demName：@dem.demScore</h5>
+        }
 
 
         <h4>量表详情 @ViewBag.categories</h4>
-<h4>量表详情 @ViewBag.chartsdata</h4>
+        <h4>量表详情 @ViewBag.chartsdata</h4>
 
-        <hr />
+        <hr />*@
 
 
-  
+@section FootScripts {
+   <script type="text/javascript" src="/plugins/echarts.min.js"></script>
+
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+
+    // 指定图表的配置项和数据
+    var option = {
+        title: {
+           // text: '自闭症行为量表分析'
+        },
+        tooltip: {},
+        legend: {
+            data: ['自闭症行为']
+        },
+        xAxis: {
+            data: ["感觉", "交往", "运动", "语言", "自理"]
+        },
+        yAxis: {},
+        series: [{
+            itemStyle: {
+                normal: {
+                    //好，这里就是重头戏了，定义一个list，然后根据所以取得不同的值，这样就实现了，
+                    color: function (params) {
+                        // build a color map as your need.
+                        var colorList = [
+                          '#C1232B',  '#E87C25', '#27727B',
+                           '#FE8463',  '#26C0C0'
+                        ];
+                        return colorList[params.dataIndex]
+                    },
+                    //以下为是否显示，显示位置和显示格式的设置了
+                    label: {
+                        show: true,
+                        position: 'top',
+                        //                             formatter: '{c}'
+                        formatter: '{b}\n{c}'
+                    }
+                }
+            },
+            type: 'bar',
+            data: @ViewBag.chartsdata
+        }]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
+
+    }

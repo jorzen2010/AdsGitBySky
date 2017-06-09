@@ -15,7 +15,7 @@
         <ul class="row skylistbtn">
 
             <li class="col-xs-1-5 text-center sky-nav-li">
-                <span><a class="btn btn-primary btn-circle btn-sm" href="#"><i class="glyphicon glyphicon-th-list"></i></a></span>
+                <span><a class="btn btn-primary btn-circle btn-sm" href="@Url.Action("Pingjia", "Wechat", new { sid=0})"><i class="glyphicon glyphicon-th-list"></i></a></span>
                 <span>全部能力</span>
             </li>
             <li class="col-xs-1-5 text-center sky-nav-li">
@@ -66,12 +66,11 @@
                   
 
                 </tbody>
+                
             </table>
-        </div>
-
-<div class="box-footer clearfix">
-    <ul>
-        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Pingjia", new { page = page }),
+            <div class="box-footer clearfix">
+                <ul>
+                    @Html.PagedListPager((IPagedList)Model, page => Url.Action("Pingjia", new { page = page }),
     new PagedListRenderOptions
     {
         LinkToPreviousPageFormat = "上一页",
@@ -85,5 +84,9 @@
         LinkToLastPageFormat = "最后一页",
         PageCountAndCurrentLocationFormat = "第 {0}页 共 {1}页"
     })
-    </ul>
-</div>
+                </ul>
+            </div>
+        
+        
+         </div>
+

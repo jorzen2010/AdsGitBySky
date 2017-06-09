@@ -21,7 +21,7 @@ namespace AdsWeb.Controllers
         private UnitOfWork unitOfWork = new UnitOfWork();
 
         // GET: /SysUser/Default1
-        public ActionResult Index(int? page, int? iden,int?rid)
+        public ActionResult Index(int? page, int? iden)
         {
             Pager pager = new Pager();
             pager.table = "AdsCustomer";
@@ -31,11 +31,11 @@ namespace AdsWeb.Controllers
             {
                 pager.strwhere = pager.strwhere + " and  CustomerIdentity=" + iden;
             }
-            int roleid = rid ?? 0;
-            if (roleid != 0)
-            {
-                pager.strwhere = pager.strwhere + " and  CustomerRole=" + roleid;
-            }
+            //int roleid = rid ?? 0;
+            //if (roleid != 0)
+            //{
+            //    pager.strwhere = pager.strwhere + " and  CustomerRole=" + roleid;
+            //}
             
             pager.PageSize = SkyPageSize;
             pager.PageNo = page ?? 1;
@@ -46,22 +46,22 @@ namespace AdsWeb.Controllers
             IList<AdsCustomer> customers = CustomerServices.GetListForPageList(pager);
             var customersAsIPageList = new StaticPagedList<AdsCustomer>(customers, pager.PageNo, pager.PageSize, pager.Amount);
             ViewBag.SmallTitle = "客户总数共计："+pager.Amount+"人";
-            CategoryServices categoryServices = new CategoryServices();
-            ViewData["CustomerRole"] = categoryServices.GetCategorySelectList(SkyCustomerRootId);
-            ViewData["CusRolebtn"] = categoryServices.GetCategoryListByParentID(SkyCustomerRootId);
+            //CategoryServices categoryServices = new CategoryServices();
+            ViewData["CustomerRole"] = CategoryServices.GetCategorySelectList(SkyCustomerRootId);
+            ViewData["CusRolebtn"] = CategoryServices.GetCategoryListByParentID(SkyCustomerRootId);
             return View(customersAsIPageList);
         }
 
-        public ActionResult Search(int? page, string role, string uname, string rname, string tel, string idcard, string sf, string city, string diqu)
+        public ActionResult Search(int? page, string uname, string rname, string tel, string idcard, string sf, string city, string diqu)
         {
 
             Pager pager = new Pager();
             pager.table = "AdsCustomer";
             pager.strwhere ="1=1";
-            if (!string.IsNullOrEmpty(role))
-            {
-                pager.strwhere = pager.strwhere + "and CustomerRole=" + int.Parse(role) + " ";
-            }
+            //if (!string.IsNullOrEmpty(role))
+            //{
+            //    pager.strwhere = pager.strwhere + "and CustomerRole=" + int.Parse(role) + " ";
+            //}
             if (!string.IsNullOrEmpty(uname))
             {
                 pager.strwhere = pager.strwhere + " and CustomerUserName like'%" + uname + "%' ";
@@ -99,8 +99,8 @@ namespace AdsWeb.Controllers
             pager = CommonDal.GetPager(pager);
             IList<AdsCustomer> customers = DataConvertHelper<AdsCustomer>.ConvertToModel(pager.EntityDataTable);
             var customersAsIPageList = new StaticPagedList<AdsCustomer>(customers, pager.PageNo, pager.PageSize, pager.Amount);
-            CategoryServices categoryServices = new CategoryServices();
-            ViewData["CustomerRole"] = categoryServices.GetCategorySelectList(SkyCustomerRootId);
+          //  CategoryServices categoryServices = new CategoryServices();
+            ViewData["CustomerRole"] = CategoryServices.GetCategorySelectList(SkyCustomerRootId);
             return View(customersAsIPageList);
         }
 
@@ -129,63 +129,63 @@ namespace AdsWeb.Controllers
             return Json(msg, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public JsonResult SetIdentity(int id,int identity)
-        {
-            Message msg = new Message();
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public JsonResult SetIdentity(int id,int identity)
+        //{
+        //    Message msg = new Message();
 
-            AdsCustomer customer = unitOfWork.adsCustomersRepository.GetByID(id);
+        //    AdsCustomer customer = unitOfWork.adsCustomersRepository.GetByID(id);
 
-            if (identity == 0)
-            {
-                customer.CustomerIdentity = AdsCustomer.IdentiyStatus.审核失败;
-            }
-            else
-            {
-                customer.CustomerIdentity = AdsCustomer.IdentiyStatus.已申请计划;       
-            }
+        //    if (identity == 0)
+        //    {
+        //        customer.CustomerIdentity = AdsCustomer.IdentiyStatus.审核失败;
+        //    }
+        //    else
+        //    {
+        //        customer.CustomerIdentity = AdsCustomer.IdentiyStatus.已申请计划;       
+        //    }
 
-            if (ModelState.IsValid)
-            {
+        //    if (ModelState.IsValid)
+        //    {
 
-                unitOfWork.adsCustomersRepository.Update(customer);
-                unitOfWork.Save();
-                msg.MessageStatus = "true";
-                msg.MessageInfo = identity == 1 ? "身份认证通过！" : "身份认证资料不符合要求，认证不通过";
-            }
-            else
-            {
-                msg.MessageStatus = "false";
-                msg.MessageInfo = "身份审核过程出现问题，认证操作失败！";
-            }
-
-
-            return Json(msg, JsonRequestBehavior.AllowGet);
-        }
+        //        unitOfWork.adsCustomersRepository.Update(customer);
+        //        unitOfWork.Save();
+        //        msg.MessageStatus = "true";
+        //        msg.MessageInfo = identity == 1 ? "身份认证通过！" : "身份认证资料不符合要求，认证不通过";
+        //    }
+        //    else
+        //    {
+        //        msg.MessageStatus = "false";
+        //        msg.MessageInfo = "身份审核过程出现问题，认证操作失败！";
+        //    }
 
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public JsonResult UpdateStatus(int? id, bool status)
-        {
-            Message msg = new Message();
-            if (id == null)
-            {
-                msg.MessageStatus = "false";
-                msg.MessageInfo = "找不到ID";
-            }
-            AdsCustomer customer = unitOfWork.adsCustomersRepository.GetByID(id);
-            customer.CustomerStatus = status;
-            if (ModelState.IsValid)
-            {
-                unitOfWork.adsCustomersRepository.Update(customer);
-                unitOfWork.Save();
-                msg.MessageStatus = "true";
-                msg.MessageInfo = "已经更改为" + customer.CustomerStatus.ToString();
-            }
-            return Json(msg, JsonRequestBehavior.AllowGet);
-        }
+        //    return Json(msg, JsonRequestBehavior.AllowGet);
+        //}
+
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public JsonResult UpdateStatus(int? id, bool status)
+        //{
+        //    Message msg = new Message();
+        //    if (id == null)
+        //    {
+        //        msg.MessageStatus = "false";
+        //        msg.MessageInfo = "找不到ID";
+        //    }
+        //    AdsCustomer customer = unitOfWork.adsCustomersRepository.GetByID(id);
+        //    customer.CustomerStatus = status;
+        //    if (ModelState.IsValid)
+        //    {
+        //        unitOfWork.adsCustomersRepository.Update(customer);
+        //        unitOfWork.Save();
+        //        msg.MessageStatus = "true";
+        //        msg.MessageInfo = "已经更改为" + customer.CustomerStatus.ToString();
+        //    }
+        //    return Json(msg, JsonRequestBehavior.AllowGet);
+        //}
 
 
         [HttpPost]
@@ -221,19 +221,19 @@ namespace AdsWeb.Controllers
         }
 
 
-        public ActionResult IdentityEdit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            AdsCustomer customer = unitOfWork.adsCustomersRepository.GetByID(id);
-            if (customer == null)
-            {
-                return HttpNotFound();
-            }
-            return View(customer);
-        }
+        //public ActionResult IdentityEdit(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    AdsCustomer customer = unitOfWork.adsCustomersRepository.GetByID(id);
+        //    if (customer == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(customer);
+        //}
 
         // POST: /Customer/Edit/5
         // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 
@@ -267,31 +267,31 @@ namespace AdsWeb.Controllers
          
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult IdentityEdit(FormCollection fc)
-        {
-            int id = int.Parse(fc["CustomerId"]);
-            AdsCustomer customer = unitOfWork.adsCustomersRepository.GetByID(id);
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult IdentityEdit(FormCollection fc)
+        //{
+        //    int id = int.Parse(fc["CustomerId"]);
+        //    AdsCustomer customer = unitOfWork.adsCustomersRepository.GetByID(id);
 
-            //customer.CustomerRealName = fc["CustomerRealName"];
-            //customer.CustomerIDCard = fc["CustomerIDCard"];
-            //customer.CustomerIDCardzm = fc["CustomerIDCardzm"];
-            //customer.CustomerIDCardsm = fc["CustomerIDCardsm"];
-            //customer.CustomerHoldCard = fc["CustomerHoldCard"];
-            customer.CustomerIdentity = AdsCustomer.IdentiyStatus.正在审核;
+        //    //customer.CustomerRealName = fc["CustomerRealName"];
+        //    //customer.CustomerIDCard = fc["CustomerIDCard"];
+        //    //customer.CustomerIDCardzm = fc["CustomerIDCardzm"];
+        //    //customer.CustomerIDCardsm = fc["CustomerIDCardsm"];
+        //    //customer.CustomerHoldCard = fc["CustomerHoldCard"];
+        //    customer.CustomerIdentity = AdsCustomer.IdentiyStatus.正在审核;
 
-            if (ModelState.IsValid)
-            {
+        //    if (ModelState.IsValid)
+        //    {
 
-                unitOfWork.adsCustomersRepository.Update(customer);
-                unitOfWork.Save();
+        //        unitOfWork.adsCustomersRepository.Update(customer);
+        //        unitOfWork.Save();
 
-                return RedirectToAction("Index");
-            }
-            return View(customer);
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(customer);
 
-        }
+        //}
 
 
         [HttpPost]

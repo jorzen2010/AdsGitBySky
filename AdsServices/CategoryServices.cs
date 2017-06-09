@@ -14,10 +14,40 @@ namespace AdsServices
 {
     public class CategoryServices
     {
-        private UnitOfWork unitOfWork = new UnitOfWork();
+        private static  UnitOfWork unitOfWork = new UnitOfWork();
+
+        public static string GetCategoryNameById(int id)
+        {
+            return unitOfWork.categorysRepository.GetByID(id).CategoryName;
+        
+        }
+
+        public static int GetParentIdById(int id)
+        {
+            return unitOfWork.categorysRepository.GetByID(id).CategoryParentID;
+
+        }
+
+        public static string GetChildIdLisForSql(int pid)
+        {
+            string childId = "(";
+
+            var categorys = unitOfWork.categorysRepository.Get(filter: u => u.CategoryParentID == pid);
+           
+            foreach (Category category in categorys)
+            {
+                childId = childId + category.ID + ",";
+
+            }
+
+            childId = childId.TrimEnd(',') + ")";
+            return childId;
+
+        
+        }
 
 
-        public List<Category> GetCategoryListByParentID(int ParentID)
+        public static List<Category> GetCategoryListByParentID(int ParentID)
         {
             var categorys = unitOfWork.categorysRepository.Get(filter: u => u.CategoryParentID == ParentID);
             List<Category> CategoryList = new List<Category>();
@@ -31,7 +61,7 @@ namespace AdsServices
 
         //构建一个CategoryList的SelectListItem
 
-        public  List<SelectListItem> GetCategorySelectList(int id)
+        public static List<SelectListItem> GetCategorySelectList(int id)
         {
             List<SelectListItem> items = new List<SelectListItem>();
 
@@ -43,9 +73,9 @@ namespace AdsServices
             return items;
         }
 
-        private string a = "";
+        private  static string a = "";
         //
-        public void LoopToAppendChildrenSelectListItem(List<SelectListItem> items, SelectListItem rootItem,int pid)
+        public static void LoopToAppendChildrenSelectListItem(List<SelectListItem> items, SelectListItem rootItem, int pid)
         {
             var subItems = GetCategoryListByParentID(int.Parse(rootItem.Value));
 

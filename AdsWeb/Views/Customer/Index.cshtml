@@ -16,7 +16,7 @@
     <h1>
         @ViewBag.Title
         <small>
-            @ViewBag.SmallTitle
+        @ViewBag.SmallTitle
         </small>
     </h1>
 
@@ -40,18 +40,6 @@
 
         </div>
 
-        <div class="col-md-12 cuscategorybtn">
-
-            <div class="btn-group">
-                <a class="btn btn-default cusrole" name="role_0" href="@Url.Action("Index", "Customer", new { rid = 0, iden = Request.QueryString["iden"] })">全部类型：</a>
-                @foreach (var item in (IEnumerable<AdsEntity.Category>)ViewData["CusRolebtn"])
-                {
-                    <a class="btn btn-default cusrole" name="role_@item.ID" href="@Url.Action("Index", "Customer", new { rid = item.ID, iden = Request.QueryString["iden"] })">@item.CategoryName</a>
-
-                }
-            </div>
-
-        </div>
     </div>
     <br />
     <div class="row">
@@ -88,7 +76,7 @@
                                     邮箱
                                 </th>
                                 <th class="col-sm-2">
-                                    状态
+                                   登录来源
                                 </th>
                                 <th class="col-sm-1">
                                     认证状态
@@ -110,7 +98,7 @@
                                         @Html.DisplayFor(modelItem => item.CustomerEmail)
                                     </td>
                                     <td>
-                                        <input type="checkbox" name="status" value="@item.CustomerId" checked="@(item.CustomerStatus?"checked":"")" />
+                                      微信登录
                                     </td>
                                     <td>
 
@@ -124,27 +112,6 @@
                                             <a class="btn btn-success btn-xs" href="@Url.Action("Edit", "Customer", new { id = item.CustomerId })"><span class="glyphicon glyphicon-edit"></span> 编辑</a>
                                             <button class="btn btn-danger btn-xs" type="button" onclick="delconfirm('@item.CustomerId','/Customer/DeleteConfirmed/','/Customer/Index')"><span class="glyphicon glyphicon-trash"></span> 删除</button>
                                             <button class="btn btn-info btn-xs" type="button" onclick="resetPassword('@item.CustomerId')"><span class="glyphicon glyphicon-lock"></span> 重置密码</button>
-
-                                string iden = Request.QueryString["iden"];
-                                if (string.IsNullOrEmpty(iden))
-                                {
-                                    iden = "0";
-                                }
-                                if (int.Parse(iden) == 3)
-                                {
-                                    <button class="btn btn-success btn-xs" type="button" onclick="SetIdentity('@item.CustomerId',1)"><span class="glyphicon glyphicon-lock"></span> 认证通过</button>
-                                            <button class="btn btn-danger btn-xs" type="button" onclick="SetIdentity('@item.CustomerId',0)"><span class="glyphicon glyphicon-lock"></span> 认证不通过</button>
-
-                                }
-                                else
-                                {
-                                    if (int.Parse(iden) != 2)
-                                    {   <a class="btn btn-warning btn-xs" href="@Url.Action("IdentityEdit", "Customer", new { id = item.CustomerId })"><span class="glyphicon glyphicon-star"></span> 身份认证</a>
-                                    }
-
-                                }
-
-
 
                                         }
 
@@ -204,12 +171,7 @@
                     <input type="hidden" name="CustomerLastLoginTime" value="@System.DateTime.Now" />
                     <input type="hidden" name="CustomerStatus" value="true" />
                     <div class="box-body">
-                        <div class="form-group">
-                            <label for="CustomerRole" class="col-sm-2 control-label">客户类型</label>
-                            <div class="col-sm-10">
-                                @Html.DropDownList("CustomerRole")
-                            </div>
-                        </div>
+                        
                         <div class="form-group">
                             <label for="CustomerEmail" class="col-sm-2 control-label">邮箱地址</label>
                             <div class="col-sm-10">
@@ -266,12 +228,7 @@
                 <form class="form-horizontal" id="SearchCustomerForm" method="get" action="@Url.Action("Search")">
                     @Html.AntiForgeryToken()
                     <div class="box-body">
-                        <div class="form-group">
-                            <label for="CustomerRole" class="col-sm-2 control-label">客户类型</label>
-                            <div class="col-sm-10  input-group">
-                                @Html.DropDownList("CustomerRole")
-                            </div>
-                        </div>
+                        
                         <div class="form-group">
                             <label for="CustomerUserName" class="col-sm-2 control-label">用户名</label>
                             <div class="col-sm-10  input-group">

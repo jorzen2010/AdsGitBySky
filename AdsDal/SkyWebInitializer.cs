@@ -120,28 +120,46 @@ namespace AdsDal
             {
                 new Category{CategoryName="顶级分类",CategoryInfo="顶级分类",CategoryParentID=0,CategoryStatus=true,CategorySort=0},
 
-                new Category{CategoryName="客户类型",CategoryInfo="客户类型",CategoryParentID=1,CategoryStatus=true,CategorySort=0},
                 new Category{CategoryName="视频类型",CategoryInfo="视频类型",CategoryParentID=1,CategoryStatus=true,CategorySort=0},
 
+                new Category{CategoryName="训练项目",CategoryInfo="训练项目",CategoryParentID=2,CategoryStatus=true,CategorySort=0},
+                new Category{CategoryName="心理服务",CategoryInfo="心理服务",CategoryParentID=2,CategoryStatus=true,CategorySort=0},
 
-                new Category{CategoryName="星星宝贝",CategoryInfo="星星宝贝",CategoryParentID=2,CategoryStatus=true,CategorySort=0},
-                new Category{CategoryName="星星家长",CategoryInfo="星星家长",CategoryParentID=2,CategoryStatus=true,CategorySort=0},
-                new Category{CategoryName="星星教师",CategoryInfo="星星教师",CategoryParentID=2,CategoryStatus=true,CategorySort=0},
 
-                new Category{CategoryName="运动类视频",CategoryInfo="运动类视频",CategoryParentID=3,CategoryStatus=true,CategorySort=0},
-                new Category{CategoryName="精细类视频",CategoryInfo="精细类视频",CategoryParentID=3,CategoryStatus=true,CategorySort=0},
+
+                new Category{CategoryName="感觉能力",CategoryInfo="感觉能力",CategoryParentID=3,CategoryStatus=true,CategorySort=0},
+                new Category{CategoryName="交往能力",CategoryInfo="交往能力",CategoryParentID=3,CategoryStatus=true,CategorySort=0},
+                new Category{CategoryName="运动能力",CategoryInfo="运动能力",CategoryParentID=3,CategoryStatus=true,CategorySort=0},
+                new Category{CategoryName="语言能力",CategoryInfo="语言能力",CategoryParentID=3,CategoryStatus=true,CategorySort=0},
+                new Category{CategoryName="自理能力",CategoryInfo="自理能力",CategoryParentID=3,CategoryStatus=true,CategorySort=0},
+
+
+                new Category{CategoryName="焦虑",CategoryInfo="心理服务",CategoryParentID=4,CategoryStatus=true,CategorySort=0},
+                new Category{CategoryName="夫妻关系",CategoryInfo="心理服务",CategoryParentID=4,CategoryStatus=true,CategorySort=0},
+                new Category{CategoryName="亲子关系",CategoryInfo="心理服务",CategoryParentID=4,CategoryStatus=true,CategorySort=0},
 
             };
             categorys.ForEach(s => context.Categorys.Add(s));
             context.SaveChanges();
 
-            //var adsVideos = new List<AdsVideo>
-            //{
-            //    new AdsVideo{ VideoCategory=1,VideoName="视频名称",VideoNumber="asfadsfafsd",VideoUrl="asdffas"}
+            var adsVideos = new List<AdsVideo>
+            {
+                new AdsVideo{ VideoNumber="ceshi123456789",VideoName="感觉能力视频",VideoPhoto="暂无",VideoUrl="暂无",VideoInfo="感觉能力视频",VideoFor="感觉能力视频",VideoBeizhu="暂无",
+                VideoCategory=5,VideoPrice=100,VideoVIPPrice=99,VideoZKPrice=99,VideoFree=true,VideoTry=true,VideoTime=DateTime.Now,VideoTeacher="贺苏",VideoViewTimes=100},
+                new AdsVideo{ VideoNumber="ceshi123456789",VideoName="交往能力视频",VideoPhoto="暂无",VideoUrl="暂无",VideoInfo="感觉能力视频",VideoFor="感觉能力视频",VideoBeizhu="暂无",
+                VideoCategory=6,VideoPrice=100,VideoVIPPrice=99,VideoZKPrice=99,VideoFree=true,VideoTry=true,VideoTime=DateTime.Now,VideoTeacher="贺苏",VideoViewTimes=100},
+                new AdsVideo{ VideoNumber="ceshi123456789",VideoName="运动能力视频",VideoPhoto="暂无",VideoUrl="暂无",VideoInfo="感觉能力视频",VideoFor="感觉能力视频",VideoBeizhu="暂无",
+                VideoCategory=7,VideoPrice=100,VideoVIPPrice=99,VideoZKPrice=99,VideoFree=true,VideoTry=true,VideoTime=DateTime.Now,VideoTeacher="贺苏",VideoViewTimes=100},
+                new AdsVideo{ VideoNumber="ceshi123456789",VideoName="语言能力视频",VideoPhoto="暂无",VideoUrl="暂无",VideoInfo="感觉能力视频",VideoFor="感觉能力视频",VideoBeizhu="暂无",
+                VideoCategory=8,VideoPrice=100,VideoVIPPrice=99,VideoZKPrice=99,VideoFree=true,VideoTry=true,VideoTime=DateTime.Now,VideoTeacher="贺苏",VideoViewTimes=100},
+                new AdsVideo{ VideoNumber="ceshi123456789",VideoName="自理能力视频",VideoPhoto="暂无",VideoUrl="暂无",VideoInfo="感觉能力视频",VideoFor="感觉能力视频",VideoBeizhu="暂无",
+                VideoCategory=9,VideoPrice=100,VideoVIPPrice=99,VideoZKPrice=99,VideoFree=true,VideoTry=true,VideoTime=DateTime.Now,VideoTeacher="贺苏",VideoViewTimes=100},
+                new AdsVideo{ VideoNumber="ceshi123456789",VideoName="心理服务视频",VideoPhoto="暂无",VideoUrl="暂无",VideoInfo="感觉能力视频",VideoFor="感觉能力视频",VideoBeizhu="暂无",
+                VideoCategory=10,VideoPrice=100,VideoVIPPrice=99,VideoZKPrice=99,VideoFree=true,VideoTry=true,VideoTime=DateTime.Now,VideoTeacher="贺苏",VideoViewTimes=100},
 
-            //};
-            //adsVideos.ForEach(s => context.AdsVideos.Add(s));
-            //context.SaveChanges();
+            };
+            adsVideos.ForEach(s => context.AdsVideos.Add(s));
+            context.SaveChanges();
 
             #endregion
 

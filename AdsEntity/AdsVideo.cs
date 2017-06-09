@@ -15,6 +15,8 @@ namespace AdsEntity
         public string VideoNumber { get; set; }
         [Display(Name="音视频名称")]
         public string VideoName { get; set; }
+        [Display(Name = "音视频讲师")]
+        public string VideoTeacher { get; set; }
         [Display(Name = "音视频封面")]
         public string VideoPhoto { get; set; }
         [Display(Name = "音视频地址")]
@@ -38,6 +40,8 @@ namespace AdsEntity
         public bool VideoFree { get; set; }
         [Display(Name = "音视频设置试看")]
         public bool VideoTry { get; set; }
+        [Display(Name = "浏览次数")]
+        public int VideoViewTimes { get; set; }
         [Display(Name = "音视频上线时间")]
         public DateTime VideoTime { get; set; }
     }

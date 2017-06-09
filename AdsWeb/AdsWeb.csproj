@@ -1610,8 +1610,6 @@
     <Content Include="Views\Video\Details.cshtml" />
     <Content Include="Views\Video\Edit.cshtml" />
     <Content Include="Views\Video\Index.cshtml" />
-    <Content Include="Views\Video\Index - 复制.cshtml" />
-    <Content Include="Views\Video\Edit - 复制.cshtml" />
     <Content Include="Views\Customer\Edit.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Customer\IdentityEdit.cshtml" />
@@ -1691,6 +1689,8 @@
     <Content Include="Views\Wechat\VideoDetail.cshtml" />
     <Content Include="Views\Wechat\Pingjia.cshtml" />
     <Content Include="Views\Wechat\NoPay.cshtml" />
+    <Content Include="Views\Wechat\ProgrameList.cshtml" />
+    <Content Include="Views\Wechat\Program.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

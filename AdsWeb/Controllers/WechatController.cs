@@ -8,9 +8,9 @@ using AdsEntity;
 using AdsEntity.WechatEntity;
 using AdsWeb.WechatServices;
 using AdsDal;
-using Common;
 using PagedList;
 using PagedList.Mvc;
+using AdsServices;
 
 namespace AdsWeb.Controllers
 {
@@ -51,8 +51,6 @@ namespace AdsWeb.Controllers
                     customer.CustomerSex = "女";
                 }
                 customer.CustomerUnionid = userinfo.unionid;
-                customer.CustomerRole = 4;
-                customer.CustomerStatus = false;
                 customer.CustomerIdentity = AdsCustomer.IdentiyStatus.未申请计划;
                 customer.CustomerLastLoginTime = System.DateTime.Now;
                 customer.CustomerRegTime = System.DateTime.Now;
@@ -117,10 +115,13 @@ namespace AdsWeb.Controllers
                 if (count > 0)
                 {
                     baby = babys.First() as AdsBaby;
+                    ViewData["videocat"] = CategoryServices.GetCategoryListByParentID(2);
                     return View(baby);
                 }
                 else
                 {
+
+
                     return RedirectToAction("NoBaby");
 
                 }
@@ -194,10 +195,59 @@ namespace AdsWeb.Controllers
         }
         #endregion
 
-        #region 心理服务
-        public ActionResult HeartList()
+        public ActionResult Program()
         {
             return View();
+        }
+
+        #region 心理服务
+        public ActionResult HeartList(int?page)
+        {
+
+
+            string sqlpara = CategoryServices.GetChildIdLisForSql(4);
+
+            Pager pager = new Pager();
+            pager.table = "AdsVideo";
+            pager.strwhere = "VideoCategory in" + sqlpara;
+            pager.PageSize = 50;
+            pager.PageNo = page ?? 1;
+            pager.FieldKey = "VideoId";
+            pager.FiledOrder = "VideoId desc";
+
+            pager = CommonDal.GetPager(pager);
+            IList<AdsVideo> videos = DataConvertHelper<AdsVideo>.ConvertToModel(pager.EntityDataTable);
+            var videosAsIPageList = new StaticPagedList<AdsVideo>(videos, pager.PageNo, pager.PageSize, pager.Amount);
+            return View(videosAsIPageList);        
+
+
+           
+        }
+        #endregion
+
+        #region 训练项目
+        public ActionResult ProgrameList(int? page, int? cid)
+        {
+
+            int categoryid = cid ?? 8;
+
+            Pager pager = new Pager();
+            pager.table = "AdsVideo";
+            pager.strwhere = "VideoCategory=" + categoryid;
+            pager.PageSize = 50;
+            pager.PageNo = page ?? 1;
+            pager.FieldKey = "VideoId";
+            pager.FiledOrder = "VideoId desc";
+
+            pager = CommonDal.GetPager(pager);
+            IList<AdsVideo> videos = DataConvertHelper<AdsVideo>.ConvertToModel(pager.EntityDataTable);
+            var videosAsIPageList = new StaticPagedList<AdsVideo>(videos, pager.PageNo, pager.PageSize, pager.Amount);
+            ViewBag.cid = categoryid;
+            //    ViewBag.cname = CategoryServices.GetCategoryNameById(categoryid);
+            return View(videosAsIPageList);
+
+
+
         }
         #endregion
 
@@ -556,34 +606,37 @@ namespace AdsWeb.Controllers
 
         #region 量表报告详情页面
         public ActionResult BaogaoDetail(int id)
-        {
+        {   
             Baogao baogao = unitOfWork.baogaoRepository.GetByID(id);
-            string  babyName = unitOfWork.adsBabysRepository.GetByID(baogao.BabyId).BabyName;
+            AdsBaby baby = unitOfWork.adsBabysRepository.GetByID(baogao.BabyId);
+        //    string babyName = unitOfWork.adsBabysRepository.GetByID(baogao.BabyId).BabyName;
             string str = baogao.BaogaoDementionScore;
 
             string[] sArray = str.Split(',');
             List<BaogaoDemention> demlist = new List<BaogaoDemention>();
             string chartscategories = "[";
             string chartsdata = "[";
-            
+
             foreach (string s in sArray)
             {
-              // string  dem=s.ToString();
-               BaogaoDemention dem = new BaogaoDemention();
-               dem.demName = s.Substring(0, s.IndexOf(":"));
-               dem.demScore = int.Parse(s.Substring(s.IndexOf(":") + 1));
-               demlist.Add(dem);
-               chartscategories = chartscategories + "\"" + dem.demName + "\""+",";
-               chartsdata = chartsdata + dem.demScore  + ",";
-              
-               
+                // string  dem=s.ToString();
+                BaogaoDemention dem = new BaogaoDemention();
+                dem.demName = s.Substring(0, s.IndexOf(":"));
+                dem.demScore = int.Parse(s.Substring(s.IndexOf(":") + 1));
+                demlist.Add(dem);
+                chartscategories = chartscategories + "\"" + dem.demName + "\"" + ",";
+                chartsdata = chartsdata + dem.demScore + ",";
+
+
             }
             chartscategories = chartscategories.TrimEnd(',') + "]";
             chartsdata = chartsdata.TrimEnd(',') + "]";
             ViewData["dem"] = demlist;
             ViewBag.categories = chartscategories;
             ViewBag.chartsdata = chartsdata;
-            ViewBag.babyName = babyName;
+            ViewBag.babyName = baby.BabyName;
+            ViewBag.babysex = baby.BabySex;
+            ViewBag.babyage = DateTime.Now.Year -  Convert.ToDateTime(baby.BabyBirthday).Year;
             return View(baogao);
         }
 

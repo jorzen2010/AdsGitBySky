@@ -20,7 +20,7 @@
             </li>
 
             <li class="col-xs-1-5 text-center sky-nav-li">
-                <span><a class="btn btn-info btn-circle btn-sm" href="@Url.Action("Baogao","wechat")"><i class="glyphicon glyphicon-stats"></i></a></span>
+                <span><a class="btn btn-info btn-circle btn-sm" href="@Url.Action("Pingjia","wechat")"><i class="glyphicon glyphicon-stats"></i></a></span>
                 <span>训练报告</span>
             </li>
             <li class="col-xs-1-5 text-center sky-nav-li">
@@ -48,7 +48,22 @@
 
         <div class="row skyindexrow">
 
-            <img src="~/WechatResource/img/user1-128x128.jpg" alt="User Avatar" class="pull-left sky-index-itemimg">
+            @if (int.Parse(item.BaogaoTotalScore) >= 67)
+            { 
+                <img src="~/WechatResource/img/danger.jpg" alt="User Avatar" class="pull-left sky-index-itemimg">
+            
+            }
+            else if (int.Parse(item.BaogaoTotalScore) < 57)
+            {
+                <img src="~/WechatResource/img/success.jpg" alt="User Avatar" class="pull-left sky-index-itemimg">
+
+            }
+            else
+            { 
+             <img src="~/WechatResource/img/warning.jpg" alt="User Avatar" class="pull-left sky-index-itemimg">
+
+            }
+            
 
             <div class="pull-left sky-index-itemcontent">
                 <span class="sky-index-itemcontent-title">
@@ -71,10 +86,10 @@
     {
         LinkToPreviousPageFormat = "上一页",
         LinkToNextPageFormat = "下一页",
-        DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded,
-        DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded,
-        DisplayLinkToPreviousPage = PagedListDisplayMode.IfNeeded,
-        DisplayLinkToNextPage = PagedListDisplayMode.IfNeeded,
+        DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+        DisplayLinkToLastPage = PagedListDisplayMode.Always,
+        DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+        DisplayLinkToNextPage = PagedListDisplayMode.Always,
         MaximumPageNumbersToDisplay = 5,
         LinkToFirstPageFormat = "首页",
         LinkToLastPageFormat = "最后一页",

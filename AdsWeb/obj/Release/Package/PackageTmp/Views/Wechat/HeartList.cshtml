@@ -1,4 +1,8 @@
-﻿@{
+﻿@model StaticPagedList<AdsEntity.AdsVideo>
+@using PagedList;
+@using PagedList.Mvc;
+@using AdsServices;
+@{
     Layout = "~/Views/Shared/_WechatLayout.cshtml";
 }
 
@@ -12,50 +16,45 @@
             <div class="pull-right skyindexrowrighttitle">787人正在学习</div>
         </div>
 
-        <div class="row skyindexrow">
+
+@foreach (var item in Model)
+{
+     <div class="row skyindexrow">
 
             <img src="~/WechatResource/img/user1-128x128.jpg" alt="User Avatar" class="pull-left sky-index-itemimg">
 
             <div class="pull-left sky-index-itemcontent">
                 <span class="sky-index-itemcontent-title">
-                    焦虑 | 如何治疗焦虑
+                   @Html.DisplayFor(modelItem => item.VideoName)
                 </span>
-                <p>讲师：贺苏</p>
-                <p>已有78488人浏览</p>
+                <p>讲师：@Html.DisplayFor(modelItem => item.VideoTeacher)</p>
+                <p>已有 @Html.DisplayFor(modelItem => item.VideoViewTimes) 人浏览</p>
             </div>
 
-            <button class="pull-right btn btn-warning btn-sm">马上学习</button>
+            <a class="pull-right btn btn-warning btn-sm" href="">马上学习</a>
 
         </div>
 
-        <div class="row skyindexrow">
+}
 
-            <img src="~/WechatResource/img/user1-128x128.jpg" alt="User Avatar" class="pull-left sky-index-itemimg">
+<div class="box-footer clearfix">
+    <ul>
+        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Ceping", new { page = page }),
+    new PagedListRenderOptions
+    {
+        LinkToPreviousPageFormat = "上一页",
+        LinkToNextPageFormat = "下一页",
+        DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+        DisplayLinkToLastPage = PagedListDisplayMode.Always,
+        DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+        DisplayLinkToNextPage = PagedListDisplayMode.Always,
+        MaximumPageNumbersToDisplay = 5,
+        LinkToFirstPageFormat = "首页",
+        LinkToLastPageFormat = "最后一页",
+        PageCountAndCurrentLocationFormat = "第 {0}页 共 {1}页"
+    })
+    </ul>
+</div>
 
-            <div class="pull-left sky-index-itemcontent">
-                <span class="sky-index-itemcontent-title">
-                    焦虑 | 如何治疗焦虑
-                </span>
-                <p>讲师：贺苏</p>
-                <p>已有78488人浏览</p>
-            </div>
 
-            <button class="pull-right btn btn-warning btn-sm">马上学习</button>
-
-        </div>
-
-        <div class="row skyindexrow">
-
-            <img src="~/WechatResource/img/user1-128x128.jpg" alt="User Avatar" class="pull-left sky-index-itemimg">
-
-            <div class="pull-left sky-index-itemcontent">
-                <span class="sky-index-itemcontent-title">
-                    焦虑 | 如何治疗焦虑
-                </span>
-                <p>讲师：贺苏</p>
-                <p>已有78488人浏览</p>
-            </div>
-
-            <button class="pull-right btn btn-warning btn-sm">马上学习</button>
-
-        </div>
+       

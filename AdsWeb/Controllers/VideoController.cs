@@ -37,7 +37,7 @@ namespace AdsWeb.Controllers
 
       
 
-        public ActionResult Create()
+        public ActionResult Create(int cid)
         {
             AdsVideo video = new AdsVideo();
             video.VideoNumber =CommonTools.ToUnixTime(System.DateTime.Now).ToString()+ CommonTools.getRandomNumber(100000, 999999).ToString();
@@ -46,8 +46,8 @@ namespace AdsWeb.Controllers
             video.VideoVIPPrice = 0;
             video.VideoTry = false;
             video.VideoFree = false;
-            CategoryServices categoryServices= new CategoryServices();
-            ViewData["Categorylist"] = categoryServices.GetCategorySelectList(SkyVideoRootId);
+         //   CategoryServices categoryServices= new CategoryServices();
+            ViewData["Categorylist"] = CategoryServices.GetCategorySelectList(cid);
             return View(video);
         }
 
@@ -65,16 +65,14 @@ namespace AdsWeb.Controllers
                 unitOfWork.Save();
                 return RedirectToAction("Index");
             }
-            CategoryServices categoryServices = new CategoryServices();
-            ViewData["Categorylist"] = categoryServices.GetCategorySelectList(SkyVideoRootId);
             return View(adsvideo);
         }
 
         // GET: /Video/Edit/5
         public ActionResult Edit(int? id)
         {
-            CategoryServices categoryServices = new CategoryServices();
-            ViewData["Categorylist"] = categoryServices.GetCategorySelectList(SkyVideoRootId);
+            //GetParentIdById
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -84,6 +82,9 @@ namespace AdsWeb.Controllers
             {
                 return HttpNotFound();
             }
+
+            int pid = CategoryServices.GetParentIdById(adsvideo.VideoCategory);
+            ViewData["Categorylist"] = CategoryServices.GetCategorySelectList(pid);
             return View(adsvideo);
         }
 

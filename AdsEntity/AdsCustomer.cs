@@ -17,10 +17,7 @@ namespace AdsEntity
         public string CustomerEmail { get; set; }
         [Display(Name = "密码")]
         public string CustomerPassword { get; set; }
-        [Display(Name = "客户类型")]
-        public int CustomerRole { get; set; }
-        [Display(Name = "状态")]
-        public bool CustomerStatus { get; set; }
+
         [Display(Name = "申请状态")]
         public IdentiyStatus CustomerIdentity { get; set; }
 
@@ -53,7 +50,14 @@ namespace AdsEntity
         public DateTime CustomerRegTime { get; set; }
         [Display(Name = "最后登录时间")]
         public DateTime CustomerLastLoginTime { get; set; }
-        
+
+
+
+
+        //[Display(Name = "客户类型")]
+        //public int CustomerRole { get; set; }
+        //[Display(Name = "状态")]
+        //public bool CustomerStatus { get; set; }
 
 
 
@@ -83,8 +87,7 @@ namespace AdsEntity
         { 
             未申请计划=1,
             已申请计划=2,
-            正在审核=3,
-            审核失败=4
+            申请未付款=3
         }
 
 
