@@ -50,9 +50,9 @@
                 
                  <tr>
 
-                <td>@dem.demName</td>
+                 <td>@dem.demName</td>
                
-                <td>无</td>
+                 <td>@dem.demReference</td>
                  <td>@dem.demScore</td>
             </tr>
                 
@@ -62,7 +62,7 @@
             <tr>
                 <td>总分</td>
                
-                <td>筛查57分/诊断67分</td>
+                <td>53</td>
                 <td>@Model.BaogaoTotalScore</td>
             </tr>
         </thead>
@@ -186,7 +186,7 @@
                 }
             },
             type: 'bar',
-            data: @ViewBag.chartsdata
+            data: @ViewBag.chartsdata ,
         }]
     };
 

@@ -578,6 +578,11 @@ function do_result() {
   
     var g = b + c + d + e + f;
 
+    bb = b / 30;
+    cc = c / 44;
+    dd = d / 29;
+    ee = e / 31;
+    ff = f / 25;
     
     b = "感觉能力:" + b + ",";
     c = "交往能力:" + c + ",";
@@ -585,8 +590,15 @@ function do_result() {
     e = "运动能力:" + e + ",";
     f = "自理能力:" + f;
 
+    bb = "感觉能力:" + bb + ",";
+    cc = "交往能力:" + cc + ",";
+    dd = "运动能力:" + dd + ",";
+    ee = "运动能力:" + ee + ",";
+    ff = "自理能力:" + ff;
+
 
     h = b + c + d + e + f;
+    hh = bb + cc + dd + ee + ff;
 
 
 
@@ -598,7 +610,8 @@ function do_result() {
         data: {
             score: aa,
             Dementionscore: h,
-            totalscore:g,
+            totalscore: g,
+            weight:hh,
         },
         dataType: "json",
         success: function (data) {

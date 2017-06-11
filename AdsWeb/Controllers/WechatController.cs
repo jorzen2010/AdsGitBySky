@@ -604,6 +604,40 @@ namespace AdsWeb.Controllers
 
         #endregion
 
+
+        public ActionResult test()
+        {
+            string x = "感觉能力:99,交往能力:56,运动能力:46,语言能力:76,自理能力:90";
+            string y = "感觉能力:0.9,交往能力:0.8,运动能力:0.4,语言能力:0.7,自理能力:0.6";
+
+            ViewBag.test = PlanServices.MakePlan(x);
+            ViewBag.test2 = PlanServices.MakePlan(y);
+
+            string[] sArray = ViewBag.test.Split(',');
+            List<BaogaoDemention> demlist = new List<BaogaoDemention>();
+            int number = 0;
+            foreach (string s in sArray)
+            {
+                number++;
+                // string  dem=s.ToString();
+                BaogaoDemention dem = new BaogaoDemention();
+                dem.demName = s.Substring(0, s.IndexOf(":"));
+                dem.demScore = int.Parse(s.Substring(s.IndexOf(":") + 1));
+                dem.demNumber=number;
+
+                demlist.Add(dem);
+                
+            }
+
+            ViewData["dem"] = demlist;
+            ViewBag.current = demlist[0].demName;
+
+            List<AdsVideo> videolist = new List<AdsVideo>();
+            return View();
+        
+        }
+
+
         #region 量表报告详情页面
         public ActionResult BaogaoDetail(int id)
         {   
@@ -623,11 +657,17 @@ namespace AdsWeb.Controllers
                 BaogaoDemention dem = new BaogaoDemention();
                 dem.demName = s.Substring(0, s.IndexOf(":"));
                 dem.demScore = int.Parse(s.Substring(s.IndexOf(":") + 1));
+                if (dem.demName == "交往能力" || dem.demName == "运动能力")
+                {
+                    dem.demReference = 8;
+                }
+                else
+                {
+                    dem.demReference = 5;
+                }
                 demlist.Add(dem);
                 chartscategories = chartscategories + "\"" + dem.demName + "\"" + ",";
                 chartsdata = chartsdata + dem.demScore + ",";
-
-
             }
             chartscategories = chartscategories.TrimEnd(',') + "]";
             chartsdata = chartsdata.TrimEnd(',') + "]";
@@ -646,7 +686,7 @@ namespace AdsWeb.Controllers
         #region 保存测评结果
         [HttpPost]
 
-        public JsonResult SaveScaleResult(string score, string Dementionscore, string totalscore)
+        public JsonResult SaveScaleResult(string score, string Dementionscore, string totalscore,string weight)
         {
             int customerId = int.Parse(Session["CustomerId"].ToString());
             int babyid = unitOfWork.adsBabysRepository.Get(filter: u => u.CustomerId == customerId).First().BabyId;
@@ -658,10 +698,14 @@ namespace AdsWeb.Controllers
             baogao.BaogaoScore = score;
             baogao.BaogaoDementionScore = Dementionscore;
             baogao.BaogaoTotalScore = totalscore;
+            baogao.BaogaoWeight = weight;
             baogao.CustomerId = customerId;
             baogao.BabyId = babyid;
             baogao.ScaleId = 1;
             baogao.BaogaoTime = System.DateTime.Now;
+
+            Plan plan = new Plan();
+
 
             try
             {

@@ -145,18 +145,20 @@ namespace AdsDal
             var adsVideos = new List<AdsVideo>
             {
                 new AdsVideo{ VideoNumber="ceshi123456789",VideoName="感觉能力视频",VideoPhoto="暂无",VideoUrl="暂无",VideoInfo="感觉能力视频",VideoFor="感觉能力视频",VideoBeizhu="暂无",
-                VideoCategory=5,VideoPrice=100,VideoVIPPrice=99,VideoZKPrice=99,VideoFree=true,VideoTry=true,VideoTime=DateTime.Now,VideoTeacher="贺苏",VideoViewTimes=100},
+                VideoCategory=5,VideoPrice=100,VideoVIPPrice=99,VideoZKPrice=99,VideoFree=true,VideoTry=true,VideoTime=DateTime.Now,VideoTeacher="贺苏",VideoViewTimes=100,VideoWeight=0.3f},
                 new AdsVideo{ VideoNumber="ceshi123456789",VideoName="交往能力视频",VideoPhoto="暂无",VideoUrl="暂无",VideoInfo="感觉能力视频",VideoFor="感觉能力视频",VideoBeizhu="暂无",
-                VideoCategory=6,VideoPrice=100,VideoVIPPrice=99,VideoZKPrice=99,VideoFree=true,VideoTry=true,VideoTime=DateTime.Now,VideoTeacher="贺苏",VideoViewTimes=100},
+                VideoCategory=6,VideoPrice=100,VideoVIPPrice=99,VideoZKPrice=99,VideoFree=true,VideoTry=true,VideoTime=DateTime.Now,VideoTeacher="贺苏",VideoViewTimes=100,VideoWeight=0.3f},
                 new AdsVideo{ VideoNumber="ceshi123456789",VideoName="运动能力视频",VideoPhoto="暂无",VideoUrl="暂无",VideoInfo="感觉能力视频",VideoFor="感觉能力视频",VideoBeizhu="暂无",
-                VideoCategory=7,VideoPrice=100,VideoVIPPrice=99,VideoZKPrice=99,VideoFree=true,VideoTry=true,VideoTime=DateTime.Now,VideoTeacher="贺苏",VideoViewTimes=100},
+                VideoCategory=7,VideoPrice=100,VideoVIPPrice=99,VideoZKPrice=99,VideoFree=true,VideoTry=true,VideoTime=DateTime.Now,VideoTeacher="贺苏",VideoViewTimes=100,VideoWeight=0.3f},
                 new AdsVideo{ VideoNumber="ceshi123456789",VideoName="语言能力视频",VideoPhoto="暂无",VideoUrl="暂无",VideoInfo="感觉能力视频",VideoFor="感觉能力视频",VideoBeizhu="暂无",
-                VideoCategory=8,VideoPrice=100,VideoVIPPrice=99,VideoZKPrice=99,VideoFree=true,VideoTry=true,VideoTime=DateTime.Now,VideoTeacher="贺苏",VideoViewTimes=100},
+                VideoCategory=8,VideoPrice=100,VideoVIPPrice=99,VideoZKPrice=99,VideoFree=true,VideoTry=true,VideoTime=DateTime.Now,VideoTeacher="贺苏",VideoViewTimes=100,VideoWeight=0.3f},
                 new AdsVideo{ VideoNumber="ceshi123456789",VideoName="自理能力视频",VideoPhoto="暂无",VideoUrl="暂无",VideoInfo="感觉能力视频",VideoFor="感觉能力视频",VideoBeizhu="暂无",
-                VideoCategory=9,VideoPrice=100,VideoVIPPrice=99,VideoZKPrice=99,VideoFree=true,VideoTry=true,VideoTime=DateTime.Now,VideoTeacher="贺苏",VideoViewTimes=100},
+                VideoCategory=9,VideoPrice=100,VideoVIPPrice=99,VideoZKPrice=99,VideoFree=true,VideoTry=true,VideoTime=DateTime.Now,VideoTeacher="贺苏",VideoViewTimes=100,VideoWeight=0.3f},
                 new AdsVideo{ VideoNumber="ceshi123456789",VideoName="心理服务视频",VideoPhoto="暂无",VideoUrl="暂无",VideoInfo="感觉能力视频",VideoFor="感觉能力视频",VideoBeizhu="暂无",
-                VideoCategory=10,VideoPrice=100,VideoVIPPrice=99,VideoZKPrice=99,VideoFree=true,VideoTry=true,VideoTime=DateTime.Now,VideoTeacher="贺苏",VideoViewTimes=100},
+                VideoCategory=10,VideoPrice=100,VideoVIPPrice=99,VideoZKPrice=99,VideoFree=true,VideoTry=true,VideoTime=DateTime.Now,VideoTeacher="贺苏",VideoViewTimes=100,VideoWeight=0.3f},
 
+         
+            
             };
             adsVideos.ForEach(s => context.AdsVideos.Add(s));
             context.SaveChanges();

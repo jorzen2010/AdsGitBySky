@@ -14,14 +14,21 @@ namespace AdsEntity
         public int BabyId { get; set; }
         public string  BaogaoScore { get; set; }
         public string BaogaoDementionScore { get; set; }
+        public string BaogaoWeight { get; set; }
         public string BaogaoTotalScore { get; set; }
         public DateTime BaogaoTime { get; set; }
     }
 
     public class BaogaoDemention
     {
+        //名称
         public string demName { get; set; }
+        //得分
         public int demScore { get; set; }
+        //参考值
+        public int demReference { get; set; }
+        //序号
+        public int demNumber { get; set; }
     
     }
 }

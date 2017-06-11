@@ -41,6 +41,23 @@ namespace Common
 
             return str;
         }
+
+        public static  string arrayToString(string[] strArray)
+        {
+            StringBuilder str = new StringBuilder();
+            for (int i = 0; i < strArray.Length; i++)
+            {
+
+                if (i > 0)
+                {
+                    //分割符可根据需要自行修改
+                    str.Append(",");
+                }
+                str.Append(strArray[i]);
+            }
+            return str.ToString();
+        }
+
         public static string ToUnixTime(DateTime datetime)
         {
             long time = datetime.ToUniversalTime().Ticks;

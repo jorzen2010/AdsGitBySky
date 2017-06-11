@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdsEmailServices.cs" />
+    <Compile Include="PlanServices.cs" />
     <Compile Include="ScaleServices.cs" />
     <Compile Include="BabyServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

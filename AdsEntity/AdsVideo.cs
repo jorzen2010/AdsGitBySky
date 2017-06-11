@@ -30,6 +30,8 @@ namespace AdsEntity
        
         [Display(Name = "音视频类别")]
         public int VideoCategory { get; set; }
+        [Display(Name = "训练权重")]
+        public float VideoWeight { get; set; }
         [Display(Name = "音视频价格")]
         public float VideoPrice { get; set; }
         [Display(Name = "音视频会员价格")]

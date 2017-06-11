@@ -1,0 +1,106 @@
+﻿@using AdsEntity;
+@{
+    Layout = "~/Views/Shared/_WechatLayout.cshtml";
+}
+
+
+<ul class="row skyindexbtn">
+
+
+@foreach (BaogaoDemention dem in ViewData["dem"] as List<BaogaoDemention>)
+{
+   
+    
+    <li class="col-xs-1-5 text-center sky-nav-li">
+            <span>
+                @if (dem.demNumber == 1)
+                {  
+
+        <a class="btn btn-danger btn-circle btn-sm" href="@Url.Action("ProgrameList", "Wechat", new { cid = 5 })">
+                <i class="glyphicon glyphicon-fire"></i></a>
+                }
+                @if (dem.demNumber == 2)
+                {
+
+                    <a class="btn btn-danger btn-circle btn-sm" href="@Url.Action("ProgrameList", "Wechat", new { cid = 5 })">
+                        <i class="glyphicon glyphicon-fire"></i>
+                    </a>
+                }
+                @if (dem.demNumber == 3)
+{
+
+    <a class="btn btn-warning btn-circle btn-sm" href="@Url.Action("ProgrameList", "Wechat", new { cid = 5 })">
+        <i class="glyphicon glyphicon-fire"></i>
+    </a>
+}
+                @if (dem.demNumber == 4)
+                {
+
+                    <a class="btn btn-warning btn-circle btn-sm" href="@Url.Action("ProgrameList", "Wechat", new { cid = 5 })">
+                        <i class="glyphicon glyphicon-fire"></i>
+                    </a>
+                }
+                @if (dem.demNumber == 5)
+                {
+
+                    <a class="btn btn-success btn-circle btn-sm" href="@Url.Action("ProgrameList", "Wechat", new { cid = 5 })">
+                        <i class="glyphicon glyphicon-fire"></i>
+                    </a>
+                }
+            
+            </span>
+            <span> @dem.demName</span>
+        </li>
+}
+
+
+    @foreach (BaogaoDemention dem in ViewData["dem"] as List<BaogaoDemention>)
+    {     
+        
+        
+        if (dem.demName == "感觉能力")
+        {         
+        <li class="col-xs-1-5 text-center sky-nav-li">
+            <span><a class="btn btn-info btn-circle btn-sm" href="@Url.Action("ProgrameList", "Wechat", new { cid = 5 })"><i class="glyphicon glyphicon-fire"></i></a></span>
+            <span> @dem.demName @dem.demNumber</span>
+        </li>
+        }
+        if (dem.demName == "交往能力")
+        {
+        <li class="col-xs-1-5 text-center sky-nav-li">
+            <span><a class="btn btn-danger btn-circle btn-sm" href="@Url.Action("ProgrameList", "Wechat", new { cid = 6 })"><i class="glyphicon glyphicon-eye-open"></i></a></span>
+            <span>@dem.demName @dem.demNumber</span>
+        </li>
+        }
+        if (dem.demName == "运动能力")
+        {
+        <li class="col-xs-1-5 text-center sky-nav-li">
+            <span><a class="btn btn-warning btn-circle btn-sm" href="@Url.Action("ProgrameList", "Wechat", new { cid = 7 })"><i class="glyphicon glyphicon-thumbs-up"></i></a></span>
+            <span>@dem.demName @dem.demNumber</span>
+        </li>
+        }
+        if (dem.demName == "语言能力")
+        {
+        <li class="col-xs-1-5 text-center sky-nav-li">
+            <span><a class="btn btn-success btn-circle btn-sm" href="@Url.Action("ProgrameList", "Wechat", new { cid = 8 })"><i class="glyphicon glyphicon-phone-alt"></i></a></span>
+            <span>@dem.demName @dem.demNumber</span>
+        </li>
+        }
+        if (dem.demName == "自理能力")
+        {
+        <li class="col-xs-1-5 text-center sky-nav-li">
+            <span><a class="btn btn-primary btn-circle btn-sm" href="@Url.Action("ProgrameList", "Wechat", new { cid = 9 })#"><i class="glyphicon glyphicon-cutlery"></i></a></span>
+            <span>@dem.demName @dem.demNumber</span>
+        </li>
+        }
+    }
+
+</ul>
+
+@ViewBag.current
+
+@ViewBag.test 
+
+<br/>
+
+@ViewBag.test2
