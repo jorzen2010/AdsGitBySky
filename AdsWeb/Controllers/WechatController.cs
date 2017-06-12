@@ -17,7 +17,7 @@ namespace AdsWeb.Controllers
     public class WechatController : Controller
     {
         private UnitOfWork unitOfWork = new UnitOfWork();
-      
+        private SkyWebContext db = new SkyWebContext();
 
         #region 微信登录跳转页面
         public ActionResult Index()
@@ -605,8 +605,20 @@ namespace AdsWeb.Controllers
         #endregion
 
 
-        public ActionResult test()
+        public ActionResult test(int bid)
         {
+
+
+
+            Baogao baogao = BaogaoServices.GetFirstBaogaoByBabyID(bid);
+            if (string.IsNullOrEmpty(baogao.BaogaoDementionScore))
+            {
+                //请先进行测量
+                return RedirectToAction("NoScale");
+            }
+            else
+            {
+             //   string x = baogao.BaogaoDementionScore;
             string x = "感觉能力:99,交往能力:56,运动能力:46,语言能力:76,自理能力:90";
             string y = "感觉能力:0.9,交往能力:0.8,运动能力:0.4,语言能力:0.7,自理能力:0.6";
 
@@ -620,20 +632,30 @@ namespace AdsWeb.Controllers
             {
                 number++;
                 // string  dem=s.ToString();
+
                 BaogaoDemention dem = new BaogaoDemention();
+                Category category = (from c in db.Categorys
+                                     orderby c.CategorySort ascending
+                                     where c.CategoryName == dem.demName
+                                     select c).First();
                 dem.demName = s.Substring(0, s.IndexOf(":"));
                 dem.demScore = int.Parse(s.Substring(s.IndexOf(":") + 1));
                 dem.demNumber=number;
+                dem.demIcon = category.CategoryIcon;
+                dem.demcategoryid = category.ID;
 
                 demlist.Add(dem);
                 
             }
 
             ViewData["dem"] = demlist;
-            ViewBag.current = demlist[0].demName;
+            ViewBag.current = demlist[0].demcategoryid;
 
             List<AdsVideo> videolist = new List<AdsVideo>();
             return View();
+            }
+
+
         
         }
 
@@ -697,14 +719,25 @@ namespace AdsWeb.Controllers
             Baogao baogao = new Baogao();
             baogao.BaogaoScore = score;
             baogao.BaogaoDementionScore = Dementionscore;
-            baogao.BaogaoTotalScore = totalscore;
-            baogao.BaogaoWeight = weight;
+
+            baogao.BaogaoTotalScore = PlanServices.MakePlan(totalscore); 
+            baogao.BaogaoWeight = PlanServices.MakePlan(weight); 
+
             baogao.CustomerId = customerId;
             baogao.BabyId = babyid;
             baogao.ScaleId = 1;
             baogao.BaogaoTime = System.DateTime.Now;
 
             Plan plan = new Plan();
+
+            string[] sArray = baogao.BaogaoWeight.Split(',');
+            List<BaogaoDemention> demlist = new List<BaogaoDemention>();
+
+            foreach (string s in sArray)
+            {
+
+
+            }
 
 
             try
@@ -717,8 +750,7 @@ namespace AdsWeb.Controllers
             catch
             {
                 msg.MessageStatus = "false";
-                msg.MessageInfo = "保存失败";
-            
+                msg.MessageInfo = "保存失败";          
             }
             
             return Json(msg, JsonRequestBehavior.AllowGet);

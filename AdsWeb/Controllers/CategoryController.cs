@@ -106,7 +106,7 @@ namespace AdsWeb.Controllers
         // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CategoryName,CategoryInfo,CategoryParentID,CategoryStatus,CategorySort")] Category category)
+        public ActionResult Create([Bind(Include = "CategoryName,CategoryIcon,CategoryInfo,CategoryParentID,CategoryStatus,CategorySort")] Category category)
         {
 
             if (ModelState.IsValid)
@@ -126,7 +126,7 @@ namespace AdsWeb.Controllers
         // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,CategoryName,CategoryInfo,CategoryParentID,CategoryStatus,CategorySort")] Category category)
+        public ActionResult Edit([Bind(Include = "ID,CategoryName,CategoryIcon,CategoryInfo,CategoryParentID,CategoryStatus,CategorySort")] Category category)
         {
             if (ModelState.IsValid)
             {

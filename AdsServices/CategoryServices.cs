@@ -15,12 +15,18 @@ namespace AdsServices
     public class CategoryServices
     {
         private static  UnitOfWork unitOfWork = new UnitOfWork();
-
+ 
         public static string GetCategoryNameById(int id)
         {
             return unitOfWork.categorysRepository.GetByID(id).CategoryName;
         
         }
+        public static string GetCategoryIconById(int id)
+        {
+            return unitOfWork.categorysRepository.GetByID(id).CategoryIcon;
+
+        }
+
 
         public static int GetParentIdById(int id)
         {

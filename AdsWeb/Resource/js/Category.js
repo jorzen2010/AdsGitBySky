@@ -105,6 +105,7 @@ function fillForm(selectedNode) {
             $('#CategoryParentName').val(result.CategoryParentName).prop("readonly", true);
             $('#CategoryParentID').val(result.CategoryParentID).removeAttr("readonly");
             $('#CategoryName').val(result.CategoryName).removeAttr("readonly");
+            $('#CategoryIcon').val(result.CategoryIcon).removeAttr("readonly");
             $('#CategorySort').val(result.CategorySort).removeAttr("readonly");
             $('#CategoryInfo').val(result.CategoryInfo).removeAttr("readonly");
             $('input[type="radio"][name="CategoryStatus"]').removeAttr("disabled");
@@ -319,6 +320,7 @@ function dictionary(nodeid) {
             $('#CategoryParentName').val(result.CategoryParentName);
             $('#CategoryParentID').val(result.CategoryParentID);
             $('#CategoryName').val(result.CategoryName);
+            $('#CategoryIcon').val(result.CategoryIcon);
             $('#ID').val(result.ID);
             $('#CategorySort').val(result.CategorySort);
             $('#CategoryInfo').val(result.CategoryInfo);

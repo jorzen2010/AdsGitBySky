@@ -912,6 +912,12 @@
     <Content Include="plugins\fullcalendar\fullcalendar.min.css" />
     <Content Include="plugins\fullcalendar\fullcalendar.min.js" />
     <Content Include="plugins\fullcalendar\fullcalendar.print.css" />
+    <Content Include="plugins\IconPicker\css\bootstrap.css" />
+    <Content Include="plugins\IconPicker\css\bootstrap.min.css" />
+    <Content Include="plugins\IconPicker\css\icon-picker.css" />
+    <Content Include="plugins\IconPicker\css\icon-picker.min.css" />
+    <Content Include="plugins\IconPicker\js\iconPicker.js" />
+    <Content Include="plugins\IconPicker\js\iconPicker.min.js" />
     <Content Include="plugins\scale\css\labelauty.css" />
     <Content Include="plugins\scale\demo.htm" />
     <Content Include="plugins\scale\images\input-checked.png" />

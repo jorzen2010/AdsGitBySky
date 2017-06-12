@@ -118,25 +118,25 @@ namespace AdsDal
 
             var categorys = new List<Category>
             {
-                new Category{CategoryName="顶级分类",CategoryInfo="顶级分类",CategoryParentID=0,CategoryStatus=true,CategorySort=0},
+                new Category{CategoryName="顶级分类",CategoryIcon="glyphicon glyphicon-list",CategoryInfo="顶级分类",CategoryParentID=0,CategoryStatus=true,CategorySort=0},
 
-                new Category{CategoryName="视频类型",CategoryInfo="视频类型",CategoryParentID=1,CategoryStatus=true,CategorySort=0},
+                new Category{CategoryName="视频类型",CategoryIcon="glyphicon glyphicon-list",CategoryInfo="视频类型",CategoryParentID=1,CategoryStatus=true,CategorySort=0},
 
-                new Category{CategoryName="训练项目",CategoryInfo="训练项目",CategoryParentID=2,CategoryStatus=true,CategorySort=0},
-                new Category{CategoryName="心理服务",CategoryInfo="心理服务",CategoryParentID=2,CategoryStatus=true,CategorySort=0},
-
-
-
-                new Category{CategoryName="感觉能力",CategoryInfo="感觉能力",CategoryParentID=3,CategoryStatus=true,CategorySort=0},
-                new Category{CategoryName="交往能力",CategoryInfo="交往能力",CategoryParentID=3,CategoryStatus=true,CategorySort=0},
-                new Category{CategoryName="运动能力",CategoryInfo="运动能力",CategoryParentID=3,CategoryStatus=true,CategorySort=0},
-                new Category{CategoryName="语言能力",CategoryInfo="语言能力",CategoryParentID=3,CategoryStatus=true,CategorySort=0},
-                new Category{CategoryName="自理能力",CategoryInfo="自理能力",CategoryParentID=3,CategoryStatus=true,CategorySort=0},
+                new Category{CategoryName="训练项目",CategoryIcon="glyphicon glyphicon-list",CategoryInfo="训练项目",CategoryParentID=2,CategoryStatus=true,CategorySort=0},
+                new Category{CategoryName="心理服务",CategoryIcon="glyphicon glyphicon-list",CategoryInfo="心理服务",CategoryParentID=2,CategoryStatus=true,CategorySort=0},
 
 
-                new Category{CategoryName="焦虑",CategoryInfo="心理服务",CategoryParentID=4,CategoryStatus=true,CategorySort=0},
-                new Category{CategoryName="夫妻关系",CategoryInfo="心理服务",CategoryParentID=4,CategoryStatus=true,CategorySort=0},
-                new Category{CategoryName="亲子关系",CategoryInfo="心理服务",CategoryParentID=4,CategoryStatus=true,CategorySort=0},
+
+                new Category{CategoryName="感觉能力",CategoryIcon="glyphicon glyphicon-bell",CategoryInfo="感觉能力",CategoryParentID=3,CategoryStatus=true,CategorySort=0},
+                new Category{CategoryName="交往能力",CategoryIcon="glyphicon glyphicon-bed",CategoryInfo="交往能力",CategoryParentID=3,CategoryStatus=true,CategorySort=0},
+                new Category{CategoryName="运动能力",CategoryIcon="glyphicon glyphicon-fire",CategoryInfo="运动能力",CategoryParentID=3,CategoryStatus=true,CategorySort=0},
+                new Category{CategoryName="语言能力",CategoryIcon="glyphicon glyphicon-headphones",CategoryInfo="语言能力",CategoryParentID=3,CategoryStatus=true,CategorySort=0},
+                new Category{CategoryName="自理能力",CategoryIcon="glyphicon glyphicon-glass",CategoryInfo="自理能力",CategoryParentID=3,CategoryStatus=true,CategorySort=0},
+
+
+                new Category{CategoryName="焦虑",CategoryIcon="glyphicon glyphicon-list",CategoryInfo="心理服务",CategoryParentID=4,CategoryStatus=true,CategorySort=0},
+                new Category{CategoryName="夫妻关系",CategoryIcon="glyphicon glyphicon-list",CategoryInfo="心理服务",CategoryParentID=4,CategoryStatus=true,CategorySort=0},
+                new Category{CategoryName="亲子关系",CategoryIcon="glyphicon glyphicon-list",CategoryInfo="心理服务",CategoryParentID=4,CategoryStatus=true,CategorySort=0},
 
             };
             categorys.ForEach(s => context.Categorys.Add(s));

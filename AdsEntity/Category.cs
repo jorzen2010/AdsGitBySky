@@ -10,6 +10,7 @@ namespace AdsEntity
     {
         public int ID { get; set; }
         public string CategoryName { get; set; }
+        public string CategoryIcon { get; set; }
         public string CategoryInfo { get; set; }
         public int CategoryParentID { get; set; }
         public bool CategoryStatus { get; set; }

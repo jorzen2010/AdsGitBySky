@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace AdsEntity
 {
     public class Pingjia
+
     {
         public int PingjiaId { get; set; }
         public int BabyId { get; set; }
@@ -16,9 +17,22 @@ namespace AdsEntity
     }
 
     public enum PingjiaStatus
-        { 
-            熟练完成=1,
-            基本完成=2,
-            不能完成=3
-        }
+
+    { 
+
+        熟练完成=0.3,
+        基本完成=0.5,
+        不能完成=0.8
+
+    }
+
+    public class PingjiaWeight
+
+    {
+        public int PingjiaWeightId { get; set; }
+        public int VideoId { get; set; }
+        public int BabyId { get; set; }
+        public float VideoWeight { get; set; }
+
+    }
 }

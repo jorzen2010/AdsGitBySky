@@ -11,7 +11,11 @@ namespace AdsEntity
         [Key]
         public int PlanId { get; set; }
         public int BabyId { get; set; }
-        public string  PlanContent { get; set; }
+        public string  PlanA { get; set; }
+        public string PlanB { get; set; }
+        public string PlanC { get; set; }
+        public string PlanD { get; set; }
+        public string PlanE { get; set; }
         public DateTime PlanTime { get; set; }
     }
 

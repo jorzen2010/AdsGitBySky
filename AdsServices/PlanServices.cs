@@ -38,10 +38,8 @@ namespace AdsServices
                 }
             }
 
-            for (int k = 0; k < sArray.Length - 1; k++)
-            {
+            //应该直接指定出来计划列表以供参考
 
-            }
             string er = CommonTools.arrayToString(sArray);
             return er;
         }
@@ -58,6 +56,16 @@ namespace AdsServices
 
 
             return demplan;
+        
+        }
+
+        public string MakePlanByScore()
+        {
+            //根据维度名称找到CategoryID
+            //根据CategoryID找到所有video
+            //根据videoid找到这个video的weight值
+            //根据videoid找到这个video的评价值  只根据权重来，完成率作为一个动态标尺
+                
         
         }
 
