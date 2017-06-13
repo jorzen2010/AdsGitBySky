@@ -1,0 +1,69 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@using AdsServices;
+@model StaticPagedList<AdsEntity.AdsVideo>
+@{
+    Layout = "~/Views/Shared/_WechatLayout.cshtml";
+}
+    
+
+@foreach (var item in Model)
+{
+    <div class="row skyindexrow">
+
+        <img src="~/WechatResource/img/user1-128x128.jpg" alt="User Avatar" class="pull-left sky-index-itemimg">
+
+        <div class="pull-left sky-index-itemcontent">
+            <span class="sky-index-itemcontent-title">
+                @Html.DisplayFor(modelItem => item.VideoName)
+            </span>
+            <p>项目难度系数：@Html.DisplayFor(modelItem => item.VideoTeacher)</p>
+            <p>项目完成率： @Html.DisplayFor(modelItem => item.VideoViewTimes) 人浏览</p>
+        </div>
+
+        <a class="pull-right btn btn-warning btn-sm" href="">马上学习</a>
+
+    </div>
+
+}
+
+
+
+    <div class="row skyindexrow">
+
+        <img src="~/WechatResource/img/user1-128x128.jpg" alt="User Avatar" class="pull-left">
+
+        <div class="pull-left sky-index-itemcontent">
+            <span class="sky-index-itemcontent-title">
+                踢皮球
+            </span>
+            <p>
+                训练时长：30分钟
+            </p>
+            <p>
+                项目完成率：67%
+            </p>
+        </div>
+
+        <button class="pull-right btn btn-warning btn-sm">继续训练</button>
+
+    </div>
+
+<div class="box-footer clearfix">
+    <ul>
+        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Calendar", new { page = page, cid = ViewBag.cid, orderid = ViewBag.orderid }),
+    new PagedListRenderOptions
+    {
+        LinkToPreviousPageFormat = "上一页",
+        LinkToNextPageFormat = "下一页",
+        DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+        DisplayLinkToLastPage = PagedListDisplayMode.Always,
+        DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+        DisplayLinkToNextPage = PagedListDisplayMode.Always,
+        MaximumPageNumbersToDisplay = 5,
+        LinkToFirstPageFormat = "首页",
+        LinkToLastPageFormat = "最后一页",
+        PageCountAndCurrentLocationFormat = "第 {0}页 共 {1}页"
+    })
+    </ul>
+</div>

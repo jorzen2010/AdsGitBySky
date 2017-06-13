@@ -19,4 +19,13 @@ namespace AdsEntity
         public DateTime PlanTime { get; set; }
     }
 
+
+    public class PlanOrderWeight
+    {
+        public int VideoId { get; set; }
+        public float OrderValue { get; set; }
+
+    
+    }
+
 }

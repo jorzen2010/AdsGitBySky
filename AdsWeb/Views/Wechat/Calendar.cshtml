@@ -1,4 +1,8 @@
-﻿@model AdsEntity.AdsBaby
+﻿@using PagedList;
+@using PagedList.Mvc;
+@using AdsServices;
+@using AdsEntity;
+@model StaticPagedList<AdsEntity.AdsVideo>
 @{
     Layout = "~/Views/Shared/_WechatLayout.cshtml";
 }
@@ -17,7 +21,7 @@
                 <div class="row">
                     <div class="col-xs-12 center">
                         <div class="description-block">
-                            <h5 class="description-header">@Model.BabyName</h5>
+                            <h5 class="description-header">@ViewBag.babyName </h5>
                         </div>
                     </div>
                 </div>
@@ -53,28 +57,57 @@
                 <!-- /.row -->
 
                 
+
+
                 <ul class="row skyindexbtn">
 
-                    <li class="col-xs-1-5 text-center sky-nav-li">
-                        <span><a class="btn btn-info btn-circle btn-sm" href="@Url.Action("ProgrameList", "Wechat", new { cid = 5 })"><i class="glyphicon glyphicon-fire"></i></a></span>
-                        <span>感觉能力</span>
-                    </li>
-                    <li class="col-xs-1-5 text-center sky-nav-li">
-                        <span><a class="btn btn-danger btn-circle btn-sm" href="@Url.Action("ProgrameList", "Wechat", new { cid = 6 })"><i class="glyphicon glyphicon-eye-open"></i></a></span>
-                        <span>交往能力</span>
-                    </li>
-                    <li class="col-xs-1-5 text-center sky-nav-li">
-                        <span><a class="btn btn-warning btn-circle btn-sm" href="@Url.Action("ProgrameList", "Wechat", new { cid = 7 })"><i class="glyphicon glyphicon-thumbs-up"></i></a></span>
-                        <span>运动能力</span>
-                    </li>
-                    <li class="col-xs-1-5 text-center sky-nav-li">
-                        <span><a class="btn btn-success btn-circle btn-sm" href="@Url.Action("ProgrameList", "Wechat", new { cid = 8 })"><i class="glyphicon glyphicon-phone-alt"></i></a></span>
-                        <span>语言能力</span>
-                    </li>
-                    <li class="col-xs-1-5 text-center sky-nav-li">
-                        <span><a class="btn btn-primary btn-circle btn-sm" href="@Url.Action("ProgrameList", "Wechat", new { cid = 9 })#"><i class="glyphicon glyphicon-cutlery"></i></a></span>
-                        <span>自理能力</span>
-                    </li>                  
+                    @foreach (BaogaoDemention dem in ViewData["dem"] as List<BaogaoDemention>)
+                    {
+
+
+                        <li class="col-xs-1-5 text-center sky-nav-li">
+                            <span>
+                                @if (dem.demNumber == 1)
+                                {
+                               
+
+                                    <a class="btn btn-danger btn-circle btn-sm" href="@Url.Action("Calendar", "Wechat", new { cid = dem.demcategoryid ,orderid=dem.demNumber})">
+                                        <i class="@dem.demIcon"></i>
+                                    </a>
+                                }
+                                @if (dem.demNumber == 2)
+                                {
+
+                                    <a class="btn btn-danger btn-circle btn-sm" href="@Url.Action("Calendar", "Wechat", new { cid = dem.demcategoryid, orderid = dem.demNumber })">
+                                        <i class="@dem.demIcon"></i>
+                                    </a>
+                                }
+                                @if (dem.demNumber == 3)
+                                {
+
+                                    <a class="btn btn-warning btn-circle btn-sm" href="@Url.Action("Calendar", "Wechat", new { cid = dem.demcategoryid, orderid = dem.demNumber })">
+                                        <i class="@dem.demIcon"></i>
+                                    </a>
+                                }
+                                @if (dem.demNumber == 4)
+                                {
+
+                                    <a class="btn btn-warning btn-circle btn-sm" href="@Url.Action("Calendar", "Wechat", new { cid = dem.demcategoryid, orderid = dem.demNumber })">
+                                        <i class="@dem.demIcon"></i>
+                                    </a>
+                                }
+                                @if (dem.demNumber == 5)
+                                {
+
+                                    <a class="btn btn-success btn-circle btn-sm" href="@Url.Action("Calendar", "Wechat", new { cid = dem.demcategoryid, orderid = dem.demNumber })">
+                                        <i class="@dem.demIcon"></i>
+                                    </a>
+                                }
+
+                            </span>
+                            <span> @dem.demName</span>
+                        </li>
+                    }
 
                 </ul>
 
@@ -84,29 +117,53 @@
         <!-- /.widget-user -->
 
     </div>
-
-    <div class="row skyindexrow">
-        <div class="pull-left text-orange skyindexrowtitle"><i class="glyphicon glyphicon-calendar"></i> 必修任务</div>
-        <div class="pull-right skyindexrowrighttitle">234人正在训练</div>
+<div class="row skyindexrow">
+    <div class="pull-left text-orange skyindexrowtitle"><i class="glyphicon glyphicon-calendar"></i> @ViewBag.ctitle 
+   
     </div>
+    <div class="pull-right skyindexrowrighttitle">234人正在训练</div>
+</div>
 
+
+@foreach (var item in Model)
+{
     <div class="row skyindexrow">
 
-        <img src="~/WechatResource/img/user1-128x128.jpg" alt="User Avatar" class="pull-left">
+        <img src="~/WechatResource/img/user1-128x128.jpg" alt="User Avatar" class="pull-left sky-index-itemimg">
 
         <div class="pull-left sky-index-itemcontent">
             <span class="sky-index-itemcontent-title">
-                踢皮球
+                @Html.DisplayFor(modelItem => item.VideoName)
             </span>
-            <p>
-                训练时长：30分钟
-            </p>
-            <p>
-                项目完成率：67%
-            </p>
+            <p>项目难度系数：@Html.DisplayFor(modelItem => item.VideoTeacher)</p>
+            <p>项目使用率： @Html.DisplayFor(modelItem => item.VideoViewTimes) 人训练过该项目</p>
         </div>
 
-        <button class="pull-right btn btn-warning btn-sm">继续训练</button>
+        <a class="pull-right btn btn-warning btn-sm" href="@Url.Action("Program", "Wechat", new { bid = ViewBag.babyId, id = item.VideoId })">马上学习</a>
 
     </div>
 
+}
+
+
+
+
+<div class="box-footer clearfix">
+    <ul>
+        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Calendar", new { page = page, cid = ViewBag.cid, orderid = ViewBag.orderid }),
+    new PagedListRenderOptions
+    {
+        LinkToPreviousPageFormat = "上一页",
+        LinkToNextPageFormat = "下一页",
+        DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+        DisplayLinkToLastPage = PagedListDisplayMode.Always,
+        DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+        DisplayLinkToNextPage = PagedListDisplayMode.Always,
+        MaximumPageNumbersToDisplay = 5,
+        LinkToFirstPageFormat = "首页",
+        LinkToLastPageFormat = "最后一页",
+        PageCountAndCurrentLocationFormat = "第 {0}页 共 {1}页"
+    })
+    </ul>
+</div>
+   

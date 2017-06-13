@@ -50,9 +50,9 @@
                 
                  <tr>
 
-                <td>@dem.demName</td>
+                 <td>@dem.demName</td>
                
-                <td>无</td>
+                 <td>@dem.demReference</td>
                  <td>@dem.demScore</td>
             </tr>
                 
@@ -62,7 +62,7 @@
             <tr>
                 <td>总分</td>
                
-                <td>筛查57分/诊断67分</td>
+                <td>53</td>
                 <td>@Model.BaogaoTotalScore</td>
             </tr>
         </thead>
@@ -91,27 +91,28 @@
             <tr>
 
                 <td colspan="4">
-                   您的总得分是：56分，达到了筛查界限分数，请您到正规机构进行筛查。<br/>
-                   根据量表筛查界限分为57分，诊断分数为67分。<br />
-                    您也可以拨打0451-2565265进行咨询
+                   您的总得分是：@Model.BaogaoTotalScore 分.<br />
+                    根据量表筛查界限分为57分，诊断分数为67分。
+                   @if (int.Parse(Model.BaogaoTotalScore) > 67)
+                   {
+                       Response.Write("您的分数超过了诊断分数，建议您继续进行康复训练。");
+                   }
+                   else if (int.Parse(Model.BaogaoTotalScore) < 57)
+                   {
+                       Response.Write("根据您的测量结果，你未达到筛查分数，如有疑问建议到专业机构进行咨询。");
+
+                   }
+                   else
+                   {
+                       Response.Write("根据您的测量结果，你达到了筛查分数，建议您立刻到专业机构进行诊断，并马上开始进行康复训练。");
+
+                   }
+                  <br/> 您也可以拨打0451-2565265进行咨询
                    
                 </td>
 
 
             </tr>
-            <tr>
-
-                <th colspan="4">行为建议</th>
-                
-
-            </tr>
-            <tr>
-
-                <td colspan="4">建议您继续保持训练。建议您立即加入自闭症家庭训练计划</td>
-
-
-            </tr>
-
 
         </tbody>
 
@@ -185,7 +186,7 @@
                 }
             },
             type: 'bar',
-            data: @ViewBag.chartsdata
+            data: @ViewBag.chartsdata ,
         }]
     };
 

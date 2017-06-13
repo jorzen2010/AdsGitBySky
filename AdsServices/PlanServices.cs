@@ -44,27 +44,90 @@ namespace AdsServices
             return er;
         }
 
-        public string demplan(string dem,int count)
+        public  static List<BaogaoDemention> PlanCategory(int bid)
         {
-            string demplan = "";
+            Baogao baogao = BaogaoServices.GetFirstBaogaoByBabyID(bid);
 
-            int  categoryid = unitOfWork.categorysRepository.Get(filter: u => u.CategoryName == dem).First().ID;
-
-            var program = unitOfWork.adsVideosRepository.Get(filter: u => u.VideoCategory == categoryid && u.VideoWeight==0.3);
+         //    string x = baogao.BaogaoDementionScore;
 
 
+           string x = "感觉能力:99,交往能力:56,运动能力:46,语言能力:76,自理能力:90";
+     
 
 
-            return demplan;
+            string[] sArray = x.Split(',');
+            List<BaogaoDemention> demlist = new List<BaogaoDemention>();
+            int number = 0;
+            foreach (string s in sArray)
+            {
+                number++;
+                // string  dem=s.ToString();
+
+                BaogaoDemention dem = new BaogaoDemention();
+                dem.demName = s.Substring(0, s.IndexOf(":"));
+                dem.demScore = int.Parse(s.Substring(s.IndexOf(":") + 1));
+                //Category category = (from c in db.Categorys
+                //                     orderby c.CategorySort ascending
+                //                     where c.CategoryName == dem.demName
+                //                     select c).First();
+                Category category = unitOfWork.categorysRepository.Get(filter: u => u.CategoryName == dem.demName).First();
+               
+               
+                dem.demNumber=number;
+                dem.demIcon = category.CategoryIcon;
+                dem.demcategoryid = category.ID;
+
+                demlist.Add(dem);
+
+            }
+
+            return demlist;
         
         }
 
-        public string MakePlanByScore()
+
+
+
+        public static List<PlanOrderWeight> MakePlanByScore(string dem, int babyid)
         {
-            //根据维度名称找到CategoryID
-            //根据CategoryID找到所有video
-            //根据videoid找到这个video的weight值
-            //根据videoid找到这个video的评价值  只根据权重来，完成率作为一个动态标尺
+            List<PlanOrderWeight> orderlist=new List<PlanOrderWeight>();
+            int categoryid = unitOfWork.categorysRepository.Get(filter: u => u.CategoryName == dem).First().ID;
+
+            var videos = unitOfWork.adsVideosRepository.Get(filter: v => v.VideoCategory == categoryid);
+
+            if (videos.Count() > 0)
+            {
+                foreach (AdsVideo video in videos)
+                {
+                    float pingjiastatus = 0.5f;
+
+                    var pingjias = unitOfWork.pingjiasRepository.Get(filter: v => v.VideoId == video.VideoId && v.BabyId==babyid);
+                    if (pingjias.Count() > 0)
+                    {
+                        pingjiastatus = pingjias.First().PingjiaValue;
+                    }
+                    PlanOrderWeight planOrderWeight = new PlanOrderWeight();
+                    planOrderWeight.VideoId = video.VideoId;
+                    planOrderWeight.OrderValue = (video.VideoWeight * pingjiastatus) * (video.VideoWeight * pingjiastatus);
+                    orderlist.Add(planOrderWeight);
+
+                }
+
+              //  peoples.Sort( (a, b) => a.age.CompareTo(b.age) );
+              //  peoples.Sort(delegate (People p1, People p2) { return p1.age.CompareTo(p2.age); });
+
+                orderlist.Sort((a, b) => a.OrderValue.CompareTo(b.OrderValue));
+
+                return orderlist;
+
+            }
+            else
+            {
+                return orderlist;
+                //有错误
+            
+            }
+
                 
         
         }

@@ -20,7 +20,7 @@ namespace AdsServices
 
         public static List<Baogao> GetBaogaoListByBabyID(int bid)
         {
-            var baogaos = unitOfWork.baogaoRepository.Get(filter: u => u.BabyId == bid,orderBy:u);
+            var baogaos = unitOfWork.baogaoRepository.Get(filter: u => u.BabyId == bid);
             List<Baogao> BaogaoList = new List<Baogao>();
             foreach (Baogao baogao in baogaos)
             {

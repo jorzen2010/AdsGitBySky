@@ -20,6 +20,14 @@ padding:10px 0px 25px 0px;
 margin-bottom:50px;
 }
 
+
+/*# 评价按钮*/
+
+.pingjiabtn {
+	padding:5px 0px;
+    background-color:#ffffff;
+}
+
 /*# 以下部分是底部导航*/
 .sky-nav-li {
 	padding:0px;

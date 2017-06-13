@@ -1699,6 +1699,7 @@
     <Content Include="Views\Wechat\Program.cshtml" />
     <Content Include="Views\Wechat\test.cshtml" />
     <Content Include="Views\Wechat\Calendar - 复制.cshtml" />
+    <Content Include="Views\Wechat\PartCalendar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

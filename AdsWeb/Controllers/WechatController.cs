@@ -104,8 +104,10 @@ namespace AdsWeb.Controllers
         
         
         #region 训练计划
-        public ActionResult Calendar()
+        public ActionResult Calendar(int? page, int ?cid ,int? orderid)
         {
+            int oid = orderid ?? 1;
+        
             AdsBaby baby = new AdsBaby();
             if (Session["CustomerId"] != null)
             {
@@ -116,7 +118,40 @@ namespace AdsWeb.Controllers
                 {
                     baby = babys.First() as AdsBaby;
                     ViewData["videocat"] = CategoryServices.GetCategoryListByParentID(2);
-                    return View(baby);
+                    ViewBag.babyName = baby.BabyName;
+                    ViewBag.babyId = baby.BabyId;
+                    List<BaogaoDemention> demlist=PlanServices.PlanCategory(baby.BabyId);
+                    int categoryid = cid??demlist[0].demcategoryid;
+
+                    Pager pager = new Pager();
+                    pager.table = "AdsVideo";
+                    pager.strwhere = "VideoCategory=" + categoryid;
+                    pager.PageSize = 4;
+                    pager.PageNo = page ?? 1;
+                    pager.FieldKey = "VideoId";
+                    pager.FiledOrder = "VideoId desc";
+
+                
+                    pager = CommonDal.GetPager(pager);
+                    IList<AdsVideo> videos = DataConvertHelper<AdsVideo>.ConvertToModel(pager.EntityDataTable);
+                    var videosAsIPageList = new StaticPagedList<AdsVideo>(videos, pager.PageNo, pager.PageSize, pager.Amount);
+
+                    ViewBag.orderid = oid;
+
+                    if (oid == 1 || oid == 2)
+                    {
+                        ViewBag.ctitle = "必修任务";
+                    }
+                    if (oid == 3|| oid == 4)
+                    {
+                        ViewBag.ctitle = "选修任务";
+                    }
+                    if (oid == 5)
+                    {
+                        ViewBag.ctitle = "一般任务";
+                    }
+                    ViewData["dem"] = demlist;
+                    return View(videosAsIPageList);
                 }
                 else
                 {
@@ -130,7 +165,7 @@ namespace AdsWeb.Controllers
             else
             {
                 return RedirectToAction("Login");
-            
+
             }
         }
         #endregion
@@ -195,9 +230,12 @@ namespace AdsWeb.Controllers
         }
         #endregion
 
-        public ActionResult Program()
+        public ActionResult Program(int id,int bid)
         {
-            return View();
+            AdsVideo video = unitOfWork.adsVideosRepository.GetByID(id);
+            ViewBag.babyId = bid;
+
+            return View(video);
         }
 
         #region 心理服务
@@ -224,6 +262,10 @@ namespace AdsWeb.Controllers
            
         }
         #endregion
+
+       
+
+
 
         #region 训练项目
         public ActionResult ProgrameList(int? page, int? cid)
@@ -473,10 +515,10 @@ namespace AdsWeb.Controllers
 
 
         #region 项目评价
-        public ActionResult Pingjia(int? page,int?sid) 
+        public ActionResult Pingjia(int? page, float? sid) 
         {
 
-            int status = sid ?? 0;
+            float status = sid ?? 0;
             if (Session["CustomerId"] != null)
             {
                 int id = int.Parse(Session["CustomerId"].ToString());
@@ -490,7 +532,7 @@ namespace AdsWeb.Controllers
                     pager.strwhere = "BabyId=" + baby.BabyId;
                     if (status != 0)
                     {
-                        pager.strwhere = pager.strwhere + " and Status=" + status;
+                        pager.strwhere = pager.strwhere + " and PingjiaValue=" + status;
                     
                     }
                     pager.PageSize = 20;
@@ -522,32 +564,62 @@ namespace AdsWeb.Controllers
         #endregion
 
         #region 评价记录
-        public ActionResult PingjiaCreate(int babyId, int status, int videoId)
+         [HttpPost]
+        public JsonResult PingjiaCreate(int babyId, float pingjiaValue, int videoId)
         {
+            Message msg = new Message();
             Pingjia pingjia = new Pingjia();
             pingjia.BabyId = babyId;
             pingjia.VideoId =videoId ;
-            if (status == 1)
-            {
-                pingjia.Status = PingjiaStatus.熟练完成;
-            }
-            if (status == 2)
-            {
-                pingjia.Status = PingjiaStatus.基本完成;
-            }
-            if (status == 3)
-            {
-                pingjia.Status = PingjiaStatus.不能完成;
-            }
+            pingjia.PingjiaValue = pingjiaValue;
+
             pingjia.PingjiaTime = DateTime.Now;
+            if (ModelState.IsValid)
+            {
+                unitOfWork.pingjiasRepository.Insert(pingjia);
+                unitOfWork.Save();
+                msg.MessageStatus = "true";
+                msg.MessageInfo = "评估项目完成";
+            }
+            else
+            {
+                msg.MessageStatus = "false";
+                msg.MessageInfo = "失败";
+            }
 
-            unitOfWork.pingjiasRepository.Insert(pingjia);
-            unitOfWork.Save();
-
-            return View();
+            return Json(msg, JsonRequestBehavior.AllowGet);
         
         }
         #endregion
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult ResetPassword(int id)
+        {
+            Message msg = new Message();
+
+            SysUser sysuser = unitOfWork.sysUsersRepository.GetByID(id);
+            string password = CommonTools.GenerateRandomNumber(8);
+            string confirmpassword = CommonTools.ToMd5(password);
+            sysuser.SysPassword = confirmpassword;
+
+
+
+
+            if (ModelState.IsValid)
+            {
+
+                unitOfWork.sysUsersRepository.Update(sysuser);
+                unitOfWork.Save();
+                string EmailContent = "密码已经被重置为" + password.ToString() + "，并已经发送邮件到" + sysuser.SysEmail + ",请注意查收！";
+                AdsEmailServices.SendEmail(EmailContent, sysuser.SysEmail);
+                msg.MessageStatus = "true";
+                msg.MessageInfo = EmailContent;
+            }
+            return Json(msg, JsonRequestBehavior.AllowGet);
+        }
+
 
         #region 项目详情
         public ActionResult VideoDetail()
@@ -605,57 +677,59 @@ namespace AdsWeb.Controllers
         #endregion
 
 
-        public ActionResult test(int bid)
+        public ActionResult test()
         {
 
+           List<PlanOrderWeight>  list= PlanServices.MakePlanByScore("感觉能力",1);
 
+           ViewData["dem"] = list;
+          
+            //Baogao baogao = BaogaoServices.GetFirstBaogaoByBabyID(bid);
+            //if (string.IsNullOrEmpty(baogao.BaogaoDementionScore))
+            //{
+            //    //请先进行测量
+            //    return RedirectToAction("NoScale");
+            //}
+            //else
+            //{
+            // //   string x = baogao.BaogaoDementionScore;
+            //string x = "感觉能力:99,交往能力:56,运动能力:46,语言能力:76,自理能力:90";
+            //string y = "感觉能力:0.9,交往能力:0.8,运动能力:0.4,语言能力:0.7,自理能力:0.6";
 
-            Baogao baogao = BaogaoServices.GetFirstBaogaoByBabyID(bid);
-            if (string.IsNullOrEmpty(baogao.BaogaoDementionScore))
-            {
-                //请先进行测量
-                return RedirectToAction("NoScale");
-            }
-            else
-            {
-             //   string x = baogao.BaogaoDementionScore;
-            string x = "感觉能力:99,交往能力:56,运动能力:46,语言能力:76,自理能力:90";
-            string y = "感觉能力:0.9,交往能力:0.8,运动能力:0.4,语言能力:0.7,自理能力:0.6";
+            //ViewBag.test = PlanServices.MakePlan(x);
+            //ViewBag.test2 = PlanServices.MakePlan(y);
 
-            ViewBag.test = PlanServices.MakePlan(x);
-            ViewBag.test2 = PlanServices.MakePlan(y);
+            //string[] sArray = ViewBag.test.Split(',');
+            //List<BaogaoDemention> demlist = new List<BaogaoDemention>();
+            //int number = 0;
+            //foreach (string s in sArray)
+            //{
+            //    number++;
+            //    // string  dem=s.ToString();
 
-            string[] sArray = ViewBag.test.Split(',');
-            List<BaogaoDemention> demlist = new List<BaogaoDemention>();
-            int number = 0;
-            foreach (string s in sArray)
-            {
-                number++;
-                // string  dem=s.ToString();
+            //    BaogaoDemention dem = new BaogaoDemention();
+            //    Category category = (from c in db.Categorys
+            //                         orderby c.CategorySort ascending
+            //                         where c.CategoryName == dem.demName
+            //                         select c).First();
+            //    dem.demName = s.Substring(0, s.IndexOf(":"));
+            //    dem.demScore = int.Parse(s.Substring(s.IndexOf(":") + 1));
+            //    dem.demNumber=number;
+            //    dem.demIcon = category.CategoryIcon;
+            //    dem.demcategoryid = category.ID;
 
-                BaogaoDemention dem = new BaogaoDemention();
-                Category category = (from c in db.Categorys
-                                     orderby c.CategorySort ascending
-                                     where c.CategoryName == dem.demName
-                                     select c).First();
-                dem.demName = s.Substring(0, s.IndexOf(":"));
-                dem.demScore = int.Parse(s.Substring(s.IndexOf(":") + 1));
-                dem.demNumber=number;
-                dem.demIcon = category.CategoryIcon;
-                dem.demcategoryid = category.ID;
-
-                demlist.Add(dem);
+            //    demlist.Add(dem);
                 
-            }
+            //}
 
-            ViewData["dem"] = demlist;
-            ViewBag.current = demlist[0].demcategoryid;
+            //ViewData["dem"] = demlist;
+            //ViewBag.current = demlist[0].demcategoryid;
 
-            List<AdsVideo> videolist = new List<AdsVideo>();
-            return View();
-            }
+            //List<AdsVideo> videolist = new List<AdsVideo>();
+            //return View();
+            //}
 
-
+           return View();
         
         }
 
@@ -735,7 +809,7 @@ namespace AdsWeb.Controllers
 
             foreach (string s in sArray)
             {
-
+                
 
             }
 

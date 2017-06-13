@@ -1,0 +1,112 @@
+﻿@model AdsEntity.AdsBaby
+@{
+    Layout = "~/Views/Shared/_WechatLayout.cshtml";
+}
+
+  <div class="row">
+        <!-- Widget: user widget style 1 -->
+        <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-aqua-active">
+                <h4 class="widget-user-desc pull-right"><span class="glyphicon glyphicon-camera"></span> 扫一扫</h4>
+            </div>
+            <div class="widget-user-image">
+                <img class="img-circle" src="~/WechatResource/img/star.jpg" alt="User Avatar">
+            </div>
+            <div class="box-footer">
+                <div class="row">
+                    <div class="col-xs-12 center">
+                        <div class="description-block">
+                            <h5 class="description-header">@Model.BabyName</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-4 border-right">
+                        <div class="description-block">
+                            <h5 class="description-header">3,200天</h5>
+                            <span class="description-text">训练天数</span>
+                        </div>
+                        <!-- /.description-block -->
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-xs-4 border-right">
+                        <div class="description-block">
+                            <h5 class="description-header">35次</h5>
+                            <span class="description-text">测评次数</span>
+                        </div>
+                        <!-- /.description-block -->
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-xs-4">
+                        <div class="description-block">
+                            <h5 class="description-header">125次</h5>
+                            <span class="description-text">训练报告</span>
+                        </div>
+                        <!-- /.description-block -->
+                    </div>
+                    <!-- /.col -->
+
+
+                </div>
+                <!-- /.row -->
+
+                
+                <ul class="row skyindexbtn">
+
+                    <li class="col-xs-1-5 text-center sky-nav-li">
+                        <span><a class="btn btn-info btn-circle btn-sm" href="@Url.Action("ProgrameList", "Wechat", new { cid = 5 })"><i class="glyphicon glyphicon-fire"></i></a></span>
+                        <span>感觉能力</span>
+                    </li>
+                    <li class="col-xs-1-5 text-center sky-nav-li">
+                        <span><a class="btn btn-danger btn-circle btn-sm" href="@Url.Action("ProgrameList", "Wechat", new { cid = 6 })"><i class="glyphicon glyphicon-eye-open"></i></a></span>
+                        <span>交往能力</span>
+                    </li>
+                    <li class="col-xs-1-5 text-center sky-nav-li">
+                        <span><a class="btn btn-warning btn-circle btn-sm" href="@Url.Action("ProgrameList", "Wechat", new { cid = 7 })"><i class="glyphicon glyphicon-thumbs-up"></i></a></span>
+                        <span>运动能力</span>
+                    </li>
+                    <li class="col-xs-1-5 text-center sky-nav-li">
+                        <span><a class="btn btn-success btn-circle btn-sm" href="@Url.Action("ProgrameList", "Wechat", new { cid = 8 })"><i class="glyphicon glyphicon-phone-alt"></i></a></span>
+                        <span>语言能力</span>
+                    </li>
+                    <li class="col-xs-1-5 text-center sky-nav-li">
+                        <span><a class="btn btn-primary btn-circle btn-sm" href="@Url.Action("ProgrameList", "Wechat", new { cid = 9 })#"><i class="glyphicon glyphicon-cutlery"></i></a></span>
+                        <span>自理能力</span>
+                    </li>                  
+
+                </ul>
+
+            </div>
+
+        </div>
+        <!-- /.widget-user -->
+
+    </div>
+
+    <div class="row skyindexrow">
+        <div class="pull-left text-orange skyindexrowtitle"><i class="glyphicon glyphicon-calendar"></i> 今日任务</div>
+        <div class="pull-right skyindexrowrighttitle">234人正在训练</div>
+    </div>
+
+    <div class="row skyindexrow">
+
+        <img src="~/WechatResource/img/user1-128x128.jpg" alt="User Avatar" class="pull-left">
+
+        <div class="pull-left sky-index-itemcontent">
+            <span class="sky-index-itemcontent-title">
+                踢皮球
+            </span>
+            <p>
+                训练时长：30分钟
+            </p>
+            <p>
+                项目完成率：67%
+            </p>
+        </div>
+
+        <button class="pull-right btn btn-warning btn-sm">继续训练</button>
+
+    </div>
+
