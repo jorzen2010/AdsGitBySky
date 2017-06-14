@@ -50,6 +50,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CategoryServices.cs" />
     <Compile Include="CustomerServices.cs" />
+    <Compile Include="StatisticsServices.cs" />
     <Compile Include="VideoServices.cs" />
     <Compile Include="SysServices.cs" />
   </ItemGroup>

@@ -21,7 +21,7 @@ namespace AdsEntity
         [Display(Name = "生日")]
         public DateTime? BabyBirthday { get; set; }
         [Display(Name = "注册时间")]
-        public DateTime? BabyRegTime { get; set; }
+        public DateTime BabyRegTime { get; set; }
         [Display(Name = "到期时间")]
         public DateTime? BabyExpiredTime { get; set; }
         [Display(Name = "状态")]

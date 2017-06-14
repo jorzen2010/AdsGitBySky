@@ -1692,14 +1692,13 @@
     <Content Include="Views\AdsBaby\Details.cshtml" />
     <Content Include="Views\AdsBaby\Edit.cshtml" />
     <Content Include="Views\AdsBaby\Index.cshtml" />
-    <Content Include="Views\Wechat\VideoDetail.cshtml" />
     <Content Include="Views\Wechat\Pingjia.cshtml" />
     <Content Include="Views\Wechat\NoPay.cshtml" />
     <Content Include="Views\Wechat\ProgrameList.cshtml" />
     <Content Include="Views\Wechat\Program.cshtml" />
-    <Content Include="Views\Wechat\test.cshtml" />
     <Content Include="Views\Wechat\Calendar - 复制.cshtml" />
     <Content Include="Views\Wechat\PartCalendar.cshtml" />
+    <Content Include="Views\Wechat\NoScale.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

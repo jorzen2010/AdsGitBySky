@@ -55,15 +55,28 @@
                 <tbody>
 
 @foreach (var item in Model)
-{ 
-                    <tr>
-                      
-                        <td>@Html.DisplayFor(modelItem => item.VideoId)</td>
-                        <td>@Html.DisplayFor(modelItem => item.PingjiaTime)</td>
-                        <td>@Html.DisplayFor(modelItem => item.PingjiaValue)</td>
-                    </tr>
+{
+    <tr>
+
+        <td>@Html.DisplayFor(modelItem => item.VideoId)</td>
+        <td>@Html.DisplayFor(modelItem => item.PingjiaTime)</td>
+
+        <td>
+            @if (item.PingjiaValue == 0.3f)
+            { <span class="label label-danger">不能完成</span>
+            }
+            @if (item.PingjiaValue == 0.5f)
+            { <span class="label label-warning">基本完成</span>
+            }
+            @if (item.PingjiaValue == 0.8f)
+            { <span class="label label-success">熟练完成</span>
+            }
+
+
+        </td>
+    </tr>
 }
-                  
+            
 
                 </tbody>
                 

@@ -19,6 +19,26 @@ namespace AdsWeb.Controllers
         private UnitOfWork unitOfWork = new UnitOfWork();
         private SkyWebContext db = new SkyWebContext();
 
+
+        //登录相关所有操作
+
+
+        #region 登录页面
+        public ActionResult Login()
+        {
+            //   string nickname = Session["nickname"].ToString();
+            if (Session["CustomerNickName"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("MemberCenter", "Wechat");
+            }
+
+        }
+        #endregion
+
         #region 微信登录跳转页面
         public ActionResult Index()
         {
@@ -28,51 +48,61 @@ namespace AdsWeb.Controllers
 
             string STATE = Request["state"];
 
-            WebchatJsUserinfo userinfo = WechatJsServices.GetUserInfo(userAgent, CODE);
-
-            var cus = unitOfWork.adsCustomersRepository.Get(filter: u => u.CustomerOpenid == userinfo.openid);
-            int aa = cus.Count();
-            AdsCustomer customer = new AdsCustomer();
-            if (aa == 0)
+            if (string.IsNullOrEmpty(CODE))
             {
-
-                customer.CustomerOpenid = userinfo.openid;
-                customer.CustomerNickName = userinfo.nickname;
-                if (userinfo.sex == 0)
-                {
-                    customer.CustomerSex = "未知";
-                }
-                if (userinfo.sex == 1)
-                {
-                    customer.CustomerSex = "男";
-                }
-                if (userinfo.sex == 2)
-                {
-                    customer.CustomerSex = "女";
-                }
-                customer.CustomerUnionid = userinfo.unionid;
-                customer.CustomerIdentity = AdsCustomer.IdentiyStatus.未申请计划;
-                customer.CustomerLastLoginTime = System.DateTime.Now;
-                customer.CustomerRegTime = System.DateTime.Now;
-
-                customer.CustomerAvatar = userinfo.headimgurl;
-                customer.CustomerUserName = userinfo.openid;
-                customer.CustomerProvince = userinfo.province;
-                customer.CustomerCity = userinfo.city;
-
-                unitOfWork.adsCustomersRepository.Insert(customer);
-                unitOfWork.Save();
+                return RedirectToAction("Login");
             }
             else
             {
-                customer = cus.First() as AdsCustomer;
+                WebchatJsUserinfo userinfo = WechatJsServices.GetUserInfo(userAgent, CODE);
+
+                var cus = unitOfWork.adsCustomersRepository.Get(filter: u => u.CustomerOpenid == userinfo.openid);
+                int aa = cus.Count();
+                AdsCustomer customer = new AdsCustomer();
+                if (aa == 0)
+                {
+
+                    customer.CustomerOpenid = userinfo.openid;
+                    customer.CustomerNickName = userinfo.nickname;
+                    if (userinfo.sex == 0)
+                    {
+                        customer.CustomerSex = "未知";
+                    }
+                    if (userinfo.sex == 1)
+                    {
+                        customer.CustomerSex = "男";
+                    }
+                    if (userinfo.sex == 2)
+                    {
+                        customer.CustomerSex = "女";
+                    }
+                    customer.CustomerUnionid = userinfo.unionid;
+                    customer.CustomerIdentity = AdsCustomer.IdentiyStatus.未申请计划;
+                    customer.CustomerLastLoginTime = System.DateTime.Now;
+                    customer.CustomerRegTime = System.DateTime.Now;
+
+                    customer.CustomerAvatar = userinfo.headimgurl;
+                    customer.CustomerUserName = userinfo.openid;
+                    customer.CustomerProvince = userinfo.province;
+                    customer.CustomerCity = userinfo.city;
+
+                    unitOfWork.adsCustomersRepository.Insert(customer);
+                    unitOfWork.Save();
+                }
+                else
+                {
+                    customer = cus.First() as AdsCustomer;
+                }
+
+                Session["CustomerNickName"] = customer.CustomerNickName;
+                Session["CustomerOpenid"] = customer.CustomerOpenid;
+                Session["CustomerId"] = customer.CustomerId;
+
+                return Redirect(STATE);
+            
             }
 
-            Session["CustomerNickName"] = customer.CustomerNickName;
-            Session["CustomerOpenid"] = customer.CustomerOpenid;
-            Session["CustomerId"] = customer.CustomerId;
-
-            return Redirect(STATE);
+            
                 
 
            // return View();
@@ -101,94 +131,14 @@ namespace AdsWeb.Controllers
 
         }
         #endregion
-        
-        
-        #region 训练计划
-        public ActionResult Calendar(int? page, int ?cid ,int? orderid)
-        {
-            int oid = orderid ?? 1;
-        
-            AdsBaby baby = new AdsBaby();
-            if (Session["CustomerId"] != null)
-            {
-                int id = int.Parse(Session["CustomerId"].ToString());
-                var babys = unitOfWork.adsBabysRepository.Get(filter: u => u.CustomerId == id);
-                int count = babys.Count();
-                if (count > 0)
-                {
-                    baby = babys.First() as AdsBaby;
-                    ViewData["videocat"] = CategoryServices.GetCategoryListByParentID(2);
-                    ViewBag.babyName = baby.BabyName;
-                    ViewBag.babyId = baby.BabyId;
-                    List<BaogaoDemention> demlist=PlanServices.PlanCategory(baby.BabyId);
-                    int categoryid = cid??demlist[0].demcategoryid;
-
-                    Pager pager = new Pager();
-                    pager.table = "AdsVideo";
-                    pager.strwhere = "VideoCategory=" + categoryid;
-                    pager.PageSize = 4;
-                    pager.PageNo = page ?? 1;
-                    pager.FieldKey = "VideoId";
-                    pager.FiledOrder = "VideoId desc";
-
-                
-                    pager = CommonDal.GetPager(pager);
-                    IList<AdsVideo> videos = DataConvertHelper<AdsVideo>.ConvertToModel(pager.EntityDataTable);
-                    var videosAsIPageList = new StaticPagedList<AdsVideo>(videos, pager.PageNo, pager.PageSize, pager.Amount);
-
-                    ViewBag.orderid = oid;
-
-                    if (oid == 1 || oid == 2)
-                    {
-                        ViewBag.ctitle = "必修任务";
-                    }
-                    if (oid == 3|| oid == 4)
-                    {
-                        ViewBag.ctitle = "选修任务";
-                    }
-                    if (oid == 5)
-                    {
-                        ViewBag.ctitle = "一般任务";
-                    }
-                    ViewData["dem"] = demlist;
-                    return View(videosAsIPageList);
-                }
-                else
-                {
 
 
-                    return RedirectToAction("NoBaby");
 
-                }
+        //底部导航5个页面
 
-            }
-            else
-            {
-                return RedirectToAction("Login");
 
-            }
-        }
-        #endregion
 
-        #region 登录页面
-        public ActionResult Login()
-        {
-         //   string nickname = Session["nickname"].ToString();
-            if (Session["CustomerNickName"] == null)
-            {
-                return View();
-            }
-            else
-            {
-                return RedirectToAction("MemberCenter", "Wechat");
-            }
-        
-        }
-        #endregion
-
-        
-
-        #region 量表测评
+        #region 1量表测评列表
         public ActionResult Ceping(int? page)
         {
 
@@ -228,17 +178,9 @@ namespace AdsWeb.Controllers
 
             }
         }
-        #endregion
+        #endregion 
 
-        public ActionResult Program(int id,int bid)
-        {
-            AdsVideo video = unitOfWork.adsVideosRepository.GetByID(id);
-            ViewBag.babyId = bid;
-
-            return View(video);
-        }
-
-        #region 心理服务
+        #region 2心理服务
         public ActionResult HeartList(int?page)
         {
 
@@ -263,37 +205,136 @@ namespace AdsWeb.Controllers
         }
         #endregion
 
-       
-
-
-
-        #region 训练项目
-        public ActionResult ProgrameList(int? page, int? cid)
+        #region 3训练计划日历
+        public ActionResult Calendar(int? page, int ?cid ,int? orderid)
         {
+            int oid = orderid ?? 1;
+        
+            AdsBaby baby = new AdsBaby();
+            if (Session["CustomerId"] != null)
+            {
+                int id = int.Parse(Session["CustomerId"].ToString());
+                var babys = unitOfWork.adsBabysRepository.Get(filter: u => u.CustomerId == id);
+                int count = babys.Count();
+                if (count > 0)
+                {
+                    baby = babys.First() as AdsBaby;
+                    ViewData["videocat"] = CategoryServices.GetCategoryListByParentID(2);
+                    ViewBag.babyName = baby.BabyName;
+                    ViewBag.babyId = baby.BabyId;
+                    ViewBag.cepingcount = StatisticsServices.GetCepingCountByBabyId(baby.BabyId);
+                    ViewBag.pingjiacount = StatisticsServices.GetPingjiaCountByBabyId(baby.BabyId, 0);
+                    ViewBag.days = StatisticsServices.GetDaysByCustomerId(baby.BabyRegTime);
 
-            int categoryid = cid ?? 8;
+                    List<BaogaoDemention> demlist=PlanServices.PlanCategory(baby.BabyId);
+                    if (demlist.Count() == 0)
+                    {
+                        return RedirectToAction("NoScale", new { name = baby.BabyName });
+                    }
 
-            Pager pager = new Pager();
-            pager.table = "AdsVideo";
-            pager.strwhere = "VideoCategory=" + categoryid;
-            pager.PageSize = 50;
-            pager.PageNo = page ?? 1;
-            pager.FieldKey = "VideoId";
-            pager.FiledOrder = "VideoId desc";
+                    int categoryid = cid??demlist[0].demcategoryid;
 
-            pager = CommonDal.GetPager(pager);
-            IList<AdsVideo> videos = DataConvertHelper<AdsVideo>.ConvertToModel(pager.EntityDataTable);
-            var videosAsIPageList = new StaticPagedList<AdsVideo>(videos, pager.PageNo, pager.PageSize, pager.Amount);
-            ViewBag.cid = categoryid;
-            //    ViewBag.cname = CategoryServices.GetCategoryNameById(categoryid);
-            return View(videosAsIPageList);
+                    Pager pager = new Pager();
+                    pager.table = "AdsVideo";
+                    pager.strwhere = "VideoCategory=" + categoryid;
+                    pager.PageSize = 4;
+                    pager.PageNo = page ?? 1;
+                    pager.FieldKey = "VideoId";
+                    pager.FiledOrder = "VideoId desc";
+
+                
+                    pager = CommonDal.GetPager(pager);
+                    IList<AdsVideo> videos = DataConvertHelper<AdsVideo>.ConvertToModel(pager.EntityDataTable);
+                    var videosAsIPageList = new StaticPagedList<AdsVideo>(videos, pager.PageNo, pager.PageSize, pager.Amount);
+
+                    ViewBag.orderid = oid;
+
+                    if (oid == 1 || oid == 2)
+                    {
+                        ViewBag.ctitle = "必修任务";
+                    }
+                    if (oid == 3|| oid == 4)
+                    {
+                        ViewBag.ctitle = "选修任务";
+                    }
+                    if (oid == 5)
+                    {
+                        ViewBag.ctitle = "一般任务";
+                    }
+                    ViewData["dem"] = demlist;
+
+                    
+
+                    return View(videosAsIPageList);
+                }
+                else
+                {
 
 
+                    return RedirectToAction("NoBaby");
 
+                }
+
+            }
+            else
+            {
+                return RedirectToAction("Login");
+
+            }
         }
         #endregion
 
-        #region 个人中心
+        #region 4项目评价
+        public ActionResult Pingjia(int? page, float? sid)
+        {
+
+            float status = sid ?? 0;
+            if (Session["CustomerId"] != null)
+            {
+                int id = int.Parse(Session["CustomerId"].ToString());
+                var babys = unitOfWork.adsBabysRepository.Get(filter: u => u.CustomerId == id);
+                int count = babys.Count();
+                if (count > 0)
+                {
+                    AdsBaby baby = babys.First() as AdsBaby;
+                    Pager pager = new Pager();
+                    pager.table = "Pingjia";
+                    pager.strwhere = "BabyId=" + baby.BabyId;
+                    if (status != 0)
+                    {
+                        pager.strwhere = pager.strwhere + " and PingjiaValue=" + status;
+
+                    }
+                    pager.PageSize = 20;
+                    pager.PageNo = page ?? 1;
+                    pager.FieldKey = "PingjiaId";
+                    pager.FiledOrder = "PingjiaId desc";
+
+                    pager = CommonDal.GetPager(pager);
+                    IList<Pingjia> pingjias = DataConvertHelper<Pingjia>.ConvertToModel(pager.EntityDataTable);
+                    var pingjiasAsIPageList = new StaticPagedList<Pingjia>(pingjias, pager.PageNo, pager.PageSize, pager.Amount);
+                    ViewBag.babyId = baby.BabyId; 
+                    ViewBag.babyName = baby.BabyName;
+                    return View(pingjiasAsIPageList);
+                }
+                else
+                {
+                    return RedirectToAction("NoBaby");
+
+                }
+
+            }
+            else
+            {
+                return RedirectToAction("Login");
+
+            }
+
+        }
+
+        #endregion
+
+        #region 5个人中心
         public ActionResult MemberCenter()
         {
             if (Session["CustomerId"] != null)
@@ -313,7 +354,7 @@ namespace AdsWeb.Controllers
                 else
                 {
                     ViewBag.baby = false;
-                
+
                 }
                 return View(customer);
 
@@ -322,58 +363,20 @@ namespace AdsWeb.Controllers
             else
             {
                 return RedirectToAction("Login");
-            
+
             }
-           
-               
-            
+
+
+
 
         }
         #endregion
 
-        #region 测评页面
-        public ActionResult Baogao(int? page)
-        {
-            
-            if (Session["CustomerId"] != null)
-            {
 
-                int id = int.Parse(Session["CustomerId"].ToString());
-                var babys = unitOfWork.adsBabysRepository.Get(filter: u => u.CustomerId == id);
-                int count = babys.Count();
-                if (count > 0)
-                {
-                    AdsBaby baby = babys.First() as AdsBaby;
-                    return View(baby);
-                }
-                else
-                {  
-                    return RedirectToAction("NoBaby");
-
-                }
+        //测量相关的页面
 
 
-               
-               
-
-            }
-            else
-            {
-                return RedirectToAction("NoBaby");
-
-            }
-        }
-        #endregion
-
-        #region 尚未申请计划
-        public ActionResult NoBaby()
-        {
-            return View();
-        
-        }
-        #endregion
-
-        #region 心理测评
+        #region 心理测评页面
         public ActionResult Scale()
         {
             AdsBaby baby = new AdsBaby();
@@ -404,59 +407,165 @@ namespace AdsWeb.Controllers
         }
         #endregion
 
-        #region 注册页面
-        public ActionResult Reg()
+        #region 保存测评结果
+        [HttpPost]
+
+        public JsonResult SaveScaleResult(string score, string Dementionscore, string totalscore, string weight)
+        {
+            int customerId = int.Parse(Session["CustomerId"].ToString());
+            int babyid = unitOfWork.adsBabysRepository.Get(filter: u => u.CustomerId == customerId).First().BabyId;
+
+
+            Message msg = new Message();
+
+            Baogao baogao = new Baogao();
+            baogao.BaogaoScore = score;
+            baogao.BaogaoDementionScore = Dementionscore;
+
+            baogao.BaogaoTotalScore = PlanServices.MakePlan(totalscore);
+            baogao.BaogaoWeight = PlanServices.MakePlan(weight);
+
+            baogao.CustomerId = customerId;
+            baogao.BabyId = babyid;
+            baogao.ScaleId = 1;
+            baogao.BaogaoTime = System.DateTime.Now;
+
+            Plan plan = new Plan();
+
+            string[] sArray = baogao.BaogaoWeight.Split(',');
+            List<BaogaoDemention> demlist = new List<BaogaoDemention>();
+
+            foreach (string s in sArray)
+            {
+
+
+            }
+
+
+            try
+            {
+                unitOfWork.baogaoRepository.Insert(baogao);
+                unitOfWork.Save();
+                msg.MessageStatus = "true";
+                msg.MessageInfo = baogao.BaogaoId.ToString();
+            }
+            catch
+            {
+                msg.MessageStatus = "false";
+                msg.MessageInfo = "保存失败";
+            }
+
+            return Json(msg, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+
+        #region 量表报告详情页面
+        public ActionResult BaogaoDetail(int id)
+        {
+            Baogao baogao = unitOfWork.baogaoRepository.GetByID(id);
+            AdsBaby baby = unitOfWork.adsBabysRepository.GetByID(baogao.BabyId);
+            //    string babyName = unitOfWork.adsBabysRepository.GetByID(baogao.BabyId).BabyName;
+            string str = baogao.BaogaoDementionScore;
+
+            string[] sArray = str.Split(',');
+            List<BaogaoDemention> demlist = new List<BaogaoDemention>();
+            string chartscategories = "[";
+            string chartsdata = "[";
+
+            foreach (string s in sArray)
+            {
+                // string  dem=s.ToString();
+                BaogaoDemention dem = new BaogaoDemention();
+                dem.demName = s.Substring(0, s.IndexOf(":"));
+                dem.demScore = int.Parse(s.Substring(s.IndexOf(":") + 1));
+                if (dem.demName == "交往能力" || dem.demName == "运动能力")
+                {
+                    dem.demReference = 8;
+                }
+                else
+                {
+                    dem.demReference = 5;
+                }
+                demlist.Add(dem);
+                chartscategories = chartscategories + "\"" + dem.demName + "\"" + ",";
+                chartsdata = chartsdata + dem.demScore + ",";
+            }
+            chartscategories = chartscategories.TrimEnd(',') + "]";
+            chartsdata = chartsdata.TrimEnd(',') + "]";
+            ViewData["dem"] = demlist;
+            ViewBag.categories = chartscategories;
+            ViewBag.chartsdata = chartsdata;
+            ViewBag.babyName = baby.BabyName;
+            ViewBag.babysex = baby.BabySex;
+            ViewBag.babyage = DateTime.Now.Year - Convert.ToDateTime(baby.BabyBirthday).Year;
+            return View(baogao);
+        }
+
+
+        #endregion
+
+
+        //项目相关的页面
+        public ActionResult Program(int id, int bid)
+        {
+            AdsVideo video = unitOfWork.adsVideosRepository.GetByID(id);
+            ViewBag.babyId = bid;
+
+            return View(video);
+        }
+
+        //评价相关的页面
+
+        #region 评价记录
+
+        [HttpPost]
+        public JsonResult PingjiaCreate(int babyId, float pingjiaValue, int videoId)
+        {
+            Message msg = new Message();
+            Pingjia pingjia = new Pingjia();
+            pingjia.BabyId = babyId;
+            pingjia.VideoId = videoId;
+            pingjia.PingjiaValue = pingjiaValue;
+
+            pingjia.PingjiaTime = DateTime.Now;
+            if (ModelState.IsValid)
+            {
+                unitOfWork.pingjiasRepository.Insert(pingjia);
+                unitOfWork.Save();
+                msg.MessageStatus = "true";
+                msg.MessageInfo = "评估项目完成";
+            }
+            else
+            {
+                msg.MessageStatus = "false";
+                msg.MessageInfo = "失败";
+            }
+
+            return Json(msg, JsonRequestBehavior.AllowGet);
+
+        }
+        #endregion
+
+     
+        //错误页面导航
+        #region 尚未申请计划
+        public ActionResult NoBaby()
         {
             return View();
+        
         }
-
-        //public ActionResult GetUserInfo()
-        //{
-        //    WechatConfig wechatconfig = AccessTokenService.GetWechatConfig();
-
-        //    string REDIRECT_URI = System.Web.HttpUtility.UrlEncode("http://wx.zzd123.com/Wechat/GetUserId");
-
-        //    string SCOPE = "snsapi_userinfo";
-
-        //    string url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + wechatconfig.Appid + "&redirect_uri=" + REDIRECT_URI + "&response_type=code&scope=" + SCOPE + "&state=STATE#wechat_redirect";
-
-        //    return Redirect(url);
-
-        //}
-        //public ActionResult GetUserId()
-        //{
-
-        //    string CODE = Request["code"];
-        //    string STATE = Request["state"];
-
-        //    string userAgent = Request.UserAgent;
-
-        //    WebchatJsUserinfo userinfo = WechatJsServices.GetUserInfo(userAgent, CODE);
-
-        //    return View(userinfo);
-
-
-        //}
-
         #endregion
 
-        #region 退出
-        public ActionResult Logout()
-        {
-            Session["CustomerNickName"] = null;
-            Session["CustomerOpenid"] = null;
-            Session["CustomerId"] = null;
-            return RedirectToAction("Login");
-        }
-
-        #endregion
-
-        #region 账号设置
-        public ActionResult Setting()
+        #region 尚未进行测评
+        public ActionResult NoScale()
         {
             return View();
+
         }
         #endregion
+
+
+
 
         #region 申请加入计划
         public ActionResult StarBaby()
@@ -473,6 +582,36 @@ namespace AdsWeb.Controllers
            
         }
         #endregion
+
+        #region 注册页面
+        public ActionResult Reg()
+        {
+            return View();
+        }
+
+
+
+        #endregion
+
+        #region 退出
+        public ActionResult Logout()
+        {
+            Session["CustomerNickName"] = null;
+            Session["CustomerOpenid"] = null;
+            Session["CustomerId"] = null;
+            return RedirectToAction("Login");
+        }
+
+        #endregion
+
+        #region 个人账号设置
+        public ActionResult Setting()
+        {
+            return View();
+        }
+        #endregion
+
+        
 
         #region 未付费
         public ActionResult NoPay()
@@ -512,148 +651,7 @@ namespace AdsWeb.Controllers
 
 
 
-
-
-        #region 项目评价
-        public ActionResult Pingjia(int? page, float? sid) 
-        {
-
-            float status = sid ?? 0;
-            if (Session["CustomerId"] != null)
-            {
-                int id = int.Parse(Session["CustomerId"].ToString());
-                var babys = unitOfWork.adsBabysRepository.Get(filter: u => u.CustomerId == id);
-                int count = babys.Count();
-                if (count > 0)
-                {
-                    AdsBaby baby = babys.First() as AdsBaby;
-                    Pager pager = new Pager();
-                    pager.table = "Pingjia";
-                    pager.strwhere = "BabyId=" + baby.BabyId;
-                    if (status != 0)
-                    {
-                        pager.strwhere = pager.strwhere + " and PingjiaValue=" + status;
-                    
-                    }
-                    pager.PageSize = 20;
-                    pager.PageNo = page ?? 1;
-                    pager.FieldKey = "PingjiaId";
-                    pager.FiledOrder = "PingjiaId desc";
-
-                    pager = CommonDal.GetPager(pager);
-                    IList<Pingjia> pingjias = DataConvertHelper<Pingjia>.ConvertToModel(pager.EntityDataTable);
-                    var pingjiasAsIPageList = new StaticPagedList<Pingjia>(pingjias, pager.PageNo, pager.PageSize, pager.Amount);
-                    ViewBag.babyId = baby.BabyId;
-                    return View(pingjiasAsIPageList);
-                }
-                else
-                {
-                    return RedirectToAction("NoBaby");
-
-                }
-
-            }
-            else
-            {
-                return RedirectToAction("Login");
-
-            }
-        
-        }
-
-        #endregion
-
-        #region 评价记录
-         [HttpPost]
-        public JsonResult PingjiaCreate(int babyId, float pingjiaValue, int videoId)
-        {
-            Message msg = new Message();
-            Pingjia pingjia = new Pingjia();
-            pingjia.BabyId = babyId;
-            pingjia.VideoId =videoId ;
-            pingjia.PingjiaValue = pingjiaValue;
-
-            pingjia.PingjiaTime = DateTime.Now;
-            if (ModelState.IsValid)
-            {
-                unitOfWork.pingjiasRepository.Insert(pingjia);
-                unitOfWork.Save();
-                msg.MessageStatus = "true";
-                msg.MessageInfo = "评估项目完成";
-            }
-            else
-            {
-                msg.MessageStatus = "false";
-                msg.MessageInfo = "失败";
-            }
-
-            return Json(msg, JsonRequestBehavior.AllowGet);
-        
-        }
-        #endregion
-
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public JsonResult ResetPassword(int id)
-        {
-            Message msg = new Message();
-
-            SysUser sysuser = unitOfWork.sysUsersRepository.GetByID(id);
-            string password = CommonTools.GenerateRandomNumber(8);
-            string confirmpassword = CommonTools.ToMd5(password);
-            sysuser.SysPassword = confirmpassword;
-
-
-
-
-            if (ModelState.IsValid)
-            {
-
-                unitOfWork.sysUsersRepository.Update(sysuser);
-                unitOfWork.Save();
-                string EmailContent = "密码已经被重置为" + password.ToString() + "，并已经发送邮件到" + sysuser.SysEmail + ",请注意查收！";
-                AdsEmailServices.SendEmail(EmailContent, sysuser.SysEmail);
-                msg.MessageStatus = "true";
-                msg.MessageInfo = EmailContent;
-            }
-            return Json(msg, JsonRequestBehavior.AllowGet);
-        }
-
-
-        #region 项目详情
-        public ActionResult VideoDetail()
-        {
-            AdsBaby baby = new AdsBaby();
-            if (Session["CustomerId"] != null)
-            {
-                int id = int.Parse(Session["CustomerId"].ToString());
-                var babys = unitOfWork.adsBabysRepository.Get(filter: u => u.CustomerId == id);
-                int count = babys.Count();
-                if (count > 0)
-                {
-                    baby = babys.First() as AdsBaby;
-                    ViewBag.babyId = baby.BabyId;
-                    return View();
-                }
-                else
-                {
-                    return RedirectToAction("NoBaby");
-
-                }
-
-            }
-            else
-            {
-                return RedirectToAction("Login");
-
-            }
-        
-        }
-
-        #endregion
-
-        #region 创建计划
+        #region 创建计划新增星宝
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult BabyCreate(AdsBaby baby)
@@ -677,159 +675,116 @@ namespace AdsWeb.Controllers
         #endregion
 
 
-        public ActionResult test()
-        {
 
-           List<PlanOrderWeight>  list= PlanServices.MakePlanByScore("感觉能力",1);
 
-           ViewData["dem"] = list;
-          
-            //Baogao baogao = BaogaoServices.GetFirstBaogaoByBabyID(bid);
-            //if (string.IsNullOrEmpty(baogao.BaogaoDementionScore))
-            //{
-            //    //请先进行测量
-            //    return RedirectToAction("NoScale");
-            //}
-            //else
-            //{
-            // //   string x = baogao.BaogaoDementionScore;
-            //string x = "感觉能力:99,交往能力:56,运动能力:46,语言能力:76,自理能力:90";
-            //string y = "感觉能力:0.9,交往能力:0.8,运动能力:0.4,语言能力:0.7,自理能力:0.6";
 
-            //ViewBag.test = PlanServices.MakePlan(x);
-            //ViewBag.test2 = PlanServices.MakePlan(y);
 
-            //string[] sArray = ViewBag.test.Split(',');
-            //List<BaogaoDemention> demlist = new List<BaogaoDemention>();
-            //int number = 0;
-            //foreach (string s in sArray)
-            //{
-            //    number++;
-            //    // string  dem=s.ToString();
 
-            //    BaogaoDemention dem = new BaogaoDemention();
-            //    Category category = (from c in db.Categorys
-            //                         orderby c.CategorySort ascending
-            //                         where c.CategoryName == dem.demName
-            //                         select c).First();
-            //    dem.demName = s.Substring(0, s.IndexOf(":"));
-            //    dem.demScore = int.Parse(s.Substring(s.IndexOf(":") + 1));
-            //    dem.demNumber=number;
-            //    dem.demIcon = category.CategoryIcon;
-            //    dem.demcategoryid = category.ID;
 
-            //    demlist.Add(dem);
-                
-            //}
 
-            //ViewData["dem"] = demlist;
-            //ViewBag.current = demlist[0].demcategoryid;
 
-            //List<AdsVideo> videolist = new List<AdsVideo>();
-            //return View();
-            //}
 
-           return View();
+
+
+
+
+        //#region 训练项目
+        //public ActionResult ProgrameList(int? page, int? cid)
+        //{
+
+        //    int categoryid = cid ?? 8;
+
+        //    Pager pager = new Pager();
+        //    pager.table = "AdsVideo";
+        //    pager.strwhere = "VideoCategory=" + categoryid;
+        //    pager.PageSize = 50;
+        //    pager.PageNo = page ?? 1;
+        //    pager.FieldKey = "VideoId";
+        //    pager.FiledOrder = "VideoId desc";
+
+        //    pager = CommonDal.GetPager(pager);
+        //    IList<AdsVideo> videos = DataConvertHelper<AdsVideo>.ConvertToModel(pager.EntityDataTable);
+        //    var videosAsIPageList = new StaticPagedList<AdsVideo>(videos, pager.PageNo, pager.PageSize, pager.Amount);
+        //    ViewBag.cid = categoryid;
+        //    //    ViewBag.cname = CategoryServices.GetCategoryNameById(categoryid);
+        //    return View(videosAsIPageList);
+
+
+
+        //}
+
+        //public ActionResult GetUserInfo()
+        //{
+        //    WechatConfig wechatconfig = AccessTokenService.GetWechatConfig();
+
+        //    string REDIRECT_URI = System.Web.HttpUtility.UrlEncode("http://wx.zzd123.com/Wechat/GetUserId");
+
+        //    string SCOPE = "snsapi_userinfo";
+
+        //    string url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + wechatconfig.Appid + "&redirect_uri=" + REDIRECT_URI + "&response_type=code&scope=" + SCOPE + "&state=STATE#wechat_redirect";
+
+        //    return Redirect(url);
+
+        //}
+        //public ActionResult GetUserId()
+        //{
+
+        //    string CODE = Request["code"];
+        //    string STATE = Request["state"];
+
+        //    string userAgent = Request.UserAgent;
+
+        //    WebchatJsUserinfo userinfo = WechatJsServices.GetUserInfo(userAgent, CODE);
+
+        //    return View(userinfo);
+
+
+        //}
+
+
+        //#endregion
+
+
+
+
+
+
+        //#region 测评报告页面
+        //public ActionResult Baogao(int? page)
+        //{
+
+        //    if (Session["CustomerId"] != null)
+        //    {
+
+        //        int id = int.Parse(Session["CustomerId"].ToString());
+        //        var babys = unitOfWork.adsBabysRepository.Get(filter: u => u.CustomerId == id);
+        //        int count = babys.Count();
+        //        if (count > 0)
+        //        {
+        //            AdsBaby baby = babys.First() as AdsBaby;
+        //            return View(baby);
+        //        }
+        //        else
+        //        {  
+        //            return RedirectToAction("NoBaby");
+
+        //        }
+
+
+
+
+
+        //    }
+        //    else
+        //    {
+        //        return RedirectToAction("NoBaby");
+
+        //    }
+        //}
+        //#endregion
         
-        }
 
-
-        #region 量表报告详情页面
-        public ActionResult BaogaoDetail(int id)
-        {   
-            Baogao baogao = unitOfWork.baogaoRepository.GetByID(id);
-            AdsBaby baby = unitOfWork.adsBabysRepository.GetByID(baogao.BabyId);
-        //    string babyName = unitOfWork.adsBabysRepository.GetByID(baogao.BabyId).BabyName;
-            string str = baogao.BaogaoDementionScore;
-
-            string[] sArray = str.Split(',');
-            List<BaogaoDemention> demlist = new List<BaogaoDemention>();
-            string chartscategories = "[";
-            string chartsdata = "[";
-
-            foreach (string s in sArray)
-            {
-                // string  dem=s.ToString();
-                BaogaoDemention dem = new BaogaoDemention();
-                dem.demName = s.Substring(0, s.IndexOf(":"));
-                dem.demScore = int.Parse(s.Substring(s.IndexOf(":") + 1));
-                if (dem.demName == "交往能力" || dem.demName == "运动能力")
-                {
-                    dem.demReference = 8;
-                }
-                else
-                {
-                    dem.demReference = 5;
-                }
-                demlist.Add(dem);
-                chartscategories = chartscategories + "\"" + dem.demName + "\"" + ",";
-                chartsdata = chartsdata + dem.demScore + ",";
-            }
-            chartscategories = chartscategories.TrimEnd(',') + "]";
-            chartsdata = chartsdata.TrimEnd(',') + "]";
-            ViewData["dem"] = demlist;
-            ViewBag.categories = chartscategories;
-            ViewBag.chartsdata = chartsdata;
-            ViewBag.babyName = baby.BabyName;
-            ViewBag.babysex = baby.BabySex;
-            ViewBag.babyage = DateTime.Now.Year -  Convert.ToDateTime(baby.BabyBirthday).Year;
-            return View(baogao);
-        }
-
-
-        #endregion
-
-        #region 保存测评结果
-        [HttpPost]
-
-        public JsonResult SaveScaleResult(string score, string Dementionscore, string totalscore,string weight)
-        {
-            int customerId = int.Parse(Session["CustomerId"].ToString());
-            int babyid = unitOfWork.adsBabysRepository.Get(filter: u => u.CustomerId == customerId).First().BabyId;
-          
-            
-            Message msg = new Message();
-
-            Baogao baogao = new Baogao();
-            baogao.BaogaoScore = score;
-            baogao.BaogaoDementionScore = Dementionscore;
-
-            baogao.BaogaoTotalScore = PlanServices.MakePlan(totalscore); 
-            baogao.BaogaoWeight = PlanServices.MakePlan(weight); 
-
-            baogao.CustomerId = customerId;
-            baogao.BabyId = babyid;
-            baogao.ScaleId = 1;
-            baogao.BaogaoTime = System.DateTime.Now;
-
-            Plan plan = new Plan();
-
-            string[] sArray = baogao.BaogaoWeight.Split(',');
-            List<BaogaoDemention> demlist = new List<BaogaoDemention>();
-
-            foreach (string s in sArray)
-            {
-                
-
-            }
-
-
-            try
-            {
-                unitOfWork.baogaoRepository.Insert(baogao);
-                unitOfWork.Save();
-                msg.MessageStatus = "true";
-                msg.MessageInfo = baogao.BaogaoId.ToString();
-            }
-            catch
-            {
-                msg.MessageStatus = "false";
-                msg.MessageInfo = "保存失败";          
-            }
-            
-            return Json(msg, JsonRequestBehavior.AllowGet);
-        }
-        #endregion
+        
 
 
     }
