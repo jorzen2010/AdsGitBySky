@@ -27,7 +27,7 @@
                  <th>星宝年龄</th>
                  <td>@ViewBag.babyage 岁</td>
                  <th>测评日期</th>
-                 <td>@Model.BaogaoTime</td> 
+                 <td>@Model.BaogaoTime.ToString("D")</td> 
                 </tr>
            
 
@@ -90,29 +90,46 @@
             </tr>
             <tr>
 
-                <td colspan="4">
-                   您的总得分是：@Model.BaogaoTotalScore 分.<br />
-                    根据量表筛查界限分为57分，诊断分数为67分。
+                
                    @if (int.Parse(Model.BaogaoTotalScore) > 67)
+{
+    <td colspan="4">
+        您的总得分是：@Model.BaogaoTotalScore 分.<br />
+        根据量表筛查界限分为57分，诊断分数为67分。<br />
+        您的分数超过了诊断分数，建议您继续进行康复训练
+    </td>
+}
+                   @if (int.Parse(Model.BaogaoTotalScore) < 57)
+                       {
+    <td colspan="4">
+        您的总得分是：@Model.BaogaoTotalScore 分.<br />
+        根据量表筛查界限分为57分，诊断分数为67分。<br />
+        根据您的测量结果，你未达到筛查分数，如有疑问建议到专业机构进行咨询。
+    </td>
+}
+                 
+                   @if (int.Parse(Model.BaogaoTotalScore) > 57 && int.Parse(Model.BaogaoTotalScore)<67)
+                  
                    {
-                       Response.Write("您的分数超过了诊断分数，建议您继续进行康复训练。");
-                   }
-                   else if (int.Parse(Model.BaogaoTotalScore) < 57)
-                   {
-                       Response.Write("根据您的测量结果，你未达到筛查分数，如有疑问建议到专业机构进行咨询。");
-
-                   }
-                   else
-                   {
-                       Response.Write("根据您的测量结果，你达到了筛查分数，建议您立刻到专业机构进行诊断，并马上开始进行康复训练。");
-
-                   }
-                  <br/> 您也可以拨打0451-2565265进行咨询
+    <td colspan="4">
+        您的总得分是：@Model.BaogaoTotalScore 分.<br />
+        根据量表筛查界限分为57分，诊断分数为67分。<br />
+        根据您的测量结果，你达到了筛查分数，建议您立刻到专业机构进行诊断，并马上开始进行康复训练。<br />
+         您也可以拨打0451-2565265进行咨询
+    </td>
+}
+                 
                    
-                </td>
+        
 
 
             </tr>
+
+            <tr>
+                <td colspan="4">说明：<br />心理测量仅仅是对自闭症儿童的初步评测，测评结果仅供参考。<br/>
+                    <br /><br /><br /><br />
+                </td>
+</tr>
 
         </tbody>
 
@@ -122,26 +139,6 @@
 
 </div>
 
-
-
-
-
-
-
-        @*<h4>自闭症行为量表报告</h4>
-        <h5>姓名：@ViewBag.babyName</h5>
-        <h5>测评日期：@Model.BaogaoTime</h5>
-        @foreach (BaogaoDemention dem in ViewData["dem"] as List<BaogaoDemention>)
-        {
-
-            <h5>@dem.demName：@dem.demScore</h5>
-        }
-
-
-        <h4>量表详情 @ViewBag.categories</h4>
-        <h4>量表详情 @ViewBag.chartsdata</h4>
-
-        <hr />*@
 
 
 @section FootScripts {

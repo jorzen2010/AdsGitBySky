@@ -98,7 +98,8 @@ namespace AdsWeb.Controllers
                 Session["CustomerOpenid"] = customer.CustomerOpenid;
                 Session["CustomerId"] = customer.CustomerId;
 
-                return Redirect(STATE);
+             //   return Redirect(STATE);
+                return RedirectToAction("Calendar");
             
             }
 
