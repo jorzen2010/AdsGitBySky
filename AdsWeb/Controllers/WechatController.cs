@@ -134,6 +134,16 @@ namespace AdsWeb.Controllers
 
 
 
+
+        public void MakeMenu()
+        {
+           
+
+        }
+
+
+
+
         //底部导航5个页面
 
 
@@ -673,17 +683,6 @@ namespace AdsWeb.Controllers
         }
 
         #endregion
-
-
-
-
-
-
-
-
-
-
-
 
 
 
