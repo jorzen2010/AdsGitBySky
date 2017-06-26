@@ -19,6 +19,12 @@ namespace AdsServices
         
         }
 
+        public static string GetProgramNameById(int id)
+        {
+            return unitOfWork.adsVideosRepository.GetByID(id).VideoName;
+        }
+
+
         public static int GetCepingCountByBabyId(int id)
         {
           return   unitOfWork.baogaoRepository.Get().Count();

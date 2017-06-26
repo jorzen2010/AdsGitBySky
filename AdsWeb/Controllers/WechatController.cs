@@ -11,6 +11,8 @@ using AdsDal;
 using PagedList;
 using PagedList.Mvc;
 using AdsServices;
+using AdsEntity.WechatPay;
+using AdsWeb.WechatPayBusiness;
 
 namespace AdsWeb.Controllers
 {
@@ -134,17 +136,6 @@ namespace AdsWeb.Controllers
         #endregion
 
 
-
-
-        public void MakeMenu()
-        {
-           
-
-        }
-
-
-
-
         //底部导航5个页面
 
 
@@ -263,14 +254,17 @@ namespace AdsWeb.Controllers
                     if (oid == 1 || oid == 2)
                     {
                         ViewBag.ctitle = "必修任务";
+                        ViewBag.cminTitle = "每次需训练30分钟";
                     }
                     if (oid == 3|| oid == 4)
                     {
                         ViewBag.ctitle = "选修任务";
+                        ViewBag.cminTitle = "每次需训练20分钟";
                     }
                     if (oid == 5)
                     {
                         ViewBag.ctitle = "一般任务";
+                        ViewBag.cminTitle = "自行安排训练";
                     }
                     ViewData["dem"] = demlist;
 
@@ -433,24 +427,13 @@ namespace AdsWeb.Controllers
             baogao.BaogaoScore = score;
             baogao.BaogaoDementionScore = Dementionscore;
 
-            baogao.BaogaoTotalScore = PlanServices.MakePlan(totalscore);
+            baogao.BaogaoTotalScore = totalscore;
             baogao.BaogaoWeight = PlanServices.MakePlan(weight);
 
             baogao.CustomerId = customerId;
             baogao.BabyId = babyid;
             baogao.ScaleId = 1;
             baogao.BaogaoTime = System.DateTime.Now;
-
-            Plan plan = new Plan();
-
-            string[] sArray = baogao.BaogaoWeight.Split(',');
-            List<BaogaoDemention> demlist = new List<BaogaoDemention>();
-
-            foreach (string s in sArray)
-            {
-
-
-            }
 
 
             try
@@ -489,14 +472,28 @@ namespace AdsWeb.Controllers
                 BaogaoDemention dem = new BaogaoDemention();
                 dem.demName = s.Substring(0, s.IndexOf(":"));
                 dem.demScore = int.Parse(s.Substring(s.IndexOf(":") + 1));
-                if (dem.demName == "交往能力" || dem.demName == "运动能力")
+                if (dem.demName == "感觉能力")
                 {
-                    dem.demReference = 8;
+                    dem.demReference = 30;
                 }
-                else
+                if (dem.demName == "交往能力")
                 {
-                    dem.demReference = 5;
+                    dem.demReference = 44;
                 }
+                if (dem.demName == "运动能力")
+                {
+                    dem.demReference = 29;
+                }
+                if (dem.demName == "语言能力")
+                {
+                    dem.demReference = 31;
+                }
+                if (dem.demName == "自理能力")
+                {
+                    dem.demReference = 25;
+                }
+
+
                 demlist.Add(dem);
                 chartscategories = chartscategories + "\"" + dem.demName + "\"" + ",";
                 chartsdata = chartsdata + dem.demScore + ",";
@@ -688,101 +685,15 @@ namespace AdsWeb.Controllers
 
 
 
-        //#region 训练项目
-        //public ActionResult ProgrameList(int? page, int? cid)
-        //{
 
-        //    int categoryid = cid ?? 8;
+        #region 支付测试
+        public ActionResult PayDemo()
+        {
+            
+            return View();
 
-        //    Pager pager = new Pager();
-        //    pager.table = "AdsVideo";
-        //    pager.strwhere = "VideoCategory=" + categoryid;
-        //    pager.PageSize = 50;
-        //    pager.PageNo = page ?? 1;
-        //    pager.FieldKey = "VideoId";
-        //    pager.FiledOrder = "VideoId desc";
-
-        //    pager = CommonDal.GetPager(pager);
-        //    IList<AdsVideo> videos = DataConvertHelper<AdsVideo>.ConvertToModel(pager.EntityDataTable);
-        //    var videosAsIPageList = new StaticPagedList<AdsVideo>(videos, pager.PageNo, pager.PageSize, pager.Amount);
-        //    ViewBag.cid = categoryid;
-        //    //    ViewBag.cname = CategoryServices.GetCategoryNameById(categoryid);
-        //    return View(videosAsIPageList);
-
-
-
-        //}
-
-        //public ActionResult GetUserInfo()
-        //{
-        //    WechatConfig wechatconfig = AccessTokenService.GetWechatConfig();
-
-        //    string REDIRECT_URI = System.Web.HttpUtility.UrlEncode("http://wx.zzd123.com/Wechat/GetUserId");
-
-        //    string SCOPE = "snsapi_userinfo";
-
-        //    string url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + wechatconfig.Appid + "&redirect_uri=" + REDIRECT_URI + "&response_type=code&scope=" + SCOPE + "&state=STATE#wechat_redirect";
-
-        //    return Redirect(url);
-
-        //}
-        //public ActionResult GetUserId()
-        //{
-
-        //    string CODE = Request["code"];
-        //    string STATE = Request["state"];
-
-        //    string userAgent = Request.UserAgent;
-
-        //    WebchatJsUserinfo userinfo = WechatJsServices.GetUserInfo(userAgent, CODE);
-
-        //    return View(userinfo);
-
-
-        //}
-
-
-        //#endregion
-
-
-
-
-
-
-        //#region 测评报告页面
-        //public ActionResult Baogao(int? page)
-        //{
-
-        //    if (Session["CustomerId"] != null)
-        //    {
-
-        //        int id = int.Parse(Session["CustomerId"].ToString());
-        //        var babys = unitOfWork.adsBabysRepository.Get(filter: u => u.CustomerId == id);
-        //        int count = babys.Count();
-        //        if (count > 0)
-        //        {
-        //            AdsBaby baby = babys.First() as AdsBaby;
-        //            return View(baby);
-        //        }
-        //        else
-        //        {  
-        //            return RedirectToAction("NoBaby");
-
-        //        }
-
-
-
-
-
-        //    }
-        //    else
-        //    {
-        //        return RedirectToAction("NoBaby");
-
-        //    }
-        //}
-        //#endregion
-        
+        }
+        #endregion
 
         
 

@@ -30,9 +30,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LitJson">
+      <HintPath>..\packages\LitJson.0.7.0\lib\LitJson.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -60,6 +64,13 @@
     <Compile Include="WechatEntity\WechatJsModels.cs" />
     <Compile Include="WechatEntity\WechatMessage.cs" />
     <Compile Include="WechatEntity\WechatModels.cs" />
+    <Compile Include="WechatPay\Data.cs" />
+    <Compile Include="WechatPay\Exception.cs" />
+    <Compile Include="WechatPay\HttpService.cs" />
+    <Compile Include="WechatPay\Log.cs" />
+    <Compile Include="WechatPay\Notify.cs" />
+    <Compile Include="WechatPay\WxPayApi.cs" />
+    <Compile Include="WechatPay\WxPayConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

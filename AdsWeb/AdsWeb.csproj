@@ -39,6 +39,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LitJson">
+      <HintPath>..\packages\LitJson.0.7.0\lib\LitJson.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="PagedList">
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
@@ -200,6 +203,15 @@
     <Compile Include="test.ashx.cs">
       <DependentUpon>test.ashx</DependentUpon>
     </Compile>
+    <Compile Include="WechatPayBusiness\DownloadBill.cs" />
+    <Compile Include="WechatPayBusiness\JsApiPay.cs" />
+    <Compile Include="WechatPayBusiness\MicroPay.cs" />
+    <Compile Include="WechatPayBusiness\NativeNotify.cs" />
+    <Compile Include="WechatPayBusiness\NativePay.cs" />
+    <Compile Include="WechatPayBusiness\OrderQuery.cs" />
+    <Compile Include="WechatPayBusiness\Refund.cs" />
+    <Compile Include="WechatPayBusiness\RefundQuery.cs" />
+    <Compile Include="WechatPayBusiness\ResultNotify.cs" />
     <Compile Include="WechatServices\AccessTokenService.cs" />
     <Compile Include="WechatServices\WechatApi.cs" />
     <Compile Include="WechatServices\WechatJsServices.cs" />
@@ -217,6 +229,7 @@
     <Content Include="bootstrap\js\bootstrap.js" />
     <Content Include="bootstrap\js\bootstrap.min.js" />
     <Content Include="bootstrap\js\npm.js" />
+    <Content Include="cert\证书使用说明.txt" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\PagedList.css" />
@@ -1544,6 +1557,10 @@
     <Content Include="WechatResource\js\skym.js" />
     <Content Include="WechatResource\weui\weui.css" />
     <Content Include="WechatResource\weui\weui.min.css" />
+    <Content Include="cert\apiclient_cert.p12" />
+    <Content Include="cert\apiclient_cert.pem" />
+    <Content Include="cert\apiclient_key.pem" />
+    <Content Include="cert\rootca.pem" />
     <None Include="Properties\PublishProfiles\vip.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -1699,6 +1716,8 @@
     <Content Include="Views\Wechat\Calendar - 复制.cshtml" />
     <Content Include="Views\Wechat\PartCalendar.cshtml" />
     <Content Include="Views\Wechat\NoScale.cshtml" />
+    <Content Include="Views\Home\zhaozheng.cshtml" />
+    <Content Include="Views\Wechat\PayDemo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

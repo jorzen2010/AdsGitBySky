@@ -12,7 +12,10 @@ namespace AdsWeb.Controllers
         {
             return View();
         }
-
+        public ActionResult zhaozheng()
+        {
+            return View();
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

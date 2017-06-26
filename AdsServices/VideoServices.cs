@@ -17,5 +17,7 @@ namespace AdsServices
             IList<AdsVideo> videoList = DataConvertHelper<AdsVideo>.ConvertToModel(pager.EntityDataTable);
             return videoList;
         }
+
+       
     }
 }

@@ -21,7 +21,7 @@
                 <div class="row">
                     <div class="col-xs-12 center">
                         <div class="description-block">
-                            <h5 class="description-header">@ViewBag.babyName </h5>
+                            <h5 class="description-header">&nbsp;&nbsp; @ViewBag.babyName </h5>
                         </div>
                     </div>
                 </div>
@@ -121,8 +121,11 @@
     <div class="pull-left text-orange skyindexrowtitle"><i class="glyphicon glyphicon-calendar"></i> @ViewBag.ctitle 
    
     </div>
-    <div class="pull-right skyindexrowrighttitle">234人正在训练</div>
+                            
+    <div class="pull-right skyindexrowrighttitle">@ViewBag.cminTitle</div>
+
 </div>
+    
 
 
 @foreach (var item in Model)

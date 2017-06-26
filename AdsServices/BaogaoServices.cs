@@ -32,7 +32,7 @@ namespace AdsServices
         public static Baogao GetFirstBaogaoByBabyID(int bid)
         {
             Baogao baogao = new Baogao();
-            var baogaos = unitOfWork.baogaoRepository.Get(filter: u => u.BabyId == bid);
+            var baogaos = unitOfWork.baogaoRepository.Get(filter: u => u.BabyId == bid,orderBy: q =>q.OrderByDescending(u=>u.BaogaoId));
             if (baogaos.Count() > 0)
             {
                 baogao = baogaos.First();

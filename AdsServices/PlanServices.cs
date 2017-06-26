@@ -29,7 +29,7 @@ namespace AdsServices
                     float a = float.Parse(sArray[j].Substring(sArray[j].IndexOf(":") + 1));
                     float b = float.Parse(sArray[j + 1].Substring(sArray[j + 1].IndexOf(":") + 1));
 
-                    if (a>b)
+                    if (a<b)
                     {
                         string empty = sArray[j];
                         sArray[j] = sArray[j + 1];
@@ -47,41 +47,55 @@ namespace AdsServices
         public  static List<BaogaoDemention> PlanCategory(int bid)
         {
             Baogao baogao = BaogaoServices.GetFirstBaogaoByBabyID(bid);
-
-         //    string x = baogao.BaogaoDementionScore;
-
-
-           string x = "感觉能力:99,交往能力:56,运动能力:46,语言能力:76,自理能力:90";
-     
-
-
-            string[] sArray = x.Split(',');
             List<BaogaoDemention> demlist = new List<BaogaoDemention>();
-            int number = 0;
-            foreach (string s in sArray)
+
+
+            if (string.IsNullOrEmpty(baogao.BaogaoWeight))
             {
-                number++;
-                // string  dem=s.ToString();
+                return demlist;
+            }
+            else
+            {
+                string x = baogao.BaogaoWeight;
 
-                BaogaoDemention dem = new BaogaoDemention();
-                dem.demName = s.Substring(0, s.IndexOf(":"));
-                dem.demScore = int.Parse(s.Substring(s.IndexOf(":") + 1));
-                //Category category = (from c in db.Categorys
-                //                     orderby c.CategorySort ascending
-                //                     where c.CategoryName == dem.demName
-                //                     select c).First();
-                Category category = unitOfWork.categorysRepository.Get(filter: u => u.CategoryName == dem.demName).First();
-               
-               
-                dem.demNumber=number;
-                dem.demIcon = category.CategoryIcon;
-                dem.demcategoryid = category.ID;
 
-                demlist.Add(dem);
 
+
+                // string x = "感觉能力:99,交往能力:56,运动能力:46,语言能力:76,自理能力:90";
+
+
+
+                string[] sArray = x.Split(',');
+
+                int number = 0;
+                foreach (string s in sArray)
+                {
+                    number++;
+                    // string  dem=s.ToString();
+
+                    BaogaoDemention dem = new BaogaoDemention();
+                    dem.demName = s.Substring(0, s.IndexOf(":"));
+                  //  dem.demScore = int.Parse(s.Substring(s.IndexOf(":") + 1));
+                    //Category category = (from c in db.Categorys
+                    //                     orderby c.CategorySort ascending
+                    //                     where c.CategoryName == dem.demName
+                    //                     select c).First();
+                    Category category = unitOfWork.categorysRepository.Get(filter: u => u.CategoryName == dem.demName).First();
+
+
+                    dem.demNumber = number;
+                    dem.demIcon = category.CategoryIcon;
+                    dem.demcategoryid = category.ID;
+
+                    demlist.Add(dem);
+
+                }
+
+                return demlist;
+            
             }
 
-            return demlist;
+           
         
         }
 
