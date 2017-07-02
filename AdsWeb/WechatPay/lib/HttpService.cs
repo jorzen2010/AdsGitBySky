@@ -8,7 +8,7 @@ using System.Net.Security;
 using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
 
-namespace AdsEntity.WechatPay
+namespace PsyCoderWechat.WechatPay
 {
     /// <summary>
     /// http连接基础类，负责底层的http通信

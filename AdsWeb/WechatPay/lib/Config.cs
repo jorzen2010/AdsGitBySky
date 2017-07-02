@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
 
-namespace AdsEntity.WechatPay
+namespace PsyCoderWechat.WechatPay
 {
     /**
-   * 	配置账号信息
-   */
+    * 	配置账号信息
+    */
     public class WxPayConfig
     {
         //=======【基本信息设置】=====================================
@@ -34,7 +32,9 @@ namespace AdsEntity.WechatPay
         //=======【支付结果通知url】===================================== 
         /* 支付结果通知回调url，用于商户接收支付结果
         */
-        public const string NOTIFY_URL = "http://paysdk.weixin.qq.com/example/ResultNotifyPage.aspx";
+        public const string NOTIFY_URL = "http://wx.zzd123.com/ResultNotify";
+     //   public const string NOTIFY_URL = "http://sm.lmx.ren/ResultNotify";
+        //public const string NOTIFY_URL = "/example/ResultNotifyPage.aspx";
 
         //=======【商户系统后台机器IP】===================================== 
         /* 此参数可手动配置也可在程序中自动获取
@@ -55,6 +55,6 @@ namespace AdsEntity.WechatPay
         //=======【日志级别】===================================
         /* 日志等级，0.不输出日志；1.只输出错误信息; 2.输出错误和正常信息; 3.输出错误信息、正常信息和调试信息
         */
-        public const int LOG_LEVENL = 0;
+        public const int LOG_LEVENL = 2;
     }
 }

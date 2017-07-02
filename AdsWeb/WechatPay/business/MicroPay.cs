@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Web;
 using System.Threading;
 
-namespace AdsWeb.WechatPayBusiness
+namespace PsyCoderWechat.WechatPay
 {
     public class MicroPay
     {

@@ -10,14 +10,14 @@ using System.Net;
 using System.Web.Security;
 using LitJson;
 
-namespace AdsWeb.WechatPayBusiness
+namespace PsyCoderWechat.WechatPay
 {
     public class JsApiPay
     {
         /// <summary>
         /// 保存页面对象，因为要在类的方法中使用Page的Request对象
         /// </summary>
-        private Page page {get;set;}
+        private Page page { get; set; }
 
         /// <summary>
         /// openid用于调用统一下单接口
@@ -37,11 +37,11 @@ namespace AdsWeb.WechatPayBusiness
         /// <summary>
         /// 统一下单接口返回结果
         /// </summary>
-        public WxPayData unifiedOrderResult { get; set; } 
+        public WxPayData unifiedOrderResult { get; set; }
 
-        public JsApiPay(Page page)
+        public JsApiPay()
         {
-            this.page = page;
+
         }
 
 
@@ -55,19 +55,20 @@ namespace AdsWeb.WechatPayBusiness
         */
         public void GetOpenidAndAccessToken()
         {
-            if (!string.IsNullOrEmpty(page.Request.QueryString["code"]))
+            if (HttpContext.Current.Session["code"] != null)
             {
                 //获取code码，以获取openid和access_token
-                string code = page.Request.QueryString["code"];
+                string code = HttpContext.Current.Session["code"].ToString();
                 Log.Debug(this.GetType().ToString(), "Get code : " + code);
                 GetOpenidAndAccessTokenFromCode(code);
             }
             else
             {
                 //构造网页授权获取code的URL
-                string host = page.Request.Url.Host;
-                string path = page.Request.Path;
-                string redirect_uri = HttpUtility.UrlEncode("http://" + host + path);
+                //string host = page.Request.Url.Host;
+                //string path = page.Request.Path;
+                //string redirect_uri = HttpUtility.UrlEncode("http://" + host + path);
+                string redirect_uri = HttpUtility.UrlEncode("http://ph.lmx.ren");
                 WxPayData data = new WxPayData();
                 data.SetValue("appid", WxPayConfig.APPID);
                 data.SetValue("redirect_uri", redirect_uri);
@@ -76,14 +77,15 @@ namespace AdsWeb.WechatPayBusiness
                 data.SetValue("state", "STATE" + "#wechat_redirect");
                 string url = "https://open.weixin.qq.com/connect/oauth2/authorize?" + data.ToUrl();
                 Log.Debug(this.GetType().ToString(), "Will Redirect to URL : " + url);
-                try
-                {
-                    //触发微信返回code码         
-                    page.Response.Redirect(url);//Redirect函数会抛出ThreadAbortException异常，不用处理这个异常
-                }
-                catch(System.Threading.ThreadAbortException ex)
-                {
-                }
+                HttpContext.Current.Session["url"] = url;
+                //try
+                //{
+                //    //触发微信返回code码         
+                //    page.Response.Redirect(url);//Redirect函数会抛出ThreadAbortException异常，不用处理这个异常
+                //}
+                //catch (System.Threading.ThreadAbortException ex)
+                //{
+                //}
             }
         }
 
@@ -127,7 +129,8 @@ namespace AdsWeb.WechatPayBusiness
 
                 //获取用户openid
                 openid = (string)jd["openid"];
-
+                HttpContext.Current.Session["openid"] = openid;
+                HttpContext.Current.Session["access_token"] = access_token;
                 Log.Debug(this.GetType().ToString(), "Get openid : " + openid);
                 Log.Debug(this.GetType().ToString(), "Get access_token : " + access_token);
             }
@@ -143,12 +146,12 @@ namespace AdsWeb.WechatPayBusiness
          * @return 统一下单结果
          * @失败时抛异常WxPayException
          */
-        public WxPayData GetUnifiedOrderResult()
+        public WxPayData GetUnifiedOrderResult(string strBody, string attach)
         {
             //统一下单
             WxPayData data = new WxPayData();
-            data.SetValue("body", "test");
-            data.SetValue("attach", "test");
+            data.SetValue("body", strBody);
+            data.SetValue("attach", attach);
             data.SetValue("out_trade_no", WxPayApi.GenerateOutTradeNo());
             data.SetValue("total_fee", total_fee);
             data.SetValue("time_start", DateTime.Now.ToString("yyyyMMddHHmmss"));
@@ -156,7 +159,6 @@ namespace AdsWeb.WechatPayBusiness
             data.SetValue("goods_tag", "test");
             data.SetValue("trade_type", "JSAPI");
             data.SetValue("openid", openid);
-
             WxPayData result = WxPayApi.UnifiedOrder(data);
             if (!result.IsSet("appid") || !result.IsSet("prepay_id") || result.GetValue("prepay_id").ToString() == "")
             {
@@ -184,7 +186,7 @@ namespace AdsWeb.WechatPayBusiness
         * 更详细的说明请参考网页端调起支付API：http://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=7_7
         * 
         */
-        public string GetJsApiParameters()
+        public WxPayData GetJsApiParameters()
         {
             Log.Debug(this.GetType().ToString(), "JsApiPay::GetJsApiParam is processing...");
 
@@ -197,7 +199,23 @@ namespace AdsWeb.WechatPayBusiness
             jsApiParam.SetValue("paySign", jsApiParam.MakeSign());
 
             string parameters = jsApiParam.ToJson();
+            Log.Debug(this.GetType().ToString(), "Get jsApiParam : " + parameters);
+            return jsApiParam;
+        }
 
+        public string GetJsApiParameter()
+        {
+            Log.Debug(this.GetType().ToString(), "JsApiPay::GetJsApiParam is processing...");
+
+            WxPayData jsApiParam = new WxPayData();
+            jsApiParam.SetValue("appId", unifiedOrderResult.GetValue("appid"));
+            jsApiParam.SetValue("timeStamp", WxPayApi.GenerateTimeStamp());
+            jsApiParam.SetValue("nonceStr", WxPayApi.GenerateNonceStr());
+            jsApiParam.SetValue("package", "prepay_id=" + unifiedOrderResult.GetValue("prepay_id"));
+            jsApiParam.SetValue("signType", "MD5");
+            jsApiParam.SetValue("paySign", jsApiParam.MakeSign());
+
+            string parameters = jsApiParam.ToJson();
             Log.Debug(this.GetType().ToString(), "Get jsApiParam : " + parameters);
             return parameters;
         }
@@ -209,7 +227,7 @@ namespace AdsWeb.WechatPayBusiness
 	    * @return string 共享收货地址js函数需要的参数，json格式可以直接做参数使用
 	    */
         public string GetEditAddressParameters()
-	    {
+        {
             string parameter = "";
             try
             {
@@ -221,11 +239,11 @@ namespace AdsWeb.WechatPayBusiness
 
                 //构造需要用SHA1算法加密的数据
                 WxPayData signData = new WxPayData();
-                signData.SetValue("appid",WxPayConfig.APPID);
+                signData.SetValue("appid", WxPayConfig.APPID);
                 signData.SetValue("url", url);
-                signData.SetValue("timestamp",WxPayApi.GenerateTimeStamp());
-                signData.SetValue("noncestr",WxPayApi.GenerateNonceStr());
-                signData.SetValue("accesstoken",access_token);
+                signData.SetValue("timestamp", WxPayApi.GenerateTimeStamp());
+                signData.SetValue("noncestr", WxPayApi.GenerateNonceStr());
+                signData.SetValue("accesstoken", access_token);
                 string param = signData.ToUrl();
 
                 Log.Debug(this.GetType().ToString(), "SHA1 encrypt param : " + param);
@@ -235,12 +253,12 @@ namespace AdsWeb.WechatPayBusiness
 
                 //获取收货地址js函数入口参数
                 WxPayData afterData = new WxPayData();
-                afterData.SetValue("appId",WxPayConfig.APPID);
-                afterData.SetValue("scope","jsapi_address");
-                afterData.SetValue("signType","sha1");
-                afterData.SetValue("addrSign",addrSign);
-                afterData.SetValue("timeStamp",signData.GetValue("timestamp"));
-                afterData.SetValue("nonceStr",signData.GetValue("noncestr"));
+                afterData.SetValue("appId", WxPayConfig.APPID);
+                afterData.SetValue("scope", "jsapi_address");
+                afterData.SetValue("signType", "sha1");
+                afterData.SetValue("addrSign", addrSign);
+                afterData.SetValue("timeStamp", signData.GetValue("timestamp"));
+                afterData.SetValue("nonceStr", signData.GetValue("noncestr"));
 
                 //转为json格式
                 parameter = afterData.ToJson();
@@ -253,6 +271,6 @@ namespace AdsWeb.WechatPayBusiness
             }
 
             return parameter;
-	    }
+        }
     }
 }

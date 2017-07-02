@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Web;
 
-namespace AdsEntity.WechatPay
+namespace PsyCoderWechat.WechatPay
 {
     public class WxPayException : Exception 
     {

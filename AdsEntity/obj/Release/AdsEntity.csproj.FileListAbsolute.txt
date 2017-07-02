@@ -8,3 +8,4 @@ E:\2017\AdsGitBySky\AdsEntity\bin\Release\AdsEntity.pdb
 E:\2017\AdsGitBySky\AdsEntity\obj\Release\AdsEntity.csprojResolveAssemblyReference.cache
 E:\2017\AdsGitBySky\AdsEntity\obj\Release\AdsEntity.dll
 E:\2017\AdsGitBySky\AdsEntity\obj\Release\AdsEntity.pdb
+E:\2017\AdsGitBySky\AdsEntity\bin\Release\LitJson.dll

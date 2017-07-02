@@ -1,0 +1,35 @@
+﻿@{
+    Layout = "~/Views/Shared/_WechatLayout.cshtml";
+}
+
+
+<div class="row">
+
+
+    <a class="btn btn-block btn-success btn-lg" onclick="callpay()">付费</a>
+
+</div>
+
+
+@section FootScripts {
+  <script type="text/javascript">
+
+      var appid = "";
+      var timestamp = "";
+      var noncestr = "";
+      var signature = "";
+      wx.config({
+          debug: false,
+          appId: appid, // 必填，公众号的唯一标识
+          timestamp: timestamp, // 必填，生成签名的时间戳
+          nonceStr: noncestr, // 必填，生成签名的随机串
+          signature: signature, // 必填，签名，见附录1
+          jsApiList: [
+             'checkJsApi',
+             'chooseWXPay',
+             'hideOptionMenu'
+          ]
+      });
+    </script>
+
+}

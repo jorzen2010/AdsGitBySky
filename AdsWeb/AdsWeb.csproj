@@ -185,6 +185,7 @@
     <Compile Include="Controllers\VideoController.cs" />
     <Compile Include="Controllers\WapController.cs" />
     <Compile Include="Controllers\WechatController.cs" />
+    <Compile Include="Controllers\WechatPayController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -203,15 +204,23 @@
     <Compile Include="test.ashx.cs">
       <DependentUpon>test.ashx</DependentUpon>
     </Compile>
-    <Compile Include="WechatPayBusiness\DownloadBill.cs" />
-    <Compile Include="WechatPayBusiness\JsApiPay.cs" />
-    <Compile Include="WechatPayBusiness\MicroPay.cs" />
-    <Compile Include="WechatPayBusiness\NativeNotify.cs" />
-    <Compile Include="WechatPayBusiness\NativePay.cs" />
-    <Compile Include="WechatPayBusiness\OrderQuery.cs" />
-    <Compile Include="WechatPayBusiness\Refund.cs" />
-    <Compile Include="WechatPayBusiness\RefundQuery.cs" />
-    <Compile Include="WechatPayBusiness\ResultNotify.cs" />
+    <Compile Include="WechatPay\business\DownloadBill.cs" />
+    <Compile Include="WechatPay\business\JsApiPay.cs" />
+    <Compile Include="WechatPay\business\MicroPay.cs" />
+    <Compile Include="WechatPay\business\NativeNotify.cs" />
+    <Compile Include="WechatPay\business\NativePay.cs" />
+    <Compile Include="WechatPay\business\OrderQuery.cs" />
+    <Compile Include="WechatPay\business\Refund.cs" />
+    <Compile Include="WechatPay\business\RefundQuery.cs" />
+    <Compile Include="WechatPay\business\ResultNotify.cs" />
+    <Compile Include="WechatPay\lib\Config.cs" />
+    <Compile Include="WechatPay\lib\Data.cs" />
+    <Compile Include="WechatPay\lib\Exception.cs" />
+    <Compile Include="WechatPay\lib\HttpService.cs" />
+    <Compile Include="WechatPay\lib\Log.cs" />
+    <Compile Include="WechatPay\lib\ModelForOrder.cs" />
+    <Compile Include="WechatPay\lib\Notify.cs" />
+    <Compile Include="WechatPay\lib\WxPayApi.cs" />
     <Compile Include="WechatServices\AccessTokenService.cs" />
     <Compile Include="WechatServices\WechatApi.cs" />
     <Compile Include="WechatServices\WechatJsServices.cs" />
@@ -1718,6 +1727,8 @@
     <Content Include="Views\Wechat\NoScale.cshtml" />
     <Content Include="Views\Home\zhaozheng.cshtml" />
     <Content Include="Views\Wechat\PayDemo.cshtml" />
+    <Content Include="Views\Wechat\StarBabyPay.cshtml" />
+    <Content Include="Views\Wechat\StarBabyPay - 复制.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1725,6 +1736,7 @@
     <Folder Include="Views\Ajax\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\File\" />
+    <Folder Include="Views\WechatPay\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

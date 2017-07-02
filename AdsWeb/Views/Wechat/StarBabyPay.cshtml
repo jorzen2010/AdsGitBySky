@@ -1,0 +1,146 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>星星宝贝</title>
+
+    <!-- Bootstrap 3.3.6 -->
+    <link rel="stylesheet" href="~/WechatResource/css/bootstrap.css">
+
+    <link rel="stylesheet" href="~/WechatResource/css/AdminLTE.css">
+
+
+    <link rel="stylesheet" href="~/WechatResource/css/skym.css">
+    <link href="~/plugins/bootstrap-validator/css/bootstrapValidator.css" rel="stylesheet" type="text/css" />
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body style="margin:25px;">
+
+      <div class="form-group">
+            
+
+        </div>
+        
+        <div class="form-group">
+
+
+            <input type="text"  name="BabyName" id="BabyName" class="form-control input-lg"  value="琉璃瓦" readonly="readonly">
+           
+        </div>
+        <div class="form-group">
+            <input type="text" name="BabyName" id="BabyName" class="form-control input-lg" value="男" readonly="readonly">
+
+        </div>
+        <div class="form-group">
+
+
+
+            <input type="text" name="BabyBirthday" id="BabyBirthday" class="form-control input-lg" value="2019-09-09" readonly="readonly" >
+        </div>
+
+
+        <div class="skyapprow">
+
+            <div class="form-group">
+                <button type="button" class="btn btn-block btn-info btn-lg" onclick="fCharge(0.01)">申请绿色通道（￥400元/年）</button>
+            </div>
+            
+            <div class="form-group">
+                <button type="button" class="btn btn-block btn-success btn-lg" onclick="fCharge(0.02)">立刻开通训练计划（￥1200元/年）</button>
+            </div>
+
+        </div>
+
+    <script src="~/plugins/jQuery/jquery-2.2.3.min.js"></script>
+
+
+    
+
+    <script type="text/javascript">
+      
+
+
+        //初始化微信支付环境
+        function fCharge(ChargeVal) {
+            if (typeof WeixinJSBridge == "undefined") {
+                if (document.addEventListener) {
+                    document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+                } else if (document.attachEvent) {
+                    document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+                    document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+                }
+            } else {
+                fPostCharge(ChargeVal);
+            }
+        }
+
+
+        function fPostCharge(ChargeVal) {
+            // var vChargeVal = $("#ChargeVal").val();
+            var vChargeVal = ChargeVal;
+            vChargeVal = parseFloat(vChargeVal);
+            if (vChargeVal > 0) {
+
+                $.ajax({
+                    type: "post",
+                    data: "totalfee=" + vChargeVal,
+                    url: "/WechatPay/MeterRecharge",
+                    success: function (json) {
+
+                        onBridgeReady(json);
+                    },
+                    error: function () {
+
+                        alert("调用支付模块失败");
+                    }
+                })
+            }
+            else {
+                alert("充值金额有错误。")
+            }
+        }
+
+
+
+        //调用微信支付模块
+        function onBridgeReady(json) {
+            WeixinJSBridge.invoke(
+           'getBrandWCPayRequest', {
+               "appId": json.appId,     //公众号名称，由商户传入
+               "timeStamp": json.timeStamp,         //时间戳，自1970年以来的秒数
+               "nonceStr": json.nonceStr, //随机串
+               "package": json.packageValue,
+               "signType": "MD5",         //微信签名方式:
+               "paySign": json.paySign //微信签名
+           },
+           function (res) {
+               if (res.err_msg == "get_brand_wcpay_request:ok") {
+                   //alert("支付成功,请稍后查询余额,如有疑问,请联系管理员.");
+                   fAlreadyPay();
+               }     // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。
+           }
+            );
+        }
+
+    </script>
+
+
+
+
+
+</body>
+</html>

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Web;
 using System.IO;
 
-namespace AdsEntity.WechatPay
+namespace PsyCoderWechat.WechatPay
 {
     public class Log
     {

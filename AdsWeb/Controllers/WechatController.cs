@@ -11,8 +11,7 @@ using AdsDal;
 using PagedList;
 using PagedList.Mvc;
 using AdsServices;
-using AdsEntity.WechatPay;
-using AdsWeb.WechatPayBusiness;
+
 
 namespace AdsWeb.Controllers
 {
@@ -98,6 +97,7 @@ namespace AdsWeb.Controllers
 
                 Session["CustomerNickName"] = customer.CustomerNickName;
                 Session["CustomerOpenid"] = customer.CustomerOpenid;
+                Session["openid"] = customer.CustomerOpenid;
                 Session["CustomerId"] = customer.CustomerId;
 
              //   return Redirect(STATE);
@@ -657,6 +657,34 @@ namespace AdsWeb.Controllers
         }
         #endregion
 
+        #region 付费Action
+        public ActionResult StarBabyPay()
+        {
+            
+           //  AdsBaby baby = unitOfWork.adsBabysRepository.GetByID(bid);
+          //   baby.Babystatus = true;
+
+          //给baby字段加上付费金额和到期时间，订单号。订单完成后可保存。
+            return View();
+
+
+
+        }
+        #endregion
+
+        //#region 付费Action
+        //public ActionResult StarBabyPay(int bid)
+        //{
+
+        //    AdsBaby baby = unitOfWork.adsBabysRepository.GetByID(bid);
+        //    //   baby.Babystatus = true;
+        //    return View();
+
+
+
+        //}
+        //#endregion
+
 
 
         #region 创建计划新增星宝
@@ -674,7 +702,7 @@ namespace AdsWeb.Controllers
                 unitOfWork.adsBabysRepository.Insert(baby);
                 unitOfWork.Save();
 
-                return RedirectToAction("Calendar");
+                return RedirectToAction("StarBabyPay");
             }
 
             return View(baby);
@@ -684,16 +712,6 @@ namespace AdsWeb.Controllers
 
 
 
-
-
-        #region 支付测试
-        public ActionResult PayDemo()
-        {
-            
-            return View();
-
-        }
-        #endregion
 
         
 

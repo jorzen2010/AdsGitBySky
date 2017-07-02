@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Web;
 
-namespace AdsWeb.WechatPayBusiness
+namespace PsyCoderWechat.WechatPay
 {
     public class RefundQuery
     {

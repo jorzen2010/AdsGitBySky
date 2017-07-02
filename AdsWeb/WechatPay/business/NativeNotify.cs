@@ -4,7 +4,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace AdsWeb.WechatPayBusiness
+namespace PsyCoderWechat.WechatPay
 {
     /// <summary>
     /// 扫码支付模式一回调处理类
