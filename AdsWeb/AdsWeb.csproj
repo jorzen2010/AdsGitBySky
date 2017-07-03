@@ -182,6 +182,7 @@
     <Compile Include="Controllers\ScaleController.cs" />
     <Compile Include="Controllers\SettingController.cs" />
     <Compile Include="Controllers\SysUserController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\VideoController.cs" />
     <Compile Include="Controllers\WapController.cs" />
     <Compile Include="Controllers\WechatController.cs" />
@@ -224,6 +225,7 @@
     <Compile Include="WechatServices\AccessTokenService.cs" />
     <Compile Include="WechatServices\WechatApi.cs" />
     <Compile Include="WechatServices\WechatJsServices.cs" />
+    <Compile Include="WechatServices\WechatMenuServices.cs" />
     <Compile Include="WechatServices\WechatService.cs" />
     <Compile Include="wxapi.ashx.cs">
       <DependentUpon>wxapi.ashx</DependentUpon>
@@ -1729,6 +1731,7 @@
     <Content Include="Views\Wechat\PayDemo.cshtml" />
     <Content Include="Views\Wechat\StarBabyPay.cshtml" />
     <Content Include="Views\Wechat\StarBabyPay - 复制.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

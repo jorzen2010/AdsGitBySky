@@ -32,3 +32,4 @@ E:\2017\AdsGitBySky\AdsDal\bin\Release\zh-Hans\EntityFramework.SqlServer.resourc
 E:\2017\AdsGitBySky\AdsDal\obj\Release\AdsDal.csprojResolveAssemblyReference.cache
 E:\2017\AdsGitBySky\AdsDal\obj\Release\AdsDal.dll
 E:\2017\AdsGitBySky\AdsDal\obj\Release\AdsDal.pdb
+D:\MyPro\2017\AdsGitBySky\AdsDal\bin\Release\Newtonsoft.Json.dll

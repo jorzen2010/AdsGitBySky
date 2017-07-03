@@ -9,3 +9,5 @@ E:\2017\AdsGitBySky\AdsEntity\obj\Release\AdsEntity.csprojResolveAssemblyReferen
 E:\2017\AdsGitBySky\AdsEntity\obj\Release\AdsEntity.dll
 E:\2017\AdsGitBySky\AdsEntity\obj\Release\AdsEntity.pdb
 E:\2017\AdsGitBySky\AdsEntity\bin\Release\LitJson.dll
+D:\MyPro\2017\AdsGitBySky\AdsEntity\bin\Release\LitJson.dll
+D:\MyPro\2017\AdsGitBySky\AdsEntity\bin\Release\Newtonsoft.Json.dll

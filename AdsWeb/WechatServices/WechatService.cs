@@ -24,6 +24,10 @@ namespace AdsWeb.WechatServices
                 url = string.Format("https://api.weixin.qq.com/cgi-bin/user/info/batchget?access_token={0}", access_token);              
                 break;
 
+                case "CreateMenu":
+                url = string.Format("https://api.weixin.qq.com/cgi-bin/menu/create?access_token={0}", access_token);
+                break;
+
 
                     
             }

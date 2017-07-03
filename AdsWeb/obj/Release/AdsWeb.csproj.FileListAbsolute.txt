@@ -177,3 +177,4 @@ E:\2017\AdsGitBySky\AdsWeb\obj\Release\AdsWeb.csprojResolveAssemblyReference.cac
 E:\2017\AdsGitBySky\AdsWeb\obj\Release\AdsWeb.dll
 E:\2017\AdsGitBySky\AdsWeb\obj\Release\AdsWeb.pdb
 E:\2017\AdsGitBySky\AdsWeb\bin\LitJson.dll
+D:\MyPro\2017\AdsGitBySky\AdsWeb\bin\LitJson.dll

@@ -32,13 +32,16 @@ namespace PsyCoderWechat.WechatPay
         //=======【支付结果通知url】===================================== 
         /* 支付结果通知回调url，用于商户接收支付结果
         */
+
         public const string NOTIFY_URL = "http://wx.zzd123.com/ResultNotify";
-     //   public const string NOTIFY_URL = "http://sm.lmx.ren/ResultNotify";
+        
+        //   public const string NOTIFY_URL = "http://sm.lmx.ren/ResultNotify";
         //public const string NOTIFY_URL = "/example/ResultNotifyPage.aspx";
 
         //=======【商户系统后台机器IP】===================================== 
         /* 此参数可手动配置也可在程序中自动获取
         */
+
         public const string IP = "8.8.8.8";
 
 

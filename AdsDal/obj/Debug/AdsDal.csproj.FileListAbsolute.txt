@@ -45,3 +45,4 @@ D:\MyPro\2017\AdsGitBySky\AdsDal\bin\Debug\zh-Hans\EntityFramework.SqlServer.res
 D:\MyPro\2017\AdsGitBySky\AdsDal\obj\Debug\AdsDal.csprojResolveAssemblyReference.cache
 D:\MyPro\2017\AdsGitBySky\AdsDal\obj\Debug\AdsDal.dll
 D:\MyPro\2017\AdsGitBySky\AdsDal\obj\Debug\AdsDal.pdb
+D:\MyPro\2017\AdsGitBySky\AdsDal\bin\Debug\Newtonsoft.Json.dll
