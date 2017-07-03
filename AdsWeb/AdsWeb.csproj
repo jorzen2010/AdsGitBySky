@@ -1734,6 +1734,7 @@
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\WechatMenu\GetMenu.cshtml" />
     <Content Include="Views\WechatMenu\DeleteMenu.cshtml" />
+    <Content Include="Views\WechatMenu\CreateMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
