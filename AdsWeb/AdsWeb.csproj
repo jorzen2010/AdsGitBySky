@@ -182,7 +182,7 @@
     <Compile Include="Controllers\ScaleController.cs" />
     <Compile Include="Controllers\SettingController.cs" />
     <Compile Include="Controllers\SysUserController.cs" />
-    <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Controllers\WechatMenuController.cs" />
     <Compile Include="Controllers\VideoController.cs" />
     <Compile Include="Controllers\WapController.cs" />
     <Compile Include="Controllers\WechatController.cs" />
@@ -1732,6 +1732,8 @@
     <Content Include="Views\Wechat\StarBabyPay.cshtml" />
     <Content Include="Views\Wechat\StarBabyPay - 复制.cshtml" />
     <Content Include="Views\Test\Index.cshtml" />
+    <Content Include="Views\WechatMenu\GetMenu.cshtml" />
+    <Content Include="Views\WechatMenu\DeleteMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

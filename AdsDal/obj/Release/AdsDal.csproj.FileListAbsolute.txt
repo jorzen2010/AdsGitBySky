@@ -33,3 +33,4 @@ E:\2017\AdsGitBySky\AdsDal\obj\Release\AdsDal.csprojResolveAssemblyReference.cac
 E:\2017\AdsGitBySky\AdsDal\obj\Release\AdsDal.dll
 E:\2017\AdsGitBySky\AdsDal\obj\Release\AdsDal.pdb
 D:\MyPro\2017\AdsGitBySky\AdsDal\bin\Release\Newtonsoft.Json.dll
+E:\2017\AdsGitBySky\AdsDal\bin\Release\Newtonsoft.Json.dll

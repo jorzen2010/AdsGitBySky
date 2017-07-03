@@ -10,7 +10,7 @@ using AdsWeb.WechatServices;
 
 namespace AdsWeb.Controllers
 {
-    public class TestController : Controller
+    public class WechatMenuController : Controller
     {
         //
         // GET: /Test/
@@ -38,6 +38,41 @@ namespace AdsWeb.Controllers
             ViewBag.x= WechatService.wechatApi("CreateMenu",token,postData);
             
 
+            return View();
+        }
+
+        public ActionResult CreateMenu()
+        {
+
+
+            MenuInfo menu = new MenuInfo("开始训练", MenuInfo.ButtonType.view, "http://wx.zzd123.com/wechat/Calendar");
+
+            MenuJson menujson = new MenuJson();
+            menujson.button.AddRange(new MenuInfo[] { menu });
+
+            string token = AccessTokenService.GetAccessToken();
+
+            string postData = JsonConvert.SerializeObject(menujson);
+
+            ViewBag.x = WechatService.wechatApi("CreateMenu", token, postData);
+
+
+            return View();
+        }
+
+        public ActionResult DeleteMenu()
+        {
+            string token = AccessTokenService.GetAccessToken();
+            string result = WechatMenuServices.DeleteMenu(token);
+            ViewBag.result = result;
+            return View();
+        }
+
+        public ActionResult GetMenu()
+        {
+            string token = AccessTokenService.GetAccessToken();
+            string result = WechatMenuServices.GetMenu(token);
+            ViewBag.result = result;
             return View();
         }
 
