@@ -91,5 +91,20 @@ namespace Common
             return BitConverter.ToString(byteArr);
         }
 
+        /// <summary>
+        /// HMAC-SHA1加密算法
+        /// </summary>
+        /// <param name="key">密钥</param>
+        /// <param name="input">要加密的串</param>
+        /// <returns></returns>
+        public static string HmacSha1(string key, string input)
+        {
+            byte[] keyBytes = ASCIIEncoding.ASCII.GetBytes(key);
+            byte[] inputBytes = ASCIIEncoding.ASCII.GetBytes(input);
+            HMACSHA1 hmac = new HMACSHA1(keyBytes);
+            byte[] hashBytes = hmac.ComputeHash(inputBytes);
+            return Convert.ToBase64String(hashBytes);
+        }
+
     }
 }

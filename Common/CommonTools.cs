@@ -90,6 +90,7 @@ namespace Common
             return Convert.ToBase64String(str2);
         }
         #endregion
+
         #region 获取由MD5加密的字符串
         public static string EncryptToMD5(string str)
         {

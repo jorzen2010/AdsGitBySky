@@ -13,16 +13,16 @@
       <publishTime>07/01/2017 07:21:34</publishTime>
     </File>
     <File Include="bin/AdsDal.dll">
-      <publishTime>07/03/2017 22:01:05</publishTime>
+      <publishTime>07/04/2017 22:32:11</publishTime>
     </File>
     <File Include="bin/AdsEntity.dll">
       <publishTime>07/03/2017 18:53:00</publishTime>
     </File>
     <File Include="bin/AdsServices.dll">
-      <publishTime>07/03/2017 22:01:06</publishTime>
+      <publishTime>07/04/2017 22:32:11</publishTime>
     </File>
     <File Include="bin/AdsWeb.dll">
-      <publishTime>07/03/2017 22:01:09</publishTime>
+      <publishTime>07/04/2017 22:32:13</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>07/01/2017 07:21:36</publishTime>
@@ -31,7 +31,7 @@
       <publishTime>07/01/2017 07:21:38</publishTime>
     </File>
     <File Include="bin/Common.dll">
-      <publishTime>07/01/2017 20:24:57</publishTime>
+      <publishTime>07/04/2017 22:32:10</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>07/01/2017 07:21:37</publishTime>
@@ -4273,7 +4273,7 @@
       <publishTime>07/01/2017 07:21:34</publishTime>
     </File>
     <File Include="Views/Shared/_MenuPartial.cshtml">
-      <publishTime>07/03/2017 21:31:42</publishTime>
+      <publishTime>07/04/2017 20:42:11</publishTime>
     </File>
     <File Include="Views/Shared/_TopPartial.cshtml">
       <publishTime>07/01/2017 07:21:34</publishTime>
@@ -4294,7 +4294,7 @@
       <publishTime>07/01/2017 07:21:34</publishTime>
     </File>
     <File Include="Views/Test/Index.cshtml">
-      <publishTime>07/03/2017 18:53:00</publishTime>
+      <publishTime>07/04/2017 22:03:58</publishTime>
     </File>
     <File Include="Views/Video/Create.cshtml">
       <publishTime>07/01/2017 07:21:34</publishTime>
@@ -4434,11 +4434,14 @@
     <File Include="Views/Wechat/VideoDetail.cshtml">
       <publishTime>06/08/2017 15:37:34</publishTime>
     </File>
+    <File Include="Views/WechatMenu/CreateMenu.cshtml">
+      <publishTime>07/03/2017 22:12:49</publishTime>
+    </File>
     <File Include="Views/WechatMenu/DeleteMenu.cshtml">
-      <publishTime>07/03/2017 21:56:05</publishTime>
+      <publishTime>07/03/2017 22:05:02</publishTime>
     </File>
     <File Include="Views/WechatMenu/GetMenu.cshtml">
-      <publishTime>07/03/2017 21:55:43</publishTime>
+      <publishTime>07/03/2017 22:06:31</publishTime>
     </File>
     <File Include="Views/Wx/Index.cshtml">
       <publishTime>06/01/2017 10:21:03</publishTime>
