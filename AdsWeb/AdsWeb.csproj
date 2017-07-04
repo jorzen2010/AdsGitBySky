@@ -163,6 +163,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AliyunVideo\business\AliyunVideoServices.cs" />
+    <Compile Include="AliyunVideo\Model\AliyunCommonParaConfig.cs" />
+    <Compile Include="AliyunVideo\Model\CommonParam.cs" />
     <Compile Include="api\test.ashx.cs">
       <DependentUpon>test.ashx</DependentUpon>
     </Compile>
@@ -182,6 +185,7 @@
     <Compile Include="Controllers\ScaleController.cs" />
     <Compile Include="Controllers\SettingController.cs" />
     <Compile Include="Controllers\SysUserController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\WechatMenuController.cs" />
     <Compile Include="Controllers\VideoController.cs" />
     <Compile Include="Controllers\WapController.cs" />

@@ -26,7 +26,7 @@
     <ul class="sidebar-menu">
         <li class="header">系统主菜单</li>
         <li>
-            <a href="/Home/Index">
+            <a href="@Url.Action("zhaozheng", "Home")">
                 <i class="fa fa-home"></i> <span>桌面</span>
             </a>
         </li>
@@ -63,6 +63,23 @@
         </li>
 
 
+
+        
+
+        <li class="treeview">
+            <a href="#">
+                <i class="fa fa-file-text-o"></i> <span>微信菜单管理</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="@Url.Action("CreateMenu", "WechatMenu")"><i class="fa fa-file-text-o"></i> 创建菜单</a></li>
+                <li><a href="@Url.Action("GetMenu", "WechatMenu")"><i class="fa fa-file-text-o"></i> 查看菜单</a></li>
+                <li><a href="@Url.Action("DeleteMenu", "WechatMenu")"><i class="fa fa-file-text-o"></i> 删除菜单</a></li>
+            </ul>
+        </li>
+
         <li class="treeview">
             <a href="#">
                 <i class="fa fa-gear"></i> <span>系统管理</span>
@@ -78,23 +95,7 @@
             </ul>
         </li>
 
-        
-
-        <li class="treeview">
-            <a href="#">
-                <i class="fa fa-file-text-o"></i> <span>微信菜单管理</span>
-                <span class="pull-right-container">
-                    <i class="fa fa-angle-left pull-right"></i>
-                </span>
-            </a>
-            <ul class="treeview-menu">
-                <li><a href="@Url.Action("Index", "SysUser")"><i class="fa fa-file-text-o"></i> 查看菜单</a></li>
-                <li><a href="/Home/Add"><i class="fa fa-file-text-o"></i> 删除菜单</a></li>
-            </ul>
-        </li>
-
-
-        <li class="treeview">
+        @*<li class="treeview">
             <a href="#">
                 <i class="fa fa-file-text-o"></i> <span>系统日志</span>
                 <span class="pull-right-container">
@@ -118,7 +119,7 @@
                 <li><a href="@Url.Action("charts", "Home")"><i class="fa fa-line-chart"></i> 统计图表</a></li>
                 <li><a href="@Url.Action("charts", "Home")"><i class="fa fa-area-chart"></i> 统计图表</a></li>
             </ul>
-        </li>
+        </li>*@
         
     </ul>
 </section>
