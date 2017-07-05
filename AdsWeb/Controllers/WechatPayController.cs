@@ -10,6 +10,13 @@ namespace AdsWeb.Controllers
     public class WechatPayController : Controller
     {
         JsApiPay jsApiPay = new JsApiPay();
+
+        [HttpPost]
+        public ActionResult Index()
+        {
+            return View();
+        
+        }
        
         /// <summary>
         /// 充值

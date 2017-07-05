@@ -27,6 +27,9 @@ namespace AdsEntity
         [Display(Name = "状态")]
         public bool Babystatus { get; set; }
 
+        [Display(Name = "订单号")]
+        public string  OrderId { get; set; }
+
 
         ////未来可延伸部分母亲的生产年龄，看护方式，等等，通过问卷获取此信息
 

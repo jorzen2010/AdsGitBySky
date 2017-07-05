@@ -657,9 +657,14 @@ namespace AdsWeb.Controllers
             if (Session["CustomerId"] != null)
             {
                 AdsBaby baby = unitOfWork.adsBabysRepository.GetByID(bid);
-                baby.Babystatus = true;
-
-                return RedirectToAction("Calendar");
+                if (baby.Babystatus)
+                {
+                    return RedirectToAction("Calendar");
+                }
+                else
+                {
+                    return RedirectToAction("NoPay");
+                }               
                
             }
             else
@@ -670,15 +675,14 @@ namespace AdsWeb.Controllers
         }
         #endregion
 
-        #region 付费Action
-        public ActionResult StarBabyPay()
+        #region 付费Action页面
+        public ActionResult StarBabyPay(int bid)
         {
             
-           //  AdsBaby baby = unitOfWork.adsBabysRepository.GetByID(bid);
-          //   baby.Babystatus = true;
+           AdsBaby baby = unitOfWork.adsBabysRepository.GetByID(bid);
 
           //给baby字段加上付费金额和到期时间，订单号。订单完成后可保存。
-            return View();
+           return View(baby);
 
 
 
@@ -715,7 +719,7 @@ namespace AdsWeb.Controllers
                 unitOfWork.adsBabysRepository.Insert(baby);
                 unitOfWork.Save();
 
-                return RedirectToAction("StarBabyPay");
+                return Redirect("/Wechat/StarBabyPay/");
             }
 
             return View(baby);

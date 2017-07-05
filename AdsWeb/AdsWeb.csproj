@@ -1741,6 +1741,7 @@
     <Content Include="Views\WechatMenu\GetMenu.cshtml" />
     <Content Include="Views\WechatMenu\DeleteMenu.cshtml" />
     <Content Include="Views\WechatMenu\CreateMenu.cshtml" />
+    <Content Include="Views\WechatPay\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1748,7 +1749,6 @@
     <Folder Include="Views\Ajax\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\File\" />
-    <Folder Include="Views\WechatPay\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
