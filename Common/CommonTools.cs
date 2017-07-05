@@ -337,6 +337,24 @@ namespace Common
             return Birthday;
 
         }
+
+        public static string UrlEncodeToUpper(string str)
+        {
+            StringBuilder builder = new StringBuilder();
+            foreach (char c in str)
+            {
+                if (HttpUtility.UrlEncode(c.ToString()).Length > 1)
+                {
+                    builder.Append(HttpUtility.UrlEncode(c.ToString()).ToUpper());
+                }
+                else
+                {
+                    builder.Append(c);
+                }
+            }
+            return builder.ToString();
+        }
+
         
 
     }

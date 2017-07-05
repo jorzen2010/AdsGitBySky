@@ -1,24 +1,28 @@
 ﻿@{
     Layout = null;
 }
-
 <!DOCTYPE html>
-
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
     <title></title>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="https://g.alicdn.com/de/prismplayer/1.7.6/skins/default/index.css" />
+    <script type="text/javascript" src="https://g.alicdn.com/de/prismplayer/1.7.6/prism.js"></script>
 </head>
 <body>
-    <div>
-      <h2>StringToSign</h2>      @ViewBag.x
-        <br/>
-        <h2>Signature</h2>    @ViewBag.y
-        <br />
-        <h2>SignUrl</h2>    @ViewBag.z
 
+    <div class="prism-player" id="J_prismPlayer"></div>
+    <script>
 
-      
-     </div>
+    var player = new prismplayer({
+    id: "J_prismPlayer",
+    autoplay: false,
+    width: "auto", height: "300px",
+    vid: "@ViewBag.VideoId",
+    playauth: "@ViewBag.PlayAuth",
+    });
+
+    </script>
+
 </body>
 </html>

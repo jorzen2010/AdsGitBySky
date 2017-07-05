@@ -166,6 +166,7 @@
     <Compile Include="AliyunVideo\business\AliyunVideoServices.cs" />
     <Compile Include="AliyunVideo\Model\AliyunCommonParaConfig.cs" />
     <Compile Include="AliyunVideo\Model\CommonParam.cs" />
+    <Compile Include="AliyunVideo\Model\VideoModel.cs" />
     <Compile Include="api\test.ashx.cs">
       <DependentUpon>test.ashx</DependentUpon>
     </Compile>
@@ -1555,6 +1556,7 @@
     <Content Include="WechatResource\font-awesome-4.7.0\HELP-US-OUT.txt" />
     <Content Include="WechatResource\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="WechatResource\img\iconfont-mingpian.png" />
+    <Content Include="WechatResource\img\loginbg.jpg" />
     <Content Include="WechatResource\img\star.jpg" />
     <Content Include="WechatResource\img\test.png" />
     <Content Include="WechatResource\img\user1-128x128.jpg" />

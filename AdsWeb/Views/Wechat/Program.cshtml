@@ -3,11 +3,15 @@
     Layout = "~/Views/Shared/_WechatLayout.cshtml";
 }
 
+@section Topcss {
+<link rel="stylesheet" href="https://g.alicdn.com/de/prismplayer/1.7.6/skins/default/index.css" />
+}
 
 <div class="row" style="background-color: #ffffff; ">
-    <div class="col-xs-12" style="height: 150px;">
-        这里是一个播放器
-    </div>
+    <div class="col-xs-12 prism-player" style="height: 150px;" id="J_prismPlayer">
+    </div> 
+      
+   
     <div class="row" style="background-color:#666666;margin: 0px 0px 0px 10px;">
         <div class="col-xs-7" style="background-color:#ffffff; border-top: solid #efefef 1px;">
             <div class="text-center">
@@ -104,7 +108,19 @@
 
 @section FootScripts {
 
+
+<script type="text/javascript" src="https://g.alicdn.com/de/prismplayer/1.7.6/prism.js"></script>
     <script type="text/javascript">
+
+        //初始化编辑器
+    var player = new prismplayer({
+        id: "J_prismPlayer",
+        autoplay: false,
+        width: "100%", height: "300px",
+        vid: "@ViewBag.VideoId",
+        playauth: "@ViewBag.PlayAuth",
+    });
+
 
         function pingjia(babyId, pingjiaValue, videoId) {
             $.ajax({
@@ -127,6 +143,8 @@
 
         }
 
-    </script>
+
+       
+</script>
 }
 

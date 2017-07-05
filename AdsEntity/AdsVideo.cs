@@ -19,7 +19,7 @@ namespace AdsEntity
         public string VideoTeacher { get; set; }
         [Display(Name = "音视频封面")]
         public string VideoPhoto { get; set; }
-        [Display(Name = "音视频地址")]
+        [Display(Name = "音视频地址（阿里云视频Id）")]
         public string VideoUrl { get; set; }
         [Display(Name = "音视频介绍")]
         public string VideoInfo { get; set; }
