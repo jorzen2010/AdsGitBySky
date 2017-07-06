@@ -719,7 +719,7 @@ namespace AdsWeb.Controllers
                 unitOfWork.adsBabysRepository.Insert(baby);
                 unitOfWork.Save();
 
-                return Redirect("/Wechat/StarBabyPay/");
+                return Redirect("/Wechat/StarBabyPay/?bid="+baby.BabyId);
             }
 
             return View(baby);

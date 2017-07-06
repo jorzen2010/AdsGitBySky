@@ -13,16 +13,16 @@
       <publishTime>05/15/2017 14:56:44</publishTime>
     </File>
     <File Include="bin/AdsDal.dll">
-      <publishTime>07/05/2017 14:27:52</publishTime>
+      <publishTime>07/06/2017 10:24:21</publishTime>
     </File>
     <File Include="bin/AdsEntity.dll">
-      <publishTime>07/05/2017 14:27:52</publishTime>
+      <publishTime>07/06/2017 10:24:21</publishTime>
     </File>
     <File Include="bin/AdsServices.dll">
-      <publishTime>07/05/2017 14:27:52</publishTime>
+      <publishTime>07/06/2017 10:24:22</publishTime>
     </File>
     <File Include="bin/AdsWeb.dll">
-      <publishTime>07/05/2017 14:29:28</publishTime>
+      <publishTime>07/06/2017 13:19:00</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>05/09/2017 16:26:57</publishTime>
@@ -4378,7 +4378,7 @@
       <publishTime>06/05/2017 18:55:26</publishTime>
     </File>
     <File Include="Views/Wechat/Login.cshtml">
-      <publishTime>06/06/2017 08:45:58</publishTime>
+      <publishTime>07/05/2017 16:27:21</publishTime>
     </File>
     <File Include="Views/Wechat/MemberCenter - 复制.cshtml">
       <publishTime>06/01/2017 20:26:44</publishTime>
@@ -4390,7 +4390,7 @@
       <publishTime>06/08/2017 14:10:15</publishTime>
     </File>
     <File Include="Views/Wechat/NoPay.cshtml">
-      <publishTime>06/14/2017 10:03:41</publishTime>
+      <publishTime>07/06/2017 08:33:56</publishTime>
     </File>
     <File Include="Views/Wechat/NoScale.cshtml">
       <publishTime>06/14/2017 08:36:52</publishTime>
@@ -4405,7 +4405,7 @@
       <publishTime>06/20/2017 14:22:09</publishTime>
     </File>
     <File Include="Views/Wechat/Program.cshtml">
-      <publishTime>07/05/2017 14:26:38</publishTime>
+      <publishTime>07/05/2017 14:34:34</publishTime>
     </File>
     <File Include="Views/Wechat/ProgrameList.cshtml">
       <publishTime>06/09/2017 11:19:50</publishTime>
@@ -4426,7 +4426,7 @@
       <publishTime>07/03/2017 08:39:21</publishTime>
     </File>
     <File Include="Views/Wechat/StarBabyPay.cshtml">
-      <publishTime>07/03/2017 08:39:21</publishTime>
+      <publishTime>07/06/2017 08:33:56</publishTime>
     </File>
     <File Include="Views/Wechat/test.cshtml">
       <publishTime>06/13/2017 09:31:26</publishTime>
@@ -4442,6 +4442,9 @@
     </File>
     <File Include="Views/WechatMenu/GetMenu.cshtml">
       <publishTime>07/04/2017 08:54:47</publishTime>
+    </File>
+    <File Include="Views/WechatPay/Index.cshtml">
+      <publishTime>07/06/2017 08:33:56</publishTime>
     </File>
     <File Include="Views/Wx/Index.cshtml">
       <publishTime>06/01/2017 10:21:03</publishTime>
@@ -4823,6 +4826,9 @@
     </File>
     <File Include="WechatResource/img/iconfont-mingpian.png">
       <publishTime>05/31/2017 10:25:20</publishTime>
+    </File>
+    <File Include="WechatResource/img/loginbg.jpg">
+      <publishTime>07/05/2017 16:02:44</publishTime>
     </File>
     <File Include="WechatResource/img/star.jpg">
       <publishTime>06/05/2017 09:38:35</publishTime>
