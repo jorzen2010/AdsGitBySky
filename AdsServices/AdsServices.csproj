@@ -42,7 +42,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdsEmailServices.cs" />
     <Compile Include="BaogaoServices.cs" />
     <Compile Include="PlanServices.cs" />
     <Compile Include="ScaleServices.cs" />

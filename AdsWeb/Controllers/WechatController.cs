@@ -604,6 +604,28 @@ namespace AdsWeb.Controllers
         }
         #endregion
 
+
+        #region 申请加入计划
+        public ActionResult StarBabyEdit(int id)
+        {
+            if (Session["CustomerId"] != null)
+            {
+                AdsBaby baby = unitOfWork.adsBabysRepository.GetByID(id);
+                ViewData["customerid"] = Session["CustomerId"].ToString();
+                return View(baby);
+            }
+            else
+            {
+                return RedirectToAction("Login");
+
+            }
+
+        }
+        #endregion
+
+
+
+
         #region 注册页面
         public ActionResult Reg()
         {
@@ -720,6 +742,30 @@ namespace AdsWeb.Controllers
                 unitOfWork.Save();
 
                 return Redirect("/Wechat/StarBabyPay/?bid="+baby.BabyId);
+            }
+
+            return View(baby);
+        }
+
+        #endregion
+
+
+        #region 创建计划新增星宝
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult BabyEdit(AdsBaby baby)
+        {
+            if (ModelState.IsValid)
+            {
+
+                baby.BabyAvatar = "~/wechat/img/star.jpg";
+                baby.BabyRegTime = System.DateTime.Now;
+                baby.BabyExpiredTime = System.DateTime.Now.AddYears(5);
+
+                unitOfWork.adsBabysRepository.Update(baby);
+                unitOfWork.Save();
+
+                return Redirect("/Wechat/StarBabyPay/?bid=" + baby.BabyId);
             }
 
             return View(baby);

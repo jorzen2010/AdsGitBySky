@@ -70,6 +70,7 @@ namespace AdsWeb.Controllers
             SysUser sysuser = unitOfWork.sysUsersRepository.GetByID(id);
             string password = CommonTools.GenerateRandomNumber(8);
             string confirmpassword = CommonTools.ToMd5(password);
+            string sysemail = sysuser.SysEmail;
             sysuser.SysPassword = confirmpassword;
 
            
@@ -81,7 +82,21 @@ namespace AdsWeb.Controllers
                 unitOfWork.sysUsersRepository.Update(sysuser);
                 unitOfWork.Save();
                 string EmailContent = "密码已经被重置为" + password.ToString() + "，并已经发送邮件到" + sysuser.SysEmail+",请注意查收！";
-                AdsEmailServices.SendEmail(EmailContent,sysuser.SysEmail);
+                EmailServer server = new EmailServer();
+                Setting setting = unitOfWork.settingsRepository.GetByID(1);
+                server.EmailAddress = setting.EmailFrom;
+                server.EmailPassword = setting.EmailPassword;
+                server.SMTPClient = setting.EmailHost;
+                EmailEntity mailEntity = new EmailEntity();
+                mailEntity.DisplayName = "星星家庭训练系统管理员";
+                mailEntity.MailContent = EmailContent;
+                mailEntity.ToMail = sysemail;
+                mailEntity.MailTitle = "重置密码邮件";
+                mailEntity.FromMail = server.EmailAddress;
+                EmailServices.SendEmail(server, mailEntity);
+
+              //  AdsEmailServices.SendEmail(EmailContent,sysuser.SysEmail);
+
                 msg.MessageStatus = "true";
                 msg.MessageInfo = EmailContent;
             }

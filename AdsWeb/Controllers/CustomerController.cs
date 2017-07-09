@@ -122,7 +122,7 @@ namespace AdsWeb.Controllers
                 unitOfWork.adsCustomersRepository.Update(customer);
                 unitOfWork.Save();
                 string EmailContent = "密码已经被重置为" + password.ToString() + "，并已经发送邮件到" + customer.CustomerEmail + ",请注意查收！";
-                AdsEmailServices.SendEmail(EmailContent, customer.CustomerEmail);
+              //  AdsEmailServices.SendEmail(EmailContent, customer.CustomerEmail);
                 msg.MessageStatus = "true";
                 msg.MessageInfo = EmailContent;
             }

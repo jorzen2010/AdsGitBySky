@@ -1742,6 +1742,7 @@
     <Content Include="Views\WechatMenu\DeleteMenu.cshtml" />
     <Content Include="Views\WechatMenu\CreateMenu.cshtml" />
     <Content Include="Views\WechatPay\Index.cshtml" />
+    <Content Include="Views\Wechat\StarBabyEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -55,12 +55,18 @@
 
         <div class="skyapprow">
 
+           
+
             <div class="form-group">
                 <button type="button" class="btn btn-block btn-info btn-lg" onclick="fCharge(0.01)">申请绿色通道（￥400元/年）</button>
             </div>
             
             <div class="form-group">
                 <button type="button" class="btn btn-block btn-success btn-lg" onclick="fCharge(0.02)">立刻开通训练计划（￥1200元/年）</button>
+            </div>
+
+            <div class="form-group">
+                <a class="btn btn-block btn-info btn-lg" href="@Url.Action("StarBabyEdit", "Wechat", new { id = Model.BabyId })">返回修改信息</a>
             </div>
 
         </div>
