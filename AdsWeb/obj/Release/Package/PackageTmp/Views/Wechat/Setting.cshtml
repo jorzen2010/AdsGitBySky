@@ -60,7 +60,7 @@
 
         <div class="skyapprow">
             <div class="form-group">
-                <button type="submit" class="btn btn-block btn-info btn-lg">保存</button>
+                <button type="submit" class="btn btn-block btn-info btn-lg">保存并返回</button>
                 <a href="@Url.Action("MemberCenter")" class="btn btn-block btn-default btn-lg">返回</a>
             </div>
 
@@ -95,6 +95,9 @@
                     validators: {
                         notEmpty: {
                             message: '邮箱不能为空'
+                        },
+                        emailAddress: {
+                            message: '请输入正确的邮件地址如：123@qq.com'
                         }
 
                     }

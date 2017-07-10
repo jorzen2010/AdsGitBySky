@@ -202,12 +202,37 @@ namespace AdsWeb.Controllers
             pager = CommonDal.GetPager(pager);
             IList<AdsVideo> videos = DataConvertHelper<AdsVideo>.ConvertToModel(pager.EntityDataTable);
             var videosAsIPageList = new StaticPagedList<AdsVideo>(videos, pager.PageNo, pager.PageSize, pager.Amount);
+
+
             return View(videosAsIPageList);        
 
 
            
         }
         #endregion
+
+
+        //项目相关的页面
+        public ActionResult HeartServices(int id)
+        {
+            string ApiUrl = AliyunCommonParaConfig.ApiUrl;
+            // 注意这里需要使用UTC时间，比北京时间少8小时。
+            string Timestamp = DateTime.Now.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ", DateTimeFormatInfo.InvariantInfo);
+            string Action = "GetVideoPlayAuth";
+            string SignatureNonce = CommonTools.EncryptToSHA1(CommonTools.GenerateRandomNumber(8));
+
+
+            AdsVideo video = unitOfWork.adsVideosRepository.GetByID(id);
+            string VideoId = video.VideoUrl;
+            ViewBag.VideoId = VideoId;
+
+            ViewBag.PlayAuth = AliyunVideoServices.GetVideoInfo(ApiUrl, VideoId, Timestamp, Action, SignatureNonce).PlayAuth;
+
+            return View(video);
+        }
+
+
+
 
         #region 3训练计划日历
         public ActionResult Calendar(int? page, int ?cid ,int? orderid)
@@ -649,6 +674,13 @@ namespace AdsWeb.Controllers
 
         #region 个人账号设置
         public ActionResult Setting()
+        {
+            return View();
+        }
+        #endregion
+
+        #region 个人账号设置保存
+        public ActionResult SettingSave()
         {
             return View();
         }

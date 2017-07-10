@@ -1,4 +1,4 @@
-﻿@model AdsEntity.AdsCustomer
+﻿@model AdsEntity.AdsBaby
 @{
     Layout = null;
 }
@@ -18,8 +18,9 @@
 
 
     <link rel="stylesheet" href="~/WechatResource/css/skym.css">
-
     <link href="~/plugins/bootstrap-validator/css/bootstrapValidator.css" rel="stylesheet" type="text/css" />
+
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -27,52 +28,53 @@
       <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body style="margin:15px;">
+<body style="margin:25px;">
 
 
 
-   @using (Html.BeginForm("SettingSave", "Wechat", FormMethod.Post, new { @class = "form-horizontal", @name = "CustomerForm", @id = "CustomerForm" }))
-                {
-        <!-- text input -->
+  @using (Html.BeginForm("BabyEdit", "Wechat", FormMethod.Post, new { @class = "form-horizontal", @name = "BabyForm", @id = "BabyForm" }))
+     {   <!-- text input -->
         <div class="form-group">
-            @Html.AntiForgeryToken()
-            @Html.HiddenFor(model => model.CustomerId, new { @Value = @ViewData["customerid"] })
-
+            
+           @Html.AntiForgeryToken()
+           @Html.HiddenFor(model => model.CustomerId, new { @Value = @ViewData["customerid"] })
         </div>
-
-        <div class="form-group">
-
-            <input type="text" name="CustomerUserName" id="CustomerUserName" class="form-control input-lg" placeholder="用户名">
-        </div>
+        
         <div class="form-group">
 
-            <input type="text" name="CustomerEmail" id="CustomerEmail" class="form-control input-lg" placeholder="邮箱">
+
+            <input type="text" name="BabyName" id="BabyName" class="form-control input-lg" value="@Model.BabyName">
+           
         </div>
-
-
+        <div class="form-group">
+            <select class="form-control input-lg" name="BabySex" id="BabySex">
+                <option value="男">男</option>
+                <option value="女">女</option>
+            </select>
+        </div>
         <div class="form-group">
 
-            <input type="date" name="CustomerBirthday" id="CustomerBirthday" class="form-control input-lg" placeholder="生日">
+
+
+            <input type="date" name="BabyBirthday" id="BabyBirthday" class="form-control input-lg" value="@Model.BabyBirthday">
         </div>
-
-
 
 
         <div class="skyapprow">
+
             <div class="form-group">
-                <button type="submit" class="btn btn-block btn-info btn-lg">保存并返回</button>
-                <a href="@Url.Action("MemberCenter")" class="btn btn-block btn-default btn-lg">返回</a>
+                <button type="submit" class="btn btn-block btn-success btn-lg">保存修改</button>
             </div>
 
         </div>
-   }
-
+  }
     <script src="~/plugins/jQuery/jquery-2.2.3.min.js"></script>
     <script type="text/javascript" src="~/plugins/bootstrap-validator/js/bootstrapValidator.js"></script>
+
     <script type="text/javascript">
 
         //表单验证
-        $('#CustomerForm').bootstrapValidator({
+        $('#BabyForm').bootstrapValidator({
             //        live: 'disabled',
             message: 'This value is not valid',
             feedbackIcons: {
@@ -82,26 +84,23 @@
             },
             fields: {
 
-                CustomerUserName: {
+                BabyName: {
                     validators: {
                         notEmpty: {
-                            message: '用户名不能为空'
+                            message: '星宝姓名'
                         }
 
                     }
                 },
-                CustomerEmail: {
+                BabySex: {
                     validators: {
                         notEmpty: {
-                            message: '邮箱不能为空'
-                        },
-                        emailAddress: {
-                            message: '请输入正确的邮件地址如：123@qq.com'
+                            message: '性别不能为空'
                         }
 
                     }
                 },
-                CustomerBirthday: {
+                BabyBirthday: {
                     validators: {
                         notEmpty: {
                             message: '出生日期不能为空'

@@ -31,7 +31,7 @@
                 <p>已有 @Html.DisplayFor(modelItem => item.VideoViewTimes) 人浏览</p>
             </div>
 
-            <a class="pull-right btn btn-warning btn-sm" href="">马上学习</a>
+         <a class="pull-right btn btn-warning btn-sm" href="@Url.Action("Program", "Wechat", new { bid = ViewBag.babyId, id = item.VideoId })">马上学习</a>
 
         </div>
 
