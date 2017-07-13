@@ -31,28 +31,27 @@
 
 
 
-   @using (Html.BeginForm("CustomerEdit", "Wechat", FormMethod.Post, new { @class = "form-horizontal", @name = "CustomerForm", @id = "CustomerForm" }))
+   @using (Html.BeginForm("SettingSave", "Wechat", FormMethod.Post, new { @class = "form-horizontal", @name = "CustomerForm", @id = "CustomerForm" }))
                 {
         <!-- text input -->
         <div class="form-group">
             @Html.AntiForgeryToken()
-            @Html.HiddenFor(model => model.CustomerId, new { @Value = @ViewData["customerid"] })
+            @Html.HiddenFor(model => model.CustomerId)
 
         </div>
 
         <div class="form-group">
 
-            <input type="text" name="CustomerUserName" id="CustomerUserName" class="form-control input-lg" placeholder="用户名">
+            <input type="text" name="CustomerUserName" id="CustomerUserName" class="form-control input-lg" value="@Model.CustomerUserName">
         </div>
         <div class="form-group">
 
-            <input type="text" name="CustomerEmail" id="CustomerEmail" class="form-control input-lg" placeholder="邮箱">
+            <input type="text" name="CustomerEmail" id="CustomerEmail" class="form-control input-lg" value="@Model.CustomerEmail">
         </div>
-
 
         <div class="form-group">
 
-            <input type="date" name="CustomerBirthday" id="CustomerBirthday" class="form-control input-lg" placeholder="生日">
+            <input type="date" name="CustomerBirthday" id="CustomerBirthday" class="form-control input-lg" value="@Model.CustomerBirthday">
         </div>
 
 
@@ -60,10 +59,9 @@
 
         <div class="skyapprow">
             <div class="form-group">
-                <button type="submit" class="btn btn-block btn-info btn-lg">保存并返回</button>
+                <button type="button" class="btn btn-block btn-info btn-lg" onclick="SettingSave('@Model.CustomerId')">保存并返回</button>
                 <a href="@Url.Action("MemberCenter")" class="btn btn-block btn-default btn-lg">返回</a>
             </div>
-
 
         </div>
    }
@@ -71,6 +69,36 @@
     <script src="~/plugins/jQuery/jquery-2.2.3.min.js"></script>
     <script type="text/javascript" src="~/plugins/bootstrap-validator/js/bootstrapValidator.js"></script>
     <script type="text/javascript">
+
+
+        function SettingSave(id) {
+            var token = $('[name=__RequestVerificationToken]').val();
+            var CustomerUserName = $('#CustomerUserName').val();
+            var CustomerEmail = $('#CustomerEmail').val();
+            var CustomerBirthday = $('#CustomerBirthday').val();
+            $.ajax({
+                type: 'POST',
+                url: "/Wechat/SettingSave",
+                data: {
+                    id: id,
+                    __RequestVerificationToken: token,
+                    CustomerUserName: CustomerUserName,
+                    CustomerEmail: CustomerEmail,
+                    CustomerBirthday: CustomerBirthday,
+                },
+                dataType: "json",
+                success: function (data) {
+                    if (data.MessageStatus)
+                    { alert(data.MessageInfo); }
+                    else
+                    { alert("保存失败！"); }
+
+                }
+            });
+
+        }
+
+
 
         //表单验证
         $('#CustomerForm').bootstrapValidator({

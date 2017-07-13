@@ -675,17 +675,56 @@ namespace AdsWeb.Controllers
         #region 个人账号设置
         public ActionResult Setting()
         {
-            return View();
+            int id = int.Parse(Session["CustomerId"].ToString());
+            AdsCustomer customer = unitOfWork.adsCustomersRepository.GetByID(id);
+            return View(customer);
         }
         #endregion
 
         #region 个人账号设置保存
-        public ActionResult SettingSave()
+        public ActionResult SettingSave(AdsCustomer customer)
         {
-            return View();
+
+            if (ModelState.IsValid)
+            {
+                AdsCustomer cus = unitOfWork.adsCustomersRepository.GetByID(customer.CustomerId);
+                cus.CustomerBirthdayType = "公历";
+                cus.CustomerBirthday = DateTime.Parse(customer.CustomerBirthday.ToString());
+                
+                unitOfWork.adsCustomersRepository.Update(cus);
+                unitOfWork.Save();
+
+                return View(customer);
+            }
+
+            return View(customer);
         }
         #endregion
 
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult SettingSave(int id, string CustomerUserName, string CustomerEmail, string CustomerBirthday)
+        {
+            Message msg = new Message();
+
+            AdsCustomer customer = unitOfWork.adsCustomersRepository.GetByID(id);
+
+            customer.CustomerUserName = CustomerUserName;
+            customer.CustomerEmail = CustomerEmail;
+            customer.CustomerBirthday = DateTime.Parse(CustomerBirthday);
+            if (ModelState.IsValid)
+            {
+
+                unitOfWork.adsCustomersRepository.Update(customer);
+                unitOfWork.Save();
+                string result = "保存成功！";
+                msg.MessageStatus = "true";
+                msg.MessageInfo = result;
+            }
+            return Json(msg, JsonRequestBehavior.AllowGet);
+        }
         
 
         #region 未付费
