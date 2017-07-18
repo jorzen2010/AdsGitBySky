@@ -424,8 +424,7 @@ namespace AdsWeb.Controllers
                 }
                 else
                 {
-                    ViewBag.info = "您尚未开通训练计划";
-                    return View(baby);
+                    return RedirectToAction("NoBaby");
 
                 }
 

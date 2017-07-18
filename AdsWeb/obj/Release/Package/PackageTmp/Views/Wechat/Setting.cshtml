@@ -39,19 +39,24 @@
             @Html.HiddenFor(model => model.CustomerId)
 
         </div>
+       
+       <div class="form-group">
 
-        <div class="form-group">
-
-            <input type="text" name="CustomerUserName" id="CustomerUserName" class="form-control input-lg" value="@Model.CustomerUserName">
-        </div>
-        <div class="form-group">
-
-            <input type="text" name="CustomerEmail" id="CustomerEmail" class="form-control input-lg" value="@Model.CustomerEmail">
+         账号：   <input type="text" name="CustomerUserName" id="CustomerUserName" readonly="readonly" class="form-control input-lg" value="@Model.CustomerNickName">
         </div>
 
         <div class="form-group">
 
-            <input type="date" name="CustomerBirthday" id="CustomerBirthday" class="form-control input-lg" value="@Model.CustomerBirthday">
+         用户名：   <input type="text" name="CustomerUserName" id="CustomerUserName" class="form-control input-lg" value="@Model.CustomerUserName">
+        </div>
+        <div class="form-group">
+
+        邮箱：    <input type="text" name="CustomerEmail" id="CustomerEmail" class="form-control input-lg" value="@Model.CustomerEmail">
+        </div>
+
+        <div class="form-group">
+
+          生日：  <input type="date" name="CustomerBirthday" id="CustomerBirthday" class="form-control input-lg" value="@Model.CustomerBirthday.GetValueOrDefault().ToString("yyyy-MM-dd")">
         </div>
 
 
@@ -59,7 +64,7 @@
 
         <div class="skyapprow">
             <div class="form-group">
-                <button type="button" class="btn btn-block btn-info btn-lg" onclick="SettingSave('@Model.CustomerId')">保存并返回</button>
+                <button type="button" class="btn btn-block btn-info btn-lg" onclick="SettingSave('@Model.CustomerId')">保存</button>
                 <a href="@Url.Action("MemberCenter")" class="btn btn-block btn-default btn-lg">返回</a>
             </div>
 

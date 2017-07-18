@@ -58,9 +58,26 @@
     <script src="~/dist/js/app.min.js"></script>
     <!-- SlimScroll 1.3.0 -->
     <script src="~/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <script type="text/javascript" src="/Resource/js/SkyWeb.js"></script>
 
     @RenderSection("FootScripts", required: false)
 
+    <script type="text/javascript">
+        var url = GetUrl('pathname');
+        $('.sidebar-menu li a').each(function () {
 
+            if (url == $(this).attr('href')) {
+                $(this).parent().addClass('active');
+                // alert($(this).parent().parent().parent().text());
+
+                if ($(this).parent().parent().parent().hasClass('treeview')) {
+                    $(this).parent().parent().parent().addClass('active');
+                }
+
+            }
+
+        }
+            );
+    </script>
 </body>
 </html>

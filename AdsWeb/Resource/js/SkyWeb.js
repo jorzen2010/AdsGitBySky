@@ -1,4 +1,34 @@
-﻿
+﻿function GetUrl(type) {
+    var url = '';
+    switch (type) {
+        case 'url':
+            url = window.location.href;
+            break;
+        case 'protocol':
+            url = window.location.protocol;
+            break;
+        case 'host':
+            url = window.location.host;
+            break;
+        case 'port':
+            url = window.location.port;
+            break;
+        case 'pathname':
+            url = window.location.pathname;
+            break;
+        case 'search':
+            url = window.location.search;
+            break;
+        case 'hash':
+            url = window.location.hash;
+            break;
+    }
+
+
+    return url;
+
+}
+
 //获取地址栏参数//只能是英文参数
 function GetQueryString(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");

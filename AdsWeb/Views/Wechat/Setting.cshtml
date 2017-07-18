@@ -39,6 +39,11 @@
             @Html.HiddenFor(model => model.CustomerId)
 
         </div>
+       
+       <div class="form-group">
+
+         账号：   <input type="text" name="CustomerUserName" id="CustomerUserName" readonly="readonly" class="form-control input-lg" value="@Model.CustomerNickName">
+        </div>
 
         <div class="form-group">
 

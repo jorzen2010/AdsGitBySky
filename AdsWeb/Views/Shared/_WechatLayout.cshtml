@@ -37,6 +37,20 @@
     
 
     <script src="~/WechatResource/js/jquery-2.2.3.min.js"></script>
+    <script type="text/javascript" src="/Resource/js/SkyWeb.js"></script>
+    <script type="text/javascript">
+        var url = GetUrl('pathname');
+        $('.navbar-nav li a').each(function () {
+          
+            if (url == $(this).attr('href')) {
+                $(this).removeClass('text-info');
+                $(this).addClass('text-blue');
+             
+            }
+
+        }
+            );
+    </script>
 
     @RenderSection("FootScripts", required: false)
 </body>
