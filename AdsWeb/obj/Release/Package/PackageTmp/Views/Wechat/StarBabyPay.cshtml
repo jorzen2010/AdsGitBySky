@@ -58,7 +58,7 @@
            
 
             <div class="form-group">
-                <button type="button" class="btn btn-block btn-info btn-lg" onclick="fCharge(0.01)">申请绿色通道（￥400元/年）</button>
+                <button type="button" class="btn btn-block btn-danger btn-lg" onclick="fCharge(0.01)">申请限时绿色通道（￥400元/年）</button>
             </div>
             
             <div class="form-group">
@@ -78,7 +78,6 @@
 
     <script type="text/javascript">
       
-
 
         //初始化微信支付环境
         function fCharge(ChargeVal) {
@@ -137,6 +136,7 @@
                if (res.err_msg == "get_brand_wcpay_request:ok") {
 
                    //alert("支付成功,请稍后查询余额,如有疑问,请联系管理员.");
+                   //这里可以直接做一个转向操作。
                    fAlreadyPay();
 
                }     // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。

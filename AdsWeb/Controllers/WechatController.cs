@@ -566,30 +566,91 @@ namespace AdsWeb.Controllers
         [HttpPost]
         public JsonResult PingjiaCreate(int babyId, float pingjiaValue, int videoId)
         {
+            //检查一下是否有评论
+
             Message msg = new Message();
             Pingjia pingjia = new Pingjia();
             pingjia.BabyId = babyId;
             pingjia.VideoId = videoId;
             pingjia.PingjiaValue = pingjiaValue;
-
             pingjia.PingjiaTime = DateTime.Now;
-            if (ModelState.IsValid)
+
+            bool ifsave = PingjiaServices.GetPingjiaCount(pingjia.VideoId, pingjia.BabyId, pingjia.PingjiaTime);
+
+            if (!ifsave)
             {
-                unitOfWork.pingjiasRepository.Insert(pingjia);
-                unitOfWork.Save();
                 msg.MessageStatus = "true";
-                msg.MessageInfo = "评估项目完成";
+                msg.MessageInfo = "此项目6小时内不能重复评价。";
             }
             else
-            {
-                msg.MessageStatus = "false";
-                msg.MessageInfo = "失败";
-            }
+            { 
+                    
+                if (ModelState.IsValid)
+                {
+                    unitOfWork.pingjiasRepository.Insert(pingjia);
+                    unitOfWork.Save();
+                    msg.MessageStatus = "true";
+                    msg.MessageInfo = "评估项目完成";
+                }
+                else
+                {
+                    msg.MessageStatus = "false";
+                    msg.MessageInfo = "评估项目失败";
+                }
 
+            }
             return Json(msg, JsonRequestBehavior.AllowGet);
 
         }
         #endregion
+
+
+        //#region 评价记录
+
+        //[HttpPost]
+        //public JsonResult PingjiaCreate(int babyId, float pingjiaValue, int videoId)
+        //{
+        //    //检查一下是否有评论
+
+        //    Message msg = new Message();
+        //    Pingjia pingjia = new Pingjia();
+        //    pingjia.BabyId = babyId;
+        //    pingjia.VideoId = videoId;
+        //    pingjia.PingjiaValue = pingjiaValue;
+        //    pingjia.PingjiaTime = DateTime.Now;
+
+        //    bool ifsave = PingjiaServices.GetPingjiaCount(pingjia.VideoId, pingjia.BabyId, pingjia.PingjiaTime);
+
+        //    if (ifsave)
+        //    {
+        //        if (ModelState.IsValid)
+        //        {
+        //            unitOfWork.pingjiasRepository.Insert(pingjia);
+        //            unitOfWork.Save();
+        //            msg.MessageStatus = "true";
+        //            msg.MessageInfo = "评估项目完成";
+        //        }
+        //        else
+        //        {
+        //            msg.MessageStatus = "false";
+        //            msg.MessageInfo = "失败";
+        //        }
+
+
+        //    }
+        //    else
+        //    {
+        //        msg.MessageStatus = "false";
+        //        msg.MessageInfo = "此项目每日评价不得超过3次。";
+
+        //    }
+
+
+
+        //    return Json(msg, JsonRequestBehavior.AllowGet);
+
+        //}
+        //#endregion
 
      
         //错误页面导航
@@ -680,8 +741,11 @@ namespace AdsWeb.Controllers
         }
         #endregion
 
+
         #region 个人账号设置保存
-        public ActionResult SettingSave(AdsCustomer customer)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Setting(AdsCustomer customer)
         {
 
             if (ModelState.IsValid)
@@ -689,42 +753,55 @@ namespace AdsWeb.Controllers
                 AdsCustomer cus = unitOfWork.adsCustomersRepository.GetByID(customer.CustomerId);
                 cus.CustomerBirthdayType = "公历";
                 cus.CustomerBirthday = DateTime.Parse(customer.CustomerBirthday.ToString());
-                
+                cus.CustomerEmail = customer.CustomerEmail;
+                cus.CustomerNickName = customer.CustomerNickName;
+
                 unitOfWork.adsCustomersRepository.Update(cus);
                 unitOfWork.Save();
 
-                return View(customer);
+                return RedirectToAction("MemberCenter");
             }
 
             return View(customer);
         }
         #endregion
 
+        //#region 账号设置保存
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public JsonResult SettingSave(int id, string CustomerUserName, string CustomerEmail, string CustomerBirthday)
+        //{
+        //    //检查一下是否有评论
+
+        //    Message msg = new Message();
+        //    AdsCustomer cus = unitOfWork.adsCustomersRepository.GetByID(id);
+
+        //    cus.CustomerUserName = CustomerUserName;
+        //    cus.CustomerEmail = CustomerEmail;
+        //    cus.CustomerBirthdayType = "公历";
+        //    cus.CustomerBirthday = Convert.ToDateTime(CustomerBirthday);
+
+          
+        //        if (ModelState.IsValid)
+        //        {
+        //            unitOfWork.adsCustomersRepository.Update(cus);
+        //            unitOfWork.Save();
+        //            msg.MessageStatus = "true";
+        //            msg.MessageInfo = "个人账户修改成功";
+        //        }
+        //        else
+        //        {
+        //            msg.MessageStatus = "false";
+        //            msg.MessageInfo = "个人账户修改失败";
+        //        }
+
+        //    return Json(msg, JsonRequestBehavior.AllowGet);
+
+        //}
+        //#endregion
 
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public JsonResult SettingSave(int id, string CustomerUserName, string CustomerEmail, string CustomerBirthday)
-        {
-            Message msg = new Message();
-
-            AdsCustomer customer = unitOfWork.adsCustomersRepository.GetByID(id);
-
-            customer.CustomerUserName = CustomerUserName;
-            customer.CustomerEmail = CustomerEmail;
-            customer.CustomerBirthday = DateTime.Parse(CustomerBirthday);
-            if (ModelState.IsValid)
-            {
-
-                unitOfWork.adsCustomersRepository.Update(customer);
-                unitOfWork.Save();
-                string result = "保存成功！";
-                msg.MessageStatus = "true";
-                msg.MessageInfo = result;
-            }
-            return Json(msg, JsonRequestBehavior.AllowGet);
-        }
-        
 
         #region 未付费
         public ActionResult NoPay()

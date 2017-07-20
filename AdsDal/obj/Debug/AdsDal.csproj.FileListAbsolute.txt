@@ -28,12 +28,14 @@ E:\2017\AdsGitBySky\AdsDal\bin\Debug\Common.dll
 E:\2017\AdsGitBySky\AdsDal\bin\Debug\Microsoft.ApplicationBlocks.Data.dll
 E:\2017\AdsGitBySky\AdsDal\bin\Debug\ChnCharInfo.dll
 E:\2017\AdsGitBySky\AdsDal\bin\Debug\Common.pdb
+E:\2017\AdsGitBySky\AdsDal\bin\Debug\Newtonsoft.Json.dll
 D:\MyPro\2017\AdsGitBySky\AdsDal\bin\Debug\AdsDal.dll
 D:\MyPro\2017\AdsGitBySky\AdsDal\bin\Debug\AdsDal.pdb
 D:\MyPro\2017\AdsGitBySky\AdsDal\bin\Debug\AdsEntity.dll
 D:\MyPro\2017\AdsGitBySky\AdsDal\bin\Debug\Common.dll
 D:\MyPro\2017\AdsGitBySky\AdsDal\bin\Debug\EntityFramework.dll
 D:\MyPro\2017\AdsGitBySky\AdsDal\bin\Debug\EntityFramework.SqlServer.dll
+D:\MyPro\2017\AdsGitBySky\AdsDal\bin\Debug\Newtonsoft.Json.dll
 D:\MyPro\2017\AdsGitBySky\AdsDal\bin\Debug\Microsoft.ApplicationBlocks.Data.dll
 D:\MyPro\2017\AdsGitBySky\AdsDal\bin\Debug\ChnCharInfo.dll
 D:\MyPro\2017\AdsGitBySky\AdsDal\bin\Debug\AdsEntity.pdb
@@ -45,5 +47,3 @@ D:\MyPro\2017\AdsGitBySky\AdsDal\bin\Debug\zh-Hans\EntityFramework.SqlServer.res
 D:\MyPro\2017\AdsGitBySky\AdsDal\obj\Debug\AdsDal.csprojResolveAssemblyReference.cache
 D:\MyPro\2017\AdsGitBySky\AdsDal\obj\Debug\AdsDal.dll
 D:\MyPro\2017\AdsGitBySky\AdsDal\obj\Debug\AdsDal.pdb
-D:\MyPro\2017\AdsGitBySky\AdsDal\bin\Debug\Newtonsoft.Json.dll
-E:\2017\AdsGitBySky\AdsDal\bin\Debug\Newtonsoft.Json.dll

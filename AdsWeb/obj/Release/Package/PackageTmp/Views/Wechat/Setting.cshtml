@@ -31,7 +31,7 @@
 
 
 
-   @using (Html.BeginForm("SettingSave", "Wechat", FormMethod.Post, new { @class = "form-horizontal", @name = "CustomerForm", @id = "CustomerForm" }))
+   @using (Html.BeginForm("Setting", "Wechat", FormMethod.Post, new { @class = "form-horizontal", @name = "CustomerForm", @id = "CustomerForm" }))
                 {
         <!-- text input -->
         <div class="form-group">
@@ -42,12 +42,12 @@
        
        <div class="form-group">
 
-         账号：   <input type="text" name="CustomerUserName" id="CustomerUserName" readonly="readonly" class="form-control input-lg" value="@Model.CustomerNickName">
+         用户名：   <input type="text" name="CustomerUserName" id="CustomerUserName" readonly="readonly" class="form-control input-lg" value="@Model.CustomerUserName">
         </div>
 
         <div class="form-group">
 
-         用户名：   <input type="text" name="CustomerUserName" id="CustomerUserName" class="form-control input-lg" value="@Model.CustomerUserName">
+         昵称：   <input type="text" name="CustomerNickName" id="CustomerNickName" class="form-control input-lg" value="@Model.CustomerNickName">
         </div>
         <div class="form-group">
 
@@ -64,7 +64,7 @@
 
         <div class="skyapprow">
             <div class="form-group">
-                <button type="button" class="btn btn-block btn-info btn-lg" onclick="SettingSave('@Model.CustomerId')">保存</button>
+                <button type="submit" class="btn btn-block btn-info btn-lg">保存</button>
                 <a href="@Url.Action("MemberCenter")" class="btn btn-block btn-default btn-lg">返回</a>
             </div>
 
@@ -76,32 +76,32 @@
     <script type="text/javascript">
 
 
-        function SettingSave(id) {
-            var token = $('[name=__RequestVerificationToken]').val();
-            var CustomerUserName = $('#CustomerUserName').val();
-            var CustomerEmail = $('#CustomerEmail').val();
-            var CustomerBirthday = $('#CustomerBirthday').val();
-            $.ajax({
-                type: 'POST',
-                url: "/Wechat/SettingSave",
-                data: {
-                    id: id,
-                    __RequestVerificationToken: token,
-                    CustomerUserName: CustomerUserName,
-                    CustomerEmail: CustomerEmail,
-                    CustomerBirthday: CustomerBirthday,
-                },
-                dataType: "json",
-                success: function (data) {
-                    if (data.MessageStatus)
-                    { alert(data.MessageInfo); }
-                    else
-                    { alert("保存失败！"); }
+        //function SettingSave(id) {
+        //    var token = $('[name=__RequestVerificationToken]').val();
+        //    var CustomerUserName = $('#CustomerUserName').val();
+        //    var CustomerEmail = $('#CustomerEmail').val();
+        //    var CustomerBirthday = $('#CustomerBirthday').val();
+        //    $.ajax({
+        //        type: 'POST',
+        //        url: "/Wechat/SettingSave",
+        //        data: {
+        //            id: id,
+        //            __RequestVerificationToken: token,
+        //            CustomerUserName: CustomerUserName,
+        //            CustomerEmail: CustomerEmail,
+        //            CustomerBirthday: CustomerBirthday,
+        //        },
+        //        dataType: "json",
+        //        success: function (data) {
+        //            if (data.MessageStatus)
+        //            { alert(data.MessageInfo); }
+        //            else
+        //            { alert("保存失败！"); }
 
-                }
-            });
+        //        }
+        //    });
 
-        }
+        //}
 
 
 
@@ -116,10 +116,10 @@
             },
             fields: {
 
-                CustomerUserName: {
+                CustomerNickName: {
                     validators: {
                         notEmpty: {
-                            message: '用户名不能为空'
+                            message: '昵称不能为空'
                         }
 
                     }

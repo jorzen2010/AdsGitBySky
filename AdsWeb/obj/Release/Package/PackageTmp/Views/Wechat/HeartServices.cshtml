@@ -1,0 +1,125 @@
+﻿@model AdsEntity.AdsVideo
+@{
+    Layout = "~/Views/Shared/_WechatLayout.cshtml";
+}
+
+@section Topcss {
+<link rel="stylesheet" href="https://g.alicdn.com/de/prismplayer/1.7.6/skins/default/index.css" />
+}
+
+<div class="row" style="background-color: #ffffff; ">
+    <div class="col-xs-12 prism-player" style="height: 150px;" id="J_prismPlayer">
+    </div> 
+      
+   
+    <div class="row" style="background-color:#666666;margin: 0px 0px 0px 10px;">
+        <div class="col-xs-7" style="background-color:#ffffff; border-top: solid #efefef 1px;">
+            <div class="text-center">
+                <h5 class="sky-x-2">@Model.VideoName</h5>
+                <span class="description-text">已有458个星宝训练过此项目</span>
+                <!--<span class="description-text">34万星宝正在使用</span>-->
+                <span></span>
+            </div>
+
+            <!-- /.description-block -->
+        </div>
+        <!-- /.col -->
+        <div class="col-xs-5" style="background-color:#ffffff;border-left: solid #efefef 1px;border-top: solid #efefef 1px;">
+            <div class="text-center">
+                <h5 class="text-warning">本项目完成率</h5>
+                <span class="description-text">1</span>
+                <!--<span class="description-text">34万家庭正在使用</span>-->
+
+            </div>
+
+            <!-- /.description-block -->
+        </div>
+
+        <!-- /.col -->
+    </div>
+
+</div>
+
+
+
+
+
+<table class="table" style="background-color:#ffffff">
+    <tbody>
+
+
+        <tr>
+            <th colspan="4">【项目介绍】</th>
+        </tr>
+        <tr>
+            <td colspan="4">
+                @Html.Raw(Model.VideoInfo)
+            </td>
+        </tr>
+        <tr>
+            <th colspan="4">【适用对象】</th>
+        </tr>
+        <tr>
+            <td colspan="4">
+                @Html.Raw(Model.VideoFor)
+            </td>
+        </tr>
+
+        <tr>
+            <th colspan="4">【一对一咨询】</th>
+        </tr>
+        <tr>
+            <td colspan="4">
+                电话咨询：您可以拨打0451-2565265进行咨询<br />
+                微信咨询：您可以添加微信号：125656265进行咨询<br />
+            </td>
+        </tr>
+
+
+    </tbody>
+
+</table>
+
+
+@section FootScripts {
+
+
+<script type="text/javascript" src="https://g.alicdn.com/de/prismplayer/1.7.6/prism.js"></script>
+    <script type="text/javascript">
+
+        //初始化编辑器
+    var player = new prismplayer({
+        id: "J_prismPlayer",
+        autoplay: false,
+        width: "100%", height: "300px",
+        vid: "@ViewBag.VideoId",
+        playauth: "@ViewBag.PlayAuth",
+    });
+
+
+        function pingjia(babyId, pingjiaValue, videoId) {
+            $.ajax({
+                type: 'POST',
+                url: "/Wechat/PingjiaCreate",
+                data: {
+                    pingjiaValue: pingjiaValue,
+                    babyId: babyId,
+                    videoId: videoId,
+                },
+                dataType: "json",
+                success: function (data) {
+                    if (data.MessageStatus)
+                    { alert(data.MessageInfo); }
+                    else
+                    { alert("评价失败"); }
+
+                }
+            });
+
+        }
+
+
+       
+</script>
+}
+

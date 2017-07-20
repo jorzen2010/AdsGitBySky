@@ -24,6 +24,11 @@ namespace AdsServices
             return unitOfWork.adsVideosRepository.GetByID(id).VideoName;
         }
 
+        public static string GetBabyNameById(int id)
+        {
+            return unitOfWork.adsBabysRepository.GetByID(id).BabyName;
+        }
+
 
         public static int GetCepingCountByBabyId(int id)
         {

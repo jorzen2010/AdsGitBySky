@@ -183,6 +183,7 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PingjiaController.cs" />
     <Compile Include="Controllers\ScaleController.cs" />
     <Compile Include="Controllers\SettingController.cs" />
     <Compile Include="Controllers\SysUserController.cs" />
@@ -1743,6 +1744,8 @@
     <Content Include="Views\WechatMenu\CreateMenu.cshtml" />
     <Content Include="Views\WechatPay\Index.cshtml" />
     <Content Include="Views\Wechat\StarBabyEdit.cshtml" />
+    <Content Include="Views\Wechat\HeartServices.cshtml" />
+    <Content Include="Views\Pingjia\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
