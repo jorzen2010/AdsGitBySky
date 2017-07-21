@@ -1,5 +1,6 @@
 ﻿using System.Web;
 using System.Web.Mvc;
+using AdsWeb.Attributes;
 
 namespace AdsWeb
 {
@@ -8,6 +9,8 @@ namespace AdsWeb
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            filters.Add(new CustomAuthorizeAttribute());
         }
+        
     }
 }
