@@ -13,6 +13,7 @@ namespace AdsServices
     public class StatisticsServices
     {
         private static UnitOfWork unitOfWork = new UnitOfWork();
+       
         public static int GetDaysByBabyId(int id)
         {
             return 0;
@@ -32,7 +33,7 @@ namespace AdsServices
 
         public static int GetCepingCountByBabyId(int id)
         {
-          return   unitOfWork.baogaoRepository.Get().Count();
+            return unitOfWork.baogaoRepository.Get(filter: u => u.BabyId == id).Count();
         
         }
 
@@ -58,6 +59,40 @@ namespace AdsServices
             return days;
  
         }
+
+        //public static int GetCountByBirthDay(DateTime dt,int age)
+        //{
+          
+
+        //    if (age == 3)
+        //    {
+        //        var babys = from s in db.AdsBabys
+        //                    where (dt.Year - s.BabyBirthday.Value.Year <= age)
+        //                    select s;
+        //        return babys.Count();
+            
+        //    }
+        //    else if (age == 12)
+        //    {
+        //        var babys = from s in db.AdsBabys
+        //                    where (dt.Year - s.BabyBirthday.Value.Year >= age)
+        //                    select s;
+        //        return babys.Count();
+
+        //    }
+        //    else 
+        //    {
+        //        var babys = from s in db.AdsBabys
+        //               where (dt.Year - s.BabyBirthday.Value.Year  ==age )
+        //               select s;
+        //        return babys.Count();
+        //    }
+           
+
+          
+        //}
+
+        
         
     }
 }

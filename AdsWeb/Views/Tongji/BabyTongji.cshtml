@@ -1,0 +1,166 @@
+﻿@{
+    ViewBag.Title = "Video";
+}
+@section Topcss {
+    <link href="~/plugins/bootstrap-validator/css/bootstrapValidator.css" rel="stylesheet" type="text/css" />
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        数据统计
+        <small>数据分析统计</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Forms</a></li>
+        <li class="active">General Elements</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+
+        <!-- right column -->
+        <div class="col-md-12">
+            <!-- Horizontal Form -->
+            <div class="box">
+
+                <!-- /.box-header -->
+                <!-- form start -->
+                      <div class="nav-tabs-custom">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#tab_1" data-toggle="tab">自闭症患儿数据</a></li>
+                            
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tab_1">
+
+                                  <div class="row">
+                                      <div class="col-md-6"><div id="main" style="width: 600px;height:400px;"></div></div>
+                                      <div class="col-md-6"><div id="baogao" style="width: 600px;height:400px;"></div></div>
+                                  </div>
+                                   
+                                </div>
+                                <!-- /.tab-pane -->
+                              
+                            </div>
+                            <!-- /.tab-content -->
+                        </div>
+
+
+
+                    </div>
+                    <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+  
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->
+@section FootScripts {
+    <script type="text/javascript" src="/plugins/echarts.min.js"></script>
+
+    <script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+
+    // 指定图表的配置项和数据
+   option = {
+    title : {
+        text: '自闭症患者数据',
+        subtext: '男女比例',
+        x:'center'
+    },
+    tooltip : {
+        trigger: 'item',
+        formatter: "{a} <br/>{b} : {c} ({d}%)"
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        data: ['男性','女性']
+    },
+    series : [
+        {
+            name: '男女比例',
+            type: 'pie',
+            radius : '55%',
+            center: ['50%', '60%'],
+            data:[
+                {value:@ViewBag.Boys, name:'男性'},
+                {value:@ViewBag.Girls, name:'女性'}
+            ],
+            itemStyle: {
+                emphasis: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ]
+};
+
+    // 使用刚指定的配置项和数据显示图表。
+   myChart.setOption(option,true);
+
+
+
+
+// 基于准备好的dom，初始化echarts实例
+var baogaocharts = echarts.init(document.getElementById('baogao'));
+
+   // 指定图表的配置项和数据
+   option = {
+       title : {
+           text: '自闭症患者数据',
+           subtext: '年龄比例',
+           x:'center'
+       },
+       tooltip : {
+           trigger: 'item',
+           formatter: "{a} <br/>{b} : {c} ({d}%)"
+       },
+       legend: {
+           orient: 'vertical',
+           left: 'left',
+           data: ['3岁以下', '4岁', '5岁', '6岁', '7岁', '8岁', '9岁', '10岁', '11岁', '12岁以上']
+       },
+       series : [
+           {
+               name: '年龄比例',
+               type: 'pie',
+               radius : '55%',
+               center: ['50%', '60%'],
+               data:[
+                   { value: @ViewBag.age3, name: '3岁以下' },
+                   { value: @ViewBag.age4, name: '4岁' },
+                   { value: @ViewBag.age5, name: '5岁' },
+                   { value: @ViewBag.age6, name: '6岁' },
+                   { value: @ViewBag.age7, name: '7岁' },
+                   { value: @ViewBag.age8, name: '8岁' },
+                   { value: @ViewBag.age9, name: '9岁' },
+                   { value: @ViewBag.age10, name: '10岁' },
+                   { value: @ViewBag.age11, name: '11岁' },
+                   { value: @ViewBag.age12, name: '12岁以上' }
+               ],
+               itemStyle: {
+                   emphasis: {
+                       shadowBlur: 10,
+                       shadowOffsetX: 0,
+                       shadowColor: 'rgba(0, 0, 0, 0.5)'
+                   }
+               }
+           }
+       ]
+   };
+
+   // 使用刚指定的配置项和数据显示图表。
+   baogaocharts.setOption(option,true);
+
+
+    </script>
+
+}

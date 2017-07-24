@@ -177,6 +177,7 @@
     <Compile Include="Attributes\CustomAuthorizeAttribute.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdsBabyController.cs" />
+    <Compile Include="Controllers\AgeTools.cs" />
     <Compile Include="Controllers\AjaxController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\bvnode.cs" />
@@ -189,6 +190,7 @@
     <Compile Include="Controllers\SettingController.cs" />
     <Compile Include="Controllers\SysUserController.cs" />
     <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Controllers\TongjiController.cs" />
     <Compile Include="Controllers\WechatMenuController.cs" />
     <Compile Include="Controllers\VideoController.cs" />
     <Compile Include="Controllers\WapController.cs" />
@@ -1749,6 +1751,8 @@
     <Content Include="Views\Wechat\StarBabyEdit.cshtml" />
     <Content Include="Views\Wechat\HeartServices.cshtml" />
     <Content Include="Views\Pingjia\Index.cshtml" />
+    <Content Include="Views\Tongji\BabyTongji.cshtml" />
+    <Content Include="Views\Tongji\ProgramTongji.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
