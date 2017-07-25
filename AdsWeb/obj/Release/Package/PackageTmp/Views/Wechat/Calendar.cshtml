@@ -29,7 +29,7 @@
                 <div class="row">
                     <div class="col-xs-4 border-right">
                         <div class="description-block">
-                            <h5 class="description-header">3,200天</h5>
+                            <h5 class="description-header">@ViewBag.days 天</h5>
                             <span class="description-text">训练天数</span>
                         </div>
                         <!-- /.description-block -->
@@ -138,8 +138,8 @@
             <span class="sky-index-itemcontent-title">
                 @Html.DisplayFor(modelItem => item.VideoName)
             </span>
-            <p>项目难度系数：@Html.DisplayFor(modelItem => item.VideoTeacher)</p>
-            <p>项目使用率： @Html.DisplayFor(modelItem => item.VideoViewTimes) 人训练过该项目</p>
+            <p>课程价格：@Html.DisplayFor(modelItem => item.VideoPrice)</p>
+            @*<p>项目使用率： @Html.DisplayFor(modelItem => item.VideoViewTimes) 人训练过该项目</p>*@
         </div>
 
         <a class="pull-right btn btn-warning btn-sm" href="@Url.Action("Program", "Wechat", new { bid = ViewBag.babyId, id = item.VideoId })">马上学习</a>

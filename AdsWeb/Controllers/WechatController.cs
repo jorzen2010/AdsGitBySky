@@ -17,6 +17,7 @@ using System.Globalization;
 
 namespace AdsWeb.Controllers
 {
+     [AllowAnonymous]
     public class WechatController : Controller
     {
         private UnitOfWork unitOfWork = new UnitOfWork();
@@ -559,12 +560,59 @@ namespace AdsWeb.Controllers
             return View(video);
         }
 
+
+
+        #region 项目评价统计
+        public ActionResult PingjiaTongji(int babyid)
+        {
+            AdsBaby baby = unitOfWork.adsBabysRepository.GetByID(babyid);
+
+            ViewBag.pingjiaA = StatisticsServices.GetPingjiaCountByBabyId(baby.BabyId, 0.3f);
+            ViewBag.pingjiaB = StatisticsServices.GetPingjiaCountByBabyId(baby.BabyId, 0.5f);
+            ViewBag.pingjiaC = StatisticsServices.GetPingjiaCountByBabyId(baby.BabyId, 0.8f);
+            ViewBag.babyId = baby.BabyId;
+            ViewBag.babyName = baby.BabyName;
+
+            string A1 = "", B1 = "", C1 = "", catName = "";
+
+
+            //这里需要循环Category
+            List<Category> listcat = CategoryServices.GetCategoryListByParentID(3);
+
+            foreach (Category cat in listcat)
+            {
+                catName = catName + "'" + cat.CategoryName + "'" + ",";
+
+                A1 = A1 + unitOfWork.pingjiasRepository.Get(filter: u => u.VideoCategory == cat.ID && u.BabyId == babyid && u.PingjiaValue == 0.3f).Count().ToString() + ",";
+                B1 = B1 + unitOfWork.pingjiasRepository.Get(filter: u => u.VideoCategory == cat.ID && u.BabyId == babyid && u.PingjiaValue == 0.5f).Count().ToString() + ",";
+                C1 = C1 + unitOfWork.pingjiasRepository.Get(filter: u => u.VideoCategory == cat.ID && u.BabyId == babyid && u.PingjiaValue == 0.8f).Count().ToString() + ",";
+
+
+            }
+            catName = catName.TrimEnd(',');
+            A1 = A1.TrimEnd(',');
+            B1 = B1.TrimEnd(',');
+            C1 = C1.TrimEnd(',');
+
+            ViewBag.A = A1;
+            ViewBag.B = B1;
+            ViewBag.C = C1;
+            ViewBag.catName = catName;
+
+            return View();
+           
+          
+
+        }
+
+        #endregion
+
         //评价相关的页面
 
         #region 评价记录
 
         [HttpPost]
-        public JsonResult PingjiaCreate(int babyId, float pingjiaValue, int videoId)
+        public JsonResult PingjiaCreate(int babyId, float pingjiaValue, int videoId, int videoCategory)
         {
             //检查一下是否有评论
 
@@ -573,6 +621,7 @@ namespace AdsWeb.Controllers
             pingjia.BabyId = babyId;
             pingjia.VideoId = videoId;
             pingjia.PingjiaValue = pingjiaValue;
+            pingjia.VideoCategory = videoCategory;
             pingjia.PingjiaTime = DateTime.Now;
 
             bool ifsave = PingjiaServices.GetPingjiaCount(pingjia.VideoId, pingjia.BabyId, pingjia.PingjiaTime);

@@ -93,8 +93,7 @@
                                             @Html.AntiForgeryToken()
                                             <a class="btn btn-warning btn-xs" href="@Url.Action("Edit", "Video", new { id = @item.VideoId })"><span class="glyphicon glyphicon-edit"></span> 编辑</a>
                                             <button class="btn btn-danger btn-xs" type="button" onclick="delconfirm('@item.VideoId','/Video/DeleteConfirmed/','/Video/Index')"><span class="glyphicon glyphicon-trash"></span> 删除</button>
-                                            <a class="btn btn-warning btn-xs" href="@Url.Action("Edit", "Video", new { id = @item.VideoId })"><span class="glyphicon glyphicon-edit"></span> 查看完成情况45%</a>
-                                            <a class="btn btn-warning btn-xs" href="@Url.Action("Edit", "Video", new { id = @item.VideoId })"><span class="glyphicon glyphicon-edit"></span> 有效系数0.7</a>
+                                            <a class="btn btn-success btn-xs" href="@Url.Action("ProgramTOngji", "Tongji", new { id = @item.VideoId })"><span class="glyphicon glyphicon-edit"></span> 查看效果分析</a>
                                         </td>
                                     </tr>
                                 }

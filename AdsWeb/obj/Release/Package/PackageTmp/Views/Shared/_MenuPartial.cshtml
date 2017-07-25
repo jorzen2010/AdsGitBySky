@@ -80,6 +80,21 @@
             </ul>
         </li>
 
+
+        <li class="treeview">
+            <a href="#">
+                <i class="fa  fa-bar-chart"></i> <span>统计分析</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="@Url.Action("BabyTongji", "Tongji")"><i class="fa fa-line-chart"></i> 自闭症患者统计</a></li>
+                <li><a href="@Url.Action("ProgramTongji", "Tongji", new { id = 0 })"><i class="fa fa-area-chart"></i> 训练项目统计</a></li>
+                <li><a href="@Url.Action("CategoryTongji", "Tongji", new { bid = 0 })"><i class="fa fa-area-chart"></i> 效果分析</a></li>
+            </ul>
+        </li>
+
         <li class="treeview">
             <a href="#">
                 <i class="fa fa-gear"></i> <span>系统管理</span>
@@ -108,18 +123,7 @@
             </ul>
         </li>
 
-        <li class="treeview">
-            <a href="#">
-                <i class="fa  fa-bar-chart"></i> <span>系统统计</span>
-                <span class="pull-right-container">
-                    <i class="fa fa-angle-left pull-right"></i>
-                </span>
-            </a>
-            <ul class="treeview-menu">
-                <li><a href="@Url.Action("charts", "Home")"><i class="fa fa-line-chart"></i> 统计图表</a></li>
-                <li><a href="@Url.Action("charts", "Home")"><i class="fa fa-area-chart"></i> 统计图表</a></li>
-            </ul>
-        </li>*@
+       *@
         
     </ul>
 </section>

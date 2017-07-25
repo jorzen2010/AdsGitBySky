@@ -12,6 +12,7 @@ namespace AdsEntity
         public int PingjiaId { get; set; }
         public int BabyId { get; set; }
         public int VideoId { get; set; }
+        public int VideoCategory { get; set; }
         public float  PingjiaValue { get; set; }
         public DateTime PingjiaTime { get; set; }
     }

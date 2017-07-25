@@ -48,6 +48,70 @@ namespace AdsWeb.Controllers
             return View();
         }
 
+        public ActionResult CategoryTongji(int bid)
+        {
+
+            string A1="", B1="", C1="",catName = "";
+            
+
+            //这里需要循环Category
+            List<Category> listcat= CategoryServices.GetCategoryListByParentID(3);
+
+          
+
+
+            if (bid == 0)
+            {
+                foreach (Category cat in listcat)
+                {
+                    catName = catName +" \'"+cat.CategoryName + "\'" + ",";
+                    A1 = A1 + unitOfWork.pingjiasRepository.Get(filter: u => u.VideoCategory == cat.ID && u.PingjiaValue == 0.3f).Count().ToString() + ",";
+                    B1 = B1 + unitOfWork.pingjiasRepository.Get(filter: u => u.VideoCategory == cat.ID && u.PingjiaValue == 0.5f).Count().ToString() + ",";
+                    C1 = C1 + unitOfWork.pingjiasRepository.Get(filter: u => u.VideoCategory == cat.ID && u.PingjiaValue == 0.8f).Count().ToString() + ",";
+
+
+                }
+                catName = @catName.TrimEnd(',');
+                A1 = A1.TrimEnd(',');
+                B1 = B1.TrimEnd(',');
+                C1 = C1.TrimEnd(',');
+
+            }
+
+
+
+            else
+            {
+                foreach (Category cat in listcat)
+                {
+                    catName = catName + "'" + cat.CategoryName + "'" + ",";
+                  
+                    A1 = A1 + unitOfWork.pingjiasRepository.Get(filter: u => u.VideoCategory == cat.ID && u.BabyId == bid && u.PingjiaValue == 0.3f).Count().ToString() + ",";
+                    B1 = B1 + unitOfWork.pingjiasRepository.Get(filter: u => u.VideoCategory == cat.ID && u.BabyId == bid && u.PingjiaValue == 0.5f).Count().ToString() + ",";
+                    C1 = C1 + unitOfWork.pingjiasRepository.Get(filter: u => u.VideoCategory == cat.ID && u.BabyId == bid && u.PingjiaValue == 0.8f).Count().ToString() + ",";
+
+
+                }
+                catName = catName.TrimEnd(',');
+                A1 = A1.TrimEnd(',');
+                B1 = B1.TrimEnd(',');
+                C1 = C1.TrimEnd(',');
+
+
+            }
+
+
+          
+
+            ViewBag.A = A1;
+            ViewBag.B = B1;
+            ViewBag.C = C1;
+            ViewBag.catName = catName;
+
+
+            return View();
+        }
+
         public ActionResult ProgramTongji(int id)
         {
 

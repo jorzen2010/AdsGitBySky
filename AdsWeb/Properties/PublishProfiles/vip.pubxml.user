@@ -13,16 +13,16 @@
       <publishTime>07/10/2017 09:11:40</publishTime>
     </File>
     <File Include="bin/AdsDal.dll">
-      <publishTime>07/20/2017 15:10:21</publishTime>
+      <publishTime>07/25/2017 15:16:15</publishTime>
     </File>
     <File Include="bin/AdsEntity.dll">
-      <publishTime>07/10/2017 15:54:02</publishTime>
+      <publishTime>07/25/2017 15:16:15</publishTime>
     </File>
     <File Include="bin/AdsServices.dll">
-      <publishTime>07/20/2017 15:10:21</publishTime>
+      <publishTime>07/25/2017 15:16:15</publishTime>
     </File>
     <File Include="bin/AdsWeb.dll">
-      <publishTime>07/20/2017 15:39:57</publishTime>
+      <publishTime>07/25/2017 16:31:05</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>07/10/2017 09:11:41</publishTime>
@@ -4162,7 +4162,10 @@
       <publishTime>07/10/2017 09:11:40</publishTime>
     </File>
     <File Include="Views/Account/Login.cshtml">
-      <publishTime>07/10/2017 09:11:40</publishTime>
+      <publishTime>07/21/2017 15:44:43</publishTime>
+    </File>
+    <File Include="Views/Account/Loginf.cshtml">
+      <publishTime>07/10/2017 09:11:39</publishTime>
     </File>
     <File Include="Views/Account/Manage.cshtml">
       <publishTime>07/10/2017 09:11:40</publishTime>
@@ -4270,13 +4273,13 @@
       <publishTime>05/09/2017 16:26:56</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>07/18/2017 13:35:57</publishTime>
+      <publishTime>07/24/2017 09:03:39</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>07/10/2017 09:11:40</publishTime>
     </File>
     <File Include="Views/Shared/_MenuPartial.cshtml">
-      <publishTime>07/10/2017 09:11:40</publishTime>
+      <publishTime>07/25/2017 14:53:55</publishTime>
     </File>
     <File Include="Views/Shared/_TopPartial.cshtml">
       <publishTime>07/10/2017 09:11:40</publishTime>
@@ -4299,6 +4302,15 @@
     <File Include="Views/Test/Index.cshtml">
       <publishTime>07/10/2017 09:11:40</publishTime>
     </File>
+    <File Include="Views/Tongji/BabyTongji.cshtml">
+      <publishTime>07/24/2017 15:59:33</publishTime>
+    </File>
+    <File Include="Views/Tongji/CategoryTongji.cshtml">
+      <publishTime>07/25/2017 15:11:00</publishTime>
+    </File>
+    <File Include="Views/Tongji/ProgramTongji.cshtml">
+      <publishTime>07/24/2017 16:32:29</publishTime>
+    </File>
     <File Include="Views/Video/Create.cshtml">
       <publishTime>07/10/2017 09:11:40</publishTime>
     </File>
@@ -4318,7 +4330,7 @@
       <publishTime>05/09/2017 16:26:56</publishTime>
     </File>
     <File Include="Views/Video/Index.cshtml">
-      <publishTime>07/10/2017 09:11:40</publishTime>
+      <publishTime>07/25/2017 13:50:18</publishTime>
     </File>
     <File Include="Views/Wap/demo.html">
       <publishTime>07/10/2017 09:11:40</publishTime>
@@ -4357,16 +4369,16 @@
       <publishTime>06/08/2017 10:23:11</publishTime>
     </File>
     <File Include="Views/Wechat/BaogaoDetail.cshtml">
-      <publishTime>07/10/2017 09:11:40</publishTime>
+      <publishTime>07/24/2017 12:55:11</publishTime>
     </File>
     <File Include="Views/Wechat/Calendar - 复制.cshtml">
       <publishTime>07/10/2017 09:11:40</publishTime>
     </File>
     <File Include="Views/Wechat/Calendar.cshtml">
-      <publishTime>07/10/2017 15:32:06</publishTime>
+      <publishTime>07/25/2017 09:39:59</publishTime>
     </File>
     <File Include="Views/Wechat/Ceping.cshtml">
-      <publishTime>07/10/2017 09:11:40</publishTime>
+      <publishTime>07/25/2017 09:32:54</publishTime>
     </File>
     <File Include="Views/Wechat/GetUserId.cshtml">
       <publishTime>07/10/2017 09:11:40</publishTime>
@@ -4408,10 +4420,13 @@
       <publishTime>07/10/2017 09:11:40</publishTime>
     </File>
     <File Include="Views/Wechat/Pingjia.cshtml">
-      <publishTime>07/10/2017 09:11:40</publishTime>
+      <publishTime>07/25/2017 11:35:49</publishTime>
+    </File>
+    <File Include="Views/Wechat/PingjiaTongji.cshtml">
+      <publishTime>07/25/2017 15:16:04</publishTime>
     </File>
     <File Include="Views/Wechat/Program.cshtml">
-      <publishTime>07/10/2017 09:11:40</publishTime>
+      <publishTime>07/25/2017 13:54:19</publishTime>
     </File>
     <File Include="Views/Wechat/ProgrameList.cshtml">
       <publishTime>07/10/2017 09:11:40</publishTime>
@@ -4492,7 +4507,7 @@
       <publishTime>07/10/2017 09:11:40</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>07/10/2017 09:11:41</publishTime>
+      <publishTime>07/25/2017 11:21:01</publishTime>
     </File>
     <File Include="wechat/css/AdminLTE.css">
       <publishTime>05/31/2017 10:25:20</publishTime>

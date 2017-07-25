@@ -214,23 +214,23 @@
     <Compile Include="test.ashx.cs">
       <DependentUpon>test.ashx</DependentUpon>
     </Compile>
-    <Compile Include="WechatResource\WechatPay\business\DownloadBill.cs" />
-    <Compile Include="WechatResource\WechatPay\business\JsApiPay.cs" />
-    <Compile Include="WechatResource\WechatPay\business\MicroPay.cs" />
-    <Compile Include="WechatResource\WechatPay\business\NativeNotify.cs" />
-    <Compile Include="WechatResource\WechatPay\business\NativePay.cs" />
-    <Compile Include="WechatResource\WechatPay\business\OrderQuery.cs" />
-    <Compile Include="WechatResource\WechatPay\business\Refund.cs" />
-    <Compile Include="WechatResource\WechatPay\business\RefundQuery.cs" />
-    <Compile Include="WechatResource\WechatPay\business\ResultNotify.cs" />
-    <Compile Include="WechatResource\WechatPay\lib\Config.cs" />
-    <Compile Include="WechatResource\WechatPay\lib\Data.cs" />
-    <Compile Include="WechatResource\WechatPay\lib\Exception.cs" />
-    <Compile Include="WechatResource\WechatPay\lib\HttpService.cs" />
-    <Compile Include="WechatResource\WechatPay\lib\Log.cs" />
-    <Compile Include="WechatResource\WechatPay\lib\ModelForOrder.cs" />
-    <Compile Include="WechatResource\WechatPay\lib\Notify.cs" />
-    <Compile Include="WechatResource\WechatPay\lib\WxPayApi.cs" />
+    <Compile Include="WechatPay\business\DownloadBill.cs" />
+    <Compile Include="WechatPay\business\JsApiPay.cs" />
+    <Compile Include="WechatPay\business\MicroPay.cs" />
+    <Compile Include="WechatPay\business\NativeNotify.cs" />
+    <Compile Include="WechatPay\business\NativePay.cs" />
+    <Compile Include="WechatPay\business\OrderQuery.cs" />
+    <Compile Include="WechatPay\business\Refund.cs" />
+    <Compile Include="WechatPay\business\RefundQuery.cs" />
+    <Compile Include="WechatPay\business\ResultNotify.cs" />
+    <Compile Include="WechatPay\lib\Config.cs" />
+    <Compile Include="WechatPay\lib\Data.cs" />
+    <Compile Include="WechatPay\lib\Exception.cs" />
+    <Compile Include="WechatPay\lib\HttpService.cs" />
+    <Compile Include="WechatPay\lib\Log.cs" />
+    <Compile Include="WechatPay\lib\ModelForOrder.cs" />
+    <Compile Include="WechatPay\lib\Notify.cs" />
+    <Compile Include="WechatPay\lib\WxPayApi.cs" />
     <Compile Include="WechatServices\AccessTokenService.cs" />
     <Compile Include="WechatServices\WechatApi.cs" />
     <Compile Include="WechatServices\WechatJsServices.cs" />
@@ -1753,6 +1753,8 @@
     <Content Include="Views\Pingjia\Index.cshtml" />
     <Content Include="Views\Tongji\BabyTongji.cshtml" />
     <Content Include="Views\Tongji\ProgramTongji.cshtml" />
+    <Content Include="Views\Wechat\PingjiaTongji.cshtml" />
+    <Content Include="Views\Tongji\CategoryTongji.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

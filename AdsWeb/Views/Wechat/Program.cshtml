@@ -43,13 +43,13 @@
 
 <div class="pingjiabtn col-xs-12 btn-group">
 
-    <a class="col-xs-4 btn btn-success btn-lg" onclick="pingjia(@ViewBag.babyId, 0.8, @Model.VideoId)">
+    <a class="col-xs-4 btn btn-success btn-lg" onclick="pingjia(@ViewBag.babyId, 0.8, @Model.VideoId,@Model.VideoCategory)">
         熟练完成
     </a>
-    <a class="col-xs-4 btn btn-warning btn-lg" onclick="pingjia(@ViewBag.babyId, 0.5, @Model.VideoId)">
+    <a class="col-xs-4 btn btn-warning btn-lg" onclick="pingjia(@ViewBag.babyId, 0.5, @Model.VideoId,@Model.VideoCategory)">
         基本完成
     </a>
-    <a class="col-xs-4 btn btn-danger btn-lg" onclick="pingjia(@ViewBag.babyId, 0.3, @Model.VideoId)">
+    <a class="col-xs-4 btn btn-danger btn-lg" onclick="pingjia(@ViewBag.babyId, 0.3, @Model.VideoId,@Model.VideoCategory)">
         不能完成
     </a>
 
@@ -122,7 +122,7 @@
     });
 
 
-        function pingjia(babyId, pingjiaValue, videoId) {
+        function pingjia(babyId, pingjiaValue, videoId,videoCategory) {
             $.ajax({
                 type: 'POST',
                 url: "/Wechat/PingjiaCreate",
@@ -130,6 +130,7 @@
                     pingjiaValue: pingjiaValue,
                     babyId: babyId,
                     videoId: videoId,
+                    videoCategory: videoCategory,
                 },
                 dataType: "json",
                 success: function (data) {

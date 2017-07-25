@@ -16,3 +16,4 @@ D:\MyPro\2017\AdsGitBySky\AdsEntity\bin\Debug\LitJson.dll
 D:\MyPro\2017\AdsGitBySky\AdsEntity\bin\Debug\Newtonsoft.Json.dll
 D:\MyPro\2017\AdsGitBySky\AdsEntity\obj\Debug\AdsEntity.dll
 D:\MyPro\2017\AdsGitBySky\AdsEntity\obj\Debug\AdsEntity.pdb
+D:\MyPro\2017\AdsGitBySky\AdsEntity\obj\Debug\AdsEntity.csprojResolveAssemblyReference.cache
