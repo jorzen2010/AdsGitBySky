@@ -260,3 +260,5 @@ D:\MyPro\2017\AdsGitBySky\AdsWeb\bin\zh-Hans\Microsoft.Owin.Security.MicrosoftAc
 D:\MyPro\2017\AdsGitBySky\AdsWeb\obj\Debug\AdsWeb.csprojResolveAssemblyReference.cache
 D:\MyPro\2017\AdsGitBySky\AdsWeb\obj\Debug\AdsWeb.dll
 D:\MyPro\2017\AdsGitBySky\AdsWeb\obj\Debug\AdsWeb.pdb
+D:\MyPro\2017\AdsGitBySky\AdsWeb\bin\AdsWeb.dll.CodeAnalysisLog.xml
+D:\MyPro\2017\AdsGitBySky\AdsWeb\bin\AdsWeb.dll.lastcodeanalysissucceeded

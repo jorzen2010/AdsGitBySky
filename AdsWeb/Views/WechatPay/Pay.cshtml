@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>星星宝贝</title>
+    <title>星星宝贝支付页面</title>
 
     <!-- Bootstrap 3.3.6 -->
     <link rel="stylesheet" href="~/WechatResource/css/bootstrap.css">
@@ -30,52 +30,50 @@
 </head>
 <body style="margin:25px;">
 
-      <div class="form-group">
-            
+    <div class="form-group">
 
-        </div>
-        
+
+        <input type="text" name="BabyName" id="BabyName" class="form-control input-lg" value="@Model.BabyName" readonly="readonly">
+
+    </div>
+    <div class="form-group">
+        <input type="text" name="BabyName" id="BabyName" class="form-control input-lg" value="@Model.BabySex" readonly="readonly">
+
+    </div>
+
+    <div class="skyapprow">
+
+
+
         <div class="form-group">
-
-
-            <input type="text"  name="BabyName" id="BabyName" class="form-control input-lg"  value="@Model.BabyName" readonly="readonly">
-           
+            <button type="button" class="btn btn-block btn-danger btn-lg" onclick="fCharge(0.01)">申请限时绿色通道（￥400元/年）</button>
         </div>
+
         <div class="form-group">
-            <input type="text" name="BabyName" id="BabyName" class="form-control input-lg" value="@Model.BabySex" readonly="readonly">
-
+            <button type="button" class="btn btn-block btn-success btn-lg" onclick="fCharge(0.02)">原价购买（￥1200元/年）</button>
         </div>
+
         <div class="form-group">
-
-
-
-            <input type="text" name="BabyBirthday" id="BabyBirthday" class="form-control input-lg" value="@Model.BabyBirthday" readonly="readonly" >
+            <a class="btn btn-block btn-info btn-lg" href="@Url.Action("StarBabyEdit", "Wechat", new { id = Model.BabyId })">返回修改信息</a>
         </div>
 
+    </div>
 
-        <div class="skyapprow">
-
-            <div class="form-group">
-                <button type="button" class="btn btn-block btn-info btn-lg" onclick="fCharge(0.01)">申请绿色通道（￥400元/年）</button>
-            </div>
-            
-            <div class="form-group">
-                <button type="button" class="btn btn-block btn-success btn-lg" onclick="fCharge(0.02)">立刻开通训练计划（￥1200元/年）</button>
-            </div>
-
-        </div>
 
     <script src="~/plugins/jQuery/jquery-2.2.3.min.js"></script>
 
 
-    
+
 
     <script type="text/javascript">
-      
+
+
+
+
 
 
         //初始化微信支付环境
-        function fCharge(ChargeVal) {
+        function fCharge(vChargeVal) {
             if (typeof WeixinJSBridge == "undefined") {
                 if (document.addEventListener) {
                     document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
@@ -84,33 +82,37 @@
                     document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
                 }
             } else {
-                fPostCharge(ChargeVal);
+                fPostCharge(vChargeVal);
             }
         }
 
 
-        function fPostCharge(ChargeVal) {
+        function fPostCharge(vChargeVal) {
             // var vChargeVal = $("#ChargeVal").val();
-            var vChargeVal = ChargeVal;
+           //var vChargeVal = 0.01;
             vChargeVal = parseFloat(vChargeVal);
             if (vChargeVal > 0) {
-
+                //$.messager.progress({
+                //    title: "",
+                //    msg: "正在调用微信支付接口,请稍后..."
+                //});
                 $.ajax({
                     type: "post",
                     data: "totalfee=" + vChargeVal,
                     url: "/WechatPay/MeterRecharge",
                     success: function (json) {
-
+                        //    $.messager.progress('close');//记得关闭
+                        //var json = eval("(" + msg + ")");//转换后的JSON对象
                         onBridgeReady(json);
                     },
                     error: function () {
-
-                        alert("调用支付模块失败");
+                        //   $.messager.progress('close');//记得关闭
+                        //  $.messager.alert("提示", '调用微信支付模块失败，请稍后再试。', 'info')
                     }
                 })
             }
             else {
-                alert("充值金额有错误。")
+                alert("充值为负数或者有问题.")
             }
         }
 
@@ -130,16 +132,38 @@
            function (res) {
                if (res.err_msg == "get_brand_wcpay_request:ok") {
 
+                   $.ajax({
+                       type: "post",
+                       data: {
+                           status: true,
+                       },
+                       url: "/wechatpay/PaySuccess",
+                       success: function (json) {
+                         
+                           alert("支付成功，正在为你制定训练计划");
+                           window.location.href = "/wechat/calendar";
+                           
 
-                   //alert("支付成功,请稍后查询余额,如有疑问,请联系管理员.");
+                       },
+                       error: function () {
+
+                           alert("支付成功，跳转失败");
+                       }
+                   });
 
 
                    fAlreadyPay();
+
+                   //alert("支付成功,请稍后查询余额,如有疑问,请联系管理员.");
+                  
+                  
+
+
                }     // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。
            }
             );
         }
-
+ 
     </script>
 
 

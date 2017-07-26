@@ -13,6 +13,8 @@ using PagedList.Mvc;
 using AdsServices;
 using AdsWeb.AliyunVideo;
 using System.Globalization;
+using PsyCoderWechat.WechatPay;
+
 
 
 namespace AdsWeb.Controllers
@@ -22,7 +24,7 @@ namespace AdsWeb.Controllers
     {
         private UnitOfWork unitOfWork = new UnitOfWork();
         private SkyWebContext db = new SkyWebContext();
-
+        JsApiPay jsApiPay = new JsApiPay();
 
         //登录相关所有操作
 
@@ -151,7 +153,7 @@ namespace AdsWeb.Controllers
             {
 
                 int id = int.Parse(Session["CustomerId"].ToString());
-                var babys = unitOfWork.adsBabysRepository.Get(filter: u => u.CustomerId == id);
+                var babys = unitOfWork.adsBabysRepository.Get(filter: u => u.CustomerId == id &&u.Babystatus==true);
                 int count = babys.Count();
                 if (count > 0)
                 {
@@ -244,7 +246,7 @@ namespace AdsWeb.Controllers
             if (Session["CustomerId"] != null)
             {
                 int id = int.Parse(Session["CustomerId"].ToString());
-                var babys = unitOfWork.adsBabysRepository.Get(filter: u => u.CustomerId == id);
+                var babys = unitOfWork.adsBabysRepository.Get(filter: u => u.CustomerId == id && u.Babystatus == true);
                 int count = babys.Count();
                 if (count > 0)
                 {
@@ -325,7 +327,7 @@ namespace AdsWeb.Controllers
             if (Session["CustomerId"] != null)
             {
                 int id = int.Parse(Session["CustomerId"].ToString());
-                var babys = unitOfWork.adsBabysRepository.Get(filter: u => u.CustomerId == id);
+                var babys = unitOfWork.adsBabysRepository.Get(filter: u => u.CustomerId == id && u.Babystatus == true);
                 int count = babys.Count();
                 if (count > 0)
                 {
@@ -377,7 +379,7 @@ namespace AdsWeb.Controllers
                 int id = int.Parse(Session["CustomerId"].ToString());
                 AdsCustomer customer = unitOfWork.adsCustomersRepository.GetByID(id);
                 AdsBaby baby = new AdsBaby();
-                var babys = unitOfWork.adsBabysRepository.Get(filter: u => u.CustomerId == id);
+                var babys = unitOfWork.adsBabysRepository.Get(filter: u => u.CustomerId == id && u.Babystatus == true);
                 int count = babys.Count();
                 if (count > 0)
                 {
@@ -416,7 +418,7 @@ namespace AdsWeb.Controllers
             if (Session["CustomerId"] != null)
             {
                 int id = int.Parse(Session["CustomerId"].ToString());
-                var babys = unitOfWork.adsBabysRepository.Get(filter: u => u.CustomerId == id);
+                var babys = unitOfWork.adsBabysRepository.Get(filter: u => u.CustomerId == id && u.Babystatus == true);
                 int count = babys.Count();
                 if (count > 0)
                 {
@@ -445,7 +447,7 @@ namespace AdsWeb.Controllers
         public JsonResult SaveScaleResult(string score, string Dementionscore, string totalscore, string weight)
         {
             int customerId = int.Parse(Session["CustomerId"].ToString());
-            int babyid = unitOfWork.adsBabysRepository.Get(filter: u => u.CustomerId == customerId).First().BabyId;
+            int babyid = unitOfWork.adsBabysRepository.Get(filter: u => u.CustomerId == customerId && u.Babystatus == true).First().BabyId;
 
 
             Message msg = new Message();
@@ -654,52 +656,6 @@ namespace AdsWeb.Controllers
         #endregion
 
 
-        //#region 评价记录
-
-        //[HttpPost]
-        //public JsonResult PingjiaCreate(int babyId, float pingjiaValue, int videoId)
-        //{
-        //    //检查一下是否有评论
-
-        //    Message msg = new Message();
-        //    Pingjia pingjia = new Pingjia();
-        //    pingjia.BabyId = babyId;
-        //    pingjia.VideoId = videoId;
-        //    pingjia.PingjiaValue = pingjiaValue;
-        //    pingjia.PingjiaTime = DateTime.Now;
-
-        //    bool ifsave = PingjiaServices.GetPingjiaCount(pingjia.VideoId, pingjia.BabyId, pingjia.PingjiaTime);
-
-        //    if (ifsave)
-        //    {
-        //        if (ModelState.IsValid)
-        //        {
-        //            unitOfWork.pingjiasRepository.Insert(pingjia);
-        //            unitOfWork.Save();
-        //            msg.MessageStatus = "true";
-        //            msg.MessageInfo = "评估项目完成";
-        //        }
-        //        else
-        //        {
-        //            msg.MessageStatus = "false";
-        //            msg.MessageInfo = "失败";
-        //        }
-
-
-        //    }
-        //    else
-        //    {
-        //        msg.MessageStatus = "false";
-        //        msg.MessageInfo = "此项目每日评价不得超过3次。";
-
-        //    }
-
-
-
-        //    return Json(msg, JsonRequestBehavior.AllowGet);
-
-        //}
-        //#endregion
 
      
         //错误页面导航
@@ -727,8 +683,24 @@ namespace AdsWeb.Controllers
         {
             if (Session["CustomerId"] != null)
             {
-                ViewData["customerid"] = Session["CustomerId"].ToString();
-                return View();
+                int cid = int.Parse(Session["CustomerId"].ToString());
+               
+                var babys = unitOfWork.adsBabysRepository.Get(filter: u => u.CustomerId == cid);
+                if (babys.Count() > 0)
+                {
+                    AdsBaby baby = babys.First() as AdsBaby;
+                    return RedirectToAction("StarBabyEdit", "Wechat", new { id=baby.BabyId});
+
+                }
+                else
+                {
+                    ViewData["customerid"] = Session["CustomerId"].ToString();
+                    ViewBag.cusid = Session["CustomerId"].ToString();
+                    return View();
+                }
+               
+
+                
             }
             else {
                 return RedirectToAction("Login");
@@ -815,42 +787,6 @@ namespace AdsWeb.Controllers
         }
         #endregion
 
-        //#region 账号设置保存
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public JsonResult SettingSave(int id, string CustomerUserName, string CustomerEmail, string CustomerBirthday)
-        //{
-        //    //检查一下是否有评论
-
-        //    Message msg = new Message();
-        //    AdsCustomer cus = unitOfWork.adsCustomersRepository.GetByID(id);
-
-        //    cus.CustomerUserName = CustomerUserName;
-        //    cus.CustomerEmail = CustomerEmail;
-        //    cus.CustomerBirthdayType = "公历";
-        //    cus.CustomerBirthday = Convert.ToDateTime(CustomerBirthday);
-
-          
-        //        if (ModelState.IsValid)
-        //        {
-        //            unitOfWork.adsCustomersRepository.Update(cus);
-        //            unitOfWork.Save();
-        //            msg.MessageStatus = "true";
-        //            msg.MessageInfo = "个人账户修改成功";
-        //        }
-        //        else
-        //        {
-        //            msg.MessageStatus = "false";
-        //            msg.MessageInfo = "个人账户修改失败";
-        //        }
-
-        //    return Json(msg, JsonRequestBehavior.AllowGet);
-
-        //}
-        //#endregion
-
-
 
         #region 未付费
         public ActionResult NoPay()
@@ -896,29 +832,23 @@ namespace AdsWeb.Controllers
         #region 付费Action页面
         public ActionResult StarBabyPay(int bid)
         {
-            
-           AdsBaby baby = unitOfWork.adsBabysRepository.GetByID(bid);
-
-          //给baby字段加上付费金额和到期时间，订单号。订单完成后可保存。
-           return View(baby);
-
-
+             if (Session["CustomerId"] != null)
+            {
+                  AdsBaby baby = unitOfWork.adsBabysRepository.GetByID(bid);
+                    
+             return View(baby);
+             }
+             else
+            {
+                return RedirectToAction("Login");
+            }
 
         }
+
+       
+
+
         #endregion
-
-        //#region 付费Action
-        //public ActionResult StarBabyPay(int bid)
-        //{
-
-        //    AdsBaby baby = unitOfWork.adsBabysRepository.GetByID(bid);
-        //    //   baby.Babystatus = true;
-        //    return View();
-
-
-
-        //}
-        //#endregion
 
 
 
@@ -937,7 +867,10 @@ namespace AdsWeb.Controllers
                 unitOfWork.adsBabysRepository.Insert(baby);
                 unitOfWork.Save();
 
-                return Redirect("/Wechat/StarBabyPay/?bid="+baby.BabyId);
+                Session["babyId"] = baby.BabyId;
+                //这里大小写敏感需要与微信支付目录统一一致
+              //  return Redirect("/Wechat/StarBabyPay/?bid="+baby.BabyId);
+                return Redirect("/wechatpay/pay/");
             }
 
             return View(baby);
@@ -960,8 +893,10 @@ namespace AdsWeb.Controllers
 
                 unitOfWork.adsBabysRepository.Update(baby);
                 unitOfWork.Save();
-
-                return Redirect("/Wechat/StarBabyPay/?bid=" + baby.BabyId);
+                Session["babyId"] = baby.BabyId;
+                //注意这里大小写敏感需要与微信支付目录统一一致
+               // return Redirect("/Wechat/StarBabyPay/?bid=" + baby.BabyId);
+                return Redirect("/wechatpay/pay/");
             }
 
             return View(baby);

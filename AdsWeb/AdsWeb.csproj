@@ -1747,7 +1747,7 @@
     <Content Include="Views\WechatMenu\GetMenu.cshtml" />
     <Content Include="Views\WechatMenu\DeleteMenu.cshtml" />
     <Content Include="Views\WechatMenu\CreateMenu.cshtml" />
-    <Content Include="Views\WechatPay\Index.cshtml" />
+    <Content Include="Views\WechatPay\Pay.cshtml" />
     <Content Include="Views\Wechat\StarBabyEdit.cshtml" />
     <Content Include="Views\Wechat\HeartServices.cshtml" />
     <Content Include="Views\Pingjia\Index.cshtml" />
@@ -1755,6 +1755,7 @@
     <Content Include="Views\Tongji\ProgramTongji.cshtml" />
     <Content Include="Views\Wechat\PingjiaTongji.cshtml" />
     <Content Include="Views\Tongji\CategoryTongji.cshtml" />
+    <Content Include="Views\Wechat\StarBabyPay - 复制%282%29.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

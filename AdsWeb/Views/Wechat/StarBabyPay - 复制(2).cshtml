@@ -32,8 +32,7 @@
 
       <div class="form-group">
             
-      
-           @Html.HiddenFor(model => model.CustomerId, new { @Value = @ViewData["customerid"] })
+
         </div>
         
         <div class="form-group">
@@ -48,20 +47,26 @@
         </div>
         <div class="form-group">
 
-
-
-            <input type="date" name="BabyBirthday" id="BabyBirthday" class="form-control input-lg" value="@Model.BabyBirthday" readonly="readonly" >
+       
+            <input type="hidden" name="openid" id="openid" class="form-control input-lg" value="on5dLwiMZ_E06gwpY2pq3Bj4glZ8y">
+            <input type="text" name="BabyBirthday" id="BabyBirthday" class="form-control input-lg" value="@Model.BabyBirthday" readonly="readonly" >
         </div>
 
 
         <div class="skyapprow">
 
+           
+
             <div class="form-group">
-                <button type="submit" class="btn btn-block btn-info btn-lg" onclick="fCharge(0.01)">立即申请（￥6800元/年）</button>
+                <button type="button" class="btn btn-block btn-danger btn-lg" onclick="fCharge(0.01)">申请限时绿色通道（￥400元/年）</button>
             </div>
             
             <div class="form-group">
-                <button type="submit" class="btn btn-block btn-success btn-lg" onclick="fCharge(0.02)">申请绿色通道（￥1200元/5年）</button>
+                <button type="button" class="btn btn-block btn-success btn-lg" onclick="fCharge(0.02)">原价购买（￥1200元/年）</button>
+            </div>
+
+            <div class="form-group">
+                <a class="btn btn-block btn-info btn-lg" href="@Url.Action("StarBabyEdit", "Wechat", new { id = Model.BabyId })">返回修改信息</a>
             </div>
 
         </div>
@@ -73,7 +78,8 @@
 
     <script type="text/javascript">
       
-
+      
+      
 
         //初始化微信支付环境
         function fCharge(ChargeVal) {
@@ -92,13 +98,18 @@
 
         function fPostCharge(ChargeVal) {
             // var vChargeVal = $("#ChargeVal").val();
+            var openid = $("#openid").val();
             var vChargeVal = ChargeVal;
             vChargeVal = parseFloat(vChargeVal);
             if (vChargeVal > 0) {
 
                 $.ajax({
                     type: "post",
-                    data: "totalfee=" + vChargeVal,
+                    data: {
+                        totalfee: vChargeVal,
+                        openid: openid,
+                    },
+   //               data: "totalfee=" + vChargeVal,
                     url: "/WechatPay/MeterRecharge",
                     success: function (json) {
 
@@ -131,29 +142,10 @@
            function (res) {
                if (res.err_msg == "get_brand_wcpay_request:ok") {
 
-
-                   $.ajax({
-                       type: "post",
-                       data: {
-                           status:true,
-                       },
-                       url: "http://wx.zzd123.com/wechatpay/PaySuccess",
-                       success: function (json) {
-                           alert("支付成功，正在为你制定训练计划");
-                           window.location.href = "http://wx.zzd123.com/wechat/calendar"
-                          
-                       },
-                       error: function () {
-
-                           alert("支付成功，跳转失败");
-                       }
-                   })
-
-
-
-                   window.location.href="http://wx.zzd123.com/wechat/calendar"
                    //alert("支付成功,请稍后查询余额,如有疑问,请联系管理员.");
+                   //这里可以直接做一个转向操作。
                    fAlreadyPay();
+
                }     // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。
            }
             );
