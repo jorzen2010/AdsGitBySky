@@ -38,6 +38,7 @@
             
            @Html.AntiForgeryToken()
            @Html.HiddenFor(model => model.CustomerId, new { @Value = @ViewData["customerid"] })
+            @Html.HiddenFor(model => model.BabyId, new { @Value = @Model.BabyId })
         </div>
         
         <div class="form-group">
