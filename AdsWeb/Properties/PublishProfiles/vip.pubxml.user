@@ -22,7 +22,7 @@
       <publishTime>07/25/2017 15:16:15</publishTime>
     </File>
     <File Include="bin/AdsWeb.dll">
-      <publishTime>07/27/2017 09:11:00</publishTime>
+      <publishTime>08/02/2017 16:27:37</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>07/10/2017 09:11:41</publishTime>
@@ -4092,6 +4092,9 @@
     <File Include="Resource/img/picture.jpg">
       <publishTime>07/10/2017 09:11:40</publishTime>
     </File>
+    <File Include="Resource/img/videodemo.jpg">
+      <publishTime>08/02/2017 16:27:21</publishTime>
+    </File>
     <File Include="Resource/img/zm.png">
       <publishTime>07/10/2017 09:11:40</publishTime>
     </File>
@@ -4213,7 +4216,7 @@
       <publishTime>07/10/2017 09:11:40</publishTime>
     </File>
     <File Include="Views/Customer/Index.cshtml">
-      <publishTime>07/10/2017 09:11:40</publishTime>
+      <publishTime>07/31/2017 15:46:22</publishTime>
     </File>
     <File Include="Views/Customer/Search.cshtml">
       <publishTime>07/10/2017 09:11:40</publishTime>
@@ -4312,7 +4315,7 @@
       <publishTime>07/24/2017 16:32:29</publishTime>
     </File>
     <File Include="Views/Video/Create.cshtml">
-      <publishTime>07/10/2017 09:11:40</publishTime>
+      <publishTime>08/02/2017 16:26:02</publishTime>
     </File>
     <File Include="Views/Video/Delete.cshtml">
       <publishTime>07/10/2017 09:11:40</publishTime>
@@ -4513,7 +4516,7 @@
       <publishTime>07/10/2017 09:11:40</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>07/26/2017 16:32:05</publishTime>
+      <publishTime>08/02/2017 15:23:42</publishTime>
     </File>
     <File Include="wechat/css/AdminLTE.css">
       <publishTime>05/31/2017 10:25:20</publishTime>

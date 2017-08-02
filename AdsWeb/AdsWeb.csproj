@@ -1447,6 +1447,7 @@
     <Content Include="Resource\img\loading.gif" />
     <Content Include="Resource\img\picture.jpg" />
     <Content Include="Resource\img\nophoto.png" />
+    <Content Include="Resource\img\videodemo.jpg" />
     <Content Include="Resource\img\zm.png" />
     <Content Include="Resource\js\Article.js" />
     <Content Include="Resource\js\Category.js" />

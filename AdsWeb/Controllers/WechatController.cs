@@ -434,8 +434,7 @@ namespace AdsWeb.Controllers
             }
             else
             {
-                ViewBag.info = "您尚未登录";
-                return View(baby);
+                return RedirectToAction("Login");
 
             }
         }
@@ -545,6 +544,8 @@ namespace AdsWeb.Controllers
         //项目相关的页面
         public ActionResult Program(int id, int bid)
         {
+              if (Session["CustomerId"] != null)
+            {
             string ApiUrl = AliyunCommonParaConfig.ApiUrl;
             // 注意这里需要使用UTC时间，比北京时间少8小时。
             string Timestamp = DateTime.Now.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ", DateTimeFormatInfo.InvariantInfo);
@@ -560,6 +561,11 @@ namespace AdsWeb.Controllers
             ViewBag.PlayAuth = AliyunVideoServices.GetVideoInfo(ApiUrl, VideoId, Timestamp, Action, SignatureNonce).PlayAuth;
 
             return View(video);
+            }
+              else
+              {
+                  return RedirectToAction("Login");
+              }
         }
 
 
@@ -567,6 +573,8 @@ namespace AdsWeb.Controllers
         #region 项目评价统计
         public ActionResult PingjiaTongji(int babyid)
         {
+             if (Session["CustomerId"] != null)
+            {
             AdsBaby baby = unitOfWork.adsBabysRepository.GetByID(babyid);
 
             ViewBag.pingjiaA = StatisticsServices.GetPingjiaCountByBabyId(baby.BabyId, 0.3f);
@@ -602,7 +610,11 @@ namespace AdsWeb.Controllers
             ViewBag.catName = catName;
 
             return View();
-           
+            }
+             else
+             {
+                 return RedirectToAction("Login");
+             }
           
 
         }
@@ -756,9 +768,17 @@ namespace AdsWeb.Controllers
         #region 个人账号设置
         public ActionResult Setting()
         {
+             if (Session["CustomerId"] != null)
+            {
             int id = int.Parse(Session["CustomerId"].ToString());
             AdsCustomer customer = unitOfWork.adsCustomersRepository.GetByID(id);
             return View(customer);
+            }
+             else
+             {
+                 return RedirectToAction("Login");
+
+             }
         }
         #endregion
 

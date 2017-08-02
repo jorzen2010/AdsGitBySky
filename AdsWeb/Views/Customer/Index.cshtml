@@ -23,7 +23,7 @@
 </section>
 <!-- Main content -->
 <section class="content">
-    <div class="row">
+    @*<div class="row">
         <div class="col-md-12 cuscategorybtn">
 
             <div class="btn-group">
@@ -41,7 +41,7 @@
         </div>
 
     </div>
-    <br />
+    <br />*@
     <div class="row">
         <div class="col-xs-12">
             <div class="box box-primary">
@@ -76,11 +76,9 @@
                                     邮箱
                                 </th>
                                 <th class="col-sm-2">
-                                   登录来源
+                                   昵称
                                 </th>
-                                <th class="col-sm-1">
-                                    认证状态
-                                </th>
+                               
                                 <th class="col-sm-5">操作</th>
                             </tr>
                         </thead>
@@ -98,12 +96,9 @@
                                         @Html.DisplayFor(modelItem => item.CustomerEmail)
                                     </td>
                                     <td>
-                                      微信登录
+                                        @Html.DisplayFor(modelItem => item.CustomerNickName)
                                     </td>
-                                    <td>
-
-                                        @Html.DisplayFor(modelItem => item.CustomerIdentity)
-                                    </td>
+                                   
                                     <td>
 
                                         @Html.AntiForgeryToken()
