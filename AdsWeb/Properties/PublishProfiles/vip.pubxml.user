@@ -22,7 +22,7 @@
       <publishTime>07/25/2017 15:16:15</publishTime>
     </File>
     <File Include="bin/AdsWeb.dll">
-      <publishTime>08/02/2017 16:27:37</publishTime>
+      <publishTime>08/04/2017 16:11:56</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>07/10/2017 09:11:41</publishTime>
@@ -4221,6 +4221,18 @@
     <File Include="Views/Customer/Search.cshtml">
       <publishTime>07/10/2017 09:11:40</publishTime>
     </File>
+    <File Include="Views/Free/FreeBaogaoDetail.cshtml">
+      <publishTime>08/04/2017 15:58:23</publishTime>
+    </File>
+    <File Include="Views/Free/FreeHeartList.cshtml">
+      <publishTime>08/04/2017 15:44:27</publishTime>
+    </File>
+    <File Include="Views/Free/FreeHeartServices.cshtml">
+      <publishTime>08/04/2017 15:44:43</publishTime>
+    </File>
+    <File Include="Views/Free/FreeScale.cshtml">
+      <publishTime>08/04/2017 15:44:54</publishTime>
+    </File>
     <File Include="Views/Home/About.cshtml">
       <publishTime>07/10/2017 09:11:40</publishTime>
     </File>
@@ -4275,6 +4287,9 @@
     <File Include="Views/Shared/index2.html">
       <publishTime>05/09/2017 16:26:56</publishTime>
     </File>
+    <File Include="Views/Shared/_FreeLayout.cshtml">
+      <publishTime>08/04/2017 15:56:44</publishTime>
+    </File>
     <File Include="Views/Shared/_Layout.cshtml">
       <publishTime>07/24/2017 09:03:39</publishTime>
     </File>
@@ -4291,7 +4306,7 @@
       <publishTime>07/10/2017 09:11:40</publishTime>
     </File>
     <File Include="Views/Shared/_WechatLayout.cshtml">
-      <publishTime>07/18/2017 13:52:20</publishTime>
+      <publishTime>08/04/2017 14:13:09</publishTime>
     </File>
     <File Include="Views/Shared/_WechatMenuPartial.cshtml">
       <publishTime>07/18/2017 13:41:26</publishTime>
@@ -4378,7 +4393,7 @@
       <publishTime>07/10/2017 09:11:40</publishTime>
     </File>
     <File Include="Views/Wechat/Calendar.cshtml">
-      <publishTime>07/25/2017 09:39:59</publishTime>
+      <publishTime>08/04/2017 10:35:46</publishTime>
     </File>
     <File Include="Views/Wechat/Ceping.cshtml">
       <publishTime>07/25/2017 09:32:54</publishTime>
@@ -4387,10 +4402,10 @@
       <publishTime>07/10/2017 09:11:40</publishTime>
     </File>
     <File Include="Views/Wechat/HeartList.cshtml">
-      <publishTime>07/18/2017 15:34:58</publishTime>
+      <publishTime>08/04/2017 14:04:27</publishTime>
     </File>
     <File Include="Views/Wechat/HeartServices.cshtml">
-      <publishTime>07/18/2017 15:37:00</publishTime>
+      <publishTime>08/04/2017 14:10:34</publishTime>
     </File>
     <File Include="Views/Wechat/Index.cshtml">
       <publishTime>07/10/2017 09:11:40</publishTime>
@@ -4429,7 +4444,7 @@
       <publishTime>07/25/2017 15:16:04</publishTime>
     </File>
     <File Include="Views/Wechat/Program.cshtml">
-      <publishTime>07/25/2017 13:54:19</publishTime>
+      <publishTime>08/03/2017 10:18:52</publishTime>
     </File>
     <File Include="Views/Wechat/ProgrameList.cshtml">
       <publishTime>07/10/2017 09:11:40</publishTime>
@@ -4857,6 +4872,12 @@
     <File Include="WechatResource/fonts/glyphicons-halflings-regular.woff2">
       <publishTime>07/10/2017 09:11:40</publishTime>
     </File>
+    <File Include="WechatResource/img/danger.jpg">
+      <publishTime>08/04/2017 09:55:07</publishTime>
+    </File>
+    <File Include="WechatResource/img/heart.jpg">
+      <publishTime>08/04/2017 13:51:07</publishTime>
+    </File>
     <File Include="WechatResource/img/iconfont-mingpian.png">
       <publishTime>07/10/2017 09:11:40</publishTime>
     </File>
@@ -4866,11 +4887,20 @@
     <File Include="WechatResource/img/star.jpg">
       <publishTime>07/10/2017 09:11:40</publishTime>
     </File>
+    <File Include="WechatResource/img/success.jpg">
+      <publishTime>08/04/2017 09:55:08</publishTime>
+    </File>
     <File Include="WechatResource/img/test.png">
       <publishTime>07/10/2017 09:11:40</publishTime>
     </File>
     <File Include="WechatResource/img/user1-128x128.jpg">
       <publishTime>07/10/2017 09:11:40</publishTime>
+    </File>
+    <File Include="WechatResource/img/videodemo.jpg">
+      <publishTime>08/04/2017 09:55:07</publishTime>
+    </File>
+    <File Include="WechatResource/img/warning.jpg">
+      <publishTime>08/04/2017 09:55:07</publishTime>
     </File>
     <File Include="WechatResource/ionicons-2.0.1/css/ionicons.css">
       <publishTime>07/10/2017 09:11:40</publishTime>
@@ -4891,7 +4921,7 @@
       <publishTime>07/10/2017 09:11:40</publishTime>
     </File>
     <File Include="WechatResource/js/ADSABC.js">
-      <publishTime>07/10/2017 09:11:40</publishTime>
+      <publishTime>08/04/2017 15:55:44</publishTime>
     </File>
     <File Include="WechatResource/js/bootstrap.js">
       <publishTime>07/10/2017 09:11:40</publishTime>

@@ -19,6 +19,10 @@ namespace AdsWeb.Controllers
 
 
             MenuInfo menu = new MenuInfo("开始训练",MenuInfo.ButtonType.view, "http://wx.zzd123.com/wechat/Calendar");
+            MenuInfo menu2 = new MenuInfo("免费体验", new MenuInfo[] { 
+                new MenuInfo("免费行为测评", MenuInfo.ButtonType.view, "http://wx.zzd123.com/Free/FreeScale"),
+                new MenuInfo("免费心理服务", MenuInfo.ButtonType.view, "http://wx.zzd123.com/Free/FreeHeartList")
+            });
             //  MenuInfo menu2 = new MenuInfo("行为测评", MenuInfo.ButtonType.view, "http://www.sina.com");
             //MenuInfo relatedInfo = new MenuInfo("相关链接", new MenuInfo[] { 
             //    new MenuInfo("公司介绍", MenuInfo.ButtonType.click, "Event_Company"),
@@ -29,7 +33,7 @@ namespace AdsWeb.Controllers
             //});
 
             MenuJson menujson = new MenuJson();
-            menujson.button.AddRange(new MenuInfo[] { menu});
+            menujson.button.AddRange(new MenuInfo[] { menu,menu2});
 
             string token = AccessTokenService.GetAccessToken();
 
@@ -46,9 +50,12 @@ namespace AdsWeb.Controllers
 
 
             MenuInfo menu = new MenuInfo("开始训练", MenuInfo.ButtonType.view, "http://wx.zzd123.com/wechat/Calendar");
-
+            MenuInfo menu2 = new MenuInfo("免费体验", new MenuInfo[] { 
+                new MenuInfo("免费行为测评", MenuInfo.ButtonType.view, "http://wx.zzd123.com/Free/FreeScale"),
+                new MenuInfo("免费心理服务", MenuInfo.ButtonType.view, "http://wx.zzd123.com/Free/FreeHeartList")
+            });
             MenuJson menujson = new MenuJson();
-            menujson.button.AddRange(new MenuInfo[] { menu });
+            menujson.button.AddRange(new MenuInfo[] { menu,menu2 });
 
             string token = AccessTokenService.GetAccessToken();
 

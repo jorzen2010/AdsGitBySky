@@ -8,12 +8,12 @@
 
 
         <div class="row">
-            <img class="img-circle" src="~/WechatResource/img/user1-128x128.jpg" alt="User Avatar">
+            <img src="~/WechatResource/img/heart.jpg" alt="User Avatar" style="width:100%;height:100px;">
         </div>
 
         <div class="row skyindexrow">
             <div class="pull-left text-orange skyindexrowtitle"><i class="glyphicon glyphicon-heart"></i> 心理服务</div>
-            <div class="pull-right skyindexrowrighttitle">787人正在学习</div>
+    
         </div>
 
 
@@ -28,7 +28,7 @@
                    @Html.DisplayFor(modelItem => item.VideoName)
                 </span>
                 <p>讲师：@Html.DisplayFor(modelItem => item.VideoTeacher)</p>
-                <p>已有 @Html.DisplayFor(modelItem => item.VideoViewTimes) 人浏览</p>
+                <p><i class="glyphicon glyphicon-eye-open"></i> 1000+</p>
             </div>
 
          <a class="pull-right btn btn-warning btn-sm" href="@Url.Action("HeartServices", "Wechat", new { id = item.VideoId })">马上学习</a>

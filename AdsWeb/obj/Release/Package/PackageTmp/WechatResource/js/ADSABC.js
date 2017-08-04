@@ -11,26 +11,26 @@
 var SkyAdsABCTitle = '自闭症行为（ABC）量表';
 var SkyAdsABCInfo = '《自闭症行为量表》——ABC量表，由KRUG于1978年编制，表中列出57项自闭症儿童的行为特征，包括感觉能力（S）、交往能力（R）、运动能力（B）、语言能力（L）和自我照顾能力（S）五个方面。要求评定者与儿童至少共同生活3-6周，填写者与儿童生活至少半年以上。评分时，对每一项作“是”与“否”的判断。“是”评记“∨”符号，“否”不打号。把“是”的项目合计累分，总分≥31分为自闭症筛查界限分；总分>53分作为自闭症诊断界限分（参考值）';
 var SkyAdsABCMinInfo = '为保证测量准确，请认真答题，题目没有对错之分，请按照实际情况填写即可。';
-var SkyGanjue = "感觉能力";
+var SkyGanjue = ["感觉能力A30", "交往能力B44", "运动能力C28", "语言能力D31", "自理能力E25", ];
 var SkyAdsABCData = [
     {
         Number: '1',
         Title: '喜欢长时间的自身旋转',
-        Dimension: 'A',
+        Dimension: 'C',
         score: '4'
 
     },
    {
        Number: '2',
        Title: '学会做一件简单的事，但很快就忘记',
-       Dimension: 'A',
-       score: '4'
+       Dimension: 'E',
+       score: '2'
 
    },
    {
        Number: '3',
        Title: '经常没有接触环境或进行交往的要求',
-       Dimension: 'C',
+       Dimension: 'A',
        score: '4'
 
    },
@@ -238,24 +238,24 @@ var SkyAdsABCData = [
 
                      },
                       {
-                         Number: '33',
-                         Title: '游戏时不模仿其他儿童',
-                         Dimension: 'B',
-                         score: '3'
+                          Number: '33',
+                          Title: '游戏时不模仿其他儿童',
+                          Dimension: 'B',
+                          score: '3'
 
-                     },
+                      },
                       {
-                            Number: '34',
-                            Title: '当强光直接照射眼睛时常常不眨眼',
-                            Dimension: 'A',
-                            score: '1'
+                          Number: '34',
+                          Title: '当强光直接照射眼睛时常常不眨眼',
+                          Dimension: 'A',
+                          score: '1'
 
-                     },
+                      },
                        {
-                              Number: '35',
-                              Title: '以撞头、咬手等行为自伤',
-                              Dimension: 'C',
-                              score: '2'
+                           Number: '35',
+                           Title: '以撞头、咬手等行为自伤',
+                           Dimension: 'C',
+                           score: '2'
 
                        },
                        {
@@ -434,17 +434,21 @@ function adsabcInit() {
 
 
     }
+    var progress = '<div class="progress"> <div id="progress" class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0">  1/57 </div></div>';
 
     var prebtn = '<div class="scalebtn"><button type="button" id="id_pre_link"  style="display: none" class="skybtn skybtn-success" data-num="0"  onclick="return do_prev()">上 一 题</button> ';
 
     var sumbitbtn = ' <button type="submit" id="id_show_result"  style="display: none" class="skybtn skybtn-primary"  onclick="return do_result()">提交答案</button></div>';
     var hh = '</div>';
-    $('#adsabc').append(prebtn + sumbitbtn + hh);
+    $('#adsabc').append(progress + prebtn + sumbitbtn + hh);
 
 }
 
 
 function do_prev() {
+    var progressNum = Number($('#progress').attr("aria-valuenow"));
+    var progressNewNum = progressNum - 1;
+    var progressWidth = GetPercent(progressNewNum, SkyAdsABCData.length);
     var j = Number($('#id_pre_link').attr("data-num"));
 
 
@@ -452,28 +456,60 @@ function do_prev() {
     $('#id_pre_link').attr("data-num", j - 1);
     $('.scaleitem')[j - 1].style.display = "";
     $('.scaleitem')[j].style.display = "none";
+    $('#progress').attr("aria-valuenow", progressNewNum);
+    $('#progress')[0].style.width = progressWidth;
+    $('#progress').html(progressNewNum + '/' + SkyAdsABCData.length);
 
 
     if (j == 1) {
         $('#id_pre_link').hide();
+        $('#progress').attr("aria-valuenow", '0');
+        $('#progress')[0].style.width = "0%";
+        $('#progress').html(progressNewNum + '/' + SkyAdsABCData.length);
     }
 }
 
 
 function do_next(k) {
     $('#id_pre_link').show();
+    var progressNum = Number($('#progress').attr("aria-valuenow"));
+
     if (k < SkyAdsABCData.length - 1) {
+        var progressNewNum = progressNum + 1;
+        var progressWidth = GetPercent(progressNewNum, SkyAdsABCData.length);
 
         $('.scaleitem')[k].style.display = "none";
         $('.scaleitem')[k + 1].style.display = "";
         $('#id_pre_link').attr("data-num", k + 1);
+        $('#progress').attr("aria-valuenow", progressNewNum);
+        $('#progress')[0].style.width = progressWidth;
+        $('#progress').html(progressNewNum + '/' + SkyAdsABCData.length);
+
+
 
     } else {
+        var progressNewNum = 57;
+        var progressWidth = GetPercent(progressNewNum, SkyAdsABCData.length);
+
         $('#id_show_result').show();
         $('#id_pre_link').attr("data-num", k);
+        $('#progress').attr("aria-valuenow", progressNewNum);
+        $('#progress').html('100%');
+        $('#progress')[0].style.width = "100%";
     }
 
 }
+
+function GetPercent(num, total) {
+    num = parseFloat(num);
+    total = parseFloat(total);
+    if (isNaN(num) || isNaN(total)) {
+        return "-";
+    }
+    return total <= 0 ? "0%" : (Math.round(num / total * 10000) / 100.00 + "%");
+}
+
+
 
 function do_result() {
 
@@ -481,31 +517,124 @@ function do_result() {
     var aa = "";
 
     for (var i = 1; i < SkyAdsABCData.length + 1; i++) {
-        var aa = aa + $('[name="' + i + '"]:checked').val() + ",";
+        var aa = aa + $('[name="' + i + '"]:checked').attr("data-Dimension") + $('[name="' + i + '"]:checked').val() + ",";
     }
 
 
     aa = aa.substring(0, aa.length - 1);
-    alert("总得分" + aa);
+    // alert("总得分" + aa);
 
-    //感觉能力得分
-    var b = "";
+    var b = 0;
     for (var i = 1; i < SkyAdsABCData.length + 1; i++) {
         if ($('[name="' + i + '"]:checked').attr("data-Dimension") == 'A') {
-            var b = b + $('[name="' + i + '"]:checked').val() + ",";
+            var b = b + parseInt($('[name="' + i + '"]:checked').val());
         }
 
 
     }
-    b = b.substring(0, b.length - 1);
-    alert("感觉能力得分" + b);
+
+
+    var c = 0;
+    for (var i = 1; i < SkyAdsABCData.length + 1; i++) {
+        if ($('[name="' + i + '"]:checked').attr("data-Dimension") == 'B') {
+            var c = c + parseInt($('[name="' + i + '"]:checked').val());
+        }
+
+
+    }
+
+
+    var d = 0;
+    for (var i = 1; i < SkyAdsABCData.length + 1; i++) {
+        if ($('[name="' + i + '"]:checked').attr("data-Dimension") == 'C') {
+            var d = d + parseInt($('[name="' + i + '"]:checked').val());
+        }
+
+
+    }
+
+
+    var e = 0;
+    for (var i = 1; i < SkyAdsABCData.length + 1; i++) {
+        if ($('[name="' + i + '"]:checked').attr("data-Dimension") == 'D') {
+            var e = e + parseInt($('[name="' + i + '"]:checked').val());
+        }
+
+
+    }
+
+
+
+
+    var f = 0;
+    for (var i = 1; i < SkyAdsABCData.length + 1; i++) {
+        if ($('[name="' + i + '"]:checked').attr("data-Dimension") == 'E') {
+            var f = f + parseInt($('[name="' + i + '"]:checked').val());
+        }
+
+
+    }
+
+
+    var g = b + c + d + e + f;
+
+    bb = b / 30;
+    cc = c / 44;
+    dd = d / 29;
+    ee = e / 31;
+    ff = f / 25;
+
+    b = "感觉能力:" + b + ",";
+    c = "交往能力:" + c + ",";
+    d = "运动能力:" + d + ",";
+    e = "语言能力:" + e + ",";
+    f = "自理能力:" + f;
+
+    bb = "感觉能力:" + bb + ",";
+    cc = "交往能力:" + cc + ",";
+    dd = "运动能力:" + dd + ",";
+    ee = "语言能力:" + ee + ",";
+    ff = "自理能力:" + ff;
+
+
+    h = b + c + d + e + f;
+    hh = bb + cc + dd + ee + ff;
+
+
+    window.location.href = "/Free/FreeBaogaoDetail?score=" + aa + "&Dementionscore=" + h + "&totalscore=" + g + "&weight=" + hh;
+
+    //$.ajax({
+    //    type: 'POST',
+    //    url: "/Free/FreeBaogaoDetail",
+    //    data: {
+    //        score: aa,
+    //        Dementionscore: h,
+    //        totalscore: g,
+    //        weight: hh,
+    //    },
+    //    success: function (data) {
+    //        //if (data.MessageStatus) {
+    //        //    window.location.href = "/Free/BaogaoDetail/" + data.MessageInfo;
+
+    //        //}
+    //        //else { alert("测试过程出现意外，请重新测试！"); }
+
+    //    }
+    //});
+
+
 
 }
+
+
+
 
 $(document).ready(function () {
 
     //初始化量表
     adsabcInit();
+    //给移动端加上点击样式
+    document.body.addEventListener('touchstart', function () { });
 
     //初始化第一题
     var we;

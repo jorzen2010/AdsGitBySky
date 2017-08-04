@@ -184,6 +184,7 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\FileController.cs" />
+    <Compile Include="Controllers\FreeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PingjiaController.cs" />
     <Compile Include="Controllers\ScaleController.cs" />
@@ -1562,11 +1563,16 @@
     <Content Include="WechatResource\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
     <Content Include="WechatResource\font-awesome-4.7.0\HELP-US-OUT.txt" />
     <Content Include="WechatResource\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="WechatResource\img\danger.jpg" />
     <Content Include="WechatResource\img\iconfont-mingpian.png" />
     <Content Include="WechatResource\img\loginbg.jpg" />
     <Content Include="WechatResource\img\star.jpg" />
+    <Content Include="WechatResource\img\success.jpg" />
     <Content Include="WechatResource\img\test.png" />
+    <Content Include="WechatResource\img\heart.jpg" />
     <Content Include="WechatResource\img\user1-128x128.jpg" />
+    <Content Include="WechatResource\img\videodemo.jpg" />
+    <Content Include="WechatResource\img\warning.jpg" />
     <Content Include="WechatResource\ionicons-2.0.1\css\ionicons.css" />
     <Content Include="WechatResource\ionicons-2.0.1\css\ionicons.min.css" />
     <Content Include="WechatResource\ionicons-2.0.1\fonts\ionicons.svg" />
@@ -1757,6 +1763,11 @@
     <Content Include="Views\Wechat\PingjiaTongji.cshtml" />
     <Content Include="Views\Tongji\CategoryTongji.cshtml" />
     <Content Include="Views\Wechat\StarBabyPay - 复制%282%29.cshtml" />
+    <Content Include="Views\Shared\_FreeLayout.cshtml" />
+    <Content Include="Views\Free\FreeBaogaoDetail.cshtml" />
+    <Content Include="Views\Free\FreeScale.cshtml" />
+    <Content Include="Views\Free\FreeHeartServices.cshtml" />
+    <Content Include="Views\Free\FreeHeartList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
