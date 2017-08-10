@@ -269,7 +269,7 @@ namespace AdsWeb.Controllers
                     Pager pager = new Pager();
                     pager.table = "AdsVideo";
                     pager.strwhere = "VideoCategory=" + categoryid;
-                    pager.PageSize = 4;
+                    pager.PageSize = 15;
                     pager.PageNo = page ?? 1;
                     pager.FieldKey = "VideoId";
                     pager.FiledOrder = "VideoId desc";
