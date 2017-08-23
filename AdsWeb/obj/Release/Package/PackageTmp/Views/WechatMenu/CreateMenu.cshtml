@@ -1,12 +1,19 @@
-﻿@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-<h5>
-
-@ViewBag.result
-
-    @ViewBag.x
-</h5>
-
-
+﻿ <!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        微信菜单
+        <small>Optional description</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+        <li class="active">Here</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="well text-center">
+        <h3 class="text-red">@ViewBag.msg</h3>
+        @ViewBag.result
+    </div>
+</section>
+<!-- /.content -->

@@ -1,0 +1,25 @@
+﻿ <!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        微信菜单
+       
+    </h1>
+
+</section>
+<!-- Main content -->
+<section class="content">
+   
+    <div class="well">
+    
+      <h4 class="text-red">@ViewBag.msg</h4>
+      @ViewBag.content
+    <br/> <br /> 
+       
+        <a class="btn btn-lg btn-danger btn-block" href="@Url.Action("DeleteWechatMenu","WechatMenu")" onclick="return confirm('你确定要删除微信菜单吗？');">删除当前菜单<br />（注意删除后不能恢复，删除前最好先保存上面代码到文本文件中，请谨慎操作！！！）</a> 
+        
+
+</div>
+
+
+</section>
+<!-- /.content -->

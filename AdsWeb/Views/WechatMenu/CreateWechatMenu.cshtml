@@ -1,0 +1,38 @@
+﻿ <!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        微信菜单
+       
+    </h1>
+
+</section>
+<!-- Main content -->
+<section class="content">
+
+    <div class="row">
+        <div class="col-sm-6">
+            <form action="/WechatMenu/CreateMenu" method="post">
+                <textarea rows="20" style="width:100%" name="content" id="content"></textarea>
+                <br/>
+                <br />
+                    <button type="submit" class="btn btn-lg btn-block btn-primary"> 创建微信菜单 </button>
+             
+               
+            </form>
+           
+        </div> 
+        <div class="col-sm-6"><div class="well">
+
+    <h4 class="text-red">微信菜单示例代码：<small>建议复制以下代码到文本框进行编辑</small></h4>
+                                  <p>
+                                      {&quot;button&quot;:[<br /> &nbsp; &nbsp; {	<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&quot;type&quot;:&quot;click&quot;,<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&quot;name&quot;:&quot;今日歌曲&quot;,<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&quot;key&quot;:&quot;V1001_TODAY_MUSIC&quot;<br /> &nbsp; &nbsp; &nbsp;},<br /> &nbsp; &nbsp; &nbsp;{<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &quot;name&quot;:&quot;菜单&quot;,<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &quot;sub_button&quot;:[<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {	<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &quot;type&quot;:&quot;view&quot;,<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &quot;name&quot;:&quot;搜索&quot;,<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &quot;url&quot;:&quot;http://www.soso.com/&quot;<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;},<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &quot;type&quot;:&quot;miniprogram&quot;,<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &quot;name&quot;:&quot;wxa&quot;,<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &quot;url&quot;:&quot;http://mp.weixin.qq.com&quot;,<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &quot;appid&quot;:&quot;wx286b93c14bbf93aa&quot;,<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &quot;pagepath&quot;:&quot;pages/lunar/index&quot;<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; },<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &quot;type&quot;:&quot;click&quot;,<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &quot;name&quot;:&quot;赞一下我们&quot;,<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &quot;key&quot;:&quot;V1001_GOOD&quot;<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}]<br /> &nbsp; &nbsp; &nbsp; }<br />]}<br />
+                                  </p>
+
+</div></div> 
+    </div>
+   
+   
+
+
+</section>
+<!-- /.content -->

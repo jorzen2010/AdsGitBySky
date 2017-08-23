@@ -138,8 +138,8 @@
             <span class="sky-index-itemcontent-title">
                 @Html.DisplayFor(modelItem => item.VideoName)
             </span>
-            <p>课程价格：@Html.DisplayFor(modelItem => item.VideoPrice)</p>
-            @*<p>项目使用率： @Html.DisplayFor(modelItem => item.VideoViewTimes) 人训练过该项目</p>*@
+            @*<p>课程价格：@Html.DisplayFor(modelItem => item.VideoPrice)</p>*@
+            <p>超过1000+人训练过该项目</p>
         </div>
 
         <a class="pull-right btn btn-warning btn-sm" href="@Url.Action("Program", "Wechat", new { bid = ViewBag.babyId, id = item.VideoId })">马上学习</a>
@@ -151,7 +151,7 @@
 
 
 
-<div class="box-footer clearfix">
+@*<div class="box-footer clearfix text-center">
     <ul>
         @Html.PagedListPager((IPagedList)Model, page => Url.Action("Calendar", new { page = page, cid = ViewBag.cid, orderid = ViewBag.orderid }),
     new PagedListRenderOptions
@@ -168,5 +168,5 @@
         PageCountAndCurrentLocationFormat = "第 {0}页 共 {1}页"
     })
     </ul>
-</div>
+</div>*@
    

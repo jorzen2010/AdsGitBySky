@@ -13,16 +13,16 @@
       <publishTime>07/10/2017 09:11:40</publishTime>
     </File>
     <File Include="bin/AdsDal.dll">
-      <publishTime>07/25/2017 15:16:15</publishTime>
+      <publishTime>08/23/2017 16:02:56</publishTime>
     </File>
     <File Include="bin/AdsEntity.dll">
-      <publishTime>07/25/2017 15:16:15</publishTime>
+      <publishTime>08/23/2017 16:02:55</publishTime>
     </File>
     <File Include="bin/AdsServices.dll">
-      <publishTime>07/25/2017 15:16:15</publishTime>
+      <publishTime>08/23/2017 16:02:57</publishTime>
     </File>
     <File Include="bin/AdsWeb.dll">
-      <publishTime>08/09/2017 14:30:42</publishTime>
+      <publishTime>08/23/2017 16:14:18</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>07/10/2017 09:11:41</publishTime>
@@ -4297,7 +4297,7 @@
       <publishTime>07/10/2017 09:11:40</publishTime>
     </File>
     <File Include="Views/Shared/_MenuPartial.cshtml">
-      <publishTime>07/25/2017 14:53:55</publishTime>
+      <publishTime>08/23/2017 16:14:02</publishTime>
     </File>
     <File Include="Views/Shared/_TopPartial.cshtml">
       <publishTime>07/10/2017 09:11:40</publishTime>
@@ -4330,7 +4330,7 @@
       <publishTime>07/24/2017 16:32:29</publishTime>
     </File>
     <File Include="Views/Video/Create.cshtml">
-      <publishTime>08/02/2017 16:26:02</publishTime>
+      <publishTime>08/17/2017 15:16:37</publishTime>
     </File>
     <File Include="Views/Video/Delete.cshtml">
       <publishTime>07/10/2017 09:11:40</publishTime>
@@ -4342,7 +4342,7 @@
       <publishTime>05/09/2017 16:26:56</publishTime>
     </File>
     <File Include="Views/Video/Edit.cshtml">
-      <publishTime>07/10/2017 09:11:40</publishTime>
+      <publishTime>08/17/2017 15:20:04</publishTime>
     </File>
     <File Include="Views/Video/Index - 复制.cshtml">
       <publishTime>05/09/2017 16:26:56</publishTime>
@@ -4393,7 +4393,7 @@
       <publishTime>07/10/2017 09:11:40</publishTime>
     </File>
     <File Include="Views/Wechat/Calendar.cshtml">
-      <publishTime>08/09/2017 14:28:34</publishTime>
+      <publishTime>08/10/2017 11:50:41</publishTime>
     </File>
     <File Include="Views/Wechat/Ceping.cshtml">
       <publishTime>07/25/2017 09:32:54</publishTime>
@@ -4402,10 +4402,10 @@
       <publishTime>07/10/2017 09:11:40</publishTime>
     </File>
     <File Include="Views/Wechat/HeartList.cshtml">
-      <publishTime>08/09/2017 14:29:06</publishTime>
+      <publishTime>08/10/2017 11:49:17</publishTime>
     </File>
     <File Include="Views/Wechat/HeartServices.cshtml">
-      <publishTime>08/04/2017 14:10:34</publishTime>
+      <publishTime>08/10/2017 13:17:02</publishTime>
     </File>
     <File Include="Views/Wechat/Index.cshtml">
       <publishTime>07/10/2017 09:11:40</publishTime>
@@ -4444,7 +4444,7 @@
       <publishTime>07/25/2017 15:16:04</publishTime>
     </File>
     <File Include="Views/Wechat/Program.cshtml">
-      <publishTime>08/03/2017 10:18:52</publishTime>
+      <publishTime>08/10/2017 14:46:19</publishTime>
     </File>
     <File Include="Views/Wechat/ProgrameList.cshtml">
       <publishTime>07/10/2017 09:11:40</publishTime>
@@ -4480,13 +4480,25 @@
       <publishTime>06/08/2017 15:37:34</publishTime>
     </File>
     <File Include="Views/WechatMenu/CreateMenu.cshtml">
-      <publishTime>07/10/2017 09:11:40</publishTime>
+      <publishTime>08/23/2017 15:58:22</publishTime>
+    </File>
+    <File Include="Views/WechatMenu/CreateMenuold.cshtml">
+      <publishTime>07/10/2017 09:11:39</publishTime>
+    </File>
+    <File Include="Views/WechatMenu/CreateWechatMenu.cshtml">
+      <publishTime>08/23/2017 15:57:50</publishTime>
     </File>
     <File Include="Views/WechatMenu/DeleteMenu.cshtml">
       <publishTime>07/10/2017 09:11:40</publishTime>
     </File>
+    <File Include="Views/WechatMenu/DeleteWechatMenu.cshtml">
+      <publishTime>08/23/2017 15:57:50</publishTime>
+    </File>
     <File Include="Views/WechatMenu/GetMenu.cshtml">
       <publishTime>07/10/2017 09:11:40</publishTime>
+    </File>
+    <File Include="Views/WechatMenu/GetWechatMenu.cshtml">
+      <publishTime>08/23/2017 15:57:50</publishTime>
     </File>
     <File Include="Views/WechatPay/Index.cshtml">
       <publishTime>07/26/2017 13:52:19</publishTime>

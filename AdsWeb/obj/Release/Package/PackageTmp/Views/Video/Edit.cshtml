@@ -61,7 +61,7 @@
                                 <img src="@(string.IsNullOrEmpty(Model.VideoPhoto) ? "/Resource/img/nophoto.png" : Model.VideoPhoto)" style="width:100%" id="videoPhoto" />
                             </div>
                             <div class="col-sm-5">
-                                <input type="hidden" name="VideoPhoto" />
+                                <input type="hidden" name="VideoPhoto" id="VideoPhoto" value="@Model.VideoPhoto" />
                                 <button class="btn btn-default" id="videoImgBtn" type="button">
                                     选择文件
                                 </button>

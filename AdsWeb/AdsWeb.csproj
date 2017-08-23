@@ -1572,6 +1572,10 @@
     <Content Include="WechatResource\img\heart.jpg" />
     <Content Include="WechatResource\img\user1-128x128.jpg" />
     <Content Include="WechatResource\img\videodemo.jpg" />
+    <Content Include="WechatResource\img\videodemo2.jpg" />
+    <Content Include="WechatResource\img\videodemo3.jpg" />
+    <Content Include="WechatResource\img\videodemo5.jpg" />
+    <Content Include="WechatResource\img\videodemo6.jpg" />
     <Content Include="WechatResource\img\warning.jpg" />
     <Content Include="WechatResource\ionicons-2.0.1\css\ionicons.css" />
     <Content Include="WechatResource\ionicons-2.0.1\css\ionicons.min.css" />
@@ -1751,9 +1755,6 @@
     <Content Include="Views\Wechat\StarBabyPay.cshtml" />
     <Content Include="Views\Wechat\StarBabyPay - 复制.cshtml" />
     <Content Include="Views\Test\Index.cshtml" />
-    <Content Include="Views\WechatMenu\GetMenu.cshtml" />
-    <Content Include="Views\WechatMenu\DeleteMenu.cshtml" />
-    <Content Include="Views\WechatMenu\CreateMenu.cshtml" />
     <Content Include="Views\WechatPay\Pay.cshtml" />
     <Content Include="Views\Wechat\StarBabyEdit.cshtml" />
     <Content Include="Views\Wechat\HeartServices.cshtml" />
@@ -1768,6 +1769,10 @@
     <Content Include="Views\Free\FreeScale.cshtml" />
     <Content Include="Views\Free\FreeHeartServices.cshtml" />
     <Content Include="Views\Free\FreeHeartList.cshtml" />
+    <Content Include="Views\WechatMenu\CreateWechatMenu.cshtml" />
+    <Content Include="Views\WechatMenu\DeleteWechatMenu.cshtml" />
+    <Content Include="Views\WechatMenu\GetWechatMenu.cshtml" />
+    <Content Include="Views\WechatMenu\CreateMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -21,7 +21,7 @@
 {
      <div class="row skyindexrow">
 
-            <img src="~/WechatResource/img/user1-128x128.jpg" alt="User Avatar" class="pull-left sky-index-itemimg">
+         <img src="@item.VideoPhoto" alt="User Avatar" class="pull-left sky-index-itemimg">
 
             <div class="pull-left sky-index-itemcontent">
                 <span class="sky-index-itemcontent-title">
@@ -37,7 +37,7 @@
 
 }
 
-<div class="box-footer clearfix">
+@*<div class="box-footer clearfix text-center">
     <ul>
         @Html.PagedListPager((IPagedList)Model, page => Url.Action("Ceping", new { page = page }),
     new PagedListRenderOptions
@@ -54,7 +54,7 @@
         PageCountAndCurrentLocationFormat = "第 {0}页 共 {1}页"
     })
     </ul>
-</div>
+</div>*@
 
 
        
