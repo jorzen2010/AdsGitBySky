@@ -21,6 +21,8 @@ namespace AdsWeb.Controllers
         // GET: /Video/
         public ActionResult Index(int? page)
         {
+
+            LogHelper.Info("查看视频");
             Pager pager = new Pager();
             pager.table = "AdsVideo";
             pager.strwhere = "1=1";

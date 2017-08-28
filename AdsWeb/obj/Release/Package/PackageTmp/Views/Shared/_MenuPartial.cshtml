@@ -68,7 +68,7 @@
 
         <li class="treeview">
             <a href="#">
-                <i class="fa fa-file-text-o"></i> <span>微信菜单管理</span>
+                <i class="fa fa-file-text-o"></i> <span>微信功能管理</span>
                 <span class="pull-right-container">
                     <i class="fa fa-angle-left pull-right"></i>
                 </span>
@@ -77,6 +77,7 @@
                 <li><a href="@Url.Action("CreateWechatMenu","WechatMenu")">创建微信菜单</a></li>
                 <li><a href="@Url.Action("GetWechatMenu","WechatMenu")">查询微信菜单</a></li>
                 <li><a href="@Url.Action("DeleteWechatMenu","WechatMenu")" onclick="return confirm('你确定要删除微信菜单吗？');">删除微信菜单</a></li>
+                <li><a href="@Url.Action("SendTempletMessage", "WechatMessage")">发送模板消息</a></li>
             </ul>
         </li>
 

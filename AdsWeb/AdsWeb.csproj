@@ -196,6 +196,7 @@
     <Compile Include="Controllers\VideoController.cs" />
     <Compile Include="Controllers\WapController.cs" />
     <Compile Include="Controllers\WechatController.cs" />
+    <Compile Include="Controllers\WechatMessageController.cs" />
     <Compile Include="Controllers\WechatPayController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -236,6 +237,7 @@
     <Compile Include="WechatServices\WechatApi.cs" />
     <Compile Include="WechatServices\WechatJsServices.cs" />
     <Compile Include="WechatServices\WechatMenuServices.cs" />
+    <Compile Include="WechatServices\WechatMessageServices.cs" />
     <Compile Include="WechatServices\WechatService.cs" />
     <Compile Include="wxapi.ashx.cs">
       <DependentUpon>wxapi.ashx</DependentUpon>
@@ -1773,6 +1775,8 @@
     <Content Include="Views\WechatMenu\DeleteWechatMenu.cshtml" />
     <Content Include="Views\WechatMenu\GetWechatMenu.cshtml" />
     <Content Include="Views\WechatMenu\CreateMenu.cshtml" />
+    <Content Include="Views\WechatMessage\SendTempletMessage.cshtml" />
+    <Content Include="Views\WechatMessage\TempletMessage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

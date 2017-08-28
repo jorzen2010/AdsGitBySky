@@ -2,14 +2,128 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Text;
+using System.Xml;
 using Common;
 using AdsEntity.WechatEntity;
 using Newtonsoft.Json;
+using System.Configuration;
 
 namespace AdsWeb.WechatServices
 {
     public class WechatService
     {
+        public static void Auth()
+        {
+            Configuration config = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
+            AppSettingsSection appsection = config.GetSection("appSettings") as AppSettingsSection;
+
+            string token = appsection.Settings["WechatToken"].Value.ToString();
+            string echoString = HttpContext.Current.Request.QueryString["echoStr"];
+            string signature = HttpContext.Current.Request.QueryString["signature"];
+            string timestamp = HttpContext.Current.Request.QueryString["timestamp"];
+            string nonce = HttpContext.Current.Request.QueryString["nonce"];
+
+            string[] ArrTmp = { token, timestamp, nonce };
+
+            Array.Sort(ArrTmp);
+            string tmpStr = string.Join("", ArrTmp);
+
+            tmpStr = SkyEncrypt.SHA1(tmpStr);
+
+            tmpStr = tmpStr.ToLower();
+
+            if (tmpStr == signature)
+            {
+                System.Web.HttpContext.Current.Response.Write(echoString);
+                System.Web.HttpContext.Current.Response.End();
+            }
+            else
+            {
+                System.Web.HttpContext.Current.Response.Write("验证不通过");
+                System.Web.HttpContext.Current.Response.End();
+            }
+
+        }
+
+        //处理微信信息
+        public static void  Excute(string postStr)
+        {
+
+            Configuration config = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
+            AppSettingsSection appsection = config.GetSection("appSettings") as AppSettingsSection;
+
+            string WechatId = appsection.Settings["WechatId"].Value.ToString();
+
+            LogHelper.Info("构建xml");
+
+            XmlDocument xmldoc = new XmlDocument();
+            LogHelper.Info("加载字符串");
+            xmldoc.Load(new System.IO.MemoryStream(System.Text.Encoding.GetEncoding("GB2312").GetBytes(postStr)));
+            LogHelper.Info("查找字节");
+            XmlNode MsgType = xmldoc.SelectSingleNode("/xml/MsgType");
+            XmlNode FromUserName=xmldoc.SelectSingleNode("/xml/FromUserName");
+            LogHelper.Info(MsgType.InnerText);
+
+            if (MsgType != null)
+            {
+                if (MsgType.InnerText == "event")
+                {
+                    //这是非常好用的一个地方，打开公众号，我就会和你打招呼。
+                    WechatMessageServices.ResponseTextMessage(FromUserName.InnerText, WechatId, "Hi，我的朋友，欢迎你回来。");
+                }
+                else
+                {
+                    switch (MsgType.InnerText)
+                    {
+                        case "image":
+                            WechatMessageServices.ResponseTextMessage(FromUserName.InnerText, WechatId, "好好玩的图片啊，你想告诉我什么呢？");
+                            break;
+                        case "text":
+                            WechatMessageServices.ResponseTextMessage(FromUserName.InnerText, WechatId, "您好，这是自闭症儿童家庭训练和评估系统，请点击下方菜单开始使用。\n\n 如有疑问，您可以拨打0451-55625809联系艾医生进行咨询。");
+                            break;
+
+                        default:
+                            WechatMessageServices.ResponseTextMessage(FromUserName.InnerText, WechatId, "祝星星宝贝健康快乐成长。");
+                            break;
+
+
+                        //case "voice":
+                        //    WechatMessageServices.ResponseTextMessage(FromUserName.InnerText, WechatId, "这是对语音的回复");
+                        //    break;
+                        //case "video":
+                        //    WechatMessageServices.ResponseTextMessage(FromUserName.InnerText, WechatId, "这是对视频的回复");
+                        //    break;
+                        //case "shortvideo":
+                        //    WechatMessageServices.ResponseTextMessage(FromUserName.InnerText, WechatId, "这是对小视频的回复");
+                        //    break;
+                        //case "location":
+                        //    WechatMessageServices.ResponseTextMessage(FromUserName.InnerText, WechatId, "这是对地理位置的回复");
+                        //    break;
+                        //case "link":
+                        //    WechatMessageServices.ResponseTextMessage(FromUserName.InnerText, WechatId, "这是对链接的回复");
+                        //    break;
+
+
+                    }
+                }
+
+
+            }
+            else
+            {
+
+                WechatMessageServices.ResponseTextMessage(FromUserName.InnerText, WechatId, "success");
+                
+            }
+
+           
+
+
+        }
+
+
+
         public static string wechatApi(string operate, string access_token, string postdata)
         {
             string result = "";

@@ -22,7 +22,7 @@
       <publishTime>08/23/2017 16:02:57</publishTime>
     </File>
     <File Include="bin/AdsWeb.dll">
-      <publishTime>08/23/2017 16:14:18</publishTime>
+      <publishTime>08/28/2017 15:43:56</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>07/10/2017 09:11:41</publishTime>
@@ -4225,10 +4225,10 @@
       <publishTime>08/04/2017 15:58:23</publishTime>
     </File>
     <File Include="Views/Free/FreeHeartList.cshtml">
-      <publishTime>08/04/2017 16:32:21</publishTime>
+      <publishTime>08/10/2017 13:07:21</publishTime>
     </File>
     <File Include="Views/Free/FreeHeartServices.cshtml">
-      <publishTime>08/04/2017 16:33:53</publishTime>
+      <publishTime>08/28/2017 15:40:06</publishTime>
     </File>
     <File Include="Views/Free/FreeScale.cshtml">
       <publishTime>08/04/2017 15:44:54</publishTime>
@@ -4297,7 +4297,7 @@
       <publishTime>07/10/2017 09:11:40</publishTime>
     </File>
     <File Include="Views/Shared/_MenuPartial.cshtml">
-      <publishTime>08/23/2017 16:14:02</publishTime>
+      <publishTime>08/24/2017 11:37:02</publishTime>
     </File>
     <File Include="Views/Shared/_TopPartial.cshtml">
       <publishTime>07/10/2017 09:11:40</publishTime>
@@ -4500,6 +4500,12 @@
     <File Include="Views/WechatMenu/GetWechatMenu.cshtml">
       <publishTime>08/23/2017 15:57:50</publishTime>
     </File>
+    <File Include="Views/WechatMessage/SendTempletMessage.cshtml">
+      <publishTime>08/24/2017 11:41:06</publishTime>
+    </File>
+    <File Include="Views/WechatMessage/TempletMessage.cshtml">
+      <publishTime>08/24/2017 11:49:12</publishTime>
+    </File>
     <File Include="Views/WechatPay/Index.cshtml">
       <publishTime>07/26/2017 13:52:19</publishTime>
     </File>
@@ -4543,7 +4549,7 @@
       <publishTime>07/10/2017 09:11:40</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>08/02/2017 15:23:42</publishTime>
+      <publishTime>08/28/2017 15:13:54</publishTime>
     </File>
     <File Include="wechat/css/AdminLTE.css">
       <publishTime>05/31/2017 10:25:20</publishTime>
@@ -4910,6 +4916,18 @@
     </File>
     <File Include="WechatResource/img/videodemo.jpg">
       <publishTime>08/04/2017 09:55:07</publishTime>
+    </File>
+    <File Include="WechatResource/img/videodemo2.jpg">
+      <publishTime>08/10/2017 11:04:57</publishTime>
+    </File>
+    <File Include="WechatResource/img/videodemo3.jpg">
+      <publishTime>08/10/2017 11:05:38</publishTime>
+    </File>
+    <File Include="WechatResource/img/videodemo5.jpg">
+      <publishTime>08/10/2017 11:07:03</publishTime>
+    </File>
+    <File Include="WechatResource/img/videodemo6.jpg">
+      <publishTime>08/10/2017 11:08:04</publishTime>
     </File>
     <File Include="WechatResource/img/warning.jpg">
       <publishTime>08/04/2017 09:55:07</publishTime>

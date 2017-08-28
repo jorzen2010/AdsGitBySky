@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Text;
 using Common;
+using System.IO;
+using AdsWeb.WechatServices;
 
 namespace AdsWeb
 {
@@ -14,30 +17,35 @@ namespace AdsWeb
 
         public void ProcessRequest(HttpContext context)
         {
-            string token = "zhaozheng";
-            string echoString = HttpContext.Current.Request.QueryString["echoStr"];
-            string signature = HttpContext.Current.Request.QueryString["signature"];
-            string timestamp = HttpContext.Current.Request.QueryString["timestamp"];
-            string nonce = HttpContext.Current.Request.QueryString["nonce"];
-
-            string[] ArrTmp = { token, timestamp, nonce };
-
-            Array.Sort(ArrTmp);
-            string tmpStr = string.Join("", ArrTmp);
-
-            tmpStr = SkyEncrypt.SHA1(tmpStr);
-
-            tmpStr = tmpStr.ToLower();
-
-            if (tmpStr == signature)
+           
+            if (System.Web.HttpContext.Current.Request.RequestType == "POST")
             {
-                System.Web.HttpContext.Current.Response.Write(echoString);
-                System.Web.HttpContext.Current.Response.End();
+               
+                //*********************************自动应答代码块*********************************
+                string postString = string.Empty;
+                using (Stream stream = HttpContext.Current.Request.InputStream)
+                {
+                    Byte[] postBytes = new Byte[stream.Length];
+                    stream.Read(postBytes, 0, (Int32)stream.Length);
+                    //接收的消息为GBK格式
+                    postString = Encoding.GetEncoding("GBK").GetString(postBytes);
+
+                    WechatService.Excute(postString);
+
+                    //string responseContent = WechatService.Excute(postString);
+                    ////返回的消息为UTF-8格式
+                    //HttpContext.Current.Response.ContentEncoding = Encoding.UTF8;
+                    //HttpContext.Current.Response.Write(responseContent);
+                }
+                //********************************自动应答代码块end*******************************
+
+
+
             }
             else
             {
-                System.Web.HttpContext.Current.Response.Write("验证不通过");
-                System.Web.HttpContext.Current.Response.End();
+                //微信接入的测试
+                WechatService.Auth();
             }
 
 
