@@ -69,8 +69,31 @@ namespace AdsWeb.WechatServices
             {
                 if (MsgType.InnerText == "event")
                 {
-                    //这是非常好用的一个地方，打开公众号，我就会和你打招呼。
-                    WechatMessageServices.ResponseTextMessage(FromUserName.InnerText, WechatId, "Hi，我的朋友，欢迎你回来。");
+                    XmlNode EventContent = xmldoc.SelectSingleNode("/xml/Event");
+                    switch (EventContent.InnerText)
+                    {
+                        case "subscribe":
+                            WechatMessageServices.ResponseTextMessage(FromUserName.InnerText, WechatId, "您终于来了，感谢您的关注!");
+                            break;
+                        case "unsubscribe":
+                            WechatMessageServices.ResponseTextMessage(FromUserName.InnerText, WechatId, "我哪里做的不好了，你居然敢离开我。");
+                            LogHelper.Info("我哪里做的不好了，你居然敢离开我。");
+                            break;
+                        case "CLICK":
+                            WechatMessageServices.ResponseTextMessage(FromUserName.InnerText, WechatId, "感谢您的认可。");
+                            break;
+                        case "LOCATION":
+                            WechatMessageServices.ResponseTextMessage(FromUserName.InnerText, WechatId, "你刚刚上报了你的地理位置，我已收到。但你请放心，我绝对不会告诉其他人的。");
+                            break;
+                        default:
+                            //这是非常好用的一个地方，打开公众号，我就会和你打招呼。
+                            WechatMessageServices.ResponseTextMessage(FromUserName.InnerText, WechatId, "Hi，我的朋友，欢迎你回来。如有疑问可回复“帮助”。");
+                            break;
+
+                    }
+
+
+                  
                 }
                 else
                 {
@@ -87,7 +110,7 @@ namespace AdsWeb.WechatServices
                             WechatMessageServices.ResponseTextMessage(FromUserName.InnerText, WechatId, "祝星星宝贝健康快乐成长。");
                             break;
 
-
+                        //这几个一般用不到，我就没做判断。
                         //case "voice":
                         //    WechatMessageServices.ResponseTextMessage(FromUserName.InnerText, WechatId, "这是对语音的回复");
                         //    break;

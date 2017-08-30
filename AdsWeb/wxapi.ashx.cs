@@ -32,10 +32,6 @@ namespace AdsWeb
 
                     WechatService.Excute(postString);
 
-                    //string responseContent = WechatService.Excute(postString);
-                    ////返回的消息为UTF-8格式
-                    //HttpContext.Current.Response.ContentEncoding = Encoding.UTF8;
-                    //HttpContext.Current.Response.Write(responseContent);
                 }
                 //********************************自动应答代码块end*******************************
 
