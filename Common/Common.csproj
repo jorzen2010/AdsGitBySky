@@ -60,6 +60,7 @@
     <Compile Include="CommonDal.cs" />
     <Compile Include="CommonTools.cs" />
     <Compile Include="CommonValidate.cs" />
+    <Compile Include="CurlFileTools.cs" />
     <Compile Include="DataConvertHelper.cs" />
     <Compile Include="DateTools.cs" />
     <Compile Include="DiguiMenu.cs" />

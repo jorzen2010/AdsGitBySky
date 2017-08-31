@@ -19,6 +19,7 @@ namespace AdsWeb.Controllers
             return View();
 
         }
+       
         public ActionResult SendTempletMessage()
         {
             WechatTemplateMessage msgData = new WechatTemplateMessage

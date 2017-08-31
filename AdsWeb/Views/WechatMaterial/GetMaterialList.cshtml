@@ -1,0 +1,71 @@
+﻿@using AdsEntity.WechatEntity;
+
+ <!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        素材管理
+        
+    </h1>
+</section>
+<!-- Main content -->
+<section class="content">
+
+    @if (ViewBag.msg == "success")
+    {
+
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th class="col-sm-3">
+                        media_id
+                    </th>
+                    <th class="col-sm-2">
+                        图片名称
+                    </th>
+                    <th class="col-sm-2">
+                        更新时间
+                    </th>
+                    <th class="col-sm-3">
+                        地址
+                    </th>
+
+  
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (AdsEntity.WechatEntity.MaterialItem item in ViewData["materialList"] as List<MaterialItem>)
+                {
+
+                    <tr>
+                        <td>
+                            @item.media_id
+                        </td>
+                        <td>
+                            @item.name
+                        </td>
+                        <td>
+                            @item.update_time
+                        </td>
+                        <td>
+                            @item.url
+                        </td>
+
+
+                    </tr>
+
+                }
+
+            </tbody>
+        </table>
+    }
+    else
+    { 
+      <div class="well">
+        <h4 class="text-red">@ViewBag.msg</h4>
+        @ViewBag.content
+    </div>
+    }
+
+  
+</section>
+<!-- /.content -->

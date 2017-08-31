@@ -80,10 +80,11 @@ namespace AdsWeb.WechatServices
                             LogHelper.Info("我哪里做的不好了，你居然敢离开我。");
                             break;
                         case "CLICK":
-                            WechatMessageServices.ResponseTextMessage(FromUserName.InnerText, WechatId, "感谢您的认可。");
+                            WechatMessageServices.ResponseTextMessage(FromUserName.InnerText, WechatId, "感谢您的认可,请将这张图片发给有需要的家长。");
+                            WechatMessageServices.ResponseImageMessage(FromUserName.InnerText, WechatId, "slv-URo_tcvYdETXRXCkYC9LsbMh2atzB72d0NznT0o");
                             break;
                         case "LOCATION":
-                            WechatMessageServices.ResponseTextMessage(FromUserName.InnerText, WechatId, "你刚刚上报了你的地理位置，我已收到。但你请放心，我绝对不会告诉其他人的。");
+                            WechatMessageServices.ResponseTextMessage(FromUserName.InnerText, WechatId, "Hi，我的朋友，欢迎你回来。如有疑问可回复“帮助”。");
                             break;
                         default:
                             //这是非常好用的一个地方，打开公众号，我就会和你打招呼。

@@ -65,6 +65,7 @@
     <Compile Include="WechatEntity\WechatJsModels.cs" />
     <Compile Include="WechatEntity\WechatMenu.cs" />
     <Compile Include="WechatEntity\WechatMessage.cs" />
+    <Compile Include="WechatEntity\WechatMaterialModels.cs" />
     <Compile Include="WechatEntity\WechatModels.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -192,6 +192,7 @@
     <Compile Include="Controllers\SysUserController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\TongjiController.cs" />
+    <Compile Include="Controllers\WechatMaterialController.cs" />
     <Compile Include="Controllers\WechatMenuController.cs" />
     <Compile Include="Controllers\VideoController.cs" />
     <Compile Include="Controllers\WapController.cs" />
@@ -236,6 +237,7 @@
     <Compile Include="WechatServices\AccessTokenService.cs" />
     <Compile Include="WechatServices\WechatApi.cs" />
     <Compile Include="WechatServices\WechatJsServices.cs" />
+    <Compile Include="WechatServices\WechatMaterialServices.cs" />
     <Compile Include="WechatServices\WechatMenuServices.cs" />
     <Compile Include="WechatServices\WechatMessageServices.cs" />
     <Compile Include="WechatServices\WechatService.cs" />
@@ -1777,6 +1779,12 @@
     <Content Include="Views\WechatMenu\CreateMenu.cshtml" />
     <Content Include="Views\WechatMessage\SendTempletMessage.cshtml" />
     <Content Include="Views\WechatMessage\TempletMessage.cshtml" />
+    <Content Include="Views\WechatMaterial\AddMaterial.cshtml" />
+    <Content Include="Views\WechatMaterial\MaterialList.cshtml" />
+    <Content Include="Views\WechatMaterial\TempMaterialList.cshtml" />
+    <Content Include="Views\WechatMaterial\GetMaterialList.cshtml" />
+    <Content Include="Views\WechatMaterial\UploadMaterial - 复制.cshtml" />
+    <Content Include="Views\WechatMessage\SendImageMessage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
