@@ -62,11 +62,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Setting.cs" />
     <Compile Include="WechatEntity\WechatAccessToken.cs" />
+    <Compile Include="WechatEntity\WechatCustomerServiceModels.cs" />
     <Compile Include="WechatEntity\WechatJsModels.cs" />
     <Compile Include="WechatEntity\WechatMenu.cs" />
     <Compile Include="WechatEntity\WechatMessage.cs" />
     <Compile Include="WechatEntity\WechatMaterialModels.cs" />
     <Compile Include="WechatEntity\WechatModels.cs" />
+    <Compile Include="WechatEntity\WechatQRModels.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

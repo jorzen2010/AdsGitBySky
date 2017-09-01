@@ -80,8 +80,14 @@ namespace AdsWeb.WechatServices
                             LogHelper.Info("我哪里做的不好了，你居然敢离开我。");
                             break;
                         case "CLICK":
-                            WechatMessageServices.ResponseTextMessage(FromUserName.InnerText, WechatId, "感谢您的认可,请将这张图片发给有需要的家长。");
-                            WechatMessageServices.ResponseImageMessage(FromUserName.InnerText, WechatId, "slv-URo_tcvYdETXRXCkYC9LsbMh2atzB72d0NznT0o");
+
+                           string token = AccessTokenService.GetAccessToken();
+
+                           WechatCustomerServices.SendCustomerServiceTextMessge(token, "感谢您的认可,正在为您生成专属邀请卡。", FromUserName.InnerText);
+                           WechatCustomerServices.SendCustomerServiceImageMessge(token, "slv-URo_tcvYdETXRXCkYC9LsbMh2atzB72d0NznT0o", FromUserName.InnerText);
+                           WechatCustomerServices.SendCustomerServiceTextMessge(token, "你可以把这张图片发送给需要的人，让更多星星的孩子能够健康成长。", FromUserName.InnerText);
+
+
                             break;
                         case "LOCATION":
                             WechatMessageServices.ResponseTextMessage(FromUserName.InnerText, WechatId, "Hi，我的朋友，欢迎你回来。如有疑问可回复“帮助”。");

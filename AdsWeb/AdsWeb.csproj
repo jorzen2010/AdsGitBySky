@@ -199,6 +199,7 @@
     <Compile Include="Controllers\WechatController.cs" />
     <Compile Include="Controllers\WechatMessageController.cs" />
     <Compile Include="Controllers\WechatPayController.cs" />
+    <Compile Include="Controllers\WechatQRController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -214,9 +215,6 @@
     <Compile Include="plugins\ueditor\net\App_Code\UploadHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="test.ashx.cs">
-      <DependentUpon>test.ashx</DependentUpon>
-    </Compile>
     <Compile Include="WechatPay\business\DownloadBill.cs" />
     <Compile Include="WechatPay\business\JsApiPay.cs" />
     <Compile Include="WechatPay\business\MicroPay.cs" />
@@ -236,10 +234,12 @@
     <Compile Include="WechatPay\lib\WxPayApi.cs" />
     <Compile Include="WechatServices\AccessTokenService.cs" />
     <Compile Include="WechatServices\WechatApi.cs" />
+    <Compile Include="WechatServices\WechatCustomerServices.cs" />
     <Compile Include="WechatServices\WechatJsServices.cs" />
     <Compile Include="WechatServices\WechatMaterialServices.cs" />
     <Compile Include="WechatServices\WechatMenuServices.cs" />
     <Compile Include="WechatServices\WechatMessageServices.cs" />
+    <Compile Include="WechatServices\WechatQRServices.cs" />
     <Compile Include="WechatServices\WechatService.cs" />
     <Compile Include="wxapi.ashx.cs">
       <DependentUpon>wxapi.ashx</DependentUpon>
@@ -1679,7 +1679,6 @@
     <Content Include="Views\Shared\_WapLayout.cshtml" />
     <Content Include="Views\Wap\Index.cshtml" />
     <Content Include="Views\Wap\List.cshtml" />
-    <Content Include="test.ashx" />
     <Content Include="Views\Wechat\Index.cshtml" />
     <Content Include="WechatResource\font-awesome-4.7.0\fonts\fontawesome-webfont.eot" />
     <Content Include="WechatResource\font-awesome-4.7.0\fonts\fontawesome-webfont.ttf" />
@@ -1785,6 +1784,7 @@
     <Content Include="Views\WechatMaterial\GetMaterialList.cshtml" />
     <Content Include="Views\WechatMaterial\UploadMaterial - 复制.cshtml" />
     <Content Include="Views\WechatMessage\SendImageMessage.cshtml" />
+    <Content Include="Views\WechatQR\Result.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

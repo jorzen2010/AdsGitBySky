@@ -13,14 +13,3 @@ E:\2017\AdsGitBySky\Common\bin\Debug\PagedList.dll
 E:\2017\AdsGitBySky\Common\bin\Debug\PagedList.Mvc.dll
 E:\2017\AdsGitBySky\Common\bin\Debug\PagedList.xml
 E:\2017\AdsGitBySky\Common\bin\Debug\PagedList.Mvc.xml
-D:\MyPro\2017\AdsGitBySky\Common\bin\Debug\Common.dll
-D:\MyPro\2017\AdsGitBySky\Common\bin\Debug\Common.pdb
-D:\MyPro\2017\AdsGitBySky\Common\bin\Debug\ChnCharInfo.dll
-D:\MyPro\2017\AdsGitBySky\Common\bin\Debug\Microsoft.ApplicationBlocks.Data.dll
-D:\MyPro\2017\AdsGitBySky\Common\bin\Debug\PagedList.dll
-D:\MyPro\2017\AdsGitBySky\Common\bin\Debug\PagedList.Mvc.dll
-D:\MyPro\2017\AdsGitBySky\Common\bin\Debug\PagedList.xml
-D:\MyPro\2017\AdsGitBySky\Common\bin\Debug\PagedList.Mvc.xml
-D:\MyPro\2017\AdsGitBySky\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
-D:\MyPro\2017\AdsGitBySky\Common\obj\Debug\Common.dll
-D:\MyPro\2017\AdsGitBySky\Common\obj\Debug\Common.pdb
