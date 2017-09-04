@@ -233,6 +233,7 @@
     <Compile Include="WechatPay\lib\Notify.cs" />
     <Compile Include="WechatPay\lib\WxPayApi.cs" />
     <Compile Include="WechatServices\AccessTokenService.cs" />
+    <Compile Include="WechatServices\MyWechatServices.cs" />
     <Compile Include="WechatServices\WechatApi.cs" />
     <Compile Include="WechatServices\WechatCustomerServices.cs" />
     <Compile Include="WechatServices\WechatJsServices.cs" />

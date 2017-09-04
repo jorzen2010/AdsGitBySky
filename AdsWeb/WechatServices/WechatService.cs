@@ -82,25 +82,19 @@ namespace AdsWeb.WechatServices
                         case "CLICK":
 
                            string token = AccessTokenService.GetAccessToken();
-
-                           WechatCustomerServices.SendCustomerServiceTextMessge(token, "感谢您的认可,正在为您生成专属邀请卡。", FromUserName.InnerText);
-                           WechatCustomerServices.SendCustomerServiceImageMessge(token, "slv-URo_tcvYdETXRXCkYC9LsbMh2atzB72d0NznT0o", FromUserName.InnerText);
-                           WechatCustomerServices.SendCustomerServiceTextMessge(token, "你可以把这张图片发送给需要的人，让更多星星的孩子能够健康成长。", FromUserName.InnerText);
-
-
+                           string PreMsg= "感谢您的认可,正在为您生成专属邀请卡。";
+                           string cardMediaId="slv-URo_tcvYdETXRXCkYC9LsbMh2atzB72d0NznT0o";
+                           string LastMsg="你可以把这张图片发送给需要的人，让更多星星的孩子能够健康成长。";
+                           MyWechatServices.invitationCard(token, FromUserName.InnerText, PreMsg, cardMediaId, LastMsg);
                             break;
                         case "LOCATION":
-                            WechatMessageServices.ResponseTextMessage(FromUserName.InnerText, WechatId, "Hi，我的朋友，欢迎你回来。如有疑问可回复“帮助”。");
+                            WechatMessageServices.ResponseSuccessMessage(FromUserName.InnerText, WechatId);
                             break;
                         default:
                             //这是非常好用的一个地方，打开公众号，我就会和你打招呼。
-                            WechatMessageServices.ResponseTextMessage(FromUserName.InnerText, WechatId, "Hi，我的朋友，欢迎你回来。如有疑问可回复“帮助”。");
+                            WechatMessageServices.ResponseSuccessMessage(FromUserName.InnerText, WechatId);
                             break;
-
-                    }
-
-
-                  
+                    }                
                 }
                 else
                 {
@@ -116,7 +110,6 @@ namespace AdsWeb.WechatServices
                         default:
                             WechatMessageServices.ResponseTextMessage(FromUserName.InnerText, WechatId, "祝星星宝贝健康快乐成长。");
                             break;
-
                         //这几个一般用不到，我就没做判断。
                         //case "voice":
                         //    WechatMessageServices.ResponseTextMessage(FromUserName.InnerText, WechatId, "这是对语音的回复");
@@ -133,8 +126,6 @@ namespace AdsWeb.WechatServices
                         //case "link":
                         //    WechatMessageServices.ResponseTextMessage(FromUserName.InnerText, WechatId, "这是对链接的回复");
                         //    break;
-
-
                     }
                 }
 

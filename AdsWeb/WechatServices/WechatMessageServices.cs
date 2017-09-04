@@ -20,7 +20,13 @@ namespace AdsWeb.WechatServices
 
         }
 
-       
+        public static void ResponseSuccessMessage(string ToUserName, string FromUserName)
+        {
+          
+            HttpContext.Current.Response.ContentEncoding = Encoding.UTF8;
+            HttpContext.Current.Response.Write("success");
+
+        }
       
 
         public static void ResponseTextMessage(string ToUserName,string FromUserName,string Content)
