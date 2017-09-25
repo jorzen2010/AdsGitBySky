@@ -59,10 +59,6 @@ namespace AdsWeb.Controllers
 
 
 
-
-
-
-
     //为bootstrap的validate框架写一个验证类别，格式为json格式。例如{'valid':true}
     public class ValidObj
     {
