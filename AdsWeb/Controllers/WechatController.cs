@@ -882,7 +882,7 @@ namespace AdsWeb.Controllers
                 
                 baby.BabyAvatar = "~/wechat/img/star.jpg";
                 baby.BabyRegTime = System.DateTime.Now;
-                baby.BabyExpiredTime = System.DateTime.Now.AddYears(5);
+                baby.BabyExpiredTime = System.DateTime.Now.AddYears(1);
 
                 unitOfWork.adsBabysRepository.Insert(baby);
                 unitOfWork.Save();
