@@ -104,7 +104,7 @@ namespace AdsWeb.WechatServices
                             WechatMessageServices.ResponseTextMessage(FromUserName.InnerText, WechatId, "好好玩的图片啊，你想告诉我什么呢？");
                             break;
                         case "text":
-                            WechatMessageServices.ResponseTextMessage(FromUserName.InnerText, WechatId, "您好，这是自闭症儿童家庭训练和评估系统，请点击下方菜单开始使用。\n\n 如有疑问，您可以拨打0451-55625809联系艾医生进行咨询。");
+                            WechatMessageServices.ResponseTextMessage(FromUserName.InnerText, WechatId, "您好，这是自闭症儿童家庭训练和评估系统，请点击下方菜单开始使用。\n\n 如有疑问，您可以拨打13945016428联系瑞夕老师进行咨询。");
                             break;
 
                         default:
