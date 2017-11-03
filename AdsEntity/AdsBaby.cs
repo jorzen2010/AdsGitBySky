@@ -12,6 +12,8 @@ namespace AdsEntity
         [Key]
         public int BabyId { get; set; }
         public int CustomerId { get; set; }
+         [Display(Name = "推荐人编码")]
+        public int SalerCode { get; set; }
          [Display(Name = "姓名")]
         public string BabyName { get; set; }
         [Display(Name = "头像")]

@@ -1,0 +1,70 @@
+﻿@model AdsEntity.AdsSaler
+@{
+    ViewBag.Title = "新增销售";
+}
+@section Topcss {
+    <link href="~/plugins/bootstrap-validator/css/bootstrapValidator.css" rel="stylesheet" type="text/css" />
+    <link href="~/Resource/css/SkyWeb.css" rel="stylesheet" type="text/css" />
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        @ViewBag.Title
+
+    </h1>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <!-- right column -->
+        <div class="col-md-12">
+            <!-- Horizontal Form -->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">@ViewBag.Title</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                @using (Html.BeginForm("Create", "AdsSaler", FormMethod.Post, new { @class = "form-horizontal", @name = "SalerForm", @id = "SalerForm" }))
+                {<div class="box-body">
+                    @Html.AntiForgeryToken()
+                 
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.SalerName, new { @class = "control-label col-sm-2" })
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.SalerName, new { @class = "form-control"})
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.SalerCode, new { @class = "control-label col-sm-2" })
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.SalerCode, new { @class = "form-control" })
+                            </div>
+                        </div>
+                      
+                    </div>
+
+                </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <button type="button" class="btn btn-default">取消</button>
+                        <button type="submit" class="btn btn-info pull-right">确定</button>
+                    </div>
+                    <!-- /.box-footer -->
+                }
+            </div>
+            <!-- /.box -->
+        </div>
+        <!--/.col (right) -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->
+
+@section FootScripts {
+    <script type="text/javascript" src="~/plugins/bootstrap-validator/js/bootstrapValidator.js"></script>
+
+}

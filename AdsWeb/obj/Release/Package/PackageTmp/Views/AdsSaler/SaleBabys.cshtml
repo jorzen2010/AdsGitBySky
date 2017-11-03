@@ -1,0 +1,118 @@
+﻿@model StaticPagedList<AdsEntity.AdsBaby>
+@using PagedList;
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "星童管理";
+}
+
+@section Topcss {
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        @ViewBag.salerName 的所有客户 
+        <small>
+        编码是： @ViewBag.salercode
+        </small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> 首页</a></li>
+        <li><a href="#">@ViewBag.Title</a></li>
+        <li class="active">@ViewBag.SmallTitle</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-primary">
+                
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th class="col-sm-1">
+                                    序号
+                                </th>
+                                <th class="col-sm-2">
+                                    客户名称
+                                </th>
+                                <th class="col-sm-2">
+                                    星童名称
+                                </th>
+                                <th class="col-sm-2">
+                                    注册时间
+                                </th>
+                                <th class="col-sm-2">
+                                    到期时间
+                                </th>
+                                <th class="col-sm-3">状态</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.BabyId)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.BabyName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.BabyRegTime)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.BabyExpiredTime)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.BabyRegTime)
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-xs btn-@(item.Babystatus?"success":"danger")">@(item.Babystatus ? "已付费" : "未付费")</button>
+                                    </td>
+                                  
+
+                                </tr>
+
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer clearfix">
+                    <ul class="pull-right">
+                        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page = page }),
+    new PagedListRenderOptions
+    {
+        LinkToPreviousPageFormat = "上一页",
+        LinkToNextPageFormat = "下一页",
+        DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+        DisplayLinkToLastPage = PagedListDisplayMode.Always,
+        DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+        DisplayLinkToNextPage = PagedListDisplayMode.Always,
+        MaximumPageNumbersToDisplay = 5,
+        LinkToFirstPageFormat = "首页",
+        LinkToLastPageFormat = "最后一页",
+        PageCountAndCurrentLocationFormat = "第 {0}页 共 {1}页"
+    })
+                    </ul>
+                </div>
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->
+
+@section FootScripts {
+
+    <script type="text/javascript" src="/plugins/bootbox.min.js"></script>
+    <script type="text/javascript" src="/Resource/js/SkyWeb.js"></script>
+    
+}

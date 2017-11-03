@@ -177,6 +177,7 @@
     <Compile Include="Attributes\CustomAuthorizeAttribute.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdsBabyController.cs" />
+    <Compile Include="Controllers\AdsSalerController.cs" />
     <Compile Include="Controllers\AgeTools.cs" />
     <Compile Include="Controllers\AjaxController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -1757,7 +1758,6 @@
     <Content Include="Views\Home\zhaozheng.cshtml" />
     <Content Include="Views\Wechat\PayDemo.cshtml" />
     <Content Include="Views\Wechat\StarBabyPay.cshtml" />
-    <Content Include="Views\Wechat\StarBabyPay - 复制.cshtml" />
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\WechatPay\Pay.cshtml" />
     <Content Include="Views\Wechat\StarBabyEdit.cshtml" />
@@ -1767,7 +1767,6 @@
     <Content Include="Views\Tongji\ProgramTongji.cshtml" />
     <Content Include="Views\Wechat\PingjiaTongji.cshtml" />
     <Content Include="Views\Tongji\CategoryTongji.cshtml" />
-    <Content Include="Views\Wechat\StarBabyPay - 复制%282%29.cshtml" />
     <Content Include="Views\Shared\_FreeLayout.cshtml" />
     <Content Include="Views\Free\FreeBaogaoDetail.cshtml" />
     <Content Include="Views\Free\FreeScale.cshtml" />
@@ -1786,6 +1785,11 @@
     <Content Include="Views\WechatMaterial\UploadMaterial - 复制.cshtml" />
     <Content Include="Views\WechatMessage\SendImageMessage.cshtml" />
     <Content Include="Views\WechatQR\Result.cshtml" />
+    <Content Include="Views\AdsSaler\Create.cshtml" />
+    <Content Include="Views\AdsSaler\Index.cshtml" />
+    <Content Include="Views\AdsSaler\SaleBabys.cshtml" />
+    <Content Include="Views\Free\SaleBabys.cshtml" />
+    <Content Include="Views\Wechat\StarBaby - 复制.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

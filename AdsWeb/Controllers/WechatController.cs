@@ -902,7 +902,7 @@ namespace AdsWeb.Controllers
         #region 创建计划新增星宝
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult BabyEdit(AdsBaby baby)
+        public ActionResult StarBabyEdit(AdsBaby baby)
         {
             if (ModelState.IsValid)
             {

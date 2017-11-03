@@ -2,7 +2,7 @@
 @using PagedList;
 @using PagedList.Mvc;
 @{
-    ViewBag.Title = "星宝管理";
+    ViewBag.Title = "星童管理";
 }
 
 @section Topcss {
@@ -71,7 +71,7 @@
                                         @Html.DisplayFor(modelItem => item.BabyRegTime)
                                     </td>
                                     <td>
-                                        <a class="btn btn-xs btn-success" href="">启用</a> 
+                                        <button class="btn btn-xs btn-@(item.Babystatus?"success":"danger")">@(item.Babystatus ? "已付费" : "未付费")</button>
                                     </td>
                                   
 

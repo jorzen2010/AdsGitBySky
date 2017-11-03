@@ -145,6 +145,21 @@ namespace AdsDal
              }
          }
 
+         private GenericRepository<AdsSaler> AdsSalerRepository;
+
+         public GenericRepository<AdsSaler> adsSalerRepository
+         {
+             get
+             {
+
+                 if (this.AdsSalerRepository == null)
+                 {
+                     this.AdsSalerRepository = new GenericRepository<AdsSaler>(context);
+                 }
+                 return AdsSalerRepository;
+             }
+         }
+
      
         
 

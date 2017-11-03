@@ -111,6 +111,22 @@ namespace AdsWeb.Controllers
         }
         #endregion
 
+        public ActionResult SaleBabys(int? page, int id)
+        {
+            Pager pager = new Pager();
+            pager.table = "AdsBaby";
+            pager.strwhere = "SalerCode=" + id;
+            pager.PageSize = 20;
+            pager.PageNo = page ?? 1;
+            pager.FieldKey = "BabyId";
+            pager.FiledOrder = "BabyId desc";
+
+            pager = CommonDal.GetPager(pager);
+            IList<AdsBaby> babys = DataConvertHelper<AdsBaby>.ConvertToModel(pager.EntityDataTable);
+            var babysAsIPageList = new StaticPagedList<AdsBaby>(babys, pager.PageNo, pager.PageSize, pager.Amount);
+            ViewBag.salercode = id;
+            return View(babysAsIPageList);
+        }
 
         //项目相关的页面
         public ActionResult FreeHeartServices(int id)

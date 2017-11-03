@@ -36,5 +36,7 @@ namespace AdsDal
 
         public System.Data.Entity.DbSet<AdsEntity.Scale> Scales { get; set; }
 
+        public System.Data.Entity.DbSet<AdsEntity.AdsSaler> AdsSalers { get; set; }
+
     }
 }

@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdsSaler.cs" />
     <Compile Include="AdsCustomer.cs" />
     <Compile Include="AdsBaby.cs" />
     <Compile Include="AdsOrganization.cs" />
