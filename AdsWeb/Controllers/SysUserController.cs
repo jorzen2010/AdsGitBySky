@@ -113,6 +113,7 @@ namespace AdsWeb.Controllers
         {
             if (ModelState.IsValid)
             {
+                sysuser.SysPassword = Common.CommonTools.ToMd5(sysuser.SysPassword);
                 unitOfWork.sysUsersRepository.Insert(sysuser);
                 unitOfWork.Save();
                 return RedirectToAction("Index");
