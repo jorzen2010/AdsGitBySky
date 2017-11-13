@@ -128,6 +128,11 @@ namespace AdsWeb.Controllers
             return View(babysAsIPageList);
         }
 
+        public ActionResult GetImg(int id)
+        {
+            return View();
+        }
+
         //项目相关的页面
         public ActionResult FreeHeartServices(int id)
         {

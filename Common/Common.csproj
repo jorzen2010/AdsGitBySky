@@ -68,6 +68,7 @@
     <Compile Include="FileServices.cs" />
     <Compile Include="FileTools.cs" />
     <Compile Include="HttpWebResponseUtility.cs" />
+    <Compile Include="ImageTools.cs" />
     <Compile Include="JsonHepler.cs" />
     <Compile Include="LogHelper.cs" />
     <Compile Include="Message.cs" />

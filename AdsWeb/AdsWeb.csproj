@@ -1790,6 +1790,7 @@
     <Content Include="Views\AdsSaler\SaleBabys.cshtml" />
     <Content Include="Views\Free\SaleBabys.cshtml" />
     <Content Include="Views\Wechat\StarBaby - 复制.cshtml" />
+    <Content Include="Views\Free\GetImg.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
