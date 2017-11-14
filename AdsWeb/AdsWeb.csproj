@@ -1449,6 +1449,7 @@
     <Content Include="plugins\下拉刷新\pullToRefresh.js" />
     <Content Include="plugins\下拉刷新\www.jq22.com.txt" />
     <Content Include="Resource\css\SkyWeb.css" />
+    <Content Include="Resource\img\234.jpg" />
     <Content Include="Resource\img\avatar.jpg" />
     <Content Include="Resource\img\fm.png" />
     <Content Include="Resource\img\loading.gif" />

@@ -128,8 +128,17 @@ namespace AdsWeb.Controllers
             return View(babysAsIPageList);
         }
 
-        public ActionResult GetImg(int id)
+        public ActionResult GetImg(int id,string oldpath,int? xx,int ?yy)
         {
+            oldpath = @"/Resource/img/"+oldpath;
+            string filename = System.DateTime.Now.ToUniversalTime().Ticks.ToString() + CommonTools.getRandomNumber(1000, 9999).ToString()+"_" + id.ToString() + ".jpg";
+            string newpath = @"/Resource/img/"+filename;
+            
+            int x =xx?? 285;
+            int y =yy?? 870;
+            string textimg = ImageTools.composeTextPoint(oldpath, id.ToString(), newpath, x, y);
+            ViewBag.img = newpath;
+            ViewBag.salercode = id;
             return View();
         }
 

@@ -111,6 +111,7 @@ namespace Common
             string path = System.Web.HttpContext.Current.Server.MapPath(oldpath);
             System.Drawing.Image imgSrc = System.Drawing.Image.FromFile(path);
 
+
             using (Graphics g = Graphics.FromImage(imgSrc))
             {
                 g.DrawImage(imgSrc, 0, 0, imgSrc.Width, imgSrc.Height);
