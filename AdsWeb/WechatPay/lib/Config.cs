@@ -33,7 +33,8 @@ namespace PsyCoderWechat.WechatPay
         /* 支付结果通知回调url，用于商户接收支付结果
         */
 
-        public const string NOTIFY_URL = "http://wx.zzd123.com/ResultNotify";
+     //   public const string NOTIFY_URL = "http://wx.zzd123.com/ResultNotify";
+        public const string NOTIFY_URL = "http://quxian.woocg.com/ResultNotify";
         
         //   public const string NOTIFY_URL = "http://sm.lmx.ren/ResultNotify";
         //public const string NOTIFY_URL = "/example/ResultNotifyPage.aspx";

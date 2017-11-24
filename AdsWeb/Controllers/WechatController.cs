@@ -126,7 +126,8 @@ namespace AdsWeb.Controllers
          
                 WechatConfig wechatconfig = AccessTokenService.GetWechatConfig();
 
-                string REDIRECT_URI = System.Web.HttpUtility.UrlEncode("http://wx.zzd123.com/Wechat/Index");
+                string REDIRECT_URI = System.Web.HttpUtility.UrlEncode("http://quxian.woocg.com/Wechat/Index");
+           //     string REDIRECT_URI = System.Web.HttpUtility.UrlEncode("http://wx.zzd123.com/Wechat/Index");
 
                 string SCOPE = "snsapi_userinfo";
                 string STATE = sourceUrl;

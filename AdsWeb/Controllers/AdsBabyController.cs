@@ -17,6 +17,7 @@ namespace AdsWeb.Controllers
 {
     public class AdsBabyController : Controller
     {
+        private UnitOfWork unitOfWork = new UnitOfWork();
         private SkyWebContext db = new SkyWebContext();
 
         public ActionResult Index(int? page)
@@ -54,6 +55,31 @@ namespace AdsWeb.Controllers
         public ActionResult Create()
         {
             return View();
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult UpdateStatus(int id, bool status)
+        {
+            Message msg = new Message();
+            if (id == null)
+            {
+                msg.MessageStatus = "false";
+                msg.MessageInfo = "找不到ID";
+            }
+            AdsBaby adsbaby = unitOfWork.adsBabysRepository.GetByID(id);
+            adsbaby.Babystatus = status;
+
+            if (ModelState.IsValid)
+            {
+
+                unitOfWork.adsBabysRepository.Update(adsbaby);
+                unitOfWork.Save();
+                msg.MessageStatus = "true";
+                msg.MessageInfo = "已经更改为" + adsbaby.Babystatus.ToString();
+            }
+            return Json(msg, JsonRequestBehavior.AllowGet);
         }
 
         // POST: /AdsBaby/Create

@@ -7,6 +7,7 @@
 
 @section Topcss {
     <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
 }
 <!-- Content Header (Page header) -->
 <section class="content-header">
@@ -62,17 +63,22 @@
                                         @Html.DisplayFor(modelItem => item.BabyName)
                                     </td>
                                     <td>
+                                        @Html.DisplayFor(modelItem => item.BabySex)
+                                    </td>
+                                    <td>
                                         @Html.DisplayFor(modelItem => item.BabyRegTime)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.BabyExpiredTime)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.BabyRegTime)
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-xs btn-@(item.Babystatus?"success":"danger")">@(item.Babystatus ? "已付费" : "未付费")</button>
-                                    </td>
+                                        @Html.AntiForgeryToken()
+                                         <button class="btn btn-xs btn-@(item.Babystatus?"success":"danger")">@(item.Babystatus ? "已付费" : "未付费")</button>
+                                        <button class="btn btn-xs btn-@(DateTime.Now>item.BabyExpiredTime?"danger":"success")">@(DateTime.Now > item.BabyExpiredTime ? "时间已过期" : "时间未过期")</button>
+                                      
+                                        <button  class="btn btn-xs btn-@(item.Babystatus?"success":"danger")" onclick="ResetStatus(@item.BabyId,@(item.Babystatus?"False":"True"))">@(item.Babystatus ? "正常使用" : "停止使用")</button>
+
+                              </td>
                                   
 
                                 </tr>
@@ -112,7 +118,34 @@
 
 @section FootScripts {
 
+
     <script type="text/javascript" src="/plugins/bootbox.min.js"></script>
     <script type="text/javascript" src="/Resource/js/SkyWeb.js"></script>
-    
-}
+
+<script type="text/javascript">
+
+    function ResetStatus(id,status) {
+        var token = $('[name=__RequestVerificationToken]').val();
+        $.ajax({
+            type: 'POST',
+            url: "/AdsBaby/UpdateStatus",
+            data: {
+                id: id,
+                status:status,
+                __RequestVerificationToken: token,
+            },
+            dataType: "json",
+            success: function (data) {
+                if (data.MessageStatus)
+                { alertconfirm(data.MessageInfo); }
+                else
+                { alertconfirm("更改状态失败！"); }
+
+            }
+        });
+
+    }
+    </script>
+
+
+    }
