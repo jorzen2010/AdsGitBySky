@@ -73,7 +73,7 @@ namespace AdsWeb.WechatServices
                     switch (EventContent.InnerText)
                     {
                         case "subscribe":
-                            WechatMessageServices.ResponseTextMessage(FromUserName.InnerText, WechatId, "您终于来了，感谢您的关注!");
+                            WechatMessageServices.ResponseTextMessage(FromUserName.InnerText, WechatId, "您终于来了，感谢您的关注!\n\n 您是自闭症孩子家长吗？请您点击下方菜单了解本系统。\n\n 如有疑问，您可以拨打13945016428联系瑞夕老师进行咨询。");
                             break;
                         case "unsubscribe":
                             WechatMessageServices.ResponseTextMessage(FromUserName.InnerText, WechatId, "我哪里做的不好了，你居然敢离开我。");
@@ -88,12 +88,12 @@ namespace AdsWeb.WechatServices
                            MyWechatServices.invitationCard(token, FromUserName.InnerText, PreMsg, cardMediaId, LastMsg);
                             break;
                         case "LOCATION":
-                            WechatMessageServices.ResponseSuccessMessage(FromUserName.InnerText, WechatId);
+                           WechatMessageServices.ResponseSuccessMessage(FromUserName.InnerText, WechatId);
                             break;
                         default:
                             //这是非常好用的一个地方，打开公众号，我就会和你打招呼。
-                            WechatMessageServices.ResponseSuccessMessage(FromUserName.InnerText, WechatId);
-                            break;
+                           WechatMessageServices.ResponseSuccessMessage(FromUserName.InnerText, WechatId);
+                           break;
                     }                
                 }
                 else

@@ -37,11 +37,17 @@
                                 <th class="col-sm-1">
                                     序号
                                 </th>
-                                <th class="col-sm-2">
+                                <th class="col-sm-1">
                                     星宝名称
                                 </th>
-                                <th class="col-sm-2">
+                                <th class="col-sm-1">
+                                    家长名称
+                                </th>
+                                <th class="col-sm-1">
                                     性别
+                                </th>
+                                <th class="col-sm-1">
+                                    推荐码
                                 </th>
                                 <th class="col-sm-2">
                                     注册时间
@@ -63,7 +69,13 @@
                                         @Html.DisplayFor(modelItem => item.BabyName)
                                     </td>
                                     <td>
+                                        @Html.DisplayFor(modelItem => item.CustomerId)
+                                    </td>
+                                    <td>
                                         @Html.DisplayFor(modelItem => item.BabySex)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.SalerCode)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.BabyRegTime)

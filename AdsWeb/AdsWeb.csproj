@@ -1453,6 +1453,7 @@
     <Content Include="Resource\img\avatar.jpg" />
     <Content Include="Resource\img\fm.png" />
     <Content Include="Resource\img\loading.gif" />
+    <Content Include="Resource\img\mulu.png" />
     <Content Include="Resource\img\picture.jpg" />
     <Content Include="Resource\img\nophoto.png" />
     <Content Include="Resource\img\videodemo.jpg" />
@@ -1573,6 +1574,7 @@
     <Content Include="WechatResource\img\danger.jpg" />
     <Content Include="WechatResource\img\iconfont-mingpian.png" />
     <Content Include="WechatResource\img\loginbg.jpg" />
+    <Content Include="WechatResource\img\mulu.png" />
     <Content Include="WechatResource\img\star.jpg" />
     <Content Include="WechatResource\img\success.jpg" />
     <Content Include="WechatResource\img\test.png" />

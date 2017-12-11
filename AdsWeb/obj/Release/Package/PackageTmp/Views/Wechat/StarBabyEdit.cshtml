@@ -60,6 +60,13 @@
             <input type="date" name="BabyBirthday" id="BabyBirthday" class="form-control input-lg" value="@Model.BabyBirthday">
         </div>
 
+            <div class="form-group">
+
+           家长手机号：
+          <input type="text" name="CustomerTel" id="CustomerTel" class="form-control input-lg" placeholder="家长手机号">
+           
+        </div>
+      
      <div class="form-group">
          推荐人编码：
          <input type="text" name="SalerCode" id="SalerCode" class="form-control input-lg" value="@Model.SalerCode">
@@ -73,6 +80,16 @@
 
         </div>
   }
+
+    <div class="row">
+        <div class="col-xs-12 text-red">
+            购买须知：<br />
+            1、本产品为虚拟知识类音视频课程产品，不提供试看试听服务。<br />
+            2、本训练内容为虚拟内容服务，购买成功后不退款，请您理解。<br />
+            3、如在购买过程中，有任何问题，请您随时联系客服，我们将竭诚为您服务。<br />
+            4、课程版权归本公众号所有，严禁翻录成分和形式，违者将追究其法律责任。<br />
+        </div>
+    </div>
     <script src="~/plugins/jQuery/jquery-2.2.3.min.js"></script>
     <script type="text/javascript" src="~/plugins/bootstrap-validator/js/bootstrapValidator.js"></script>
 
@@ -120,6 +137,23 @@
                         },
                         numeric: {
                             message: '推荐人编码只能是数字'
+                        }
+
+                    }
+                },
+                CustomerTel: {
+                    validators: {
+                        notEmpty: {
+                            message: '手机号码不能为空'
+                        },
+                        stringLength: {
+                            min: 11,
+                            max: 11,
+                            message: '请输入11位手机号码'
+                        },
+                        regexp: {
+                            regexp: /^1[0-9]{10}$/,
+                            message: '请输入正确的手机号码'
                         }
 
                     }

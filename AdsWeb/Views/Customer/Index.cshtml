@@ -72,13 +72,13 @@
                                 <th class="col-sm-1">
                                     用户名
                                 </th>
-                                <th class="col-sm-2">
-                                    邮箱
-                                </th>
+                                
                                 <th class="col-sm-2">
                                    昵称
                                 </th>
-                               
+                                <th class="col-sm-2">
+                                    注册时间
+                                </th>
                                 <th class="col-sm-5">操作</th>
                             </tr>
                         </thead>
@@ -92,13 +92,13 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.CustomerUserName)
                                     </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.CustomerEmail)
-                                    </td>
+                                   
                                     <td>
                                         @Html.DisplayFor(modelItem => item.CustomerNickName)
                                     </td>
-                                   
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CustomerRegTime)
+                                    </td>
                                     <td>
 
                                         @Html.AntiForgeryToken()
