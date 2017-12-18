@@ -34,7 +34,8 @@ namespace PsyCoderWechat.WechatPay
         */
 
      //   public const string NOTIFY_URL = "http://wx.zzd123.com/ResultNotify";
-        public const string NOTIFY_URL = "http://quxian.woocg.com/ResultNotify";
+     //   public const string NOTIFY_URL = "http://quxian.woocg.com/ResultNotify";
+        public const string NOTIFY_URL = "http://zbz.zuyanquxian.cn/ResultNotify";
         
         //   public const string NOTIFY_URL = "http://sm.lmx.ren/ResultNotify";
         //public const string NOTIFY_URL = "/example/ResultNotifyPage.aspx";

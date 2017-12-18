@@ -104,7 +104,31 @@ namespace AdsWeb.WechatServices
                             WechatMessageServices.ResponseTextMessage(FromUserName.InnerText, WechatId, "好好玩的图片啊，你想告诉我什么呢？");
                             break;
                         case "text":
-                            WechatMessageServices.ResponseTextMessage(FromUserName.InnerText, WechatId, "您好，这是自闭症儿童家庭训练和评估系统，请点击下方菜单开始使用。\n\n 如有疑问，您可以拨打13945016428联系瑞夕老师进行咨询。");
+
+                              XmlNode TextContent = xmldoc.SelectSingleNode("/xml/Content");
+                            string keywords = TextContent.InnerText;
+                            if (string.IsNullOrEmpty(keywords))
+                            {
+                                WechatMessageServices.ResponseSuccessMessage(FromUserName.InnerText, WechatId);
+                                WechatMessageServices.ResponseTextMessage(FromUserName.InnerText, WechatId, "您好，这是自闭症儿童家庭训练和评估系统，请点击下方菜单开始使用。\n\n 如有疑问，您可以拨打13945016428联系瑞夕老师进行咨询。");
+                           
+                            }
+                            else
+                            {
+                                switch (keywords)
+                                {
+                                    case "自闭症资料":
+                                        WechatMessageServices.ResponseTextMessage(FromUserName.InnerText, WechatId, "您好，请先分享图片到朋友圈，帮助更多的自闭症家庭。\n\n然后请使用百度网盘下载该资料。\n\n 链接地址：https://pan.baidu.com/s/1pLdwA3D \n 密码：zeju \n\n 同时建议您点击下方开始训练按钮，加入自闭症家庭训练计划，让孩子提升更快。");
+                           
+                                        break;
+                                    default:
+                                        WechatMessageServices.ResponseTextMessage(FromUserName.InnerText, WechatId, "您好，这是自闭症儿童家庭训练和评估系统，请点击下方菜单开始使用。\n\n 如有疑问，您可以拨打13945016428联系瑞夕老师进行咨询。");
+                           
+                                        break;
+                                }
+
+                            }
+
                             break;
 
                         default:
