@@ -11,11 +11,24 @@ namespace AdsServices
 {
     public class BabyServices
     {
-        private static UnitOfWork unitOfWork = new UnitOfWork();
+       
 
         public static string GetBabyNameById(int id)
         {
-            return unitOfWork.adsBabysRepository.GetByID(id).BabyName;
+            UnitOfWork unitOfWork = new UnitOfWork();
+            string bname = string.Empty;
+            AdsBaby baby = unitOfWork.adsBabysRepository.GetByID(id);
+            if (baby == null)
+            {
+                bname = "查无此人";
+
+            }
+            else
+            {
+                bname = unitOfWork.adsBabysRepository.GetByID(id).BabyName;
+            }
+            unitOfWork.Dispose();
+            return bname;
         }
     }
 }

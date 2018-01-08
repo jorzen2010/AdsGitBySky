@@ -1,6 +1,7 @@
 ﻿@model StaticPagedList<AdsEntity.AdsBaby>
 @using PagedList;
 @using PagedList.Mvc;
+@using AdsServices;
 @{
     ViewBag.Title = "星童管理";
 }
@@ -46,12 +47,12 @@
                                 <th class="col-sm-1">
                                     性别
                                 </th>
+                                <th class="col-sm-2">
+                                    家长手机号
+                                </th>
                                 <th class="col-sm-1">
                                     推荐码
-                                </th>
-                                <th class="col-sm-2">
-                                    注册时间
-                                </th>
+                                </th>  
                                 <th class="col-sm-2">
                                     到期时间
                                 </th>
@@ -69,17 +70,17 @@
                                         @Html.DisplayFor(modelItem => item.BabyName)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.CustomerId)
+                                        @CustomerServices.GetCustomerName(item.CustomerId)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.BabySex)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.SalerCode)
+                                        @Html.DisplayFor(modelItem => item.CustomerTel)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.BabyRegTime)
-                                    </td>
+                                        @Html.DisplayFor(modelItem => item.SalerCode)
+                                    </td>            
                                     <td>
                                         @Html.DisplayFor(modelItem => item.BabyExpiredTime)
                                     </td>

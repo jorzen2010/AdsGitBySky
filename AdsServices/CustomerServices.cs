@@ -12,7 +12,6 @@ namespace AdsServices
 {
     public class CustomerServices
     {
-        private static  UnitOfWork unitOfWork = new UnitOfWork();
         public static IList<AdsCustomer> GetListForPageList(Pager pager)
         {
             pager = CommonDal.GetPager(pager);
@@ -22,7 +21,19 @@ namespace AdsServices
 
         public static string GetCustomerName(int id)
         {
-            return  unitOfWork.adsCustomersRepository.GetByID(id).CustomerNickName;
+            UnitOfWork unitOfWork = new UnitOfWork();
+            string cname = string.Empty;
+            AdsCustomer customer = unitOfWork.adsCustomersRepository.GetByID(id);
+            if (customer == null)
+            {
+                cname = "查无此人";
+            }
+            else
+            {
+                cname=  unitOfWork.adsCustomersRepository.GetByID(id).CustomerNickName;
+            }
+            unitOfWork.Dispose();
+            return cname;
         
         }
     }

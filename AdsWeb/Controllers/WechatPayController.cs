@@ -185,7 +185,7 @@ namespace AdsWeb.Controllers
                     packageValue = "",
                     paySign = "",
                     timeStamp = "",
-                    msg = ex.ToString() + "下单失败，请重试,多次失败,请联系管理员."
+                    msg = ex.ToString() + "下单失败，请重试,多次失败,请联系管理员.电话：17645134197"
                 };
                 objResult = aOrder;
             }

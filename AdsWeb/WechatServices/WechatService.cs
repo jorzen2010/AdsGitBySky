@@ -118,7 +118,7 @@ namespace AdsWeb.WechatServices
                                 switch (keywords)
                                 {
                                     case "自闭症资料":
-                                        WechatMessageServices.ResponseTextMessage(FromUserName.InnerText, WechatId, "您好，请先分享图片到朋友圈，帮助更多的自闭症家庭。\n\n然后请使用百度网盘下载该资料。\n\n 链接地址：https://pan.baidu.com/s/1pLdwA3D \n 密码：zeju \n\n 同时建议您点击下方开始训练按钮，加入自闭症家庭训练计划，让孩子提升更快。");
+                                        WechatMessageServices.ResponseTextMessage(FromUserName.InnerText, WechatId, "您好，请先分享图片到朋友圈，帮助更多的自闭症家庭。\n\n然后请使用百度网盘下载该资料。\n\n 链接地址：https://pan.baidu.com/s/1pLdwA3D \n 密码：zeju \n\n 同时建议您点击下方开始训练按钮，加入自闭症家庭训练计划，让孩子提升更快。\n\n <a href=\"http://zbz.zuyanquxian.cn/wechat/login\">点击获取更多资料</a>");
                            
                                         break;
                                     default:
